@@ -6,7 +6,6 @@ import axios from "axios";
 import { setCookie } from "../storage/Cookie";
 import { useDispatch } from "react-redux";
 import { SET_TOKEN } from "./store/Auth";
-import MyTrip from "./MyTrip";
 
 const Layout = styled.div`
   display: flex;
@@ -51,15 +50,15 @@ function Login() {
         //handle success
         console.log("success");
         const accessToken = response.data.token;
-        const userId = response.data.user.id;
-        console.log(userId);
+        localStorage.setItem("id", JSON.stringify(response.data.user.id));
+
         setCookie("is_login", `${accessToken}`);
         console.log(response.data);
         window.alert(response.data.message);
         //token이 필요한 API 요청 시 header Authorization에 token 담아서 보내기
         // axios.defaults.headers.common[]=`Bearer ${response.data.access_token}`
         dispatch(SET_TOKEN(accessToken));
-        <MyTrip username={userId} />;
+
         redirect("/");
       })
       .catch((error) => {

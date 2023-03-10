@@ -17,6 +17,7 @@ const Layout = styled.div`
 const MyTrip = (props) => {
   const [cookies, getCookie, removeCookie] = useCookies(["is_login"]);
   getCookie("is_login");
+  var userId = localStorage.getItem("id");
   const [userName, setUsername] = useState(props.username);
   const navigate = useNavigate();
   console.log(props.username);
@@ -39,7 +40,7 @@ const MyTrip = (props) => {
     axios
       .get(
         `https://www.aftertrip.link/api/trip/user/`,
-        { token: token },
+
         {
           headers: {
             authorization: `Bearer ${getCookie("is_login")}`,
@@ -73,7 +74,7 @@ const MyTrip = (props) => {
           left: "5%",
         }}
       >
-        {setUsername}님의 여행
+        {userId}님의 여행
       </h1>
       <Layout>
         <ImageBox height={"150px"} text1={""} text2={""} />
