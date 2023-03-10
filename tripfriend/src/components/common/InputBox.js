@@ -10,6 +10,7 @@ const InputText = styled.input`
     outline: none;
   }
   placeholder: ${(props) => props.placeholder};
+  type: ${(props) => props.type};
 `;
 
 const InputBox = (props) => {
@@ -20,6 +21,7 @@ const InputBox = (props) => {
       placeholder={props.placeholder}
       value={props.value}
       onChange={props.onChange}
+      type={props.type}
     />
   );
 };
@@ -27,5 +29,6 @@ const InputBox = (props) => {
 InputBox.defaultProps = {
   placeholder: " ",
   defaultValue: {},
+  type: "text",
 };
 export default InputBox;

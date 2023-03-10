@@ -10,6 +10,7 @@ import SignupUser from "./components/SignupUser";
 import Login from "./components/Login";
 
 function App() {
+  //const user = useSelector(selectUser);
   return (
     <>
       <BrowserRouter>

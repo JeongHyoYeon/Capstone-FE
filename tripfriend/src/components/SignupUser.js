@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import InputBox from "./common/InputBox";
-import { setCookie } from "./Cookie";
+import { setCookie } from "../storage/Cookie";
 
 const Layout = styled.div`
   display: flex;
@@ -82,6 +82,7 @@ function SignupUser() {
         />
         <h2>비밀번호</h2>
         <InputBox
+          type="password"
           placeholder="비밀번호"
           height={"35px"}
           width={"85%"}
