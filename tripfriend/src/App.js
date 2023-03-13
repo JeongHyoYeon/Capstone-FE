@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
-import MyTrip from "./components/MyTrip";
-import Group from "./components/Group";
-import Setting from "./components/Setting";
-import MakeTrip from "./components/MakeTrip";
-import MakeGroup from "./components/MakeGroup";
-import SignupUser from "./components/SignupUser";
-import Login from "./components/Login";
+import Header from "./pages/Header";
+import MyTrip from "./pages/MyTrip";
+import Group from "./pages/Group";
+import Setting from "./pages/Setting";
+import MakeTrip from "./pages/MakeTrip";
+import MakeGroup from "./pages/MakeGroup";
+import SignupUser from "./pages/SignupUser";
+import Login from "./pages/Login";
 
 function App() {
   //const user = useSelector(selectUser);

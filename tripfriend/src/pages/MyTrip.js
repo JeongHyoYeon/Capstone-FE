@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Button from "./common/Button";
+import Button from "../components/common/Button";
 import styled from "styled-components";
-import TextBox from "./common/TextBox";
-import ImageBox from "./common/ImageBox";
+import TextBox from "../components/common/TextBox";
+import ImageBox from "../components/common/ImageBox";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+//import { useCookies } from "react-cookie";
 
 const Layout = styled.div`
   display: flex;
@@ -15,10 +15,12 @@ const Layout = styled.div`
 `;
 
 const MyTrip = (props) => {
-  const [cookies, getCookie, removeCookie] = useCookies(["is_login"]);
-  getCookie("is_login");
+  //const [cookies, getCookie, removeCookie] = useCookies(["is_login"]);
+  //getCookie("is_login");
   var userId = localStorage.getItem("id");
-  const [userName, setUsername] = useState(props.username);
+  var localToken = localStorage.getItem("accessToken");
+  console.log(localToken);
+  //const [userName, setUsername] = useState(null);
   const navigate = useNavigate();
   console.log(props.username);
 
@@ -29,13 +31,17 @@ const MyTrip = (props) => {
   const redirect = useNavigate();
 
   const logOut = () => {
-    removeCookie("is_login");
+    //removeCookie("is_login");
+    localStorage.removeItem("id");
+    localStorage.removeItem("accesstoken");
+    localStorage.removeItem("refreshToken");
     navigate("/");
   };
 
   const authCheck = () => {
     //페이지에 들어올 때 쿠키로 사용자 체크
-    const token = cookies.is_login;
+    //const token = cookies.is_login;
+    const token = localToken;
     console.log(token);
     axios
       .get(
@@ -43,7 +49,7 @@ const MyTrip = (props) => {
 
         {
           headers: {
-            authorization: `Bearer ${getCookie("is_login")}`,
+            authorization: `Bearer ${token}`,
           },
         }
       )

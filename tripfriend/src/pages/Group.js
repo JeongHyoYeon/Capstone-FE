@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import TextBox from "./common/TextBox";
-import Button from "./common/Button";
+import TextBox from "../components/common/TextBox";
+import Button from "../components/common/Button";
 import { useNavigate } from "react-router-dom";
 
 const Layout = styled.div`
@@ -21,7 +21,7 @@ const Group = () => {
   return (
     <>
       <Layout>
-        <TextBox text1={"정효연"} text2={"정현,효주,연우"} height={"70px"} />
+        <TextBox text1={""} text2={""} height={"70px"} />
       </Layout>
       <Layout onClick={navMakeGroup}>
         <Button

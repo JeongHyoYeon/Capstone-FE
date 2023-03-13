@@ -1,7 +1,7 @@
 import React from "react";
-import InputBox from "./common/InputBox";
+import InputBox from "../components/common/InputBox";
 import styled from "styled-components";
-import Button from "./common/Button";
+import Button from "../components/common/Button";
 
 const Layout = styled.div`
   display: flex;

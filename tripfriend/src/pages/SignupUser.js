@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import InputBox from "./common/InputBox";
 import axios from "axios";
+import InputBox from "../components/common/InputBox";
 import { setCookie } from "../storage/Cookie";
-import { useDispatch } from "react-redux";
-import { SET_TOKEN } from "./store/Auth";
 
 const Layout = styled.div`
   display: flex;
@@ -16,62 +14,64 @@ const Layout = styled.div`
   position: relative;
 `;
 
-function Login() {
+function SignupUser() {
+  const [name, setName] = useState("");
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const redirect = useNavigate();
 
-  const dispatch = useDispatch();
-
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
   const handleId = (e) => {
     setId(e.target.value);
   };
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
 
-  const loginUser = async (e) => {
-    console.log({ id, password });
-    if (id === "" || password === "") {
-      window.alert("아이디와 비밀번호를 입력해주세요.");
-      return;
-    }
-    //e.preventDefault();
+  const register = async (e) => {
+    console.log({ name, id, email, password });
     await axios
-      .post(
-        "https://www.aftertrip.link/api/login/",
-        {
-          id: id,
-          password: password,
-        },
-        { withCredentials: true }
-      )
+      .post("https://www.aftertrip.link/api/register/", {
+        name: name,
+        id: id,
+        password: password,
+        email: email,
+      })
       .then((response) => {
         //handle success
         console.log("success");
         const accessToken = response.data.token;
-        localStorage.setItem("id", JSON.stringify(response.data.user.id));
-
         setCookie("is_login", `${accessToken}`);
         console.log(response.data);
         window.alert(response.data.message);
-        //token이 필요한 API 요청 시 header Authorization에 token 담아서 보내기
-        // axios.defaults.headers.common[]=`Bearer ${response.data.access_token}`
-        dispatch(SET_TOKEN(accessToken));
-
-        redirect("/");
+        //localStorage.setItem("token", response.data.jwt);
+        redirect("/login");
       })
       .catch((error) => {
         //handle error
         console.log("error:", error.response);
-        //console.log({ id, password });
+        console.log({ name, id, email, password });
       });
   };
 
   return (
     <>
       <Layout>
-        <h1>로그인</h1>
+        <h1>회원가입</h1>
+        <h2>이름</h2>
+        <InputBox
+          placeholder="이름"
+          height={"35px"}
+          width={"85%"}
+          value={name}
+          onChange={handleName}
+        />
         <h2>ID</h2>
         <InputBox
           placeholder="아이디"
@@ -89,18 +89,27 @@ function Login() {
           value={password}
           onChange={handlePassword}
         />
+        <h2>E-Mail</h2>
+        <InputBox
+          placeholder="이메일"
+          height={"35px"}
+          width={"85%"}
+          value={email}
+          onChange={handleEmail}
+        />
         <br />
         <br />
         <button
           type="submit"
           onClick={() => {
-            loginUser();
+            register();
           }}
         >
-          로그인
+          회원가입
         </button>
       </Layout>
     </>
   );
 }
-export default Login;
+
+export default SignupUser;

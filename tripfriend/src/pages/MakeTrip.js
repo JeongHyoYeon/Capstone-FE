@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import InputBox from "./common/InputBox";
+import InputBox from "../components/common/InputBox";
 import styled from "styled-components";
-import Button from "./common/Button";
+import Button from "../components/common/Button";
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/esm/locale";
 import "react-datepicker/dist/react-datepicker.css";
