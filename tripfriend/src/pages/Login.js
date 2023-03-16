@@ -6,6 +6,7 @@ import axios from "axios";
 import { setCookie } from "../storage/Cookie";
 import { useDispatch } from "react-redux";
 import { SET_TOKEN } from "../components/store/Auth";
+import Button from "../components/common/Button";
 
 const Layout = styled.div`
   display: flex;
@@ -50,7 +51,7 @@ function Login() {
         //handle success
         console.log("success");
         const accessToken = response.data.token;
-        localStorage.setItem("id", response.data.user.id);
+        localStorage.setItem("name", response.data.user.name);
         localStorage.setItem("accessToken", response.data.token.access);
         localStorage.setItem("refreshToken", response.data.token.refresh);
 
@@ -101,6 +102,18 @@ function Login() {
         >
           로그인
         </button>
+        {/* <Button
+          type={"submit"}
+          text={"로그인"}
+          backgroundColor={"#D9D9D9"}
+          width={"80px"}
+          fontColor={"BLACK"}
+          position={"fixed"}
+          bottom={"5%"}
+          onClick={() => {
+            loginUser();
+          }}
+        /> */}
       </Layout>
     </>
   );

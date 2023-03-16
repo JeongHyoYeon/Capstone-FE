@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Container = styled.div`
+const Container = styled.button`
   height: 70px;
   font-size: 20px;
   width: ${(props) => props.width};
@@ -21,7 +21,7 @@ const Container = styled.div`
   transition: 0.3s cubic-bezier(0.19, 1, 10.22, 1);
   position: ${(props) => props.position};
   bottom: ${(props) => props.bottom};
-
+  type: ${(props) => props.type};
   &:active {
     background-color: grey;
     box-shadow: inset 1px 1px 3px 0px #9d98983d;
@@ -41,6 +41,7 @@ const Button = (props) => {
       width={props.width}
       position={props.position}
       bottom={props.bottom}
+      type={props.type}
     >
       <Text>{props.text}</Text>
     </Container>
@@ -54,6 +55,7 @@ Button.defaultProps = {
   backgroundColor: "#D2E1F3",
   fontColor: "white",
   width: "100px",
+  type: "button",
 };
 
 export default Button;

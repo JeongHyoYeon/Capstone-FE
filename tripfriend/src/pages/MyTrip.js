@@ -5,6 +5,7 @@ import styled from "styled-components";
 import TextBox from "../components/common/TextBox";
 import ImageBox from "../components/common/ImageBox";
 import { useNavigate } from "react-router-dom";
+import instance from "../components/Request";
 //import { useCookies } from "react-cookie";
 
 const Layout = styled.div`
@@ -17,12 +18,11 @@ const Layout = styled.div`
 const MyTrip = (props) => {
   //const [cookies, getCookie, removeCookie] = useCookies(["is_login"]);
   //getCookie("is_login");
-  var userId = localStorage.getItem("id");
+  var userName = localStorage.getItem("name");
   var localToken = localStorage.getItem("accessToken");
   console.log(localToken);
   //const [userName, setUsername] = useState(null);
   const navigate = useNavigate();
-  console.log(props.username);
 
   const navMakeTrip = () => {
     navigate("/maketrips");
@@ -38,18 +38,22 @@ const MyTrip = (props) => {
     navigate("/");
   };
 
-  const authCheck = () => {
+  const authCheck = async (e) => {
     //페이지에 들어올 때 쿠키로 사용자 체크
     //const token = cookies.is_login;
     const token = localToken;
     console.log(token);
-    axios
+    await axios;
+    instance
       .get(
-        `https://www.aftertrip.link/api/trip/user/`,
+        `/trip/user/`,
 
         {
+          // headers: {
+          //   authorization: `Bearer ${token}`,
+          // },
           headers: {
-            authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
         }
       )
@@ -61,7 +65,7 @@ const MyTrip = (props) => {
       .catch((error) => {
         console.log(error);
         logOut();
-        redirect("/settings");
+        redirect("/login");
       });
   };
 
@@ -80,7 +84,7 @@ const MyTrip = (props) => {
           left: "5%",
         }}
       >
-        {userId}님의 여행
+        {userName}님의 여행
       </h1>
       <Layout>
         <ImageBox height={"150px"} text1={""} text2={""} />
