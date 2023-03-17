@@ -72,7 +72,7 @@ const Group = () => {
   useEffect(() => {
     groupList();
     //groupMembers();
-  });
+  }, []);
 
   return (
     <>

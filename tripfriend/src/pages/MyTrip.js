@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Button from "../components/common/Button";
 import styled from "styled-components";
 import TextBox from "../components/common/TextBox";
 import ImageBox from "../components/common/ImageBox";
-import { useNavigate } from "react-router-dom";
 import instance from "../components/Request";
+import { useNavigate } from "react-router-dom";
 //import { useCookies } from "react-cookie";
 
 const Layout = styled.div`
@@ -22,11 +21,6 @@ const MyTrip = (props) => {
   var localToken = localStorage.getItem("accessToken");
   console.log(localToken);
   //const [userName, setUsername] = useState(null);
-  const navigate = useNavigate();
-
-  const navMakeTrip = () => {
-    navigate("/maketrips");
-  };
 
   const redirect = useNavigate();
 
@@ -50,9 +44,6 @@ const MyTrip = (props) => {
         `/trip/user/`,
 
         {
-          // headers: {
-          //   authorization: `Bearer ${token}`,
-          // },
           headers: {
             //Authorization: `Bearer ${localToken}`,
             "Content-Type": "application/json",
@@ -90,16 +81,6 @@ const MyTrip = (props) => {
       </h1>
       <Layout>
         <ImageBox height={"150px"} text1={""} text2={""} />
-      </Layout>
-      <Layout onClick={navMakeTrip}>
-        <Button
-          text={"새 여행 만들기"}
-          backgroundColor={"#D9D9D9"}
-          width={"200px"}
-          fontColor={"BLACK"}
-          position={"fixed"}
-          bottom={"5%"}
-        />
       </Layout>
     </>
   );
