@@ -32,17 +32,18 @@ const MyTrip = (props) => {
 
   const logOut = () => {
     //removeCookie("is_login");
-    localStorage.removeItem("id");
-    localStorage.removeItem("accesstoken");
-    localStorage.removeItem("refreshToken");
-    navigate("/");
+    // localStorage.removeItem("id");
+    // localStorage.removeItem("accesstoken");
+    // localStorage.removeItem("refreshToken");
+    //localStorage.clear();
+    redirect("/login");
   };
 
   const authCheck = async (e) => {
     //페이지에 들어올 때 쿠키로 사용자 체크
     //const token = cookies.is_login;
-    const token = localToken;
-    console.log(token);
+    // const token = localToken;
+    // console.log(token);
     await axios;
     instance
       .get(
@@ -53,6 +54,7 @@ const MyTrip = (props) => {
           //   authorization: `Bearer ${token}`,
           // },
           headers: {
+            //Authorization: `Bearer ${localToken}`,
             "Content-Type": "application/json",
           },
         }
@@ -65,7 +67,7 @@ const MyTrip = (props) => {
       .catch((error) => {
         console.log(error);
         logOut();
-        redirect("/login");
+        //redirect("/login");
       });
   };
 
@@ -88,17 +90,6 @@ const MyTrip = (props) => {
       </h1>
       <Layout>
         <ImageBox height={"150px"} text1={""} text2={""} />
-      </Layout>
-      <Layout>
-        <Button
-          onClick={logOut}
-          text={"로그아웃"}
-          backgroundColor={"#D9D9D9"}
-          width={"200px"}
-          fontColor={"BLACK"}
-          position={"fixed"}
-          bottom={"5%"}
-        />
       </Layout>
       <Layout onClick={navMakeTrip}>
         <Button

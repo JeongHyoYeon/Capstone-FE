@@ -6,7 +6,7 @@ import axios from "axios";
 import { setCookie } from "../storage/Cookie";
 import { useDispatch } from "react-redux";
 import { SET_TOKEN } from "../components/store/Auth";
-import Button from "../components/common/Button";
+//import Button from "../components/common/Button";
 
 const Layout = styled.div`
   display: flex;
@@ -33,6 +33,7 @@ function Login() {
 
   const loginUser = async (e) => {
     console.log({ id, password });
+    localStorage.clear();
     if (id === "" || password === "") {
       window.alert("아이디와 비밀번호를 입력해주세요.");
       return;
@@ -50,12 +51,13 @@ function Login() {
       .then((response) => {
         //handle success
         console.log("success");
+
         const accessToken = response.data.token;
         localStorage.setItem("name", response.data.user.name);
         localStorage.setItem("accessToken", response.data.token.access);
         localStorage.setItem("refreshToken", response.data.token.refresh);
 
-        setCookie("is_login", `${accessToken}`);
+        //setCookie("is_login", `${accessToken}`);
         console.log(response.data);
         window.alert(response.data.message);
         //token이 필요한 API 요청 시 header Authorization에 token 담아서 보내기

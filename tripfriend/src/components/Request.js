@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SET_TOKEN } from "./store/Auth";
+//import { SET_TOKEN } from "./store/Auth";
 
 const instance = axios.create({
   baseURL: "https://www.aftertrip.link/api", // 요청을 www.aa.com/user로 보낸다면, www.aa.com까지 기록

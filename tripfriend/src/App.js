@@ -8,6 +8,7 @@ import MakeTrip from "./pages/MakeTrip";
 import MakeGroup from "./pages/MakeGroup";
 import SignupUser from "./pages/SignupUser";
 import Login from "./pages/Login";
+import GroupTripList from "./pages/GroupTripList";
 
 function App() {
   //const user = useSelector(selectUser);
@@ -24,6 +25,7 @@ function App() {
             <Route path="/makegroups" element={<MakeGroup />} />
             <Route path="/signup" element={<SignupUser />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/grouptrip/:id" element={<GroupTripList />} />
           </Routes>
         </div>
       </BrowserRouter>

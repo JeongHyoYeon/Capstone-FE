@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TextBox from "../components/common/TextBox";
 import Button from "../components/common/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import instance from "../components/Request";
 import axios from "axios";
 
@@ -20,9 +20,8 @@ const Group = () => {
   const navMakeGroup = () => {
     navigate("/makegroups");
   };
+
   const groupList = async (e) => {
-    //페이지에 들어올 때 쿠키로 사용자 체크
-    //const token = cookies.is_login;
     await axios;
     instance
       .get(
@@ -45,17 +44,44 @@ const Group = () => {
         console.log(error);
       });
   };
+  //그룹별로 속한 아이디 뜨게 하기
+  // const groupMembers = async (e) => {
+  //   await axios;
+  //   instance
+  //     .get(
+  //       `/group/invite`,
+
+  //       {
+  //         // headers: {
+  //         //   authorization: `Bearer ${token}`,
+  //         // },
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       //console.log(response.data);
+  //       setgroupName(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   useEffect(() => {
     groupList();
+    //groupMembers();
   });
 
   return (
     <>
       {groupName &&
-        groupName.map(({ name }) => (
+        groupName.map(({ id, name }) => (
           <Layout>
-            <TextBox text1={name} text2={""} height={"70px"} />
+            <Link to={`/grouptrip/${id}`}>
+              <TextBox text1={name} text2={""} height={"70px"} />
+            </Link>
           </Layout>
         ))}
       <Layout onClick={navMakeGroup}>
