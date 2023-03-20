@@ -56,7 +56,7 @@ const GroupTripList = () => {
           left: "5%",
         }}
       >
-        여행
+        {id}여행
       </h1>
       <Layout>
         <ImageBox height={"150px"} text1={""} text2={""} />

@@ -136,7 +136,7 @@ const MakeGroup = () => {
           type="submit"
           onClick={() => {
             addUsers();
-            inviteUser();
+            //inviteUser();
           }}
         >
           추가
@@ -158,7 +158,7 @@ const MakeGroup = () => {
           type="submit"
           onClick={() => {
             makegroupName();
-            //inviteUser();
+            inviteUser();
           }}
         >
           그룹 만들기

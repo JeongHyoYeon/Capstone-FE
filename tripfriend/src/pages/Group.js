@@ -13,8 +13,17 @@ const Layout = styled.div`
   padding-top: 20px;
 `;
 
+const Layout_2 = styled.div`
+  display: block;
+  padding-left: 4%;
+  padding-top: 20px;
+`;
+
 const Group = () => {
-  const [groupName, setgroupName] = useState("");
+  let newGroupInfo = [];
+
+  const [groupInfo, setGroupInfo] = useState([]);
+
   const navigate = useNavigate();
 
   const navMakeGroup = () => {
@@ -28,62 +37,45 @@ const Group = () => {
         `/group/`,
 
         {
-          // headers: {
-          //   authorization: `Bearer ${token}`,
-          // },
           headers: {
             "Content-Type": "application/json",
           },
         }
       )
       .then((response) => {
-        //console.log(response.data);
-        setgroupName(response.data);
+        //let info = { data: [{ group_info: {}, user_in_group: {} }] };
+        console.log(response.data.data);
+
+        for (let i = 0; i < response.data.data.length; i++) {
+          newGroupInfo.push(response.data.data[i]);
+        }
+        setGroupInfo([...groupInfo, ...newGroupInfo]);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  //그룹별로 속한 아이디 뜨게 하기
-  // const groupMembers = async (e) => {
-  //   await axios;
-  //   instance
-  //     .get(
-  //       `/group/invite`,
-
-  //       {
-  //         // headers: {
-  //         //   authorization: `Bearer ${token}`,
-  //         // },
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     )
-  //     .then((response) => {
-  //       //console.log(response.data);
-  //       setgroupName(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
 
   useEffect(() => {
     groupList();
-    //groupMembers();
+
+    console.log("과연");
   }, []);
 
   return (
     <>
-      {groupName &&
-        groupName.map(({ id, name }) => (
-          <Layout>
-            <Link to={`/grouptrip/${id}`}>
-              <TextBox text1={name} text2={""} height={"70px"} />
-            </Link>
-          </Layout>
-        ))}
+      {groupInfo.map(({ group_info, user_in_group }) => (
+        <Layout_2 key={group_info.id}>
+          <Link to={`/grouptrip/${group_info.id}`}>
+            <TextBox
+              text1={group_info.name}
+              text2={user_in_group + " "}
+              height={"70px"}
+            />
+          </Link>
+        </Layout_2>
+      ))}
+
       <Layout onClick={navMakeGroup}>
         <Button
           text={"새 그룹 만들기"}
