@@ -25,7 +25,7 @@ function App() {
             <Route path="/makegroups" element={<MakeGroup />} />
             <Route path="/signup" element={<SignupUser />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/grouptrip/:id" element={<GroupTripList />} />
+            <Route path="/grouptrip/:groupNum" element={<GroupTripList />} />
           </Routes>
         </div>
       </BrowserRouter>

@@ -13,7 +13,7 @@ const Layout = styled.div`
   padding-top: 20px;
 `;
 
-const Layout_2 = styled.div`
+const Layout2 = styled.div`
   display: block;
   padding-left: 4%;
   padding-top: 20px;
@@ -59,21 +59,21 @@ const Group = () => {
   useEffect(() => {
     groupList();
 
-    console.log("과연");
+    console.log("useEffect");
   }, []);
 
   return (
     <>
       {groupInfo.map(({ group_info, user_in_group }) => (
-        <Layout_2 key={group_info.id}>
-          <Link to={`/grouptrip/${group_info.id}`}>
+        <Layout2 key={group_info.id}>
+          <Link to={`/grouptrip/${group_info.group_num}`}>
             <TextBox
               text1={group_info.name}
               text2={user_in_group + " "}
               height={"70px"}
             />
           </Link>
-        </Layout_2>
+        </Layout2>
       ))}
 
       <Layout onClick={navMakeGroup}>

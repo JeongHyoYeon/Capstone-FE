@@ -5,6 +5,8 @@ import styled from "styled-components";
 import instance from "../components/Request";
 import Button from "../components/common/Button";
 import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Layout = styled.div`
   display: flex;
@@ -15,22 +17,23 @@ const Layout = styled.div`
 
 const GroupTripList = () => {
   //그룹 아이디
-  const { id } = useParams();
-  console.log(id);
-  localStorage.setItem("nowGroup", id);
+  const { groupNum } = useParams();
+  console.log(groupNum);
+  localStorage.setItem("nowGroup", groupNum);
+
+  const [groupName, setGroupName] = useState("");
 
   const navigate = useNavigate();
   const navMakeTrip = () => {
     navigate("/maketrips");
   };
 
-  // api 수정되면 넣기 그룹명 뜨게하기
-
+  // group의 여행 목록
   const groupdetail = async (e) => {
     await axios;
     instance
       .get(
-        `/trip/${id}/`,
+        `/trip/${groupNum}/`,
 
         {
           headers: {
@@ -42,11 +45,16 @@ const GroupTripList = () => {
       .then((response) => {
         console.log("success");
         console.log(response.data);
+        setGroupName(response.data.data.group_name);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    groupdetail();
+  });
 
   return (
     <>
@@ -56,7 +64,7 @@ const GroupTripList = () => {
           left: "5%",
         }}
       >
-        {id}여행
+        {groupName}의 여행
       </h1>
       <Layout>
         <ImageBox height={"150px"} text1={""} text2={""} />
