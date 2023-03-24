@@ -58,7 +58,6 @@ const GroupTripList = () => {
 
         for (let i = 0; i < response.data.data.trip_list.length; i++) {
           nowGroupTripList.push(response.data.data.trip_list[i]);
-          console.log(response.data.data.trip_list[i].thumbnail);
         }
         setGroupTripList([...groupTripList, ...nowGroupTripList]);
       })
