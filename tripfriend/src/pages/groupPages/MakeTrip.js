@@ -75,16 +75,6 @@ const MakeTrip = () => {
 
     formData.append("thumbnail", thumbnail);
 
-    // const value = [
-    //   {
-    //     place: place,
-    //     departing_date: getDateOnly(startDate),
-    //     arriving_date: getDateOnly(endDate),
-    //   },
-    // ];
-
-    // console.log(value);
-
     formData.append("place", JSON.stringify(place));
     formData.append("departing_date", JSON.stringify(getDateOnly(startDate)));
     formData.append("arriving_date", JSON.stringify(getDateOnly(endDate)));
@@ -93,19 +83,17 @@ const MakeTrip = () => {
       console.log(value);
     }
 
+    for (let key of formData.keys()) {
+      console.log(key);
+    }
+
     await axios;
     instance
-      .post(
-        `/trip/${nowGroup}/`,
-        {
-          data: formData,
+      .post(`/trip/${nowGroup}/`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
         },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
+      })
       .then((response) => {
         console.log("success");
         console.log(response);
@@ -130,7 +118,6 @@ const MakeTrip = () => {
           selected={startDate}
           onChange={(date) => setStartDate(date)}
           selectsStart
-          //minDate={new Date()}
           startDate={startDate}
           endDate={endDate}
         />
@@ -142,7 +129,6 @@ const MakeTrip = () => {
           selected={endDate}
           onChange={(date) => setEndDate(date)}
           selectsEnd
-          //minDate={new Date()}
           startDate={startDate}
           endDate={endDate}
         />

@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import ImageBox from "../../components/common/ImageBox";
 import styled from "styled-components";
 import instance from "../../components/Request";
@@ -12,6 +12,12 @@ const Layout = styled.div`
   display: flex;
   justify-content: center;
   align-content: space-evenly;
+  padding-top: 20px;
+`;
+
+const Layout2 = styled.div`
+  display: block;
+  padding-left: 4%;
   padding-top: 20px;
 `;
 
@@ -52,6 +58,7 @@ const GroupTripList = () => {
 
         for (let i = 0; i < response.data.data.trip_list.length; i++) {
           nowGroupTripList.push(response.data.data.trip_list[i]);
+          console.log(response.data.data.trip_list[i].thumbnail);
         }
         setGroupTripList([...groupTripList, ...nowGroupTripList]);
       })
@@ -75,14 +82,16 @@ const GroupTripList = () => {
         {groupName}의 여행
       </h1>
       {groupTripList.map((trip_list) => (
-        <Layout key={trip_list.id}>
-          <ImageBox
-            src={trip_list.thumbnail}
-            height={"150px"}
-            text1={trip_list.place}
-            text2={trip_list.departing_date + "~" + trip_list.arriving_date}
-          />
-        </Layout>
+        <Layout2 key={trip_list.id}>
+          <Link to={`/grouptripdetail/${trip_list.id}`}>
+            <ImageBox
+              src={trip_list.thumbnail}
+              height={"150px"}
+              text1={trip_list.place}
+              text2={trip_list.departing_date + " ~ " + trip_list.arriving_date}
+            />
+          </Link>
+        </Layout2>
       ))}
 
       <Layout onClick={navMakeTrip}>
