@@ -5,7 +5,7 @@ import InputBox from "../components/common/InputBox";
 import axios from "axios";
 import { setCookie } from "../storage/Cookie";
 import { useDispatch } from "react-redux";
-import { SET_TOKEN } from "../components/modules/Auth";
+import { SET_TOKEN } from "../components/modules/slices/tokenSlice";
 //import Button from "../components/common/Button";
 
 const Layout = styled.div`

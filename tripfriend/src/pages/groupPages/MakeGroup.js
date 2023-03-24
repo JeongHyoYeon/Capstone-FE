@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import InputBox from "../components/common/InputBox";
+import InputBox from "../../components/common/InputBox";
 import styled from "styled-components";
-import Button from "../components/common/Button";
+import Button from "../../components/common/Button";
 import axios from "axios";
-import instance from "../components/Request";
+import instance from "../../components/Request";
 //import { useEffect } from "react";
 
 const Layout = styled.div`

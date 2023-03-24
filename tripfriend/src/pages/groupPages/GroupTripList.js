@@ -1,9 +1,9 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import ImageBox from "../components/common/ImageBox";
+import ImageBox from "../../components/common/ImageBox";
 import styled from "styled-components";
-import instance from "../components/Request";
-import Button from "../components/common/Button";
+import instance from "../../components/Request";
+import Button from "../../components/common/Button";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -22,6 +22,9 @@ const GroupTripList = () => {
   localStorage.setItem("nowGroup", groupNum);
 
   const [groupName, setGroupName] = useState("");
+  //그룹별 여행 목록
+  let nowGroupTripList = [];
+  const [groupTripList, setGroupTripList] = useState([]);
 
   const navigate = useNavigate();
   const navMakeTrip = () => {
@@ -46,6 +49,11 @@ const GroupTripList = () => {
         console.log("success");
         console.log(response.data);
         setGroupName(response.data.data.group_name);
+
+        for (let i = 0; i < response.data.data.trip_list.length; i++) {
+          nowGroupTripList.push(response.data.data.trip_list[i]);
+        }
+        setGroupTripList([...groupTripList, ...nowGroupTripList]);
       })
       .catch((error) => {
         console.log(error);
@@ -54,7 +62,7 @@ const GroupTripList = () => {
 
   useEffect(() => {
     groupdetail();
-  });
+  }, []);
 
   return (
     <>
@@ -66,9 +74,17 @@ const GroupTripList = () => {
       >
         {groupName}의 여행
       </h1>
-      <Layout>
-        <ImageBox height={"150px"} text1={""} text2={""} />
-      </Layout>
+      {groupTripList.map((trip_list) => (
+        <Layout key={trip_list.id}>
+          <ImageBox
+            src={trip_list.thumbnail}
+            height={"150px"}
+            text1={trip_list.place}
+            text2={trip_list.departing_date + "~" + trip_list.arriving_date}
+          />
+        </Layout>
+      ))}
+
       <Layout onClick={navMakeTrip}>
         <Button
           text={"새 여행 만들기"}

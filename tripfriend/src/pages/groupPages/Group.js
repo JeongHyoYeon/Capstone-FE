@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import TextBox from "../components/common/TextBox";
-import Button from "../components/common/Button";
+import TextBox from "../../components/common/TextBox";
+import Button from "../../components/common/Button";
 import { useNavigate, Link } from "react-router-dom";
-import instance from "../components/Request";
+import instance from "../../components/Request";
 import axios from "axios";
 
 const Layout = styled.div`
