@@ -39,6 +39,7 @@ const GroupTripList = () => {
 
   // group의 여행 목록
   const groupdetail = async (e) => {
+    //e.preventDefault();
     await axios;
     instance
       .get(

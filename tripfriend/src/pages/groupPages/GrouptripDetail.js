@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ImageBox from "../../components/common/ImageBox";
 import styled from "styled-components";
@@ -18,9 +18,17 @@ const GrouptripDetail = () => {
   localStorage.setItem("nowGroupTrip", tripId);
 
   //여행 정보
-  const [trip, setTrip] = useState([]);
+  const [tripInfo, setTripInfo] = useState({
+    id: "",
+    group: "",
+    place: "",
+    departing_date: "",
+    arriving_date: "",
+    thumbnail: "",
+  });
 
   const tripDetail = async (e) => {
+    //e.preventDefault();
     await axios;
     instance
       .get(
@@ -35,25 +43,34 @@ const GrouptripDetail = () => {
       .then((response) => {
         console.log("success");
         console.log(response.data);
+        setTripInfo({
+          ...tripInfo,
+          id: response.data.id,
+          group: response.data.group,
+          place: response.data.place,
+          departing_date: response.data.departing_date,
+          arriving_date: response.data.arriving_date,
+          thumbnail: response.data.thumbnail,
+        });
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
+  useEffect(() => {
+    tripDetail();
+  }, []);
   return (
     <>
-      {/* <Layout2 key={}>
-         
-            <ImageBox
-              src={trip_list.thumbnail}
-              height={"150px"}
-              text1={trip_list.place}
-              text2={trip_list.departing_date + " ~ " + trip_list.arriving_date}
-            />
-          
-        </Layout2> */}
-      <h1>{tripId}</h1>
+      <Layout2 key={tripInfo.id}>
+        <ImageBox
+          src={tripInfo.thumbnail}
+          height={"150px"}
+          text1={tripInfo.place}
+          text2={tripInfo.departing_date + " ~ " + tripInfo.arriving_date}
+        />
+      </Layout2>
     </>
   );
 };
