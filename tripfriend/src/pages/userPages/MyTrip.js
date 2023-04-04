@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import TextBox from "../components/common/TextBox";
-import ImageBox from "../components/common/ImageBox";
-import instance from "../components/Request";
+import TextBox from "../../components/common/TextBox";
+import ImageBox from "../../components/common/ImageBox";
+//import instance from "../components/Request";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 //import { useCookies } from "react-cookie";
 
 const Layout = styled.div`
@@ -17,9 +18,12 @@ const Layout = styled.div`
 const MyTrip = (props) => {
   //const [cookies, getCookie, removeCookie] = useCookies(["is_login"]);
   //getCookie("is_login");
+  const JWTtoken = useSelector((state) => state.authToken.accessToken);
+  console.log(JWTtoken);
   var userName = localStorage.getItem("name");
   var localToken = localStorage.getItem("accessToken");
   console.log(localToken);
+
   //const [userName, setUsername] = useState(null);
 
   const redirect = useNavigate();
@@ -38,15 +42,15 @@ const MyTrip = (props) => {
     //const token = cookies.is_login;
     // const token = localToken;
     // console.log(token);
-    await axios;
-    instance
+    console.log(JWTtoken);
+    await axios
       .get(
-        `/trip/user/`,
+        `https://www.aftertrip.link/api/trip/user/`,
 
         {
           headers: {
-            //Authorization: `Bearer ${localToken}`,
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${JWTtoken}`,
+            //Content-Type: application/json,
           },
         }
       )
@@ -58,6 +62,7 @@ const MyTrip = (props) => {
       .catch((error) => {
         console.log(error);
         logOut();
+
         //redirect("/login");
       });
   };

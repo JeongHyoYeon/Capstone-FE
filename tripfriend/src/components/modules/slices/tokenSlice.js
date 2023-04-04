@@ -29,4 +29,5 @@ export const { SET_TOKEN, DELETE_TOKEN } = tokenSlice.actions;
 
 export const selectUser = (state) => state.authToken;
 
-export default tokenSlice.reducer;
+//export default tokenSlice.reducer;
+export default tokenSlice;

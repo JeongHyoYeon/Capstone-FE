@@ -12,15 +12,15 @@ const Layout = styled.div`
   flex-direction: column;
   padding-top: 20px;
   position: relative;
-  left: 5%;
+  left: 6%;
 `;
 
-const Layout1 = styled.div`
-  display: flex;
-  justify-content: center;
-  align-content: space-evenly;
-  padding-top: 20px;
-`;
+// const Layout1 = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-content: space-evenly;
+//   padding-top: 20px;
+// `;
 
 const MakeGroup = () => {
   const [groupName, setgroupName] = useState("");
@@ -30,6 +30,9 @@ const MakeGroup = () => {
   const [inviteList, setinviteList] = useState([]);
   //새롭게 입력 받은 id를 저장하기
   //let [newInviteList, setnewInviteList] = useState([""]);
+
+  //그룹에 아이디 추가하는 화면 보이게 하기
+  const [visible, setvisible] = useState(false);
 
   const handlegroupName = (e) => {
     setgroupName(e.target.value);
@@ -111,60 +114,64 @@ const MakeGroup = () => {
 
   return (
     <>
+      <br />
+      <br />
+      <br />
       <Layout>
-        <h3>그룹의 이름을 입력하세요.</h3>
-        <InputBox height={"35px"} width={"85%"} onChange={handlegroupName} />
-        <h3>추가할 친구의 ID를 입력하세요.</h3>
-        <InputBox height={"35px"} width={"85%"} onChange={handleinviteId} />
-      </Layout>
-      <Layout1>
+        <InputBox
+          placeholder="그룹의 이름을 입력하세요."
+          height={"50px"}
+          width={"85%"}
+          onChange={handlegroupName}
+        />
+        <br />
+        <Button
+          type={"submit"}
+          text={"그룹 만들기"}
+          backgroundColor={"#A4B0D8"}
+          width={"85%"}
+          fontColor={"white"}
+          // position={"fixed"}
+          // bottom={"5%"}
+          onClick={() => {
+            makegroupName();
+            setvisible(!visible);
+            //inviteUser();
+          }}
+        />
+        <br />
+        <br />
+
+        <InputBox
+          placeholder="추가할 친구의 ID를 입력하세요."
+          height={"50px"}
+          width={"85%"}
+          onChange={handleinviteId}
+        />
+        <br />
         <h3>
           추가된 아이디:
           {inviteList.map((item) => (
             <>{item.id + " "}</>
           ))}
         </h3>
-        {/* <Button
+        <br />
+        <br />
+        <Button
           text={"추가"}
-          backgroundColor={"#D9D9D9"}
-          width={"80px"}
-          fontColor={"BLACK"}
-          position={"fixed"}
-          bottom={"40%"}
-        /> */}
-        <button
-          type="submit"
+          backgroundColor={"#A4B0D8"}
+          width={"85%"}
+          fontColor={"white"}
+          // position={"fixed"}
+          // bottom={"40%"}
           onClick={() => {
             addUsers();
-            //inviteUser();
-          }}
-        >
-          추가
-        </button>
-        <br />
-        {/* <Button
-          type={"submit"}
-          text={"확인"}
-          backgroundColor={"#D9D9D9"}
-          width={"80px"}
-          fontColor={"BLACK"}
-          position={"fixed"}
-          bottom={"5%"}
-          onClick={() => {
-            makegroupName();
-          }}
-        /> */}
-        <button
-          type="submit"
-          onClick={() => {
-            makegroupName();
             inviteUser();
           }}
-        >
-          그룹 만들기
-        </button>
-      </Layout1>
+        />
+      </Layout>
     </>
   );
 };
+
 export default MakeGroup;

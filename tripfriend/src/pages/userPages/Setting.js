@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../components/common/Button";
+import Button from "../../components/common/Button";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -19,14 +19,15 @@ const Setting = () => {
   };
   return (
     <>
-      <Layout onClick={logOut}>
+      <Layout>
         <Button
           text={"로그아웃"}
-          backgroundColor={"#D9D9D9"}
+          backgroundColor={"#A4B0D8"}
           width={"200px"}
-          fontColor={"BLACK"}
+          fontColor={"white"}
           position={"fixed"}
           bottom={"70%"}
+          onClick={logOut}
         />
       </Layout>
     </>

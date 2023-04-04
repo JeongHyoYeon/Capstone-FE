@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
-import InputBox from "../components/common/InputBox";
-import { setCookie } from "../storage/Cookie";
+import InputBox from "../../components/common/InputBox";
+import { setCookie } from "../../storage/Cookie";
+import Button from "../../components/common/Button";
 
 const Layout = styled.div`
   display: flex;
@@ -64,49 +65,52 @@ function SignupUser() {
     <>
       <Layout>
         <h1>회원가입</h1>
-        <h2>이름</h2>
+        <br />
         <InputBox
           placeholder="이름"
-          height={"35px"}
+          height={"40px"}
           width={"85%"}
           value={name}
           onChange={handleName}
         />
-        <h2>ID</h2>
+        <br />
         <InputBox
           placeholder="아이디"
-          height={"35px"}
+          height={"40px"}
           width={"85%"}
           value={id}
           onChange={handleId}
         />
-        <h2>비밀번호</h2>
+        <br />
         <InputBox
           type="password"
           placeholder="비밀번호"
-          height={"35px"}
+          height={"40px"}
           width={"85%"}
           value={password}
           onChange={handlePassword}
         />
-        <h2>E-Mail</h2>
+        <br />
         <InputBox
           placeholder="이메일"
-          height={"35px"}
+          height={"40px"}
           width={"85%"}
           value={email}
           onChange={handleEmail}
         />
         <br />
         <br />
-        <button
-          type="submit"
+        <Button
+          type={"submit"}
+          text={"회원가입"}
+          backgroundColor={"#A4B0D8"}
+          width={"85%"}
+          height={"50px"}
+          fontColor={"white"}
           onClick={() => {
             register();
           }}
-        >
-          회원가입
-        </button>
+        />
       </Layout>
     </>
   );

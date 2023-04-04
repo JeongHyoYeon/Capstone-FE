@@ -76,7 +76,7 @@ const GroupTripList = () => {
       <h1
         style={{
           position: "relative",
-          left: "5%",
+          left: "8%",
         }}
       >
         {groupName}의 여행
@@ -94,14 +94,15 @@ const GroupTripList = () => {
         </Layout2>
       ))}
 
-      <Layout onClick={navMakeTrip}>
+      <Layout>
         <Button
           text={"새 여행 만들기"}
-          backgroundColor={"#D9D9D9"}
+          backgroundColor={"#A4B0D8"}
           width={"200px"}
-          fontColor={"BLACK"}
+          fontColor={"white"}
           position={"fixed"}
-          bottom={"5%"}
+          bottom={"13%"}
+          onClick={navMakeTrip}
         />
       </Layout>
     </>

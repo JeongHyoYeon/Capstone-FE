@@ -8,22 +8,22 @@ const Header = () => {
   return (
     <div className="header-all">
       <div className="brand-Name">
-        <h1>AfterTrip</h1>
+        <h2>AfterTrip</h2>
       </div>
       <nav className="nav-wrap">
         <div>
           <Link to="/groups">
-            <MdPeopleOutline size="35px" color="black" />
+            <MdPeopleOutline size="25px" color="black" />
           </Link>
         </div>
         <div>
           <Link to="/">
-            <MdPersonOutline size="30px" color="black" />
+            <MdPersonOutline size="25px" color="black" />
           </Link>
         </div>
         <div>
           <Link to="/settings">
-            <IoSettingsOutline size="30px" color="black" />
+            <IoSettingsOutline size="25px" color="black" />
           </Link>
         </div>
       </nav>

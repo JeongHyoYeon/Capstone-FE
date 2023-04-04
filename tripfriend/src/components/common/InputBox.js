@@ -4,8 +4,11 @@ import styled from "styled-components";
 const InputText = styled.input`
   height: ${(props) => props.height};
   width: ${(props) => props.width};
-  background: #d9d9d9;
+  background: white;
   border: none;
+  border-radius: 10px 10px 10px 10px;
+  outline: #d9d9d9 1px solid;
+  padding-left: 20px;
   &:focus {
     outline: none;
   }

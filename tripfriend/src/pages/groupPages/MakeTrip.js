@@ -150,18 +150,17 @@ const MakeTrip = () => {
           )}
         </div>
       </Layout>
-      <Layout1
-        onClick={() => {
-          makeTrip();
-        }}
-      >
+      <Layout1>
         <Button
           text={"새 여행 만들기"}
-          backgroundColor={"#D9D9D9"}
+          backgroundColor={"#A4B0D8"}
           width={"200px"}
-          fontColor={"BLACK"}
+          fontColor={"white"}
           position={"fixed"}
-          bottom={"5%"}
+          bottom={"10%"}
+          onClick={() => {
+            makeTrip();
+          }}
         />
       </Layout1>
     </>

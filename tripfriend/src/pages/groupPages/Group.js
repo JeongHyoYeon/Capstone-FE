@@ -76,14 +76,16 @@ const Group = () => {
         </Layout2>
       ))}
 
-      <Layout onClick={navMakeGroup}>
+      <Layout>
         <Button
           text={"새 그룹 만들기"}
-          backgroundColor={"#D9D9D9"}
+          backgroundColor={"#A4B0D8"}
           width={"200px"}
-          fontColor={"BLACK"}
+          height={"50px"}
+          fontColor={"white"}
           position={"fixed"}
           bottom={"5%"}
+          onClick={navMakeGroup}
         />
       </Layout>
     </>

@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import InputBox from "../components/common/InputBox";
+import InputBox from "../../components/common/InputBox";
 import axios from "axios";
-import { setCookie } from "../storage/Cookie";
+//import { setCookie } from "../storage/Cookie";
 import { useDispatch } from "react-redux";
-import { SET_TOKEN } from "../components/modules/slices/tokenSlice";
-//import Button from "../components/common/Button";
+import { SET_TOKEN } from "../../components/modules/slices/tokenSlice";
+import Button from "../../components/common/Button";
 
 const Layout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-top: 20px;
+  padding-top: 100px;
   position: relative;
 `;
 
@@ -23,6 +23,12 @@ function Login() {
   const redirect = useNavigate();
 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const navSignup = () => {
+    navigate("/signup");
+  };
 
   const handleId = (e) => {
     setId(e.target.value);
@@ -52,7 +58,7 @@ function Login() {
         //handle success
         console.log("success");
 
-        const accessToken = response.data.token;
+        const accessToken = response.data.token.access;
         localStorage.setItem("name", response.data.user.name);
         localStorage.setItem("accessToken", response.data.token.access);
         localStorage.setItem("refreshToken", response.data.token.refresh);
@@ -75,47 +81,49 @@ function Login() {
 
   return (
     <>
+      <br />
+      <br />
+      <br />
       <Layout>
-        <h1>로그인</h1>
-        <h2>ID</h2>
         <InputBox
           placeholder="아이디"
-          height={"35px"}
+          height={"50px"}
           width={"85%"}
           value={id}
           onChange={handleId}
         />
-        <h2>비밀번호</h2>
+        <br />
         <InputBox
           type="password"
           placeholder="비밀번호"
-          height={"35px"}
+          height={"50px"}
           width={"85%"}
           value={password}
           onChange={handlePassword}
         />
         <br />
         <br />
-        <button
-          type="submit"
-          onClick={() => {
-            loginUser();
-          }}
-        >
-          로그인
-        </button>
-        {/* <Button
+        <Button
           type={"submit"}
           text={"로그인"}
-          backgroundColor={"#D9D9D9"}
-          width={"80px"}
-          fontColor={"BLACK"}
-          position={"fixed"}
-          bottom={"5%"}
+          backgroundColor={"#A4B0D8"}
+          width={"85%"}
+          height={"50px"}
+          fontColor={"white"}
           onClick={() => {
             loginUser();
           }}
-        /> */}
+        />
+        <br />
+        <Button
+          type={"submit"}
+          text={"회원가입"}
+          backgroundColor={"#A4B0D8"}
+          width={"85%"}
+          height={"50px"}
+          fontColor={"white"}
+          onClick={navSignup}
+        />
       </Layout>
     </>
   );
