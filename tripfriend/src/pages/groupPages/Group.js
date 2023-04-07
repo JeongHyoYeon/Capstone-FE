@@ -5,6 +5,7 @@ import Button from "../../components/common/Button";
 import { useNavigate, Link } from "react-router-dom";
 import instance from "../../components/Request";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const Layout = styled.div`
   display: flex;
@@ -20,6 +21,9 @@ const Layout2 = styled.div`
 `;
 
 const Group = () => {
+  const JWTtoken = useSelector((state) => state.authToken.accessToken);
+  console.log(JWTtoken);
+
   let newGroupInfo = [];
 
   const [groupInfo, setGroupInfo] = useState([]);
@@ -38,7 +42,8 @@ const Group = () => {
 
         {
           headers: {
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${JWTtoken}`,
+            // "Content-Type": "application/json",
           },
         }
       )

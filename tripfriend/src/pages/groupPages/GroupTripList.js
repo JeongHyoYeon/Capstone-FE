@@ -7,6 +7,7 @@ import Button from "../../components/common/Button";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Layout = styled.div`
   display: flex;
@@ -22,6 +23,9 @@ const Layout2 = styled.div`
 `;
 
 const GroupTripList = () => {
+  const JWTtoken = useSelector((state) => state.authToken.accessToken);
+  console.log(JWTtoken);
+
   //그룹 아이디
   const { groupNum } = useParams();
   console.log(groupNum);
@@ -47,8 +51,8 @@ const GroupTripList = () => {
 
         {
           headers: {
-            //Authorization: `Bearer ${localToken}`,
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${JWTtoken}`,
+            // "Content-Type": "application/json",
           },
         }
       )
@@ -73,14 +77,14 @@ const GroupTripList = () => {
 
   return (
     <>
-      <h1
+      <h2
         style={{
           position: "relative",
           left: "8%",
         }}
       >
         {groupName}의 여행
-      </h1>
+      </h2>
       {groupTripList.map((trip_list) => (
         <Layout2 key={trip_list.id}>
           <Link to={`/grouptripdetail/${trip_list.id}`}>

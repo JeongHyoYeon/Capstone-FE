@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ImageBox from "../../components/common/ImageBox";
 import styled from "styled-components";
 import instance from "../../components/Request";
 import axios from "axios";
 import BlankPage from "../BlankPage";
+import { useSelector } from "react-redux";
 
 const Layout2 = styled.div`
   display: block;
@@ -13,6 +13,9 @@ const Layout2 = styled.div`
 `;
 
 const GrouptripDetail = () => {
+  const JWTtoken = useSelector((state) => state.authToken.accessToken);
+  console.log(JWTtoken);
+
   //해당 그룹의 아이디
   const { tripId } = useParams();
   console.log(tripId);
@@ -41,7 +44,8 @@ const GrouptripDetail = () => {
 
         {
           headers: {
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${JWTtoken}`,
+            // "Content-Type": "application/json",
           },
         }
       )

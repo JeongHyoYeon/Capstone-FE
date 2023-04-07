@@ -25,8 +25,8 @@ const Imageinput = styled.img`
 `;
 
 const Text1 = styled.div`
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight: 900;
   padding-bottom: 4px;
   margin-left: 20px;
   position: absolute;
@@ -35,9 +35,10 @@ const Text1 = styled.div`
 `;
 
 const Text2 = styled.div`
-  font-size: 20px;
+  font-size: 14px;
   font-weight: bold;
   margin-left: 20px;
+  margin-top: 7px;
   position: absolute;
   top: 25%;
   left: 3%;
@@ -49,6 +50,7 @@ const ImageBox = (props) => {
       <Box height={props.height}>
         <Imageinput src={props.src} height={props.height} />
         <Text1>{props.text1}</Text1>
+
         <Text2>{props.text2}</Text2>
       </Box>
     </>

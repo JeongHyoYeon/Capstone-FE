@@ -7,6 +7,8 @@ import { ko } from "date-fns/esm/locale";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import instance from "../../components/Request";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Layout = styled.div`
   display: flex;
@@ -34,7 +36,18 @@ const TDatepicker = styled(DatePicker)`
   border: 1px solid lightGrey;
 `;
 
+const InputLabel = styled.label`
+  padding: 6px 25px;
+  width: 160px;
+  background-color: #a4b0d8;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+`;
+
 const MakeTrip = () => {
+  const JWTtoken = useSelector((state) => state.authToken.accessToken);
+  console.log(JWTtoken);
   //여행 장소
   const [place, setPlace] = useState("");
   //날짜
@@ -59,6 +72,11 @@ const MakeTrip = () => {
 
     var string = year + "-" + month + "-" + day;
     return string;
+  };
+
+  const navigate = useNavigate();
+  const afterUpload = () => {
+    navigate(`/grouptrip/${nowGroup}`);
   };
 
   //이미지 담기 , 이미지 미리보기
@@ -91,6 +109,7 @@ const MakeTrip = () => {
     instance
       .post(`/trip/${nowGroup}/`, formData, {
         headers: {
+          Authorization: `Bearer ${JWTtoken}`,
           "Content-Type": "multipart/form-data",
         },
       })
@@ -108,9 +127,9 @@ const MakeTrip = () => {
   return (
     <>
       <Layout>
-        <h2>여행지</h2>
+        <h3>여행지</h3>
         <InputBox height={"35px"} width={"85%"} onChange={handlePlace} />
-        <h2>출발 날짜</h2>
+        <h3>출발 날짜</h3>
         <TDatepicker
           type="data"
           locale={ko}
@@ -121,7 +140,7 @@ const MakeTrip = () => {
           startDate={startDate}
           endDate={endDate}
         />
-        <h2>도착 날짜</h2>
+        <h3>도착 날짜</h3>
         <TDatepicker
           type="date"
           locale={ko}
@@ -132,21 +151,28 @@ const MakeTrip = () => {
           startDate={startDate}
           endDate={endDate}
         />
-        <h2>사진 추가하기</h2>
+        <br />
+        <br />
+        <InputLabel htmlFor="input-file">썸네일 업로드</InputLabel>
         <input
           type="file"
+          id="input-file"
           multiple
           onChange={thumbnailUpload}
           accept="image/*"
+          style={{ display: "none" }}
         />
-        <h3>미리보기</h3>
+
+        {/* <h3>미리보기</h3> */}
         <div>
-          {thumbnail && (
+          {thumbnail ? (
             <img
               alt=""
               src={imgpreview}
               style={{ margin: "auto", height: "150px", width: "70%" }}
             />
+          ) : (
+            "이미지 미리보기"
           )}
         </div>
       </Layout>
@@ -160,6 +186,7 @@ const MakeTrip = () => {
           bottom={"10%"}
           onClick={() => {
             makeTrip();
+            afterUpload();
           }}
         />
       </Layout1>

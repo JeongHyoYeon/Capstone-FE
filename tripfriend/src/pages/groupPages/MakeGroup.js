@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Button from "../../components/common/Button";
 import axios from "axios";
 import instance from "../../components/Request";
-//import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Layout = styled.div`
   display: flex;
@@ -23,6 +23,9 @@ const Layout = styled.div`
 // `;
 
 const MakeGroup = () => {
+  const JWTtoken = useSelector((state) => state.authToken.accessToken);
+  console.log(JWTtoken);
+
   const [groupName, setgroupName] = useState("");
   // 입력을 받을 id
   let [inputId, setinputId] = useState("");
@@ -66,7 +69,8 @@ const MakeGroup = () => {
         },
         {
           headers: {
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${JWTtoken}`,
+            // "Content-Type": "application/json",
           },
         }
       )
@@ -135,13 +139,13 @@ const MakeGroup = () => {
           // bottom={"5%"}
           onClick={() => {
             makegroupName();
+
             setvisible(!visible);
             //inviteUser();
           }}
         />
         <br />
         <br />
-
         <InputBox
           placeholder="추가할 친구의 ID를 입력하세요."
           height={"50px"}

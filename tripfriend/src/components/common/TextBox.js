@@ -16,14 +16,14 @@ const Box = styled.div`
 `;
 
 const TextL = styled.div`
-  font-size: 16px;
+  font-size: 13px;
   font-weight: bold;
-  padding-bottom: 4px;
+  padding-bottom: 7px;
   margin-left: 20px;
 `;
 
 const TextS = styled.div`
-  font-size: 16px;
+  font-size: 10px;
   margin-left: 20px;
 `;
 

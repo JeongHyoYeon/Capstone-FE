@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import instance from "../../components/Request";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 import Button from "../../components/common/Button";
 
 const Label = styled.label`
@@ -9,6 +10,8 @@ const Label = styled.label`
 `;
 
 const UploadPhoto = () => {
+  const JWTtoken = useSelector((state) => state.authToken.accessToken);
+  console.log(JWTtoken);
   //보낼 사진
   const [photo, setPhoto] = useState([]);
 
@@ -57,6 +60,7 @@ const UploadPhoto = () => {
     instance
       .post(`/photo/${tripId}/`, imgForm, {
         headers: {
+          Authorization: `Bearer ${JWTtoken}`,
           "Content-Type": "multipart/form-data",
         },
       })
@@ -71,35 +75,48 @@ const UploadPhoto = () => {
 
   return (
     <>
-      <h1>사진 올리는 페이지</h1>
-      <Label htmlFor="input-file">
-        <input
-          type="file"
-          id="input-file"
-          multiple
-          onChange={photoView}
-          accept="image/*"
-        />
-        {/* <button onClick={photoView}>미리보기</button> */}
-      </Label>
-      <h3>미리보기</h3>
-      {/* <div>
+      <form label="photos" onSubmit={sendPhoto}>
+        <h1>사진 올리는 페이지</h1>
+        <Label htmlFor="input-file">
+          <input
+            type="file"
+            id="photos"
+            name="photos"
+            multiple
+            onChange={photoView}
+            accept="image/*"
+          />
+          {/* <button onClick={photoView}>미리보기</button> */}
+        </Label>
+        <h3>미리보기</h3>
+        {/* <div>
         {photo.map((image, id) => {
           <div className="previewImg" key={id}>
             <img src={image} alt="미리보기" />
           </div>;
         })}
       </div> */}
-      {photo.map((item) => (
-        <>
-          <img
-            src={item}
-            alt="미리보기"
-            style={{ margin: "auto", height: "150px", width: "70%" }}
-          />
-        </>
-      ))}
-      <button onClick={sendPhoto}>사진 올리기</button>
+        {photo.map((item) => (
+          <>
+            <img
+              src={item}
+              alt="미리보기"
+              style={{ margin: "auto", height: "150px", width: "70%" }}
+            />
+          </>
+        ))}
+        {/* <button onClick={sendPhoto}>사진 올리기</button> */}
+        <Button
+          text={"사진 올리기"}
+          backgroundColor={"#A4B0D8"}
+          width={"200px"}
+          fontColor={"white"}
+          position={"fixed"}
+          bottom={"13%"}
+          // onClick={sendPhoto}
+          type={"submit"}
+        />
+      </form>
     </>
   );
 };
