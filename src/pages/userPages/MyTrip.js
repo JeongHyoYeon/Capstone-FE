@@ -93,6 +93,7 @@ const MyTrip = (props) => {
       )
       .then((response) => {
         let length = response.data.length - 1;
+        console.log(response.data[length]);
         setNewInvite(response.data[length]);
       })
       .catch((error) => {
@@ -105,12 +106,51 @@ const MyTrip = (props) => {
     checkInvite();
   }, []);
 
+  if (newInvite == null) {
+    return (
+      <>
+        <Layout>
+          <TextBox
+            text1={"최근알림"}
+            text2={"들어온 초대가 없습니다."}
+            height={"70px"}
+          />
+        </Layout>
+        <h2
+          style={{
+            position: "relative",
+            left: "5%",
+          }}
+        >
+          {userName}님의 여행
+        </h2>
+        {MyTripList.slice(0)
+          .reverse()
+          .map((item) => (
+            <Layout key={item.trip_info.id}>
+              <Link to={`/grouptripdetail/${item.trip_info.id}`}>
+                <ImageBox
+                  src={item.trip_info.thumbnail}
+                  height={"150px"}
+                  text1={item.trip_info.place}
+                  text2={
+                    item.trip_info.departing_date +
+                    " ~ " +
+                    item.trip_info.arriving_date
+                  }
+                />
+              </Link>
+            </Layout>
+          ))}
+      </>
+    );
+  }
   return (
     <>
       <Layout>
         <TextBox
           text1={"최근알림"}
-          text2={newInvite.name + "에  초대되었습니다."}
+          text2={newInvite.group_name + "에  초대되었습니다."}
           height={"70px"}
         />
       </Layout>
@@ -143,4 +183,5 @@ const MyTrip = (props) => {
     </>
   );
 };
+
 export default MyTrip;

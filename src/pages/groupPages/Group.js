@@ -71,7 +71,7 @@ const Group = () => {
     <>
       {groupInfo.map(({ group_info, user_in_group }) => (
         <Layout2 key={group_info.id}>
-          <Link to={`/grouptrip/${group_info.group_num}`}>
+          <Link to={`/grouptrip/${group_info.id}`}>
             <TextBox
               text1={group_info.name}
               text2={user_in_group + " "}

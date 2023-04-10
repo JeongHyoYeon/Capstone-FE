@@ -24,7 +24,6 @@ const Layout = styled.div`
 
 const MakeGroup = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
-  console.log(JWTtoken);
 
   const [groupName, setgroupName] = useState("");
   // 입력을 받을 id
@@ -78,17 +77,18 @@ const MakeGroup = () => {
         //handle success
         console.log("success");
         console.log(response);
-        localStorage.setItem("groupId", response.data.id);
+        console.log(response.data[0].group.id);
+        localStorage.setItem("groupId", response.data[0].group.id);
       })
       .catch((error) => {
         //handle error
-        console.log("error:", error.response);
+        console.log("error:", error);
       });
   };
 
   //다른 유저 초대 함수
   const inviteUser = async (e) => {
-    console.log({ inputId });
+    //console.log({ inputId });
     var groupId = localStorage.getItem("groupId");
     console.log(groupId);
     await axios;
@@ -96,8 +96,8 @@ const MakeGroup = () => {
       .post(
         "/group/invite/",
         {
-          id: groupId,
-          invited_user: inputId,
+          group: groupId,
+          user: inputId,
         },
         {
           headers: {
@@ -112,7 +112,7 @@ const MakeGroup = () => {
       })
       .catch((error) => {
         //handle error
-        console.log("error:", error.response);
+        console.log("error:", error);
       });
   };
 

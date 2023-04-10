@@ -3,7 +3,7 @@ import axios from "axios";
 //import { SET_TOKEN } from "../components/modules/slices/tokenSlice";
 
 const instance = axios.create({
-  baseURL: "https://www.aftertrip.link/api",
+  baseURL: "https://server.aftertrip.link/api",
 });
 
 //var localToken = localStorage.getItem("accessToken");

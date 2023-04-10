@@ -7,6 +7,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { SET_TOKEN } from "../../components/modules/slices/tokenSlice";
 import Button from "../../components/common/Button";
+import instance from "../../components/Request";
 
 const Layout = styled.div`
   display: flex;
@@ -45,9 +46,10 @@ function Login() {
       return;
     }
     //e.preventDefault();
-    await axios
+    await axios;
+    instance
       .post(
-        "https://www.aftertrip.link/api/login/",
+        "/login/",
         {
           id: id,
           password: password,
