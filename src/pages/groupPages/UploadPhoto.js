@@ -75,48 +75,46 @@ const UploadPhoto = () => {
 
   return (
     <>
-      <form label="photos" onSubmit={sendPhoto}>
-        <h1>사진 올리는 페이지</h1>
-        <Label htmlFor="input-file">
-          <input
-            type="file"
-            id="photos"
-            name="photos"
-            multiple
-            onChange={photoView}
-            accept="image/*"
-          />
-          {/* <button onClick={photoView}>미리보기</button> */}
-        </Label>
-        <h3>미리보기</h3>
-        {/* <div>
+      <h1>사진 올리는 페이지</h1>
+      <Label htmlFor="input-file">
+        <input
+          type="file"
+          id="photos"
+          name="photos"
+          multiple
+          onChange={photoView}
+          accept="image/*"
+        />
+        {/* <button onClick={photoView}>미리보기</button> */}
+      </Label>
+      <h3>미리보기</h3>
+      {/* <div>
         {photo.map((image, id) => {
           <div className="previewImg" key={id}>
             <img src={image} alt="미리보기" />
           </div>;
         })}
       </div> */}
-        {photo.map((item) => (
-          <>
-            <img
-              src={item}
-              alt="미리보기"
-              style={{ margin: "auto", height: "150px", width: "70%" }}
-            />
-          </>
-        ))}
-        {/* <button onClick={sendPhoto}>사진 올리기</button> */}
-        <Button
-          text={"사진 올리기"}
-          backgroundColor={"#A4B0D8"}
-          width={"200px"}
-          fontColor={"white"}
-          position={"fixed"}
-          bottom={"13%"}
-          // onClick={sendPhoto}
-          type={"submit"}
-        />
-      </form>
+      {photo.map((item) => (
+        <>
+          <img
+            src={item}
+            alt="미리보기"
+            style={{ margin: "auto", height: "150px", width: "70%" }}
+          />
+        </>
+      ))}
+      {/* <button onClick={sendPhoto}>사진 올리기</button> */}
+      <Button
+        text={"사진 올리기"}
+        backgroundColor={"#A4B0D8"}
+        width={"200px"}
+        fontColor={"white"}
+        position={"fixed"}
+        bottom={"13%"}
+        onClick={sendPhoto}
+        type={"submit"}
+      />
     </>
   );
 };
