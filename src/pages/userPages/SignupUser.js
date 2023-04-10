@@ -38,7 +38,7 @@ function SignupUser() {
   const register = async (e) => {
     console.log({ name, id, email, password });
     await axios
-      .post("https://www.aftertrip.link/api/register/", {
+      .post("https://server.aftertrip.link/api/register/", {
         name: name,
         id: id,
         password: password,

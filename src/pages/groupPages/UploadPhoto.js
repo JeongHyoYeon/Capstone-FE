@@ -85,16 +85,8 @@ const UploadPhoto = () => {
           onChange={photoView}
           accept="image/*"
         />
-        {/* <button onClick={photoView}>미리보기</button> */}
       </Label>
-      <h3>미리보기</h3>
-      {/* <div>
-        {photo.map((image, id) => {
-          <div className="previewImg" key={id}>
-            <img src={image} alt="미리보기" />
-          </div>;
-        })}
-      </div> */}
+      {/* <h3>미리보기</h3>
       {photo.map((item) => (
         <>
           <img
@@ -103,8 +95,7 @@ const UploadPhoto = () => {
             style={{ margin: "auto", height: "150px", width: "70%" }}
           />
         </>
-      ))}
-      {/* <button onClick={sendPhoto}>사진 올리기</button> */}
+      ))} */}
       <Button
         text={"사진 올리기"}
         backgroundColor={"#A4B0D8"}
