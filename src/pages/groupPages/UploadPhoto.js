@@ -26,12 +26,12 @@ const UploadPhoto = () => {
     const photoUrls = [];
     console.log(e.target.files);
 
-    for (let i = 0; i < e.target.photos.files.length; i++) {
-      let newImg = e.target.photos.files[i];
+    for (let i = 0; i < e.target.files.length; i++) {
+      let newImg = e.target.files[i];
       photoLists[i] = newImg;
     }
 
-    //setPhoto([...photo, ...photoLists]);
+    setPhoto([...photo, ...photoLists]);
 
     let photoListsLength = photoLists.length > 100 ? 100 : photoLists.length; //최대 100개
 
@@ -40,7 +40,7 @@ const UploadPhoto = () => {
       photoUrls.push(currentphotoUrl);
     }
 
-    setPhoto([...photo, ...photoUrls]);
+    //setPhoto([...photo, ...photoUrls]);
   };
 
   //사진 보내기
@@ -56,9 +56,9 @@ const UploadPhoto = () => {
       console.log(value + "\n");
     }
 
-    await axios;
-    instance
-      .post(`/photo/${tripId}/`, imgForm, {
+    await axios
+      // instance
+      .post(`http://127.0.0.1:8000/api/photo/${tripId}/`, imgForm, {
         headers: {
           Authorization: `Bearer ${JWTtoken}`,
           "Content-Type": "multipart/form-data",
