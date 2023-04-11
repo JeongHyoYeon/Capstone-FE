@@ -14,7 +14,6 @@ const Layout2 = styled.div`
 
 const GrouptripDetail = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
-  console.log(JWTtoken);
 
   //해당 그룹의 아이디
   const { tripId } = useParams();
@@ -84,7 +83,6 @@ const GrouptripDetail = () => {
         console.log("success");
         console.log(response.data);
         setPhotoDay(response.data);
-        console.log(photoDay);
       })
       .catch((error) => {
         console.log(error);

@@ -5,6 +5,7 @@ import axios from "axios";
 import InputBox from "../../components/common/InputBox";
 import { setCookie } from "../../storage/Cookie";
 import Button from "../../components/common/Button";
+import instance from "../../components/Request";
 
 const Layout = styled.div`
   display: flex;
@@ -37,8 +38,9 @@ function SignupUser() {
 
   const register = async (e) => {
     console.log({ name, id, email, password });
-    await axios
-      .post("https://server.aftertrip.link/api/register/", {
+    await axios;
+    instance
+      .post("/register/", {
         name: name,
         id: id,
         password: password,
@@ -57,6 +59,7 @@ function SignupUser() {
       .catch((error) => {
         //handle error
         console.log("error:", error.response);
+        window.alert("해당 회원은 이미 존재합니다.");
         console.log({ name, id, email, password });
       });
   };

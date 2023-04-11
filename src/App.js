@@ -11,6 +11,11 @@ import Login from "./pages/userPages/Login";
 import GroupTripList from "./pages/groupPages/GroupTripList";
 import GrouptripDetail from "./pages/groupPages/GrouptripDetail";
 import UploadPhoto from "./pages/groupPages/UploadPhoto";
+import PhotoDay from "./pages/groupPages/sorting/PhotoDay";
+import PhotoAuto from "./pages/groupPages/sorting/PhotoAuto";
+import PhotoUser from "./pages/groupPages/sorting/PhotoUser";
+import AutoGPT from "./pages/groupPages/sorting/AutoGPT";
+import InviteList from "./pages/userPages/InviteList";
 
 function App() {
   //const user = useSelector(selectUser);
@@ -33,6 +38,11 @@ function App() {
               element={<GrouptripDetail />}
             />
             <Route path="/upload" element={<UploadPhoto />} />
+            <Route path="/photo" element={<PhotoDay />} />
+            <Route path="/photo/auto" element={<PhotoAuto />} />
+            <Route path="/photo/user" element={<PhotoUser />} />
+            <Route path="/photo/auto/gpt" element={<AutoGPT />} />
+            <Route path="/invite" element={<InviteList />} />
           </Routes>
         </div>
       </BrowserRouter>

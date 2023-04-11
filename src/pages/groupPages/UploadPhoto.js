@@ -26,8 +26,8 @@ const UploadPhoto = () => {
     const photoUrls = [];
     console.log(e.target.files);
 
-    for (let i = 0; i < e.target.files.length; i++) {
-      let newImg = e.target.files[i];
+    for (let i = 0; i < e.target.photos.files.length; i++) {
+      let newImg = e.target.photos.files[i];
       photoLists[i] = newImg;
     }
 

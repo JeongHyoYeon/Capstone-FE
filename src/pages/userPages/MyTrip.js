@@ -93,7 +93,6 @@ const MyTrip = (props) => {
       )
       .then((response) => {
         let length = response.data.length - 1;
-        console.log(response.data[length]);
         setNewInvite(response.data[length]);
       })
       .catch((error) => {
@@ -110,11 +109,13 @@ const MyTrip = (props) => {
     return (
       <>
         <Layout>
-          <TextBox
-            text1={"최근알림"}
-            text2={"들어온 초대가 없습니다."}
-            height={"70px"}
-          />
+          <Link to={"/invite"}>
+            <TextBox
+              text1={"최근알림"}
+              text2={"들어온 초대가 없습니다."}
+              height={"70px"}
+            />
+          </Link>
         </Layout>
         <h2
           style={{
@@ -148,11 +149,13 @@ const MyTrip = (props) => {
   return (
     <>
       <Layout>
-        <TextBox
-          text1={"최근알림"}
-          text2={newInvite.group_name + "에  초대되었습니다."}
-          height={"70px"}
-        />
+        <Link to={"/invite"}>
+          <TextBox
+            text1={"최근알림"}
+            text2={newInvite.group_name + "에  초대되었습니다."}
+            height={"70px"}
+          />
+        </Link>
       </Layout>
       <h2
         style={{

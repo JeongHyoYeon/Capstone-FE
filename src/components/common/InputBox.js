@@ -25,6 +25,7 @@ const InputBox = (props) => {
       value={props.value}
       onChange={props.onChange}
       type={props.type}
+      onKeyDown={props.onKeyDown}
     />
   );
 };
