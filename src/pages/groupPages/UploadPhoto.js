@@ -56,9 +56,9 @@ const UploadPhoto = () => {
       console.log(value + "\n");
     }
 
-    await axios
-      // instance
-      .post(`http://127.0.0.1:8000/api/photo/${tripId}/`, imgForm, {
+    await axios;
+    instance
+      .post(`/photo/${tripId}/`, imgForm, {
         headers: {
           Authorization: `Bearer ${JWTtoken}`,
           "Content-Type": "multipart/form-data",
