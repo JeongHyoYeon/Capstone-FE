@@ -18,8 +18,9 @@ const Layout = styled.div`
 
 const Layout2 = styled.div`
   display: block;
-  padding-left: 4%;
-  padding-top: 20px;
+  padding-left: 5%;
+  margin-left: 1%;
+  padding-top: 15px;
 `;
 
 const GroupTripList = () => {
@@ -72,7 +73,7 @@ const GroupTripList = () => {
   };
 
   useEffect(() => {
-    groupdetail();
+    setTimeout(() => groupdetail(), 300);
   }, []);
 
   return (

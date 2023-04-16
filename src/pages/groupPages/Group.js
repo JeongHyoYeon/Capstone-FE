@@ -16,7 +16,8 @@ const Layout = styled.div`
 
 const Layout2 = styled.div`
   display: block;
-  padding-left: 4%;
+  padding-left: 5%;
+  margin-left: 1%;
   padding-top: 20px;
 `;
 

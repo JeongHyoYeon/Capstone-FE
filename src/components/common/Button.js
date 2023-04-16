@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Container = styled.button`
   height: ${(props) => props.height};
-  font-size: 16px;
+  font-size: ${(props) => props.fontsize};
   width: ${(props) => props.width};
   display: flex;
   justify-content: center;
@@ -61,6 +61,7 @@ Button.defaultProps = {
   height: "50px",
   type: "button",
   onClick: "none",
+  fontsize: "16px",
 };
 
 export default Button;

@@ -47,7 +47,7 @@ const InputLabel = styled.label`
 
 const MakeTrip = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
-  console.log(JWTtoken);
+
   //여행 장소
   const [place, setPlace] = useState("");
   //날짜
@@ -162,17 +162,18 @@ const MakeTrip = () => {
           accept="image/*"
           style={{ display: "none" }}
         />
-
-        {/* <h3>미리보기</h3> */}
-        <div>
-          {thumbnail ? (
+        <br />
+        <div style={{ backgroundColor: "inherit", width: "70%" }}>
+          {thumbnail && (
             <img
               alt=""
-              src={imgpreview}
-              style={{ margin: "auto", height: "150px", width: "70%" }}
+              src={imgpreview ? imgpreview : `   `}
+              style={{
+                margin: "auto",
+                height: "150px",
+                width: "70%",
+              }}
             />
-          ) : (
-            "이미지 미리보기"
           )}
         </div>
       </Layout>

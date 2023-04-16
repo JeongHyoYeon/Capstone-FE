@@ -11,8 +11,9 @@ const Box = styled.div`
   color: black;
   background: white;
   outline: #edf1f5 1px solid;
-  border-radius: 20px 20px 20px 20px;
+  border-radius: 10px 10px 10px 10px;
   padding-top: 15px;
+  box-shadow: 3px 3px 3px lightgrey;
 `;
 
 const TextL = styled.div`

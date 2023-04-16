@@ -101,6 +101,7 @@ const MakeGroup = () => {
         },
         {
           headers: {
+            Authorization: `Bearer ${JWTtoken}`,
             "Content-Type": "application/json",
           },
         }

@@ -59,7 +59,7 @@ function SignupUser() {
       .catch((error) => {
         //handle error
         console.log("error:", error.response);
-        window.alert("해당 회원은 이미 존재합니다.");
+        window.alert(error.response.data);
         console.log({ name, id, email, password });
       });
   };
@@ -67,7 +67,7 @@ function SignupUser() {
   return (
     <>
       <Layout>
-        <h1>회원가입</h1>
+        <h1 style={{ color: "#a4b1d9" }}>회원가입</h1>
         <br />
         <InputBox
           placeholder="이름"

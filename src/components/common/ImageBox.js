@@ -10,17 +10,18 @@ const Box = styled.div`
   align-items: flex start;
   color: black;
   background: white;
-  outline: white 1px solid;
-  border-radius: 20px 20px 20px 20px;
+  // outline: white 1px solid;
+  border-radius: 10px 10px 10px 10px;
   position: relative;
   overflow: hidden;
+  box-shadow: 3px 3px 3px lightgrey;
 `;
 
 const Imageinput = styled.img`
   height: 100%;
   width: 100%;
   filter: opacity(50%);
-  border-radius: 20px 20px 20px 20px;
+  border-radius: 10px 10px 10px 10px;
   resize: cover;
 `;
 

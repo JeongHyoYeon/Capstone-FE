@@ -17,7 +17,8 @@ import { useSelector } from "react-redux";
 
 const Layout = styled.div`
   display: block;
-  padding-left: 4%;
+  padding-left: 5%;
+  margin-left: 1%;
   padding-top: 10px;
 `;
 
@@ -73,8 +74,7 @@ const MyTrip = (props) => {
       .catch((error) => {
         console.log(error);
         logOut();
-
-        //redirect("/login");
+        window.alert("로그인 해주세요.");
       });
   };
 
@@ -117,14 +117,9 @@ const MyTrip = (props) => {
             />
           </Link>
         </Layout>
-        <h2
-          style={{
-            position: "relative",
-            left: "5%",
-          }}
-        >
-          {userName}님의 여행
-        </h2>
+        <Layout>
+          <h2>{userName}님의 여행</h2>
+        </Layout>
         {MyTripList.slice(0)
           .reverse()
           .map((item) => (
@@ -157,14 +152,9 @@ const MyTrip = (props) => {
           />
         </Link>
       </Layout>
-      <h2
-        style={{
-          position: "relative",
-          left: "5%",
-        }}
-      >
-        {userName}님의 여행
-      </h2>
+      <Layout>
+        <h2>{userName}님의 여행</h2>
+      </Layout>
       {MyTripList.slice(0)
         .reverse()
         .map((item) => (

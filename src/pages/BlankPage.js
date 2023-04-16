@@ -27,7 +27,7 @@ const BlankPage = (props) => {
           className="blank"
           alt="blank"
           src="/BlankIcon.png"
-          style={{ width: "120px", height: "140px", opacity: "0.4" }}
+          style={{ width: "140px", height: "140px", opacity: "0.4" }}
         />
       </Layout2>
       <Layout2>
