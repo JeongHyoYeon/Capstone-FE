@@ -4,14 +4,29 @@ import instance from "../../components/Request";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Button from "../../components/common/Button";
+import { BsCloudUpload } from "react-icons/bs";
 
 const Label = styled.label`
-  background: skyblue;
+  padding: 6px 25px;
+  width: 160px;
+  border-radius: 4px;
+  color: black;
+  cursor: pointer;
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+`;
+
+const Layout = styled.div`
+  display: flex;
+  justify-content: center;
+
+  padding-top: 20px;
 `;
 
 const UploadPhoto = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
-  console.log(JWTtoken);
+
   //보낼 사진
   const [photo, setPhoto] = useState([]);
 
@@ -75,37 +90,35 @@ const UploadPhoto = () => {
 
   return (
     <>
-      <h1>사진 올리는 페이지</h1>
-      <Label htmlFor="input-file">
-        <input
-          type="file"
-          id="photos"
-          name="photos"
-          multiple
-          onChange={photoView}
-          accept="image/*"
-        />
-      </Label>
-      {/* <h3>미리보기</h3>
-      {photo.map((item) => (
-        <>
-          <img
-            src={item}
-            alt="미리보기"
-            style={{ margin: "auto", height: "150px", width: "70%" }}
+      <Layout>
+        <Label htmlFor="input-file">
+          <BsCloudUpload size="200px" color="#a4b1d9" />
+          <input
+            type="file"
+            id="input-file"
+            name="photos"
+            multiple
+            onChange={photoView}
+            accept="image/*"
+            style={{ display: "none" }}
           />
-        </>
-      ))} */}
-      <Button
-        text={"사진 올리기"}
-        backgroundColor={"#A4B0D8"}
-        width={"200px"}
-        fontColor={"white"}
-        position={"fixed"}
-        bottom={"13%"}
-        onClick={sendPhoto}
-        type={"submit"}
-      />
+        </Label>
+      </Layout>
+      <Layout>
+        <h2>{photo.length}개의 사진 선택됨</h2>
+      </Layout>
+      <Layout>
+        <Button
+          text={"사진 올리기"}
+          backgroundColor={"#A4B0D8"}
+          width={"200px"}
+          fontColor={"white"}
+          position={"fixed"}
+          bottom={"13%"}
+          onClick={sendPhoto}
+          type={"submit"}
+        />
+      </Layout>
     </>
   );
 };

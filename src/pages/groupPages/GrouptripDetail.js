@@ -5,12 +5,7 @@ import instance from "../../components/Request";
 import axios from "axios";
 import BlankPage from "../BlankPage";
 import { useSelector } from "react-redux";
-
-const Layout2 = styled.div`
-  display: block;
-  padding-left: 4%;
-  padding-top: 20px;
-`;
+import PhotoDay from "./sorting/PhotoDay";
 
 const GrouptripDetail = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
@@ -75,14 +70,15 @@ const GrouptripDetail = () => {
 
         {
           headers: {
+            Authorization: `Bearer ${JWTtoken}`,
             "Content-Type": "application/json",
           },
         }
       )
       .then((response) => {
         console.log("success");
-        console.log(response.data);
-        setPhotoDay(response.data);
+        console.log(response.data.data);
+        setPhotoDay(response.data.data);
       })
       .catch((error) => {
         console.log(error);
@@ -94,20 +90,7 @@ const GrouptripDetail = () => {
     isPhoto();
   }, []);
 
-  if (photoDay[0] == null)
-    return (
-      // <>
-      //    <Layout2 key={tripInfo.id}>
-      //     <ImageBox
-      //       src={tripInfo.thumbnail}
-      //       height={"150px"}
-      //       text1={tripInfo.place}
-      //       text2={tripInfo.departing_date + " ~ " + tripInfo.arriving_date}
-      //     />
-      //   </Layout2>
-      // </>
-      <BlankPage data="사진이" />
-    );
-  else return <h2>사진 분류</h2>;
+  if (photoDay.length === 0) return <BlankPage data="사진이" />;
+  else return <PhotoDay />;
 };
 export default GrouptripDetail;

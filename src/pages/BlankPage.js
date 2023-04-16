@@ -2,11 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import Button from "../components/common/Button";
 import { useNavigate } from "react-router-dom";
+import { BiFileBlank } from "react-icons/bi";
 
 const Layout2 = styled.div`
   display: flex;
   justify-content: center;
-  padding-left: 4%;
+  //padding-left: 4%;
   padding-top: 100px;
 `;
 
@@ -23,12 +24,13 @@ const BlankPage = (props) => {
       <br />
       <br />
       <Layout2>
-        <img
+        {/* <img
           className="blank"
           alt="blank"
           src="/BlankIcon.png"
           style={{ width: "140px", height: "140px", opacity: "0.4" }}
-        />
+        /> */}
+        <BiFileBlank size="100px" color="#a4b1d9" />
       </Layout2>
       <Layout2>
         <h2>{props.data} 없습니다.</h2>

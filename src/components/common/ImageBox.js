@@ -20,7 +20,7 @@ const Box = styled.div`
 const Imageinput = styled.img`
   height: 100%;
   width: 100%;
-  filter: opacity(50%);
+  filter: opacity(60%);
   border-radius: 10px 10px 10px 10px;
   resize: cover;
 `;

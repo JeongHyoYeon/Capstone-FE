@@ -1,8 +1,8 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "LINEseed", "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "LINEseed-Rg", "LINEseed-Th",
+    "LINEseed-Bd", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
@@ -30,6 +30,14 @@ code {
 }
 
 @font-face {
-  font-family: "LINEseed";
+  font-family: "LINEseed-Rg";
   src: url("./assets/fonts/LINESeedKR-Rg.ttf");
+}
+@font-face {
+  font-family: "LINEseed-Bd";
+  src: url("./assets/fonts/LINESeedKR-Bd.ttf");
+}
+@font-face {
+  font-family: "LINEseed-Th";
+  src: url("./assets/fonts/LINESeedKR-Th.ttf");
 }
