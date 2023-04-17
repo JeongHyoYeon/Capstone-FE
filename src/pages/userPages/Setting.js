@@ -2,6 +2,8 @@ import React from "react";
 import Button from "../../components/common/Button";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { DELETE_TOKEN } from "../../components/modules/slices/tokenSlice";
 
 const Layout = styled.div`
   display: flex;
@@ -11,10 +13,15 @@ const Layout = styled.div`
 `;
 
 const Setting = () => {
+  const JWTtoken = useSelector((state) => state.authToken.accessToken);
+
+  const dispatch = useDispatch();
+
   const redirect = useNavigate();
 
   const logOut = () => {
     localStorage.clear();
+    dispatch(DELETE_TOKEN(JWTtoken));
     redirect("/login");
   };
   return (

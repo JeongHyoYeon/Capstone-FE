@@ -62,7 +62,7 @@ function Login() {
 
         const accessToken = response.data.token.access;
         localStorage.setItem("name", response.data.user.name);
-        localStorage.setItem("accessToken", response.data.token.access);
+        localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", response.data.token.refresh);
 
         //setCookie("is_login", `${accessToken}`);

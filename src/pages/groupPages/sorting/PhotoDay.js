@@ -3,9 +3,11 @@ import CategoryHeader from "./CategoryHeader";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import instance from "../../../components/Request";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Image from "../../../components/common/Image";
+import Button from "../../../components/common/Button";
 
 const Layout = styled.div`
   display: flex;
@@ -26,8 +28,19 @@ const Layout3 = styled.div`
   flex-direction: row;
 `;
 
+const Layout4 = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const PhotoDay = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
+
+  const navigate = useNavigate();
+
+  const changePage = () => {
+    navigate("/upload");
+  };
 
   //현재 여행의 id
   const tripId = localStorage.getItem("nowGroupTrip");
@@ -58,6 +71,21 @@ const PhotoDay = () => {
         console.log(error);
       });
   };
+
+  //날짜 문자열 함수
+  const toDate = (value) => {
+    if (value === null) {
+      return "알 수 없음";
+    }
+    return (
+      value.slice(0, 4) +
+      "년 " +
+      value.slice(5, 7) +
+      "월 " +
+      value.slice(8, 10) +
+      "일"
+    );
+  };
   useEffect(() => {
     dayPhoto();
   }, []);
@@ -68,16 +96,27 @@ const PhotoDay = () => {
 
       {photoDay.map((item) => (
         <Layout key={item.date}>
-          <h3>{item.date}</h3>
+          <h3>{toDate(item.date)}</h3>
           <Layout2>
             {item.photo.map((items) => (
-              <Layout3>
+              <Layout3 key={item.id}>
                 <Image src={items.url} />
               </Layout3>
             ))}
           </Layout2>
         </Layout>
       ))}
+      <Layout4>
+        <Button
+          text={"사진 올리기"}
+          backgroundColor={"#A4B0D8"}
+          width={"200px"}
+          fontColor={"white"}
+          position={"fixed"}
+          bottom={"13%"}
+          onClick={changePage}
+        />
+      </Layout4>
     </>
   );
 };

@@ -74,7 +74,6 @@ const MyTrip = (props) => {
       .catch((error) => {
         console.log(error);
         logOut();
-        window.alert("로그인 해주세요.");
       });
   };
 

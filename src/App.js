@@ -17,34 +17,132 @@ import AutoGPT from "./pages/groupPages/sorting/AutoGPT";
 import InviteList from "./pages/userPages/InviteList";
 import PhotoChar from "./pages/groupPages/sorting/PhotoChar";
 import PhotoObej from "./pages/groupPages/sorting/PhotoObej";
+import { useSelector } from "react-redux";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
-  //const user = useSelector(selectUser);
+  const JWTtoken = useSelector((state) => state.authToken.accessToken);
+
   return (
     <>
       <BrowserRouter>
         <Header />
         <div className="App">
           <Routes>
-            <Route path="/" element={<MyTrip />} />
-            <Route path="/groups" element={<Group />} />
+            <Route
+              path="/"
+              element={
+                <PrivateRoute authenticated={JWTtoken} component={<MyTrip />} />
+              }
+            />
+            <Route
+              path="/groups"
+              element={
+                <PrivateRoute authenticated={JWTtoken} component={<Group />} />
+              }
+            />
             <Route path="/settings" element={<Setting />} />
-            <Route path="/maketrips" element={<MakeTrip />} />
-            <Route path="/makegroups" element={<MakeGroup />} />
+            <Route
+              path="/maketrips"
+              element={
+                <PrivateRoute
+                  authenticated={JWTtoken}
+                  component={<MakeTrip />}
+                />
+              }
+            />
+            <Route
+              path="/makegroups"
+              element={
+                <PrivateRoute
+                  authenticated={JWTtoken}
+                  component={<MakeGroup />}
+                />
+              }
+            />
             <Route path="/signup" element={<SignupUser />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/grouptrip/:groupNum" element={<GroupTripList />} />
+            <Route
+              path="/grouptrip/:groupNum"
+              element={
+                <PrivateRoute
+                  authenticated={JWTtoken}
+                  component={<GroupTripList />}
+                />
+              }
+            />
             <Route
               path="/grouptripdetail/:tripId"
-              element={<GrouptripDetail />}
+              element={
+                <PrivateRoute
+                  authenticated={JWTtoken}
+                  component={<GrouptripDetail />}
+                />
+              }
             />
-            <Route path="/upload" element={<UploadPhoto />} />
-            <Route path="/photo" element={<PhotoDay />} />
-            <Route path="/photo/auto/char" element={<PhotoChar />} />
-            <Route path="/photo/auto/obej" element={<PhotoObej />} />
-            <Route path="/photo/user" element={<PhotoUser />} />
-            <Route path="/photo/auto/gpt" element={<AutoGPT />} />
-            <Route path="/invite" element={<InviteList />} />
+            <Route
+              path="/upload"
+              element={
+                <PrivateRoute
+                  authenticated={JWTtoken}
+                  component={<UploadPhoto />}
+                />
+              }
+            />
+            <Route
+              path="/photo"
+              element={
+                <PrivateRoute
+                  authenticated={JWTtoken}
+                  component={<PhotoDay />}
+                />
+              }
+            />
+            <Route
+              path="/photo/auto/char"
+              element={
+                <PrivateRoute
+                  authenticated={JWTtoken}
+                  component={<PhotoChar />}
+                />
+              }
+            />
+            <Route
+              path="/photo/auto/obej"
+              element={
+                <PrivateRoute
+                  authenticated={JWTtoken}
+                  component={<PhotoObej />}
+                />
+              }
+            />
+            <Route
+              path="/photo/user"
+              element={
+                <PrivateRoute
+                  authenticated={JWTtoken}
+                  component={<PhotoUser />}
+                />
+              }
+            />
+            <Route
+              path="/photo/auto/gpt"
+              element={
+                <PrivateRoute
+                  authenticated={JWTtoken}
+                  component={<AutoGPT />}
+                />
+              }
+            />
+            <Route
+              path="/invite"
+              element={
+                <PrivateRoute
+                  authenticated={JWTtoken}
+                  component={<InviteList />}
+                />
+              }
+            />
           </Routes>
         </div>
       </BrowserRouter>
