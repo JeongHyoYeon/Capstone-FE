@@ -48,7 +48,7 @@ const PhotoDay = () => {
   //날짜별 여행 담는 배열
   const [photoDay, setPhotoDay] = useState([]);
 
-  //그룹 여행 사진이 있는지 확인하는 함수
+  //그룹 여행 사진 함수
   const dayPhoto = async (e) => {
     await axios;
     instance

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Button from "../../components/common/Button";
 import { BsCloudUpload } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 const Label = styled.label`
   padding: 6px 25px;
@@ -26,6 +27,12 @@ const Layout = styled.div`
 
 const UploadPhoto = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
+
+  const navigate = useNavigate();
+
+  const changePage = () => {
+    navigate("/photo");
+  };
 
   //보낼 사진
   const [photo, setPhoto] = useState([]);
@@ -115,7 +122,10 @@ const UploadPhoto = () => {
           fontColor={"white"}
           position={"fixed"}
           bottom={"13%"}
-          onClick={sendPhoto}
+          onClick={() => {
+            sendPhoto();
+            changePage();
+          }}
           type={"submit"}
         />
       </Layout>

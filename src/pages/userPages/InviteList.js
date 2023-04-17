@@ -154,6 +154,7 @@ const InviteList = () => {
                   fontsize={"13px"}
                   onClick={() => {
                     inviteAccept(inviteList.user_group.id);
+                    window.location.reload();
                   }}
                 />
                 <Button
@@ -162,6 +163,7 @@ const InviteList = () => {
                   fontsize={"13px"}
                   onClick={() => {
                     inviteDelete(inviteList.user_group.id);
+                    window.location.reload();
                   }}
                 />
               </Layout2>
