@@ -5,7 +5,8 @@ import Button from "../../components/common/Button";
 import { useNavigate, Link } from "react-router-dom";
 import instance from "../../components/Request";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { DELETE_TOKEN } from "../../components/modules/slices/tokenSlice";
 
 const Layout = styled.div`
   display: flex;
@@ -32,7 +33,15 @@ const Group = () => {
   const [groupInfo, setGroupInfo] = useState([]);
   const [newInvite, setNewInvite] = useState("");
 
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
+
+  const logOut = () => {
+    localStorage.clear();
+    dispatch(DELETE_TOKEN(JWTtoken));
+    navigate("/login");
+  };
 
   const navMakeGroup = () => {
     navigate("/makegroups");
@@ -122,14 +131,25 @@ const Group = () => {
         <Layout>
           <Button
             text={"새 그룹 만들기"}
-            backgroundColor={"#A4B0D8"}
             width={"200px"}
             height={"50px"}
             fontColor={"white"}
             position={"fixed"}
-            bottom={"5%"}
+            bottom={"12%"}
             onClick={navMakeGroup}
           />
+        </Layout>
+        <Layout>
+          <h3
+            style={{
+              position: "fixed",
+              bottom: "5%",
+              textDecoration: "underline",
+            }}
+            onClick={logOut}
+          >
+            로그아웃
+          </h3>
         </Layout>
       </>
     );
@@ -160,18 +180,28 @@ const Group = () => {
           </Link>
         </Layout2>
       ))}
-
       <Layout>
         <Button
           text={"새 그룹 만들기"}
-          backgroundColor={"#A4B0D8"}
           width={"200px"}
           height={"50px"}
           fontColor={"white"}
           position={"fixed"}
-          bottom={"5%"}
+          bottom={"12%"}
           onClick={navMakeGroup}
         />
+      </Layout>
+      <Layout>
+        <h3
+          style={{
+            position: "fixed",
+            bottom: "5%",
+            textDecoration: "underline",
+          }}
+          onClick={logOut}
+        >
+          로그아웃
+        </h3>
       </Layout>
     </>
   );

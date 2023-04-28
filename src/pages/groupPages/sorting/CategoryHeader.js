@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const CategoryAll = styled.div`
@@ -24,7 +24,7 @@ const CategoryHeader = () => {
   const tripId = localStorage.getItem("nowGroupTrip");
 
   const activeStyle = {
-    color: "#A4B0D8",
+    color: "#3178B9",
   };
 
   return (

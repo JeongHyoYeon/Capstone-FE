@@ -98,7 +98,6 @@ const PhotoUserFolder = () => {
       <Layout4>
         <Button
           text={"사진 올리기"}
-          backgroundColor={"#A4B0D8"}
           width={"200px"}
           fontColor={"white"}
           position={"fixed"}

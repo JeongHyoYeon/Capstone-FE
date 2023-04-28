@@ -133,7 +133,6 @@ const MakeGroup = () => {
         <Button
           type={"submit"}
           text={"그룹 만들기"}
-          backgroundColor={"#A4B0D8"}
           width={"85%"}
           fontColor={"white"}
           // position={"fixed"}
@@ -164,7 +163,6 @@ const MakeGroup = () => {
         <br />
         <Button
           text={"추가"}
-          backgroundColor={"#A4B0D8"}
           width={"85%"}
           fontColor={"white"}
           // position={"fixed"}

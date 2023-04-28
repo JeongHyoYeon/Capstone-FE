@@ -106,7 +106,6 @@ function SignupUser() {
         <Button
           type={"submit"}
           text={"회원가입"}
-          backgroundColor={"#A4B0D8"}
           width={"85%"}
           height={"50px"}
           fontColor={"white"}

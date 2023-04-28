@@ -102,7 +102,6 @@ const GroupTripList = () => {
       <Layout>
         <Button
           text={"새 여행 만들기"}
-          backgroundColor={"#A4B0D8"}
           width={"200px"}
           fontColor={"white"}
           position={"fixed"}

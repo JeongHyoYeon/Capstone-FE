@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./pages/Header";
-import MyTrip from "./pages/userPages/MyTrip";
+//import MyTrip from "./pages/userPages/MyTrip";
 import Group from "./pages/groupPages/Group";
-import Setting from "./pages/userPages/Setting";
+//import Setting from "./pages/userPages/Setting";
 import MakeTrip from "./pages/groupPages/MakeTrip";
 import MakeGroup from "./pages/groupPages/MakeGroup";
 import SignupUser from "./pages/userPages/SignupUser";

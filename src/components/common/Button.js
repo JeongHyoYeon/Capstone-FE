@@ -55,7 +55,7 @@ Button.defaultProps = {
   text: "버튼",
   borderColor: "black",
   outline: false,
-  backgroundColor: "#A4B0D8",
+  backgroundColor: "#3178B9",
   fontColor: "white",
   width: "100px",
   height: "50px",

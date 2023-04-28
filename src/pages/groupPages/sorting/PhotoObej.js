@@ -30,23 +30,18 @@ const PhotoObej = () => {
       <Layout>
         <Button
           text={"자동분류하기"}
-          backgroundColor={"#A4B0D8"}
           width={"150px"}
           fontColor={"white"}
-
           //onClick={}
         />
-
         <Button
           text={"+"}
-          backgroundColor={"#A4B0D8"}
           width={"50px"}
           fontColor={"white"}
           onClick={changePage}
         />
         <Button
           text={"GPT에게 물어보기"}
-          backgroundColor={"#A4B0D8"}
           width={"150px"}
           fontColor={"white"}
           //onClick={changePage}

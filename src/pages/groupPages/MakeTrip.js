@@ -39,7 +39,7 @@ const TDatepicker = styled(DatePicker)`
 const InputLabel = styled.label`
   padding: 6px 25px;
   width: 160px;
-  background-color: #a4b0d8;
+  background-color: #3178b9;
   border-radius: 4px;
   color: white;
   cursor: pointer;
@@ -180,7 +180,6 @@ const MakeTrip = () => {
       <Layout1>
         <Button
           text={"새 여행 만들기"}
-          backgroundColor={"#A4B0D8"}
           width={"200px"}
           fontColor={"white"}
           position={"fixed"}

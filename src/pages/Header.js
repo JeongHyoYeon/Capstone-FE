@@ -1,14 +1,17 @@
 import React from "react";
 import "./Header.css";
-import { MdPeopleOutline, MdPersonOutline } from "react-icons/md";
-import { IoSettingsOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+// import { MdPeopleOutline, MdPersonOutline } from "react-icons/md";
+// import { IoSettingsOutline } from "react-icons/io5";
+// import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <div className="header-all">
       <div className="brand-Name">
-        <h2>AfterTrip</h2>
+        <Link to={"/"}>
+          <h2>AfterTrip</h2>
+        </Link>
       </div>
       {/* <nav className="nav-wrap">
         <div>
