@@ -10,7 +10,7 @@ const Header = () => {
       <div className="brand-Name">
         <h2>AfterTrip</h2>
       </div>
-      <nav className="nav-wrap">
+      {/* <nav className="nav-wrap">
         <div>
           <Link to="/groups">
             <MdPeopleOutline size="25px" color="#a4b1d9" />
@@ -26,7 +26,7 @@ const Header = () => {
             <IoSettingsOutline size="25px" color="#a4b0d9" />
           </Link>
         </div>
-      </nav>
+      </nav> */}
     </div>
   );
 };

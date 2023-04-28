@@ -25,9 +25,12 @@ const Group = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
   console.log(JWTtoken);
 
+  var userName = localStorage.getItem("name");
+
   let newGroupInfo = [];
 
   const [groupInfo, setGroupInfo] = useState([]);
+  const [newInvite, setNewInvite] = useState("");
 
   const navigate = useNavigate();
 
@@ -61,15 +64,91 @@ const Group = () => {
         console.log(error);
       });
   };
+  //초대목록
+  const checkInvite = async (e) => {
+    await axios;
+    instance
+      .get(
+        `/group/invite/`,
+
+        {
+          headers: {
+            Authorization: `Bearer ${JWTtoken}`,
+            //Content-Type: application/json,
+          },
+        }
+      )
+      .then((response) => {
+        let length = response.data.length - 1;
+        setNewInvite(response.data[length]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
     groupList();
-
-    console.log("useEffect");
+    checkInvite();
   }, []);
+
+  if (newInvite == null) {
+    return (
+      <>
+        <Layout2>
+          <Link to={"/invite"}>
+            <TextBox
+              text1={"최근알림"}
+              text2={"들어온 초대가 없습니다."}
+              height={"70px"}
+            />
+          </Link>
+        </Layout2>
+        <Layout2>
+          <h2>{userName}님의 여행</h2>
+        </Layout2>
+        {groupInfo.map(({ group_info, user_in_group }) => (
+          <Layout2 key={group_info.id}>
+            <Link to={`/grouptrip/${group_info.id}`}>
+              <TextBox
+                text1={group_info.name}
+                text2={user_in_group + " "}
+                height={"70px"}
+              />
+            </Link>
+          </Layout2>
+        ))}
+
+        <Layout>
+          <Button
+            text={"새 그룹 만들기"}
+            backgroundColor={"#A4B0D8"}
+            width={"200px"}
+            height={"50px"}
+            fontColor={"white"}
+            position={"fixed"}
+            bottom={"5%"}
+            onClick={navMakeGroup}
+          />
+        </Layout>
+      </>
+    );
+  }
 
   return (
     <>
+      <Layout2>
+        <Link to={"/invite"}>
+          <TextBox
+            text1={"최근알림"}
+            text2={newInvite.group_name + "에  초대되었습니다."}
+            height={"70px"}
+          />
+        </Link>
+      </Layout2>
+      <Layout2>
+        <h2>{userName}님의 여행</h2>
+      </Layout2>
       {groupInfo.map(({ group_info, user_in_group }) => (
         <Layout2 key={group_info.id}>
           <Link to={`/grouptrip/${group_info.id}`}>

@@ -33,16 +33,16 @@ function App() {
             <Route
               path="/"
               element={
-                <PrivateRoute authenticated={JWTtoken} component={<MyTrip />} />
+                <PrivateRoute authenticated={JWTtoken} component={<Group />} />
               }
             />
-            <Route
+            {/* <Route
               path="/groups"
               element={
                 <PrivateRoute authenticated={JWTtoken} component={<Group />} />
               }
             />
-            <Route path="/settings" element={<Setting />} />
+            <Route path="/settings" element={<Setting />} /> */}
             <Route
               path="/maketrips"
               element={
