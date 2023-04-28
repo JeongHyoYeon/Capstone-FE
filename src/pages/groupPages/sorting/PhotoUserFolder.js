@@ -1,13 +1,13 @@
 import React from "react";
 import CategoryHeader from "./CategoryHeader";
-import styled from "styled-components";
-import { useState, useEffect } from "react";
-import instance from "../../../components/Request";
-import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import styled from "styled-components";
+import instance from "../../../components/Request";
+import { useState, useEffect } from "react";
 import Image from "../../../components/common/Image";
 import Button from "../../../components/common/Button";
+import { useNavigate, Link } from "react-router-dom";
 
 const Layout = styled.div`
   display: flex;
@@ -20,12 +20,16 @@ const Layout = styled.div`
 const Layout2 = styled.div`
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
+  padding-top: 40px;
+  justify-content: space-evenly;
 `;
 
 const Layout3 = styled.div`
   display: flex;
   margin: 5px;
-  flex-direction: row;
+  flex-direction: column;
+  text-align: center;
 `;
 
 const Layout4 = styled.div`
@@ -33,7 +37,7 @@ const Layout4 = styled.div`
   justify-content: center;
 `;
 
-const PhotoUser = () => {
+const PhotoUserFolder = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
   const navigate = useNavigate();
@@ -42,21 +46,18 @@ const PhotoUser = () => {
     navigate("/upload");
   };
 
-  //게시자 id
-  const { usertag } = useParams();
-
   //현재 여행의 id
   const tripId = localStorage.getItem("nowGroupTrip");
 
-  //게시자별 여행 담는 배열
-  const [photoUser, setPhotoUser] = useState([]);
+  //게시자별 썸네일 담는 배열
+  const [photoThumb, setPhotoThumb] = useState([]);
 
-  //그룹 여행 사진 함수
-  const userPhoto = async (e) => {
+  //게시자별 뷰 썸네일 가져오기
+  const userPhotoThumb = async (e) => {
     await axios;
     instance
       .get(
-        `/photo/uploader/${tripId}/${usertag}/`,
+        `/photo/uploader/${tripId}/`,
 
         {
           headers: {
@@ -68,7 +69,7 @@ const PhotoUser = () => {
       .then((response) => {
         console.log("success");
         console.log(response.data.data);
-        setPhotoUser(response.data.data);
+        setPhotoThumb(response.data.data);
       })
       .catch((error) => {
         console.log(error);
@@ -76,24 +77,24 @@ const PhotoUser = () => {
   };
 
   useEffect(() => {
-    userPhoto();
+    userPhotoThumb();
   }, []);
 
   return (
     <>
       <CategoryHeader />
-      {photoUser.map((item) => (
-        <Layout key={item.uploader}>
-          <h3>{item.uploader}</h3>
-          <Layout2>
-            {item.photo.map((items) => (
-              <Layout3 key={item.id}>
-                <Image src={items.url} />
-              </Layout3>
-            ))}
-          </Layout2>
-        </Layout>
-      ))}
+      <Layout2>
+        {photoThumb.map((item) => (
+          <Layout key={item.tag}>
+            <Layout3 key={item.thumbnail.id}>
+              <Link to={`/photo/userfolder/${item.thumbnail.uploaded_by}`}>
+                <Image src={item.thumbnail.url} />
+              </Link>
+              <h3>{item.tag}</h3>
+            </Layout3>
+          </Layout>
+        ))}
+      </Layout2>
       <Layout4>
         <Button
           text={"사진 올리기"}
@@ -108,4 +109,4 @@ const PhotoUser = () => {
     </>
   );
 };
-export default PhotoUser;
+export default PhotoUserFolder;

@@ -23,51 +23,60 @@ const Layout = styled.div`
 `;
 
 const CategoryHeader = () => {
-  // const [currentClick, setCurrentClick] = useState(null);
-  // const [prevClick, setPrevClick] = useState(null);
+  const [currentClick, setCurrentClick] = useState(null);
+  const [prevClick, setPrevClick] = useState(null);
 
-  // const GetClick = (e) => {
-  //   setCurrentClick(e.target.id);
-  // };
+  const GetClick = (e) => {
+    setCurrentClick(e.target.id);
+    console.log(e.target.id);
+  };
 
-  // useEffect(
-  //   (e) => {
-  //     if (currentClick !== null) {
-  //       let current = document.getElementById(currentClick);
-  //       current.style.opacity = "1.0"; //찾아온 엘리먼트에 style 속성 먹이기
-  //     }
+  useEffect(
+    (e) => {
+      if (currentClick !== null) {
+        let current = document.getElementById(currentClick);
+        current.style.color = "black"; //찾아온 엘리먼트에 style 속성 먹이기
+      }
 
-  //     if (prevClick !== null) {
-  //       //직전에 클릭한 카테고리에 원래의 style 속성 먹이기
-  //       let prev = document.getElementById(prevClick);
-  //       prev.style.opacity = "0.1";
-  //     }
-  //     setPrevClick(currentClick); //클릭한 id 값을 prevClick에 저장함
-  //   },
-  //   [currentClick]
-  // );
+      if (prevClick !== null) {
+        //직전에 클릭한 카테고리에 원래의 style 속성 먹이기
+        let prev = document.getElementById(prevClick);
+        prev.style.color = "#bebcbc";
+      }
+      setPrevClick(currentClick); //클릭한 id 값을 prevClick에 저장함
+    },
+    [currentClick]
+  );
 
   return (
     <CategoryAll className="category-header-all">
       <NavWrap className="nav-wrap">
         <Layout className="photo-day" id="day">
           <Link to={`/photo`}>
-            <h3>날짜</h3>
+            <h4 id="photo-day" onClick={GetClick}>
+              날짜
+            </h4>
           </Link>
         </Layout>
         <Layout className="photo-obej" id="object">
           <Link to="/photo/auto/obej">
-            <h3>객체분류</h3>
+            <h4 id="photo-obej" onClick={GetClick}>
+              객체분류
+            </h4>
           </Link>
         </Layout>
         <Layout className="photo-char" id="character">
           <Link to="/photo/auto/char">
-            <h3>인물분류</h3>
+            <h4 id="photo-char" onClick={GetClick}>
+              인물분류
+            </h4>
           </Link>
         </Layout>
         <Layout className="photo-user" id="user">
-          <Link to="/photo/user">
-            <h3>게시자</h3>
+          <Link to="/photo/userfolder">
+            <h4 id="photo-user" onClick={GetClick}>
+              게시자
+            </h4>
           </Link>
         </Layout>
       </NavWrap>

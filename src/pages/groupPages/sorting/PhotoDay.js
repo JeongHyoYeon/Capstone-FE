@@ -75,7 +75,7 @@ const PhotoDay = () => {
   //날짜 문자열 함수
   const toDate = (value) => {
     if (value === null) {
-      return "알 수 없음";
+      return "기타";
     }
     return (
       value.slice(0, 4) +
@@ -86,6 +86,7 @@ const PhotoDay = () => {
       "일"
     );
   };
+
   useEffect(() => {
     dayPhoto();
   }, []);

@@ -19,6 +19,7 @@ import PhotoChar from "./pages/groupPages/sorting/PhotoChar";
 import PhotoObej from "./pages/groupPages/sorting/PhotoObej";
 import { useSelector } from "react-redux";
 import PrivateRoute from "./PrivateRoute";
+import PhotoUserFolder from "./pages/groupPages/sorting/PhotoUserFolder";
 
 function App() {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
@@ -117,7 +118,16 @@ function App() {
               }
             />
             <Route
-              path="/photo/user"
+              path="/photo/userfolder"
+              element={
+                <PrivateRoute
+                  authenticated={JWTtoken}
+                  component={<PhotoUserFolder />}
+                />
+              }
+            />
+            <Route
+              path="/photo/userfolder/:usertag"
               element={
                 <PrivateRoute
                   authenticated={JWTtoken}

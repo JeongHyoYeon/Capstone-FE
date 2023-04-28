@@ -51,7 +51,6 @@ const ImageBox = (props) => {
       <Box height={props.height}>
         <Imageinput src={props.src} height={props.height} />
         <Text1>{props.text1}</Text1>
-
         <Text2>{props.text2}</Text2>
       </Box>
     </>

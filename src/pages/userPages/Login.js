@@ -77,6 +77,7 @@ function Login() {
       .catch((error) => {
         //handle error
         console.log("error:", error.response);
+        window.alert(error.response.data);
         //console.log({ id, password });
       });
   };

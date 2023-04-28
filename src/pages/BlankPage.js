@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Button from "../components/common/Button";
 import { useNavigate } from "react-router-dom";
-import { BiFileBlank } from "react-icons/bi";
+import { ImFileEmpty } from "react-icons/im";
 
 const Layout2 = styled.div`
   display: flex;
@@ -30,7 +30,7 @@ const BlankPage = (props) => {
           src="/BlankIcon.png"
           style={{ width: "140px", height: "140px", opacity: "0.4" }}
         /> */}
-        <BiFileBlank size="100px" color="#a4b1d9" />
+        <ImFileEmpty size="100px" color="#a4b1d9" />
       </Layout2>
       <Layout2>
         <h2>{props.data} 없습니다.</h2>

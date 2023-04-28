@@ -6,6 +6,7 @@ import instance from "../../components/Request";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
+import { ImFileEmpty } from "react-icons/im";
 
 const Box = styled.div`
   height: 100px;
@@ -47,6 +48,12 @@ const Layout2 = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+`;
+const Layout3 = styled.div`
+  display: flex;
+  justify-content: center;
+
+  padding-top: 100px;
 `;
 
 const InviteList = () => {
@@ -133,44 +140,59 @@ const InviteList = () => {
 
   useEffect(() => {
     invite();
-  }, [Button]);
+  }, []);
 
-  return (
-    <>
-      {inviteList
-        .slice(0)
-        .reverse()
-        .map((inviteList) => (
-          <Layout key={inviteList.user_group.id}>
-            <Box>
-              <TextDate>
-                {inviteList.user_group.created_at.split("T", 1)}
-              </TextDate>
-              <Text>{inviteList.group_name + "에 초대되셨습니다."}</Text>
-              <Layout2>
-                <Button
-                  text={"함께하기"}
-                  height={"30px"}
-                  fontsize={"13px"}
-                  onClick={() => {
-                    inviteAccept(inviteList.user_group.id);
-                    window.location.reload();
-                  }}
-                />
-                <Button
-                  text={"거절하기"}
-                  height={"30px"}
-                  fontsize={"13px"}
-                  onClick={() => {
-                    inviteDelete(inviteList.user_group.id);
-                    window.location.reload();
-                  }}
-                />
-              </Layout2>
-            </Box>
-          </Layout>
-        ))}
-    </>
-  );
+  if (inviteList.length === 0)
+    return (
+      <>
+        <br />
+        <br />
+        <br />
+        <Layout3>
+          <ImFileEmpty size="100px" color="#a4b1d9" />
+        </Layout3>
+        <Layout3>
+          <h2>들어온 초대가 없습니다.</h2>
+        </Layout3>
+      </>
+    );
+  else
+    return (
+      <>
+        {inviteList
+          .slice(0)
+          .reverse()
+          .map((inviteList) => (
+            <Layout key={inviteList.user_group.id}>
+              <Box>
+                <TextDate>
+                  {inviteList.user_group.created_at.split("T", 1)}
+                </TextDate>
+                <Text>{inviteList.group_name + "에 초대되셨습니다."}</Text>
+                <Layout2>
+                  <Button
+                    text={"함께하기"}
+                    height={"30px"}
+                    fontsize={"13px"}
+                    onClick={() => {
+                      inviteAccept(inviteList.user_group.id);
+                      window.location.reload();
+                    }}
+                  />
+                  <Button
+                    text={"거절하기"}
+                    height={"30px"}
+                    fontsize={"13px"}
+                    onClick={() => {
+                      inviteDelete(inviteList.user_group.id);
+                      window.location.reload();
+                    }}
+                  />
+                </Layout2>
+              </Box>
+            </Layout>
+          ))}
+      </>
+    );
 };
 export default InviteList;
