@@ -91,7 +91,7 @@ function App() {
               }
             />
             <Route
-              path="/photo"
+              path="/photo/day"
               element={
                 <PrivateRoute
                   authenticated={JWTtoken}

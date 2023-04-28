@@ -1,7 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const CategoryAll = styled.div`
@@ -23,61 +21,46 @@ const Layout = styled.div`
 `;
 
 const CategoryHeader = () => {
-  const [currentClick, setCurrentClick] = useState(null);
-  const [prevClick, setPrevClick] = useState(null);
+  const tripId = localStorage.getItem("nowGroupTrip");
 
-  const GetClick = (e) => {
-    setCurrentClick(e.target.id);
-    console.log(e.target.id);
+  const activeStyle = {
+    color: "#A4B0D8",
   };
-
-  useEffect(
-    (e) => {
-      if (currentClick !== null) {
-        let current = document.getElementById(currentClick);
-        current.style.color = "black"; //찾아온 엘리먼트에 style 속성 먹이기
-      }
-
-      if (prevClick !== null) {
-        //직전에 클릭한 카테고리에 원래의 style 속성 먹이기
-        let prev = document.getElementById(prevClick);
-        prev.style.color = "#bebcbc";
-      }
-      setPrevClick(currentClick); //클릭한 id 값을 prevClick에 저장함
-    },
-    [currentClick]
-  );
 
   return (
     <CategoryAll className="category-header-all">
       <NavWrap className="nav-wrap">
         <Layout className="photo-day" id="day">
-          <Link to={`/photo`}>
-            <h4 id="photo-day" onClick={GetClick}>
-              날짜
-            </h4>
-          </Link>
+          <NavLink
+            style={({ isActive }) => (isActive ? activeStyle : {})}
+            to={`/grouptripdetail/${tripId}`}
+          >
+            <h4>날짜</h4>
+          </NavLink>
         </Layout>
         <Layout className="photo-obej" id="object">
-          <Link to="/photo/auto/obej">
-            <h4 id="photo-obej" onClick={GetClick}>
-              객체분류
-            </h4>
-          </Link>
+          <NavLink
+            style={({ isActive }) => (isActive ? activeStyle : {})}
+            to="/photo/auto/obej"
+          >
+            <h4>객체분류</h4>
+          </NavLink>
         </Layout>
         <Layout className="photo-char" id="character">
-          <Link to="/photo/auto/char">
-            <h4 id="photo-char" onClick={GetClick}>
-              인물분류
-            </h4>
-          </Link>
+          <NavLink
+            style={({ isActive }) => (isActive ? activeStyle : {})}
+            to="/photo/auto/char"
+          >
+            <h4>인물분류</h4>
+          </NavLink>
         </Layout>
         <Layout className="photo-user" id="user">
-          <Link to="/photo/userfolder">
-            <h4 id="photo-user" onClick={GetClick}>
-              게시자
-            </h4>
-          </Link>
+          <NavLink
+            style={({ isActive }) => (isActive ? activeStyle : {})}
+            to="/photo/userfolder"
+          >
+            <h4>게시자</h4>
+          </NavLink>
         </Layout>
       </NavWrap>
     </CategoryAll>
