@@ -67,7 +67,7 @@ function SignupUser() {
   return (
     <>
       <Layout>
-        <h1 style={{ color: "#a4b1d9" }}>회원가입</h1>
+        <h1 style={{ color: "#3178B9" }}>회원가입</h1>
         <br />
         <InputBox
           placeholder="이름"

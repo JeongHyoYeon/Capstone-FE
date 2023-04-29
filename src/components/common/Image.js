@@ -6,7 +6,7 @@ const Box = styled.div`
   height: ${(props) => props.height};
   width: ${(props) => props.width};
   background: white;
-  border-radius: 0px 0px 0px 0px;
+  border-radius: 5px 5px 5px 5px;
   position: relative;
   overflow: hidden;
   //box-shadow: 3px 3px 3px lightgrey;
@@ -22,15 +22,15 @@ const Imageinput = styled.img`
 const Image = (props) => {
   return (
     <>
-      <Box>
-        <Imageinput src={props.src} height={props.height} width={props.width} />
+      <Box height={props.height} width={props.width}>
+        <Imageinput src={props.src} />
       </Box>
     </>
   );
 };
 
 Image.defaultProps = {
-  height: "102px",
+  height: "120px",
   width: "102px",
 };
 
