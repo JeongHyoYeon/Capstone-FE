@@ -24,6 +24,11 @@ const Layout = styled.div`
   padding-top: 20px;
 `;
 
+const Layout2 = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const UploadPhoto = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
@@ -110,9 +115,9 @@ const UploadPhoto = () => {
           />
         </Label>
       </Layout>
-      <Layout>
+      <Layout2>
         <h4>사진 올리기</h4>
-      </Layout>
+      </Layout2>
       <Layout>
         <h2>{photo.length}개의 사진 선택됨</h2>
       </Layout>
