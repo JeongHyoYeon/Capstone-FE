@@ -88,7 +88,7 @@ const PhotoDay = () => {
   };
 
   useEffect(() => {
-    dayPhoto();
+    setTimeout(() => dayPhoto(), 300);
   }, []);
 
   return (
