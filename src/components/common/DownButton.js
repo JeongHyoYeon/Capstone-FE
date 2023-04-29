@@ -30,23 +30,19 @@ const DownButton = () => {
         }
       )
       .then((response) => {
-        const blob = new Blob([response.data.data.url], { type: "image/*" });
-
-        let fileName = response.data.data.file_name;
-        const file = window.URL.createObjectURL(blob);
-
-        const link = document.createElement("a");
-        link.href = file;
-        link.style.display = "none";
-
-        //link.download = `${response.data.data.file_name}`;
-        link.download = fileName;
-
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-
-        window.URL.revokeObjectURL(file);
+        console.log(response);
+        // const blob = new Blob([response.data.data.url], { type: "image/*" });
+        // let fileName = response.data.data.file_name;
+        // const file = window.URL.createObjectURL(blob);
+        // const link = document.createElement("a");
+        // link.href = file;
+        // link.style.display = "none";
+        // //link.download = `${response.data.data.file_name}`;
+        // link.download = fileName;
+        // document.body.appendChild(link);
+        // link.click();
+        // link.remove();
+        // window.URL.revokeObjectURL(file);
       })
       .catch((error) => {
         console.log("error:", error);

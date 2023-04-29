@@ -21,7 +21,6 @@ const Label = styled.label`
 const Layout = styled.div`
   display: flex;
   justify-content: center;
-
   padding-top: 20px;
 `;
 
@@ -110,6 +109,9 @@ const UploadPhoto = () => {
             style={{ display: "none" }}
           />
         </Label>
+      </Layout>
+      <Layout>
+        <h4>사진 올리기</h4>
       </Layout>
       <Layout>
         <h2>{photo.length}개의 사진 선택됨</h2>
