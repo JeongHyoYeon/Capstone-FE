@@ -47,6 +47,28 @@ const Group = () => {
     navigate("/makegroups");
   };
 
+  const authCheck = async (e) => {
+    await axios;
+    instance
+      .get(
+        `/group/`,
+
+        {
+          headers: {
+            Authorization: `Bearer ${JWTtoken}`,
+            //Content-Type: application/json,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        logOut();
+      });
+  };
+
   const groupList = async (e) => {
     await axios;
     instance
@@ -97,6 +119,7 @@ const Group = () => {
   };
 
   useEffect(() => {
+    authCheck();
     groupList();
     checkInvite();
   }, []);

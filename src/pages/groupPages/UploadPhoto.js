@@ -116,14 +116,14 @@ const UploadPhoto = () => {
         </Label>
       </Layout>
       <Layout2>
-        <h4>사진 올리기</h4>
+        <h2>사진 올리기</h2>
       </Layout2>
       <Layout>
-        <h2>{photo.length}개의 사진 선택됨</h2>
+        <h4>{photo.length}개의 사진 선택됨</h4>
       </Layout>
       <Layout>
         <Button
-          text={"사진 올리기"}
+          text={"선택완료"}
           width={"200px"}
           fontColor={"white"}
           position={"fixed"}
