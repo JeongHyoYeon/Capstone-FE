@@ -77,8 +77,8 @@ const GrouptripDetail = () => {
       )
       .then((response) => {
         console.log("success");
-        console.log(response.data.data);
-        setPhotoDay(response.data.data);
+        console.log(response.data.data[0].photo);
+        setPhotoDay(response.data.data[0].photo);
       })
       .catch((error) => {
         console.log(error);

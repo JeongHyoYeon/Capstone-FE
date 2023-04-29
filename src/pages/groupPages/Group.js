@@ -114,7 +114,7 @@ const Group = () => {
           </Link>
         </Layout2>
         <Layout2>
-          <h2>{userName}님의 여행</h2>
+          <h2>{userName}님의 그룹</h2>
         </Layout2>
         {groupInfo.map(({ group_info, user_in_group }) => (
           <Layout2 key={group_info.id}>
@@ -142,7 +142,7 @@ const Group = () => {
         <Layout>
           <h3
             style={{
-              position: "fixed",
+              //position: "fixed",
               bottom: "5%",
               textDecoration: "underline",
             }}
@@ -167,7 +167,7 @@ const Group = () => {
         </Link>
       </Layout2>
       <Layout2>
-        <h2>{userName}님의 여행</h2>
+        <h2>{userName}님의 그룹</h2>
       </Layout2>
       {groupInfo.map(({ group_info, user_in_group }) => (
         <Layout2 key={group_info.id}>

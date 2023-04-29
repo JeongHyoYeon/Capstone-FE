@@ -149,7 +149,7 @@ const InviteList = () => {
         <br />
         <br />
         <Layout3>
-          <ImFileEmpty size="100px" color="#a4b1d9" />
+          <ImFileEmpty size="100px" color="#3178B9" />
         </Layout3>
         <Layout3>
           <h2>들어온 초대가 없습니다.</h2>

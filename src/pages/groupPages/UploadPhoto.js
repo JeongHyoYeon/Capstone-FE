@@ -31,7 +31,7 @@ const UploadPhoto = () => {
   const navigate = useNavigate();
 
   const changePage = () => {
-    navigate("/photo");
+    navigate(`/grouptripdetail/${tripId}`);
   };
 
   //보낼 사진
@@ -99,7 +99,7 @@ const UploadPhoto = () => {
     <>
       <Layout>
         <Label htmlFor="input-file">
-          <BsCloudUpload size="200px" color="#a4b1d9" />
+          <BsCloudUpload size="200px" color="#3178B9" />
           <input
             type="file"
             id="input-file"
@@ -117,7 +117,6 @@ const UploadPhoto = () => {
       <Layout>
         <Button
           text={"사진 올리기"}
-          backgroundColor={"#A4B0D8"}
           width={"200px"}
           fontColor={"white"}
           position={"fixed"}

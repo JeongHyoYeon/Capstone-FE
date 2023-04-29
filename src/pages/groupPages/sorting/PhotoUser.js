@@ -3,7 +3,7 @@ import CategoryHeader from "./CategoryHeader";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import instance from "../../../components/Request";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Image from "../../../components/common/Image";
@@ -88,7 +88,9 @@ const PhotoUser = () => {
           <Layout2>
             {item.photo.map((items) => (
               <Layout3 key={item.id}>
-                <Image src={items.url} />
+                <Link to={`/photo/large/${item.id}`}>
+                  <Image src={items.url} />
+                </Link>
               </Layout3>
             ))}
           </Layout2>

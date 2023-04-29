@@ -3,7 +3,7 @@ import CategoryHeader from "./CategoryHeader";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import instance from "../../../components/Request";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Image from "../../../components/common/Image";
@@ -94,14 +94,15 @@ const PhotoDay = () => {
   return (
     <>
       <CategoryHeader />
-
       {photoDay.map((item) => (
         <Layout key={item.date}>
           <h3>{toDate(item.date)}</h3>
           <Layout2>
             {item.photo.map((items) => (
-              <Layout3 key={item.id}>
-                <Image src={items.url} />
+              <Layout3 key={items.id}>
+                <Link to={`/photo/large/${items.id}`}>
+                  <Image src={items.url} />
+                </Link>
               </Layout3>
             ))}
           </Layout2>

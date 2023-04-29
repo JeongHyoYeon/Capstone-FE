@@ -30,7 +30,7 @@ const BlankPage = (props) => {
           src="/BlankIcon.png"
           style={{ width: "140px", height: "140px", opacity: "0.4" }}
         /> */}
-        <ImFileEmpty size="100px" color="#a4b1d9" />
+        <ImFileEmpty size="100px" color="#3178B9" />
       </Layout2>
       <Layout2>
         <h2>{props.data} 없습니다.</h2>
@@ -38,7 +38,6 @@ const BlankPage = (props) => {
       <Layout2>
         <Button
           text={"사진 올리기"}
-          backgroundColor={"#A4B0D8"}
           width={"200px"}
           fontColor={"white"}
           //position={"fixed"}

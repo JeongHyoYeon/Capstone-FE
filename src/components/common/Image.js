@@ -3,8 +3,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Box = styled.div`
-  height: 102px;
-  width: 102px;
+  height: ${(props) => props.height};
+  width: ${(props) => props.width};
   background: white;
   border-radius: 0px 0px 0px 0px;
   position: relative;
@@ -23,10 +23,15 @@ const Image = (props) => {
   return (
     <>
       <Box>
-        <Imageinput src={props.src} height={props.height} />
+        <Imageinput src={props.src} height={props.height} width={props.width} />
       </Box>
     </>
   );
+};
+
+Image.defaultProps = {
+  height: "102px",
+  width: "102px",
 };
 
 export default Image;
