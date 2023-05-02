@@ -9,11 +9,12 @@ import instance from "../../../components/Request";
 
 const Layout = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  height: 50px;
-  position: fixed;
-  bottom: 10%;
+  justify-content: center;
+  //flex-direction: row;
+  //margin: 0 auto;
+  //height: 50px;
+  //position: fixed;
+  //bottom: 10%;
 `;
 
 const Layout2 = styled.div`

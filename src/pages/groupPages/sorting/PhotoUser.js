@@ -13,19 +13,20 @@ const Layout = styled.div`
   display: flex;
   padding: 10px;
   padding-top: 10px;
-  flex-direction: column;
-  padding-left: 6%;
+  flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 const Layout2 = styled.div`
   display: flex;
-  flex-wrap: wrap;
 `;
 
 const Layout3 = styled.div`
   display: flex;
-  margin: 5px;
   flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 40px;
+  justify-content: center;
 `;
 
 const Layout4 = styled.div`
@@ -56,7 +57,7 @@ const PhotoUser = () => {
     await axios;
     instance
       .get(
-        `/photo/uploader/${tripId}/${usertag}/`,
+        `/uploader/${tripId}/${usertag}/`,
 
         {
           headers: {
@@ -67,8 +68,8 @@ const PhotoUser = () => {
       )
       .then((response) => {
         console.log("success");
-        console.log(response.data.data);
-        setPhotoUser(response.data.data);
+        console.log(response.data);
+        setPhotoUser(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -82,20 +83,17 @@ const PhotoUser = () => {
   return (
     <>
       <CategoryHeader />
-      {photoUser.map((item) => (
-        <Layout key={item.uploader}>
-          <h3>{item.uploader}</h3>
-          <Layout2>
-            {item.photo.map((items) => (
-              <Layout3 key={item.id}>
-                <Link to={`/photo/large/${item.id}`}>
-                  <Image src={items.url} />
-                </Link>
-              </Layout3>
-            ))}
-          </Layout2>
-        </Layout>
-      ))}
+      <Layout3>
+        {photoUser.map((item) => (
+          <Layout key={item.id}>
+            <Layout2>
+              <Link to={`/photo/large/${item.id}`}>
+                <Image src={item.url} />
+              </Link>
+            </Layout2>
+          </Layout>
+        ))}
+      </Layout3>
       <Layout4>
         <Button
           text={"사진 올리기"}

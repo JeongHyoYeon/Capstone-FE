@@ -9,10 +9,10 @@ import instance from "../../../components/Request";
 
 const Layout = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  height: 50px;
-  position: fixed;
+  justify-content: center;
+  //flex-direction: row;
+  //height: 50px;
+  //position: relative;
   bottom: 10%;
 `;
 
@@ -85,6 +85,7 @@ const PhotoObej = () => {
             text={"GPT에게 물어보기"}
             width={"150px"}
             fontColor={"white"}
+
             //onClick={changePage}
           />
         </Layout2>

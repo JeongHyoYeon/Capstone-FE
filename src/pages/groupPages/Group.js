@@ -161,12 +161,10 @@ const Group = () => {
             bottom={"12%"}
             onClick={navMakeGroup}
           />
-        </Layout>
-        <Layout>
           <h3
             style={{
-              //position: "fixed",
-              bottom: "5%",
+              // alignItem: "flex-end",
+              // bottom: "20px",
               textDecoration: "underline",
             }}
             onClick={logOut}

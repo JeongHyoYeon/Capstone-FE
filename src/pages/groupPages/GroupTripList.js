@@ -73,7 +73,7 @@ const GroupTripList = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => groupdetail(), 300);
+    setTimeout(() => groupdetail(), 500);
   }, []);
 
   return (
