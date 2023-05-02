@@ -103,7 +103,9 @@ const PhotoUser = () => {
           fontColor={"white"}
           position={"fixed"}
           bottom={"13%"}
-          onClick={changePage}
+          onClick={() => {
+            changePage();
+          }}
         />
       </Layout4>
     </>

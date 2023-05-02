@@ -114,6 +114,7 @@ const MakeGroup = () => {
       .catch((error) => {
         //handle error
         console.log("error:", error);
+        window.alert(error);
       });
   };
 
