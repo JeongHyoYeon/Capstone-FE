@@ -11,10 +11,10 @@ const Layout = styled.div`
   display: flex;
   justify-content: center;
   //flex-direction: row;
-  //margin: 0 auto;
   //height: 50px;
-  //position: fixed;
-  //bottom: 10%;
+  position: fixed;
+  width: 100%;
+  bottom: 10%;
 `;
 
 const Layout2 = styled.div`
@@ -31,6 +31,10 @@ const PhotoChar = () => {
 
   const changePage = () => {
     navigate("/upload");
+  };
+
+  const changeGpt = () => {
+    navigate("/photo/auto/gpt");
   };
 
   //자동 분류 요청하기
@@ -86,7 +90,9 @@ const PhotoChar = () => {
             text={"GPT에게 물어보기"}
             width={"150px"}
             fontColor={"white"}
-            //onClick={changePage}
+            onClick={() => {
+              changeGpt();
+            }}
           />
         </Layout2>
       </Layout>

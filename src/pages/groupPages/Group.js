@@ -163,7 +163,7 @@ const Group = () => {
           />
           <h3
             style={{
-              // alignItem: "flex-end",
+              //align-items: "flex-end",
               // bottom: "20px",
               textDecoration: "underline",
             }}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import instance from "../../components/Request";
@@ -11,44 +11,44 @@ const DownBtn = styled.button`
 
 const DownButton = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
-
+  //사진 id
   let photoId = localStorage.getItem("nowPhotoId");
 
   const downLoad = async (e) => {
     await axios;
     instance
-      .post(
+      .get(
         `/download/${photoId}/`,
-        {},
+
         {
           headers: {
             Authorization: `Bearer ${JWTtoken}`,
+            "Content-Type": "application/json",
           },
-        },
-        {
           responseType: "blob",
         }
       )
       .then((response) => {
         console.log(response);
-        const blob = new Blob([response.data.data.url], { type: "image/*" });
-        let fileName = response.data.data.file_name;
-        const file = window.URL.createObjectURL(blob);
+        const blob = new Blob([response.data.url], {
+          type: "image/jpeg",
+        });
+        console.log(blob);
+        const imageUrl = window.URL.createObjectURL(blob);
         const link = document.createElement("a");
-        link.href = file;
-        link.style.display = "none";
-        //link.download = `${response.data.data.file_name}`;
-        link.download = fileName;
-        link.setAttribute("download", fileName);
+        link.href = imageUrl;
+        //다운로드시 파일명
+        link.download = "test";
         document.body.appendChild(link);
         link.click();
         link.remove();
-        window.URL.revokeObjectURL(file);
+        window.URL.revokeObjectURL(link);
       })
       .catch((error) => {
         console.log("error:", error);
       });
   };
+
   return (
     <DownBtn onClick={downLoad}>
       <AiOutlineDownload size={"35px"} color="#3178B9" />
