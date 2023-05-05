@@ -22,6 +22,7 @@ import { useSelector } from "react-redux";
 import PrivateRoute from "./PrivateRoute";
 import PhotoUserFolder from "./pages/groupPages/sorting/PhotoUserFolder";
 import PhotoLarge from "./pages/groupPages/sorting/PhotoLarge";
+import PhotoCharFolder from "./pages/groupPages/sorting/PhotoCharFolder";
 
 function App() {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);

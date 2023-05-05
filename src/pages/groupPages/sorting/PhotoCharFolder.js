@@ -32,28 +32,27 @@ const Layout3 = styled.div`
   text-align: center;
 `;
 
+// const Layout4 = styled.div`
+//   display: flex;
+//   justify-content: center;
+// `;
+
 const Layout4 = styled.div`
   display: flex;
   justify-content: center;
+  //flex-direction: row;
+  //height: 50px;
+  position: fixed;
+  width: 100%;
+  bottom: 10%;
 `;
-
 
 const Layout5 = styled.div`
-  display: flex;
-  justify-content: center;
-  //flex-direction: row;
-  //margin: 0 auto;
-  //height: 50px;
-  //position: fixed;
-  //bottom: 10%;
-`;
-
-const Layout6 = styled.div`
   padding-left: 5px;
   padding-right: 5px;
 `;
 
-const PhotoChar = () => {
+const PhotoCharFolder = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
   const navigate = useNavigate();
@@ -62,6 +61,10 @@ const PhotoChar = () => {
 
   const changePage = () => {
     navigate("/upload");
+  };
+
+  const changeGpt = () => {
+    navigate("/photo/auto/gpt");
   };
 
   //자동 분류 요청하기
@@ -133,8 +136,8 @@ const PhotoChar = () => {
           </Layout>
         ))}
       </Layout2>
-      <Layout5>
-        <Layout6>
+      <Layout4>
+        <Layout5>
           <Button
             text={"자동분류하기"}
             width={"150px"}
@@ -143,8 +146,8 @@ const PhotoChar = () => {
               requestAuto();
             }}
           />
-        </Layout6>
-        <Layout6>
+        </Layout5>
+        <Layout5>
           <Button
             text={"+"}
             width={"50px"}
@@ -153,17 +156,19 @@ const PhotoChar = () => {
               changePage();
             }}
           />
-        </Layout6>
-        <Layout6>
+        </Layout5>
+        <Layout5>
           <Button
             text={"GPT에게 물어보기"}
             width={"150px"}
             fontColor={"white"}
-            //onClick={changePage}
+            onClick={() => {
+              changeGpt();
+            }}
           />
-        </Layout6>
-      </Layout5>
+        </Layout5>
+      </Layout4>
     </>
   );
 };
-export default PhotoChar;
+export default PhotoCharFolder;

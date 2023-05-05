@@ -11,18 +11,17 @@ import instance from "../../../components/Request";
 
 const Layout = styled.div`
   display: flex;
-  padding: 10px;
-  padding-top: 10px;
-  flex-direction: column;
-  padding-left: 6%;
+  justify-content: center;
+  //flex-direction: row;
+  //height: 50px;
+  position: fixed;
+  width: 100%;
+  bottom: 10%;
 `;
 
 const Layout2 = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  padding-top: 40px;
-  justify-content: space-evenly;
+  padding-left: 5px;
+  padding-right: 5px;
 `;
 
 const Layout3 = styled.div`
@@ -34,23 +33,18 @@ const Layout3 = styled.div`
 
 const Layout4 = styled.div`
   display: flex;
-  justify-content: center;
+  padding: 10px;
+  padding-top: 10px;
+  flex-direction: column;
+  padding-left: 6%;
 `;
-
 
 const Layout5 = styled.div`
   display: flex;
-  justify-content: center;
-  //flex-direction: row;
-  //height: 50px;
-  position: fixed;
-  width: 100%;
-  bottom: 10%;
-`;
-
-const Layout6 = styled.div`
-  padding-left: 5px;
-  padding-right: 5px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding-top: 40px;
+  justify-content: space-evenly;
 `;
 
 const PhotoChar = () => {
@@ -67,8 +61,11 @@ const PhotoChar = () => {
   const changeGpt = () => {
     navigate("/photo/auto/gpt");
   };
+
   //얼굴 태그 id
   const { facetag } = useParams();
+
+  const [photoChar, setPhotoChar] = useState([]);
 
   //자동 분류 요청하기
   const requestAuto = async (e) => {
@@ -84,17 +81,16 @@ const PhotoChar = () => {
           },
         }
       )
-      .then((res) => {
-        console.log(res);
-        window.alert(res.data);
+      .then((response) => {
+        console.log(response);
+        window.alert(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const [photoChar, setPhotoChar] = useState([]);
-
+  //인물별 사진 가져오기
   const charPhoto = async (e) => {
     await axios;
     instance
@@ -127,17 +123,17 @@ const PhotoChar = () => {
       <CategoryHeader />
       <Layout3>
         {photoChar.map((item) => (
-          <Layout key={item.id}>
-            <Layout2>
+          <Layout4 key={item.id}>
+            <Layout5>
               <Link to={`/photo/large/${item.id}`}>
                 <Image src={item.url} />
               </Link>
-            </Layout2>
-          </Layout>
+            </Layout5>
+          </Layout4>
         ))}
       </Layout3>
-      <Layout5>
-        <Layout6>
+      <Layout>
+        <Layout2>
           <Button
             text={"자동분류하기"}
             width={"150px"}
@@ -146,8 +142,8 @@ const PhotoChar = () => {
               requestAuto();
             }}
           />
-        </Layout6>
-        <Layout6>
+        </Layout2>
+        <Layout2>
           <Button
             text={"+"}
             width={"50px"}
@@ -156,8 +152,8 @@ const PhotoChar = () => {
               changePage();
             }}
           />
-        </Layout6>
-        <Layout6>
+        </Layout2>
+        <Layout2>
           <Button
             text={"GPT에게 물어보기"}
             width={"150px"}
@@ -166,8 +162,8 @@ const PhotoChar = () => {
               changeGpt();
             }}
           />
-        </Layout6>
-      </Layout5>
+        </Layout2>
+      </Layout>
     </>
   );
 };
