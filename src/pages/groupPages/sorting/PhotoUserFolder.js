@@ -87,7 +87,7 @@ const PhotoUserFolder = () => {
         {photoThumb.map((item) => (
           <Layout key={item.tag}>
             <Layout3 key={item.thumbnail.id}>
-              <Link to={`/photo/userfolder/${item.thumbnail.uploaded_by}`}>
+              <Link to={`/photo/userfolder/${item.tag_id}`}>
                 <Image src={item.thumbnail.url} />
               </Link>
               <h3>{item.tag}</h3>

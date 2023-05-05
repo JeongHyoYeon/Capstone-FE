@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import CategoryHeader from "./CategoryHeader";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Button from "../../../components/common/Button";
 import Image from "../../../components/common/Image";
@@ -42,10 +42,10 @@ const Layout5 = styled.div`
   display: flex;
   justify-content: center;
   //flex-direction: row;
+  //margin: 0 auto;
   //height: 50px;
-  position: fixed;
-  width: 100%;
-  bottom: 10%;
+  //position: fixed;
+  //bottom: 10%;
 `;
 
 const Layout6 = styled.div`
@@ -63,12 +63,6 @@ const PhotoChar = () => {
   const changePage = () => {
     navigate("/upload");
   };
-
-  const changeGpt = () => {
-    navigate("/photo/auto/gpt");
-  };
-  //얼굴 태그 id
-  const { facetag } = useParams();
 
   //자동 분류 요청하기
   const requestAuto = async (e) => {
@@ -93,13 +87,15 @@ const PhotoChar = () => {
       });
   };
 
-  const [photoChar, setPhotoChar] = useState([]);
+  //인물 분류 썸네일 담는 배열
+  const [photoThumb, setPhotoThumb] = useState([]);
 
-  const charPhoto = async (e) => {
+  //인물분류 뷰 썸네일 가져오기
+  const charPhotoThumb = async (e) => {
     await axios;
     instance
       .get(
-        `/photo/face/${tripId}/${facetag}/`,
+        `/photo/face/${tripId}/`,
 
         {
           headers: {
@@ -110,8 +106,8 @@ const PhotoChar = () => {
       )
       .then((response) => {
         console.log("success");
-        console.log(response.data);
-        setPhotoChar(response.data);
+        console.log(response.data.data);
+        setPhotoThumb(response.data.data);
       })
       .catch((error) => {
         console.log(error);
@@ -119,23 +115,24 @@ const PhotoChar = () => {
   };
 
   useEffect(() => {
-    charPhoto();
+    charPhotoThumb();
   }, []);
 
   return (
     <>
       <CategoryHeader />
-      <Layout3>
-        {photoChar.map((item) => (
-          <Layout key={item.id}>
-            <Layout2>
-              <Link to={`/photo/large/${item.id}`}>
-                <Image src={item.url} />
+      <Layout2>
+        {photoThumb.map((item) => (
+          <Layout key={item.tag}>
+            <Layout3 key={item.thumbnail.id}>
+              <Link to={`/photo/face/${item.tag_id}`}>
+                <Image src={item.thumbnail.url} />
               </Link>
-            </Layout2>
+              <h3>{item.tag}</h3>
+            </Layout3>
           </Layout>
         ))}
-      </Layout3>
+      </Layout2>
       <Layout5>
         <Layout6>
           <Button
@@ -162,9 +159,7 @@ const PhotoChar = () => {
             text={"GPT에게 물어보기"}
             width={"150px"}
             fontColor={"white"}
-            onClick={() => {
-              changeGpt();
-            }}
+            //onClick={changePage}
           />
         </Layout6>
       </Layout5>

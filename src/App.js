@@ -15,6 +15,7 @@ import PhotoDay from "./pages/groupPages/sorting/PhotoDay";
 import PhotoUser from "./pages/groupPages/sorting/PhotoUser";
 import AutoGPT from "./pages/groupPages/sorting/AutoGPT";
 import InviteList from "./pages/userPages/InviteList";
+import PhotoCharFolder from "./pages/groupPages/sorting/PhotoCharFolder";
 import PhotoChar from "./pages/groupPages/sorting/PhotoChar";
 import PhotoObej from "./pages/groupPages/sorting/PhotoObej";
 import { useSelector } from "react-redux";
@@ -105,7 +106,7 @@ function App() {
               element={
                 <PrivateRoute
                   authenticated={JWTtoken}
-                  component={<PhotoChar />}
+                  component={<PhotoCharFolder />}
                 />
               }
             />
@@ -133,6 +134,15 @@ function App() {
                 <PrivateRoute
                   authenticated={JWTtoken}
                   component={<PhotoUser />}
+                />
+              }
+            />
+            <Route
+              path="/photo/auto/char/:facetag"
+              element={
+                <PrivateRoute
+                  authenticated={JWTtoken}
+                  component={<PhotoChar />}
                 />
               }
             />
