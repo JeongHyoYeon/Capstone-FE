@@ -17,9 +17,9 @@ const DownButton = () => {
   const downLoadUrl = async (e) => {
     await axios;
     instance
-      .post(
+      .get(
         `/download/${photoId}/`,
-        {},
+
         {
           headers: {
             Authorization: `Bearer ${JWTtoken}`,
