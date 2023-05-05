@@ -44,7 +44,8 @@ const DownButton = () => {
         responseType: "blob",
       })
       .then((response) => {
-        return response.blob();
+        const blob = new Blob([response], { type: response.type });
+        return blob;
       })
       .then((blob) => {
         const url = window.URL.createObjectURL(blob);
