@@ -43,10 +43,7 @@ const DownButton = () => {
       .get(s3Url, {
         responseType: "blob",
       })
-      .then((response) => {
-        const blob = new Blob([response], { type: response.type });
-        return blob;
-      })
+      .then((response) => response.blob)
       .then((blob) => {
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement("a");
