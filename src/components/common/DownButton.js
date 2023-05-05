@@ -40,7 +40,9 @@ const DownButton = () => {
   //url로 사진 다운로드 요청
   const photoUrl = async (s3Url, fileName) => {
     await axios
-      .get(s3Url)
+      .get(s3Url, {
+        responseType: "blob",
+      })
       .then((response) => {
         return response.blob();
       })
