@@ -6,6 +6,7 @@ import instance from "../../../components/Request";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import BackButton from "../../../components/common/BackButton";
 
 const Layout = styled.div`
   display: flex;
@@ -14,6 +15,12 @@ const Layout = styled.div`
   margin-top: 0;
   flex-direction: column;
   align-items: center;
+`;
+
+const Layout2 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 `;
 
 const AutoGPT = () => {
@@ -65,7 +72,10 @@ const AutoGPT = () => {
 
   return (
     <>
-      <CategoryHeader />
+      <Layout2>
+        <BackButton />
+      </Layout2>
+      {/* <CategoryHeader /> */}
       <br />
       <br />
       <br />

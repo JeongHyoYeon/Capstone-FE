@@ -13,44 +13,58 @@ const DownButton = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
   //사진 id
   let photoId = localStorage.getItem("nowPhotoId");
-
-  const downLoad = async (e) => {
+  //서버에서 s3 url 가져오기
+  const downLoadUrl = async (e) => {
     await axios;
     instance
-      .get(
+      .post(
         `/download/${photoId}/`,
-
+        {},
         {
           headers: {
             Authorization: `Bearer ${JWTtoken}`,
             "Content-Type": "application/json",
           },
-          responseType: "blob",
         }
       )
       .then((response) => {
-        console.log(response);
-        const blob = new Blob([response.data.url], {
-          type: "image/jpeg",
-        });
-        console.log(blob);
-        const imageUrl = window.URL.createObjectURL(blob);
+        const s3Url = response.data.url;
+        const fileName = response.data.file_name;
+        photoUrl(s3Url, fileName);
+      })
+      .catch((error) => {
+        console.log("error:" + error);
+      });
+  };
+
+  //url로 사진 다운로드 요청
+  const photoUrl = async (s3Url, fileName) => {
+    await axios
+      .get(s3Url)
+      .then((response) => {
+        return response.blob();
+      })
+      .then((blob) => {
+        const url = window.URL.createObjectURL(blob);
         const link = document.createElement("a");
-        link.href = imageUrl;
-        //다운로드시 파일명
-        link.download = "test";
+        link.href = url;
+        link.download = fileName;
         document.body.appendChild(link);
         link.click();
         link.remove();
         window.URL.revokeObjectURL(link);
       })
       .catch((error) => {
-        console.log("error:", error);
+        console.log("photoUrl Error:" + error);
       });
   };
 
   return (
-    <DownBtn onClick={downLoad}>
+    <DownBtn
+      onClick={() => {
+        downLoadUrl();
+      }}
+    >
       <AiOutlineDownload size={"35px"} color="#3178B9" />
     </DownBtn>
   );

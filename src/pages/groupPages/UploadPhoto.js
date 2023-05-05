@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import Button from "../../components/common/Button";
 import { BsCloudUpload } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import BackButton from "../../components/common/BackButton";
 
 const Label = styled.label`
   padding: 6px 25px;
@@ -27,6 +28,12 @@ const Layout = styled.div`
 const Layout2 = styled.div`
   display: flex;
   justify-content: center;
+`;
+
+const Layout3 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 `;
 
 const UploadPhoto = () => {
@@ -101,6 +108,9 @@ const UploadPhoto = () => {
 
   return (
     <>
+      <Layout3>
+        <BackButton />
+      </Layout3>
       <Layout>
         <Label htmlFor="input-file">
           <BsCloudUpload size="200px" color="#3178B9" />
