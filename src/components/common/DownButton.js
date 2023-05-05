@@ -25,22 +25,29 @@ const DownButton = () => {
             Authorization: `Bearer ${JWTtoken}`,
             "Content-Type": "application/json",
           },
-          responseType: "blob",
         }
       )
       .then((response) => {
-        const blob = new Blob([response.data])
-        const fileUrl = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = fileUrl;
-        link.style.display = 'none';
-        link.download = response.headers['filename'];
+        fetch(response.data.url)
+        .then(response => response.blob())
+        .then(blob => {
+          // Create a new blob object
+          const fileBlob = new Blob([blob], { type: blob.type });
+          console.log('Blob object:', fileBlob);
 
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-        
-        window.URL.revokeObjectURL(fileUrl);
+          const fileUrl = window.URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = fileUrl;
+          link.style.display = 'none';
+          link.download = response.data.file_name;
+  
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+  
+          window.URL.revokeObjectURL(fileUrl);
+        })
+        .catch(error => console.error('Error downloading file:', error));
         // console.log(response);
         // const blob = new Blob([response.data.data.url], {
         //   type: "image/*",
