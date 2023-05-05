@@ -17,9 +17,9 @@ const DownButton = () => {
   const downLoad = async (e) => {
     await axios;
     instance
-      .get(
+      .post(
         `/download/${photoId}/`,
-
+        {},
         {
           headers: {
             Authorization: `Bearer ${JWTtoken}`,
@@ -29,20 +29,35 @@ const DownButton = () => {
         }
       )
       .then((response) => {
-        console.log(response);
-        const blob = new Blob([response.data.url], {
-          type: "image/jpeg",
-        });
-        console.log(blob);
-        const imageUrl = window.URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = imageUrl;
-        //다운로드시 파일명
-        link.download = "test";
+        const blob = new Blob([response.data])
+        const fileUrl = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = fileUrl;
+        link.style.display = 'none';
+        link.download = response.headers['filename'];
+
         document.body.appendChild(link);
         link.click();
         link.remove();
-        window.URL.revokeObjectURL(link);
+        
+        window.URL.revokeObjectURL(fileUrl);
+        // console.log(response);
+        // const blob = new Blob([response.data.data.url], {
+        //   type: "image/*",
+        // });
+        // console.log(blob);
+        // let fileName = response.data.data.file_name;
+        // const imageUrl = window.URL.createObjectURL(blob);
+        // const link = document.createElement("a");
+        // link.href = response.data.data.url;
+        // link.style.display = "none";
+        // //link.download = `${response.data.data.file_name}`;
+        // link.download = fileName;
+        // link.setAttribute("download", fileName);
+        // document.body.appendChild(link);
+        // link.click();
+        // link.remove();
+        // window.URL.revokeObjectURL(link);
       })
       .catch((error) => {
         console.log("error:", error);
