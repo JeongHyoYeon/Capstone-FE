@@ -13,8 +13,8 @@ const DownButton = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
   //사진 id
   let photoId = localStorage.getItem("nowPhotoId");
-
-  const downLoad = async (e) => {
+  //서버에서 s3 url 가져오기
+  const downLoadUrl = async (e) => {
     await axios;
     instance
       .post(
@@ -28,51 +28,46 @@ const DownButton = () => {
         }
       )
       .then((response) => {
-        fetch(response.data.url)
-          .then((response) => response.blob())
-          .then((blob) => {
-            // Create a new blob object
-            const fileBlob = new Blob([blob], { type: blob.type });
-            console.log("Blob object:", fileBlob);
-
-            const fileUrl = window.URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.href = fileUrl;
-            link.style.display = "none";
-            link.download = response.data.file_name;
-
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-
-            window.URL.revokeObjectURL(fileUrl);
-          })
-          .catch((error) => console.error("Error downloading file:", error));
-        // console.log(response);
-        // const blob = new Blob([response.data.data.url], {
-        //   type: "image/*",
-        // });
-        // console.log(blob);
-        // let fileName = response.data.data.file_name;
-        // const imageUrl = window.URL.createObjectURL(blob);
-        // const link = document.createElement("a");
-        // link.href = response.data.data.url;
-        // link.style.display = "none";
-        // //link.download = `${response.data.data.file_name}`;
-        // link.download = fileName;
-        // link.setAttribute("download", fileName);
-        // document.body.appendChild(link);
-        // link.click();
-        // link.remove();
-        // window.URL.revokeObjectURL(link);
+        const s3Url = response.data.url;
+        const fileName = response.data.file_name;
+        photoUrl(s3Url, fileName);
       })
       .catch((error) => {
-        console.log("error:", error);
+        console.log("error:" + error);
+      });
+  };
+
+  //url로 사진 다운로드 요청
+  const photoUrl = async (s3Url, fileName) => {
+    await axios
+      .get(s3Url, {
+        responseType: "blob",
+      })
+      .then((response) => {
+        const blob = new Blob([response], { type: response.type });
+        return blob;
+      })
+      .then((blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.URL.revokeObjectURL(link);
+      })
+      .catch((error) => {
+        console.log("photoUrl Error:" + error);
       });
   };
 
   return (
-    <DownBtn onClick={downLoad}>
+    <DownBtn
+      onClick={() => {
+        downLoadUrl();
+      }}
+    >
       <AiOutlineDownload size={"35px"} color="#3178B9" />
     </DownBtn>
   );
