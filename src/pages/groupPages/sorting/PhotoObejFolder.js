@@ -68,7 +68,7 @@ const Layout8 = styled.div`
   padding-left: 30%;
 `;
 
-const PhotoCharFolder = () => {
+const PhotoObejFolder = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
   const navigate = useNavigate();
@@ -88,7 +88,7 @@ const PhotoCharFolder = () => {
     await axios;
     instance
       .post(
-        `/photo/face/${tripId}/`,
+        `/photo/yolo/${tripId}/`,
         {},
         {
           headers: {
@@ -106,18 +106,18 @@ const PhotoCharFolder = () => {
       });
   };
 
-  //인물 분류 썸네일 담는 배열
-  const [photoThumb, setPhotoThumb] = useState([]);
+  //객체 분류 썸네일
+  const [photoThumb, setPhotoThumb] = useState("");
 
   //응답 타입
   //const [resType, setResType] = useState();
 
-  //인물분류 뷰 썸네일 가져오기
-  const charPhotoThumb = async (e) => {
+  //객체 분류 여부
+  const obejPhotoReady = async (e) => {
     await axios;
     instance
       .get(
-        `/photo/face/${tripId}/`,
+        `/photo/yolo/${tripId}/`,
 
         {
           headers: {
@@ -129,7 +129,8 @@ const PhotoCharFolder = () => {
       .then((response) => {
         console.log("success");
         console.log(response.data);
-
+        //console.log(typeof response.data);
+        //setResType(typeof response.data);
         setPhotoThumb(response.data.data);
       })
       .catch((error) => {
@@ -138,7 +139,7 @@ const PhotoCharFolder = () => {
   };
 
   useEffect(() => {
-    charPhotoThumb();
+    obejPhotoReady();
   }, []);
 
   if (photoThumb.tag_id == null) {
@@ -151,13 +152,13 @@ const PhotoCharFolder = () => {
               <FiAlertCircle size="100px" color="#3178B9" />
             </Layout8>
             <h4 style={{ color: "#3178B9" }}>
-              아직 사진의 인물분류가 진행되지 않았습니다.
+              아직 사진의 객체분류가 진행되지 않았습니다.
             </h4>
           </Layout6>
           <Layout4>
             <Layout5>
               <Button
-                text={"인물분류하기"}
+                text={"객체분류하기"}
                 width={"150px"}
                 fontColor={"white"}
                 onClick={() => {
@@ -196,21 +197,19 @@ const PhotoCharFolder = () => {
         <Layout2>
           {photoThumb.map((item) => (
             <Layout key={item.tag}>
-              {item.thumbnail.map((items) => (
-                <Layout3 key={item.thumbnail.id}>
-                  <Link to={`/photo/face/${item.tag_id}`}>
-                    <Image src={item.thumbnail.url} />
-                  </Link>
-                  <h3>{item.tag}</h3>
-                </Layout3>
-              ))}
+              <Layout3 key={item.thumbnail.id}>
+                <Link to={`/photo/face/${item.tag_id}`}>
+                  <Image src={item.thumbnail.url} />
+                </Link>
+                <h3>{item.tag}</h3>
+              </Layout3>
             </Layout>
           ))}
         </Layout2>
         <Layout4>
           <Layout5>
             <Button
-              text={"인물분류하기"}
+              text={"객체분류하기"}
               width={"150px"}
               fontColor={"white"}
               onClick={() => {
@@ -242,4 +241,4 @@ const PhotoCharFolder = () => {
       </>
     );
 };
-export default PhotoCharFolder;
+export default PhotoObejFolder;

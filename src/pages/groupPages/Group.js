@@ -7,6 +7,7 @@ import instance from "../../components/Request";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { DELETE_TOKEN } from "../../components/modules/slices/tokenSlice";
+//import Modal from "react-modal";
 
 const Layout = styled.div`
   display: flex;
@@ -20,6 +21,13 @@ const Layout2 = styled.div`
   padding-left: 5%;
   margin-left: 1%;
   padding-top: 20px;
+  position: relative;
+`;
+
+const Layout3 = styled.div`
+  position: absolute;
+  top: 35%;
+  right: 10%;
 `;
 
 const Group = () => {
@@ -32,6 +40,8 @@ const Group = () => {
 
   const [groupInfo, setGroupInfo] = useState([]);
   const [newInvite, setNewInvite] = useState("");
+  //모달창
+  //const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -45,6 +55,11 @@ const Group = () => {
 
   const navMakeGroup = () => {
     navigate("/makegroups");
+  };
+
+  //그룹 생성 후 새로운 멤버 추가 페이지
+  const navAddMember = (item) => {
+    navigate(`/group/${item}`);
   };
 
   const authCheck = async (e) => {
@@ -148,9 +163,18 @@ const Group = () => {
                 height={"70px"}
               />
             </Link>
+            <Layout3>
+              <Button
+                text={"+"}
+                width={"50px"}
+                fontColor={"white"}
+                onClick={() => {
+                  navAddMember(group_info.id);
+                }}
+              />
+            </Layout3>
           </Layout2>
         ))}
-
         <Layout>
           <Button
             text={"새 그룹 만들기"}

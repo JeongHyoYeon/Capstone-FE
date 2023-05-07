@@ -1,9 +1,11 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import CategoryHeader from "./CategoryHeader";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Button from "../../../components/common/Button";
+import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
 
@@ -22,6 +24,29 @@ const Layout2 = styled.div`
   padding-right: 5px;
 `;
 
+const Layout3 = styled.div`
+  display: flex;
+  margin: 5px;
+  flex-direction: column;
+  text-align: center;
+`;
+
+const Layout4 = styled.div`
+  display: flex;
+  padding: 10px;
+  padding-top: 10px;
+  flex-direction: column;
+  padding-left: 6%;
+`;
+
+const Layout5 = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding-top: 40px;
+  justify-content: space-evenly;
+`;
+
 const PhotoObej = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
@@ -37,6 +62,11 @@ const PhotoObej = () => {
     navigate("/photo/auto/gpt");
   };
 
+  //객체 태그 id
+  const { obejtag } = useParams();
+
+  const [photoObej, setPhotoObej] = useState([]);
+
   //자동 분류 요청하기
   const requestAuto = async (e) => {
     await axios;
@@ -51,23 +81,61 @@ const PhotoObej = () => {
           },
         }
       )
-      .then((res) => {
-        console.log(res);
-        window.alert(res.data);
+      .then((response) => {
+        console.log(response);
+        window.alert(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
+  //객체별 사진 가져오기
+  const ObejPhoto = async (e) => {
+    await axios;
+    instance
+      .get(
+        `/photo/face/${tripId}/${obejtag}/`,
+
+        {
+          headers: {
+            Authorization: `Bearer ${JWTtoken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        console.log("success");
+        console.log(response.data);
+        setPhotoObej(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    ObejPhoto();
+  }, []);
+
   return (
     <>
       <CategoryHeader />
-      <h1>이곳은 객체분류 페이지입니다.</h1>
+      <Layout3>
+        {photoObej.map((item) => (
+          <Layout4 key={item.id}>
+            <Layout5>
+              <Link to={`/photo/large/${item.id}`}>
+                <Image src={item.url} />
+              </Link>
+            </Layout5>
+          </Layout4>
+        ))}
+      </Layout3>
       <Layout>
         <Layout2>
           <Button
-            text={"자동분류하기"}
+            text={"객체분류하기"}
             width={"150px"}
             fontColor={"white"}
             onClick={() => {

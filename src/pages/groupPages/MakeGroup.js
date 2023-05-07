@@ -5,6 +5,7 @@ import Button from "../../components/common/Button";
 import axios from "axios";
 import instance from "../../components/Request";
 import { useSelector } from "react-redux";
+import AddMember from "./AddMember";
 
 const Layout = styled.div`
   display: flex;
@@ -27,9 +28,9 @@ const MakeGroup = () => {
 
   const [groupName, setgroupName] = useState("");
   // 입력을 받을 id
-  let [inputId, setinputId] = useState("");
+  //let [inputId, setinputId] = useState("");
   //입력 받은 id를 저장할 list
-  const [inviteList, setinviteList] = useState([]);
+  // const [inviteList, setinviteList] = useState([]);
   //새롭게 입력 받은 id를 저장하기
   //let [newInviteList, setnewInviteList] = useState([""]);
 
@@ -39,20 +40,20 @@ const MakeGroup = () => {
   const handlegroupName = (e) => {
     setgroupName(e.target.value);
   };
-  const handleinviteId = (e) => {
-    setinputId(e.target.value);
-  };
+  // const handleinviteId = (e) => {
+  //   setinputId(e.target.value);
+  // };
 
   //useEffect(() => setnewInviteList([{ id: inputId }]), [inputId]);
 
-  const addUsers = (e) => {
-    setinviteList([...inviteList, { id: inputId }]);
-    //setinputId("");
-    for (let i = 0; i < inviteList.length; i++) {
-      console.log(inviteList[i]);
-    }
-    console.log(inviteList.length);
-  };
+  // const addUsers = (e) => {
+  //   setinviteList([...inviteList, { id: inputId }]);
+  //   //setinputId("");
+  //   for (let i = 0; i < inviteList.length; i++) {
+  //     console.log(inviteList[i]);
+  //   }
+  //   console.log(inviteList.length);
+  // };
 
   //추가 버튼 누르면 input 초기화되게 만드는 거 나중에 만들기
 
@@ -87,36 +88,36 @@ const MakeGroup = () => {
   };
 
   //다른 유저 초대 함수
-  const inviteUser = async (e) => {
-    //console.log({ inputId });
-    var groupId = localStorage.getItem("groupId");
-    console.log(groupId);
-    await axios;
-    instance
-      .post(
-        "/group/invite/",
-        {
-          group: groupId,
-          user: inputId,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${JWTtoken}`,
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((response) => {
-        //handle success
-        console.log("invite success");
-        console.log(response);
-      })
-      .catch((error) => {
-        //handle error
-        console.log("error:", error);
-        window.alert(error);
-      });
-  };
+  // const inviteUser = async (e) => {
+  //   console.log({ inputId });
+  //   var groupId = localStorage.getItem("groupId");
+  //   console.log(groupId);
+  //   await axios;
+  //   instance
+  //     .post(
+  //       "/group/invite/",
+  //       {
+  //         group: groupId,
+  //         user: inputId,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${JWTtoken}`,
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       //handle success
+  //       console.log("invite success");
+  //       console.log(response);
+  //     })
+  //     .catch((error) => {
+  //       //handle error
+  //       console.log("error:", error);
+  //       window.alert(error);
+  //     });
+  // };
 
   return (
     <>
@@ -140,14 +141,14 @@ const MakeGroup = () => {
           // bottom={"5%"}
           onClick={() => {
             makegroupName();
-
             setvisible(!visible);
             //inviteUser();
           }}
         />
         <br />
         <br />
-        <InputBox
+        {visible && <AddMember />}
+        {/* <InputBox
           placeholder="추가할 친구의 ID를 입력하세요."
           height={"50px"}
           width={"85%"}
@@ -172,7 +173,7 @@ const MakeGroup = () => {
             addUsers();
             inviteUser();
           }}
-        />
+        /> */}
       </Layout>
     </>
   );

@@ -41,7 +41,7 @@ const CategoryHeader = () => {
         <Layout className="photo-obej" id="object">
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : {})}
-            to="/photo/auto/obej"
+            to="/photo/auto/obejfolder"
           >
             <h4>객체분류</h4>
           </NavLink>
@@ -49,7 +49,7 @@ const CategoryHeader = () => {
         <Layout className="photo-char" id="character">
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : {})}
-            to="/photo/auto/char"
+            to="/photo/auto/charfolder"
           >
             <h4>인물분류</h4>
           </NavLink>
