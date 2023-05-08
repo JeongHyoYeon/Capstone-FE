@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <div className="header-all">
       <div className="brand-Name">
-        <Link to={"/"}>
+        <Link to={"/group"}>
           <h2>AfterTrip</h2>
         </Link>
       </div>

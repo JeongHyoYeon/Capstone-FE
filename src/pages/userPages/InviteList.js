@@ -7,6 +7,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import { ImFileEmpty } from "react-icons/im";
+import BackButton from "../../components/common/BackButton";
 
 const Box = styled.div`
   height: 100px;
@@ -54,6 +55,12 @@ const Layout3 = styled.div`
   justify-content: center;
 
   padding-top: 100px;
+`;
+
+const Layout4 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 `;
 
 const InviteList = () => {
@@ -145,6 +152,9 @@ const InviteList = () => {
   if (inviteList.length === 0)
     return (
       <>
+        <Layout4>
+          <BackButton />
+        </Layout4>
         <br />
         <br />
         <br />
@@ -159,6 +169,9 @@ const InviteList = () => {
   else
     return (
       <>
+        <Layout4>
+          <BackButton />
+        </Layout4>
         {inviteList
           .slice(0)
           .reverse()

@@ -24,6 +24,7 @@ import PhotoLarge from "./pages/groupPages/sorting/PhotoLarge";
 import PhotoCharFolder from "./pages/groupPages/sorting/PhotoCharFolder";
 import PhotoObejFolder from "./pages/groupPages/sorting/PhotoObejFolder";
 import AfterAdd from "./pages/groupPages/AfterAdd";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
@@ -35,7 +36,7 @@ function App() {
         <div className="App">
           <Routes>
             <Route
-              path="/"
+              path="/group"
               element={
                 <PrivateRoute authenticated={JWTtoken} component={<Group />} />
               }
@@ -45,8 +46,8 @@ function App() {
               element={
                 <PrivateRoute authenticated={JWTtoken} component={<Group />} />
               }
-            />
-            <Route path="/settings" element={<Setting />} /> */}
+            /> */}
+            <Route path="/" element={<LandingPage />} />
             <Route
               path="/maketrips"
               element={
