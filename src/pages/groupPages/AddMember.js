@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import InputBox from "../../components/common/InputBox";
 import styled from "styled-components";
 import Button from "../../components/common/Button";
@@ -6,45 +6,108 @@ import axios from "axios";
 import instance from "../../components/Request";
 import { useSelector } from "react-redux";
 
+/* 이름입력 & +버튼이 들어갈 공간 */
 const Layout = styled.div`
   display: flex;
-  flex-direction: row;
+  align-content: space-evenly;
 `;
 
+/* 친구추가 + 버튼 */
 const Layout2 = styled.div`
   margin-left: 5%;
 `;
 
+/* 초대한 회원 이름 박스 */
 const Layout3 = styled.div`
   background-color: white;
-  border-style: solid;
   border-color: #3178b9;
   border-radius: 10px 10px 10px 10px;
-  width: 80px;
+  width: auto;
   text-align: center;
   font-size: 20px;
+  padding: 7px 10px 7px 10px;
+  margin: 5px 5px 5px 5px;
 `;
+
+/* 초대한 회원 이름 박스가 나열될 공간 */
+const Layout4 = styled.div`
+  border-style: solid;
+  border-radius: 10px 10px 10px 10px;
+  display: felx;
+  justify-content: space-evenly;
+  position: relative;
+  margin: 5px 150px 50px 5px;
+  height: auto;
+  flex-wrap: wrap;
+`;
+
+/* 이름박스 옆에 엑스표
+  근데 이렇게 만들면 안되고
+  이름박스+엑스표를 하나의 컴포넌트로 만들고
+  거기에 usrid 값을 저장해둬야할듯.
+
+  아니면 엑스 눌렀을때 그것의 부모가 가지고 있는 text의 값을 읽어오거나...
+*/
+const Layout5 = styled.div`
+  position: relative;
+  right: -50px;
+  bottom: 30px;
+`;
+
+var isAlreadyExist = true;
 
 const AddMember = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
-  // 입력을 받을 id
-  let [inputId, setinputId] = useState("");
-  //입력 받은 id를 저장할 list
-  const [inviteList, setinviteList] = useState([]);
+  let [inputId, setinputId] = useState(""); // 입력을 받을 id
+  const [inviteList, setinviteList] = useState([]); //입력 받은 id를 저장할 list
 
+  /* handle invite ID */
   const handleinviteId = (e) => {
     setinputId(e.target.value);
   };
 
-  //추가하는 그룹 멤버 임시 저장
+  /* 추가하는 그룹 멤버 임시 저장 */
   const addUsers = (e) => {
-    setinviteList([...inviteList, { id: inputId }]);
-    //setinputId("");
+    // 동일한 이름을 다시 입력했을 경우 저장안되게.
+    isAlreadyExist = false;
+    console.log(inputId);
+    for (let i = 0; i < inviteList.length; i++) {
+      if( inviteList[i].id === inputId) {
+        isAlreadyExist = true;
+        //!!! 이미 초대할 목록에 추가된 아이디입니다.
+      }
+    }
+    console.log("add전 list 길이 = ", inviteList.length);
+
+    if (isAlreadyExist === false) {
+      console.log("추가");
+      setinviteList([...inviteList, { id: inputId }]); //이게 느림. 다른 버튼 클릭했을 때 실행됨.
+    }
+
+    // console
     for (let i = 0; i < inviteList.length; i++) {
       console.log(inviteList[i]);
     }
-    console.log(inviteList.length);
+    console.log("add후 list 길이 = ", inviteList.length);
+  };
+
+  /* 임시 저장 리스트에서 삭제 */
+  const deleteUsers = (id) => {
+    console.log(id);
+    for (let i = 0; i < inviteList.length; i++) {
+      if( inviteList[i].id === id) {
+        inviteList.splice(i,1);
+        i--;
+      }
+    }
+    
+    //console
+    console.log("삭제한 id = ", id);
+    for (let i = 0; i < inviteList.length; i++) {
+      console.log(inviteList[i]);
+    }
+    console.log("list 길이 = ", inviteList.length);
   };
 
   //다른 유저 초대 함수
@@ -82,17 +145,19 @@ const AddMember = () => {
 
   return (
     <>
+      <div>
       <Layout>
         <InputBox
           placeholder="추가할 친구의 ID를 입력하세요."
           height={"50px"}
-          width={"70%"}
+          width={"75%"}
           onChange={handleinviteId}
         />
         <Layout2>
           <Button
             text={"+"}
-            width={"50px"}
+            width={"45px"}
+            height={"45px"}
             fontColor={"white"}
             onClick={() => {
               addUsers();
@@ -100,18 +165,31 @@ const AddMember = () => {
           />
         </Layout2>
       </Layout>
-      <br />
-      <h3>초대한 회원</h3>
-      <h3>
+
+      <h3>초대할 회원</h3>
+      <Layout4>
         {inviteList.map((item) => (
-          <Layout3>{item.id + " "}</Layout3>
+          <Layout3 key={item.id}>
+            {item.id + " "} 
+            <Layout5>
+              <Button
+              text={"x"}
+              width={"20px"}
+              height={"20px"}
+              backgroundColor={"white"}
+              fontColor={"black"}
+              onClick={() => {
+                deleteUsers(item.id);
+              }}
+              />
+            </Layout5>
+          </Layout3>
         ))}
-      </h3>
-      <br />
-      <br />
-      <br />
+      </Layout4>
+      </div>
+      
       <Button
-        text={"추가"}
+        text={"초대 요청 보내기"}
         width={"85%"}
         fontColor={"white"}
         // position={"fixed"}

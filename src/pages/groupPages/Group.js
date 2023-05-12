@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { DELETE_TOKEN } from "../../components/modules/slices/tokenSlice";
 //import Modal from "react-modal";
 
+/* 페이지 전체 */
 const Layout = styled.div`
   display: flex;
   justify-content: center;
@@ -16,6 +17,7 @@ const Layout = styled.div`
   padding-top: 20px;
 `;
 
+/* 최근 알림 흰박스 */
 const Layout2 = styled.div`
   display: block;
   padding-left: 5%;
@@ -24,6 +26,17 @@ const Layout2 = styled.div`
   position: relative;
 `;
 
+/* 그룹 목록 흰박스 */
+const Layout4 = styled.div`
+  margin-top: 15%;
+  display: block;
+  padding-left: 5%;
+  margin-left: 1%;
+  padding-top: 20px;
+  position: relative;
+`;
+
+/* 친구추가 + 버튼 */
 const Layout3 = styled.div`
   position: absolute;
   top: 35%;
@@ -142,7 +155,7 @@ const Group = () => {
   if (newInvite == null) {
     return (
       <>
-        <Layout2>
+        <Layout4>
           <Link to={"/invite"}>
             <TextBox
               text1={"최근알림"}
@@ -150,7 +163,7 @@ const Group = () => {
               height={"70px"}
             />
           </Link>
-        </Layout2>
+        </Layout4>
         <Layout2>
           <h2>{userName}님의 그룹</h2>
         </Layout2>
@@ -166,7 +179,8 @@ const Group = () => {
             <Layout3>
               <Button
                 text={"+"}
-                width={"50px"}
+                width={"45px"}
+                height={"45px"}
                 fontColor={"white"}
                 onClick={() => {
                   navAddMember(group_info.id);
@@ -182,7 +196,7 @@ const Group = () => {
             height={"50px"}
             fontColor={"white"}
             position={"fixed"}
-            bottom={"12%"}
+            bottom={"5%"}
             onClick={navMakeGroup}
           />
           <h3
@@ -223,6 +237,16 @@ const Group = () => {
               height={"70px"}
             />
           </Link>
+          <Layout3>
+            <Button
+              text={"+"}
+              width={"50px"}
+              fontColor={"white"}
+              onClick={() => {
+                navAddMember(group_info.id);
+              }}
+            />
+          </Layout3>
         </Layout2>
       ))}
       <Layout>
@@ -235,18 +259,17 @@ const Group = () => {
           bottom={"12%"}
           onClick={navMakeGroup}
         />
-      </Layout>
-      <Layout>
-        <h3
+     
+        <h5
           style={{
             position: "fixed",
             bottom: "5%",
-            textDecoration: "underline",
+            textDecoration: "underline"
           }}
           onClick={logOut}
         >
           로그아웃
-        </h3>
+        </h5>
       </Layout>
     </>
   );
