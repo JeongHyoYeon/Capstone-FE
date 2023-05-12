@@ -101,6 +101,7 @@ const PhotoObejFolder = () => {
       .then((res) => {
         console.log(res);
         window.alert(res.data);
+        obejPhotoReady();
       })
       .catch((error) => {
         console.log(error);
@@ -143,7 +144,7 @@ const PhotoObejFolder = () => {
     obejPhotoReady();
   }, []);
 
-  if (photoThumb.tag_id == null) {
+  if (photoThumb.length == 1) {
     return (
       <>
         <CategoryHeader />
@@ -195,51 +196,7 @@ const PhotoObejFolder = () => {
   } else if (photoThumb != null)
     return (
       <>
-        <CategoryHeader />
-        <Layout2>
-          {photoThumb.map((item) => (
-            <Layout key={item.tag}>
-              <Layout3 key={item.thumbnail.id}>
-                <Link to={`/photo/face/${item.tag_id}`}>
-                  <Image src={item.thumbnail.url} />
-                </Link>
-                <h3>{item.tag}</h3>
-              </Layout3>
-            </Layout>
-          ))}
-        </Layout2>
-        <Layout4>
-          <Layout5>
-            <Button
-              text={"객체분류하기"}
-              width={"150px"}
-              fontColor={"white"}
-              onClick={() => {
-                requestAuto();
-              }}
-            />
-          </Layout5>
-          <Layout5>
-            <Button
-              text={"+"}
-              width={"50px"}
-              fontColor={"white"}
-              onClick={() => {
-                changePage();
-              }}
-            />
-          </Layout5>
-          <Layout5>
-            <Button
-              text={"GPT에게 물어보기"}
-              width={"150px"}
-              fontColor={"white"}
-              onClick={() => {
-                changeGpt();
-              }}
-            />
-          </Layout5>
-        </Layout4>
+        <h1>예시</h1>
       </>
     );
 };

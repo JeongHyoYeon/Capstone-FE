@@ -101,6 +101,7 @@ const PhotoCharFolder = () => {
       .then((res) => {
         console.log(res);
         window.alert(res.data);
+        charPhotoThumb();
       })
       .catch((error) => {
         console.log(error);
@@ -130,7 +131,6 @@ const PhotoCharFolder = () => {
       .then((response) => {
         console.log("success");
         console.log(response.data);
-
         setPhotoThumb(response.data.data);
       })
       .catch((error) => {
@@ -142,7 +142,7 @@ const PhotoCharFolder = () => {
     charPhotoThumb();
   }, []);
 
-  if (photoThumb.tag_id == null) {
+  if (photoThumb.length == 1) {
     return (
       <>
         <CategoryHeader />
@@ -198,14 +198,14 @@ const PhotoCharFolder = () => {
         <Layout2>
           {photoThumb.map((item) => (
             <Layout key={item.tag}>
-              {item.thumbnail.map((items) => (
-                <Layout3 key={item.thumbnail.id}>
-                  <Link to={`/photo/face/${item.tag_id}`}>
-                    <Image src={item.thumbnail.url} />
-                  </Link>
-                  <h3>{item.tag}</h3>
-                </Layout3>
-              ))}
+              {/* {item.thumbnail.map((items) => ( */}
+              <Layout3 key={item.thumbnail.id}>
+                <Link to={`/photo/auto/char/${item.tag_id}`}>
+                  <Image src={item.thumbnail.url} />
+                </Link>
+                <h3>{item.tag}</h3>
+              </Layout3>
+              {/* ))} */}
             </Layout>
           ))}
         </Layout2>
