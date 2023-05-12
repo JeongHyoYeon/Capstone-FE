@@ -5,6 +5,8 @@ import Button from "../../components/common/Button";
 import axios from "axios";
 import instance from "../../components/Request";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import BackButton from "../../components/common/BackButton";
 
 const Layout = styled.div`
   display: flex;
@@ -23,6 +25,13 @@ const Layout3 = styled.div`
   width: 80px;
   text-align: center;
   font-size: 20px;
+  margin: 4px;
+`;
+
+const Layout4 = styled.p`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 const AddMember = () => {
@@ -35,6 +44,12 @@ const AddMember = () => {
 
   const handleinviteId = (e) => {
     setinputId(e.target.value);
+  };
+
+  const navigate = useNavigate();
+
+  const changePage = () => {
+    navigate(`/group`);
   };
 
   //추가하는 그룹 멤버 임시 저장
@@ -72,11 +87,13 @@ const AddMember = () => {
         console.log("invite success");
         window.alert("초대가 보내졌습니다.");
         console.log(response);
+        addUsers(inputId);
       })
       .catch((error) => {
         //handle error
         console.log("error:", error);
-        window.alert(error);
+        if (error == "AxiosError: Request failed with status code 400")
+          window.alert("존재하지 않는 회원입니다.");
       });
   };
 
@@ -95,29 +112,27 @@ const AddMember = () => {
             width={"50px"}
             fontColor={"white"}
             onClick={() => {
-              addUsers();
+              inviteUser();
             }}
           />
         </Layout2>
       </Layout>
       <br />
       <h3>초대한 회원</h3>
-      <h3>
+      <Layout4>
         {inviteList.map((item) => (
           <Layout3>{item.id + " "}</Layout3>
         ))}
-      </h3>
-      <br />
-      <br />
+      </Layout4>
       <br />
       <Button
-        text={"추가"}
+        text={"초대완료"}
         width={"85%"}
         fontColor={"white"}
         // position={"fixed"}
         // bottom={"40%"}
         onClick={() => {
-          inviteUser();
+          changePage();
         }}
       />
     </>

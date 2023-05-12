@@ -8,6 +8,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import BackButton from "../../components/common/BackButton";
 
 const Layout = styled.div`
   display: flex;
@@ -21,6 +22,12 @@ const Layout2 = styled.div`
   padding-left: 5%;
   margin-left: 1%;
   padding-top: 15px;
+`;
+
+const Layout3 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 `;
 
 const GroupTripList = () => {
@@ -78,6 +85,9 @@ const GroupTripList = () => {
 
   return (
     <>
+      <Layout3>
+        <BackButton />
+      </Layout3>
       <h2
         style={{
           position: "relative",

@@ -28,7 +28,8 @@ const DownButton = () => {
         }
       )
       .then((response) => {
-        fetch(response.data.url)
+        axios
+          .get(response.data.url)
           .then((response) => response.blob())
           .then((blob) => {
             // Create a new blob object

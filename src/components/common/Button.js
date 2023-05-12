@@ -13,7 +13,6 @@ const Container = styled.button`
   background: ${(props) => props.backgroundColor};
   border: ${(props) =>
     props["borderColor"].length > 0 ? props.borderColor : "none"};
-
   word-break: break-all;
   box-shadow: 2px 2px 2px #c3c3c366;
   user-select: none;

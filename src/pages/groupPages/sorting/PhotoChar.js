@@ -8,6 +8,7 @@ import Button from "../../../components/common/Button";
 import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
+import UploadButton from "../../../components/common/UploadButton";
 
 const Layout = styled.div`
   display: flex;
@@ -144,6 +145,7 @@ const PhotoChar = () => {
           />
         </Layout2>
         <Layout2>
+          {/* <UploadButton text={"+"} width={"50px"} /> */}
           <Button
             text={"+"}
             width={"50px"}

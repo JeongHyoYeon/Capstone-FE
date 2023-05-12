@@ -223,6 +223,16 @@ const Group = () => {
               height={"70px"}
             />
           </Link>
+          <Layout3>
+            <Button
+              text={"+"}
+              width={"50px"}
+              fontColor={"white"}
+              onClick={() => {
+                navAddMember(group_info.id);
+              }}
+            />
+          </Layout3>
         </Layout2>
       ))}
       <Layout>

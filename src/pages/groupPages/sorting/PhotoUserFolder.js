@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import Image from "../../../components/common/Image";
 import Button from "../../../components/common/Button";
 import { useNavigate, Link } from "react-router-dom";
+//import UploadButton from "../../../components/common/UploadButton";
 
 const Layout = styled.div`
   display: flex;
@@ -96,13 +97,21 @@ const PhotoUserFolder = () => {
         ))}
       </Layout2>
       <Layout4>
+        {/* <UploadButton
+          text={"사진 올리기"}
+          width={"200px"}
+          position={"fixed"}
+          bottom={"13%"}
+        /> */}
         <Button
           text={"사진 올리기"}
           width={"200px"}
           fontColor={"white"}
           position={"fixed"}
           bottom={"13%"}
-          onClick={changePage}
+          onClick={() => {
+            changePage();
+          }}
         />
       </Layout4>
     </>

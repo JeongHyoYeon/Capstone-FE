@@ -8,6 +8,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import Image from "../../../components/common/Image";
 import Button from "../../../components/common/Button";
+//import UploadButton from "../../../components/common/UploadButton";
 
 const Layout = styled.div`
   display: flex;
@@ -95,6 +96,12 @@ const PhotoUser = () => {
         ))}
       </Layout3>
       <Layout4>
+        {/* <UploadButton
+          text={"사진 올리기"}
+          width={"200px"}
+          position={"fixed"}
+          bottom={"13%"}
+        /> */}
         <Button
           text={"사진 올리기"}
           width={"200px"}

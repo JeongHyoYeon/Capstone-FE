@@ -9,6 +9,7 @@ import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
 import { FiAlertCircle } from "react-icons/fi";
+//import UploadButton from "../../../components/common/UploadButton";
 
 const Layout = styled.div`
   display: flex;
@@ -167,6 +168,7 @@ const PhotoObejFolder = () => {
               />
             </Layout5>
             <Layout5>
+              {/* <UploadButton text={"+"} width={"50px"} /> */}
               <Button
                 text={"+"}
                 width={"50px"}
