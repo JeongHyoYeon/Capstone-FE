@@ -58,7 +58,7 @@ const PhotoUser = () => {
     await axios;
     instance
       .get(
-        `/uploader/${tripId}/${usertag}/`,
+        `photos/uploader/${tripId}/${usertag}/`,
 
         {
           headers: {

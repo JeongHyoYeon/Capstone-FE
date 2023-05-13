@@ -76,7 +76,7 @@ const InviteList = () => {
     await axios;
     instance
       .get(
-        `/group/invite/`,
+        `accounts/invite/`,
 
         {
           headers: {
@@ -106,7 +106,7 @@ const InviteList = () => {
     await axios;
     instance
       .patch(
-        `/group/invite/${item}/`,
+        `accounts/invite/${item}/`,
         {},
         {
           headers: {
@@ -128,7 +128,7 @@ const InviteList = () => {
     await axios;
     instance
       .delete(
-        `/group/invite/${item}/`,
+        `accounts/invite/${item}/`,
 
         {
           headers: {

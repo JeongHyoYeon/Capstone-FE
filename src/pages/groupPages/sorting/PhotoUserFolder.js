@@ -58,7 +58,7 @@ const PhotoUserFolder = () => {
     await axios;
     instance
       .get(
-        `/photo/uploader/${tripId}/`,
+        `photos/uploader/${tripId}/`,
 
         {
           headers: {

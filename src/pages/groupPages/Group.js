@@ -66,7 +66,7 @@ const Group = () => {
     await axios;
     instance
       .get(
-        `/group/`,
+        `accounts/groups/`,
 
         {
           headers: {
@@ -88,7 +88,7 @@ const Group = () => {
     await axios;
     instance
       .get(
-        `/group/`,
+        `accounts/groups/`,
 
         {
           headers: {
@@ -115,7 +115,7 @@ const Group = () => {
     await axios;
     instance
       .get(
-        `/group/invite/`,
+        `accounts/invite/`,
 
         {
           headers: {
@@ -185,11 +185,22 @@ const Group = () => {
             bottom={"12%"}
             onClick={navMakeGroup}
           />
+        </Layout>
+        <Layout
+        // style={{
+        //   position: "fixed",
+        //   bottom: groupInfo.length <= 6 ? "100px" : "auto",
+        //   top: groupInfo.length <= 6 ? "auto" : "calc(100% + 200px)",
+        // }}
+        >
           <h3
             style={{
               //align-items: "flex-end",
               // bottom: "20px",
               textDecoration: "underline",
+              position: "fixed",
+              bottom: groupInfo.length <= 6 ? "10px" : "auto",
+              top: groupInfo.length <= 6 ? "auto" : `calc(90% + 0px )`,
             }}
             onClick={logOut}
           >
@@ -246,12 +257,24 @@ const Group = () => {
           onClick={navMakeGroup}
         />
       </Layout>
-      <Layout>
+      <Layout
+      // style={{
+      //   position: "fixed",
+      //   bottom: groupInfo.length <= 6 ? "100px" : "auto",
+      //   top: groupInfo.length <= 6 ? "auto" : "calc(100% + 200px)",
+      // }}
+      >
         <h3
           style={{
-            position: "fixed",
-            bottom: "5%",
+            // position: "fixed",
+            // bottom: "5%",
             textDecoration: "underline",
+            position: "fixed",
+            bottom: groupInfo.length <= 6 ? "10px" : "auto",
+            top:
+              groupInfo.length <= 6
+                ? "auto"
+                : `calc(100% + ${100 * (groupInfo.length - 6)}px)`,
           }}
           onClick={logOut}
         >

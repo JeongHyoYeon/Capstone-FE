@@ -63,7 +63,7 @@ const MakeGroup = () => {
     await axios;
     instance
       .post(
-        "/group/",
+        "accounts/groups/",
         {
           name: groupName,
         },

@@ -89,7 +89,7 @@ const PhotoObejFolder = () => {
     await axios;
     instance
       .post(
-        `/photo/yolo/${tripId}/`,
+        `photos/yolo/${tripId}/`,
         {},
         {
           headers: {
@@ -109,7 +109,7 @@ const PhotoObejFolder = () => {
   };
 
   //객체 분류 썸네일
-  const [photoThumb, setPhotoThumb] = useState("");
+  const [photoThumb, setPhotoThumb] = useState([]);
 
   //응답 타입
   //const [resType, setResType] = useState();
@@ -119,7 +119,7 @@ const PhotoObejFolder = () => {
     await axios;
     instance
       .get(
-        `/photo/yolo/${tripId}/`,
+        `photos/yolo/${tripId}/`,
 
         {
           headers: {
@@ -131,6 +131,7 @@ const PhotoObejFolder = () => {
       .then((response) => {
         console.log("success");
         console.log(response.data);
+        console.log(response.data.data);
         //console.log(typeof response.data);
         //setResType(typeof response.data);
         setPhotoThumb(response.data.data);
@@ -196,7 +197,53 @@ const PhotoObejFolder = () => {
   } else if (photoThumb != null)
     return (
       <>
-        <h1>예시</h1>
+        <CategoryHeader />
+        <Layout2>
+          {photoThumb.map((item) => (
+            <Layout key={item.tag_id}>
+              {/* {item.thumbnail.map((items) => ( */}
+              <Layout3 key={item.thumbnail.id}>
+                <Link to={`/photo/auto/obejfolder/${item.tag_id}`}>
+                  <Image src={item.thumbnail.url} />
+                </Link>
+                <h3>{item.tag}</h3>
+              </Layout3>
+              {/* ))} */}
+            </Layout>
+          ))}
+        </Layout2>
+        <Layout4>
+          <Layout5>
+            <Button
+              text={"객체분류하기"}
+              width={"150px"}
+              fontColor={"white"}
+              onClick={() => {
+                requestAuto();
+              }}
+            />
+          </Layout5>
+          <Layout5>
+            <Button
+              text={"+"}
+              width={"50px"}
+              fontColor={"white"}
+              onClick={() => {
+                changePage();
+              }}
+            />
+          </Layout5>
+          <Layout5>
+            <Button
+              text={"GPT에게 물어보기"}
+              width={"150px"}
+              fontColor={"white"}
+              onClick={() => {
+                changeGpt();
+              }}
+            />
+          </Layout5>
+        </Layout4>
       </>
     );
 };

@@ -55,7 +55,7 @@ const GroupTripList = () => {
     await axios;
     instance
       .get(
-        `/trip/${groupNum}/`,
+        `trips/${groupNum}/`,
 
         {
           headers: {

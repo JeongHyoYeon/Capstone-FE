@@ -46,7 +46,7 @@ const AutoGPT = () => {
     await axios;
     instance
       .post(
-        `/photo-search/${nowTrip}/`,
+        `photos/search/${nowTrip}/`,
         {
           user_input: sentence,
         },

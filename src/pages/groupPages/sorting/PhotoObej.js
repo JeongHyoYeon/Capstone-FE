@@ -73,7 +73,7 @@ const PhotoObej = () => {
     await axios;
     instance
       .post(
-        `/photo/yolo/${tripId}/`,
+        `photos/yolo/${tripId}/`,
         {},
         {
           headers: {
@@ -96,7 +96,7 @@ const PhotoObej = () => {
     await axios;
     instance
       .get(
-        `/photo/face/${tripId}/${obejtag}/`,
+        `photos/yolo/${tripId}/${obejtag}/`,
 
         {
           headers: {

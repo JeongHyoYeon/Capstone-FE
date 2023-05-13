@@ -197,7 +197,7 @@ const PhotoCharFolder = () => {
         <CategoryHeader />
         <Layout2>
           {photoThumb.map((item) => (
-            <Layout key={item.tag}>
+            <Layout key={item.tag_id}>
               {/* {item.thumbnail.map((items) => ( */}
               <Layout3 key={item.thumbnail.id}>
                 <Link to={`/photo/auto/char/${item.tag_id}`}>

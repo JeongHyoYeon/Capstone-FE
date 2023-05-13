@@ -91,7 +91,7 @@ const UploadPhoto = () => {
 
     await axios;
     instance
-      .post(`/photo/${tripId}/`, imgForm, {
+      .post(`photos/${tripId}/`, imgForm, {
         headers: {
           Authorization: `Bearer ${JWTtoken}`,
           "Content-Type": "multipart/form-data",

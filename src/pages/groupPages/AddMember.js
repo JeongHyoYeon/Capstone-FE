@@ -6,7 +6,6 @@ import axios from "axios";
 import instance from "../../components/Request";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import BackButton from "../../components/common/BackButton";
 
 const Layout = styled.div`
   display: flex;
@@ -70,7 +69,7 @@ const AddMember = () => {
     await axios;
     instance
       .post(
-        "/group/invite/",
+        "accounts/invite/",
         {
           group: groupId,
           user: inputId,
