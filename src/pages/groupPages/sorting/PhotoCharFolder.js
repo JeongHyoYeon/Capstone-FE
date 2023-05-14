@@ -21,11 +21,14 @@ const Layout = styled.div`
 `;
 
 const Layout2 = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+  //display: flex;
+  //flex-wrap: wrap;
+  //flex-direction: row;
   padding-top: 40px;
-  justify-content: space-evenly;
+  //justify-content: space-evenly;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 `;
 
 const Layout3 = styled.div`
@@ -79,6 +82,8 @@ const Layout9 = styled.div`
 const PhotoCharFolder = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const tripId = localStorage.getItem("nowGroupTrip");
@@ -93,6 +98,7 @@ const PhotoCharFolder = () => {
 
   //자동 분류 요청하기
   const requestAuto = async (e) => {
+    setIsLoading(true);
     await axios;
     instance
       .post(
@@ -108,10 +114,14 @@ const PhotoCharFolder = () => {
       .then((res) => {
         console.log(res);
         window.alert(res.data);
+        setIsLoading(false);
         charPhotoThumb();
       })
       .catch((error) => {
+        setIsLoading(false);
         console.log(error);
+        if (error.message === "Request failed with status code 400")
+          window.alert("인물 분류에 실패했습니다. 다시 시도해주세요.");
       });
   };
 
@@ -168,12 +178,12 @@ const PhotoCharFolder = () => {
           <Layout4>
             <Layout5>
               <Button
-                text={"인물분류하기"}
+                text={isLoading ? "분류하는 중..." : "인물분류하기"}
                 width={"150px"}
                 fontColor={"white"}
-                onClick={() => {
-                  requestAuto();
-                }}
+                backgroundColor={isLoading ? "gray" : "#3178B9"}
+                onClick={requestAuto}
+                disabled={isLoading}
               />
             </Layout5>
             <Layout5>
@@ -225,12 +235,12 @@ const PhotoCharFolder = () => {
         <Layout4>
           <Layout5>
             <Button
-              text={"인물분류하기"}
+              text={isLoading ? "분류하는 중..." : "인물분류하기"}
               width={"150px"}
               fontColor={"white"}
-              onClick={() => {
-                requestAuto();
-              }}
+              backgroundColor={isLoading ? "gray" : "#3178B9"}
+              onClick={requestAuto}
+              disabled={isLoading}
             />
           </Layout5>
           <Layout5>

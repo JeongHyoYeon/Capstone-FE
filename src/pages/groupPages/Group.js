@@ -32,7 +32,6 @@ const Layout3 = styled.div`
 
 const Group = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
-  console.log(JWTtoken);
 
   var userName = localStorage.getItem("name");
 
@@ -194,7 +193,7 @@ const Group = () => {
               textDecoration: "underline",
               position: "fixed",
               bottom: groupInfo.length <= 6 ? "10px" : "auto",
-              top: groupInfo.length <= 6 ? "auto" : "calc(90% + 0px)",
+              top: groupInfo.length <= 6 ? "auto" : "calc(93% + 0px)",
             }}
             onClick={logOut}
           >
@@ -257,7 +256,7 @@ const Group = () => {
             textDecoration: "underline",
             position: "fixed",
             bottom: groupInfo.length <= 6 ? "10px" : "auto",
-            top: groupInfo.length <= 6 ? "auto" : "calc(90% + 0px)",
+            top: groupInfo.length <= 6 ? "auto" : "calc(100% + 30px)",
           }}
           onClick={logOut}
         >

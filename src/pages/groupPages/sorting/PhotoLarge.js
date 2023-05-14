@@ -2,12 +2,13 @@ import axios from "axios";
 import React from "react";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import instance from "../../../components/Request";
 import Image from "../../../components/common/Image";
 import BackButton from "../../../components/common/BackButton";
 import styled from "styled-components";
 import DownButton from "../../../components/common/DownButton";
+import DeleteButton from "../../../components/common/DeleteButton";
 
 const Layout = styled.div`
   padding-top: 20px;
@@ -17,6 +18,11 @@ const Layout2 = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 5px;
+`;
+
+const Layout3 = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 const PhotoLarge = () => {
@@ -61,7 +67,10 @@ const PhotoLarge = () => {
     <>
       <Layout2>
         <BackButton />
-        <DownButton />
+        <Layout3>
+          <DownButton />
+          <DeleteButton />
+        </Layout3>
       </Layout2>
       <Layout>
         <Image src={photoLarge} width={"100%"} height={"100%"} />

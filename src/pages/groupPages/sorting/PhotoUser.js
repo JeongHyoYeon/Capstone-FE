@@ -8,6 +8,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import Image from "../../../components/common/Image";
 import Button from "../../../components/common/Button";
+import BackButton from "../../../components/common/BackButton";
 //import UploadButton from "../../../components/common/UploadButton";
 
 const Layout = styled.div`
@@ -23,16 +24,24 @@ const Layout2 = styled.div`
 `;
 
 const Layout3 = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding-top: 40px;
-  justify-content: center;
+  //display: flex;
+  //flex-direction: row;
+  //flex-wrap: wrap;
+  padding-top: 50px;
+  //justify-content: center;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 `;
 
 const Layout4 = styled.div`
   display: flex;
   justify-content: center;
+`;
+const Layout5 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 3px;
 `;
 
 const PhotoUser = () => {
@@ -83,6 +92,9 @@ const PhotoUser = () => {
 
   return (
     <>
+      <Layout5>
+        <BackButton />
+      </Layout5>
       <CategoryHeader />
       <Layout3>
         {photoUser.map((item) => (

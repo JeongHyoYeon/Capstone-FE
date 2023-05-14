@@ -8,6 +8,7 @@ import Button from "../../../components/common/Button";
 import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
+import BackButton from "../../../components/common/BackButton";
 //import UploadButton from "../../../components/common/UploadButton";
 
 const Layout = styled.div`
@@ -26,10 +27,13 @@ const Layout2 = styled.div`
 `;
 
 const Layout3 = styled.div`
-  display: flex;
+  // display: flex;
   margin: 5px;
-  flex-direction: column;
+  // flex-direction: column;
   text-align: center;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 `;
 
 const Layout4 = styled.div`
@@ -48,12 +52,20 @@ const Layout5 = styled.div`
   justify-content: space-evenly;
 `;
 
+const Layout6 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 3px;
+`;
+
 const PhotoObej = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
   const navigate = useNavigate();
 
   const tripId = localStorage.getItem("nowGroupTrip");
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const changePage = () => {
     navigate("/upload");
@@ -70,6 +82,7 @@ const PhotoObej = () => {
 
   //자동 분류 요청하기
   const requestAuto = async (e) => {
+    setIsLoading(true);
     await axios;
     instance
       .post(
@@ -84,10 +97,12 @@ const PhotoObej = () => {
       )
       .then((response) => {
         console.log(response);
-        window.alert(response.data);
+        setIsLoading(false);
+        ObejPhoto();
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false);
       });
   };
 
@@ -121,6 +136,9 @@ const PhotoObej = () => {
 
   return (
     <>
+      <Layout6>
+        <BackButton />
+      </Layout6>
       <CategoryHeader />
       <Layout3>
         {photoObej.map((item) => (
@@ -136,12 +154,12 @@ const PhotoObej = () => {
       <Layout>
         <Layout2>
           <Button
-            text={"객체분류하기"}
+            text={isLoading ? "분류하는 중..." : "객체분류하기"}
             width={"150px"}
             fontColor={"white"}
-            onClick={() => {
-              requestAuto();
-            }}
+            backgroundColor={isLoading ? "gray" : "#3178B9"}
+            onClick={requestAuto}
+            disabled={isLoading}
           />
         </Layout2>
         <Layout2>

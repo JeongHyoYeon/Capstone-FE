@@ -27,10 +27,13 @@ const Layout2 = styled.div`
 `;
 
 const Layout3 = styled.div`
-  display: flex;
+  //display: flex;
   margin: 5px;
-  flex-direction: column;
+  //flex-direction: column;
   text-align: center;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 `;
 
 const Layout4 = styled.div`
@@ -60,6 +63,8 @@ const PhotoChar = () => {
 
   const navigate = useNavigate();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const tripId = localStorage.getItem("nowGroupTrip");
 
   const changePage = () => {
@@ -77,6 +82,7 @@ const PhotoChar = () => {
 
   //자동 분류 요청하기
   const requestAuto = async (e) => {
+    setIsLoading(true);
     await axios;
     instance
       .post(
@@ -91,9 +97,11 @@ const PhotoChar = () => {
       )
       .then((response) => {
         console.log(response);
-        window.alert(response.data);
+        charPhoto();
+        setIsLoading(false);
       })
       .catch((error) => {
+        setIsLoading(false);
         console.log(error);
       });
   };
@@ -132,6 +140,7 @@ const PhotoChar = () => {
         <BackButton />
       </Layout6>
       <CategoryHeader />
+
       <Layout3>
         {photoChar.map((item) => (
           <Layout4 key={item.id}>
@@ -146,12 +155,12 @@ const PhotoChar = () => {
       <Layout>
         <Layout2>
           <Button
-            text={"자동분류하기"}
+            text={isLoading ? "분류하는 중..." : "인물분류하기"}
             width={"150px"}
             fontColor={"white"}
-            onClick={() => {
-              requestAuto();
-            }}
+            backgroundColor={isLoading ? "gray" : "#3178B9"}
+            onClick={requestAuto}
+            disabled={isLoading}
           />
         </Layout2>
         <Layout2>

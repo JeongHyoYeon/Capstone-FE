@@ -9,6 +9,7 @@ import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
 import { FiAlertCircle } from "react-icons/fi";
+import BackButton from "../../../components/common/BackButton";
 //import UploadButton from "../../../components/common/UploadButton";
 
 const Layout = styled.div`
@@ -20,11 +21,15 @@ const Layout = styled.div`
 `;
 
 const Layout2 = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  padding-top: 40px;
-  justify-content: space-evenly;
+  // display: flex;
+  // flex-wrap: wrap;
+  // flex-direction: row;
+  //padding-top: 40px;
+  // justify-content: space-evenly;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-top: 50px;
 `;
 
 const Layout3 = styled.div`
@@ -69,10 +74,18 @@ const Layout8 = styled.div`
   padding-left: 30%;
 `;
 
+const Layout9 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 3px;
+`;
+
 const PhotoObejFolder = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
   const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const tripId = localStorage.getItem("nowGroupTrip");
 
@@ -86,6 +99,7 @@ const PhotoObejFolder = () => {
 
   //자동 분류 요청하기
   const requestAuto = async (e) => {
+    setIsLoading(true);
     await axios;
     instance
       .post(
@@ -101,9 +115,11 @@ const PhotoObejFolder = () => {
       .then((res) => {
         console.log(res);
         window.alert(res.data);
+        setIsLoading(false);
         obejPhotoReady();
       })
       .catch((error) => {
+        setIsLoading(false);
         console.log(error);
       });
   };
@@ -148,6 +164,9 @@ const PhotoObejFolder = () => {
   if (photoThumb.length === 0) {
     return (
       <>
+        <Layout9>
+          <BackButton />
+        </Layout9>
         <CategoryHeader />
         <Layout7>
           <Layout6>
@@ -161,12 +180,12 @@ const PhotoObejFolder = () => {
           <Layout4>
             <Layout5>
               <Button
-                text={"객체분류하기"}
+                text={isLoading ? "분류하는 중..." : "객체분류하기"}
                 width={"150px"}
                 fontColor={"white"}
-                onClick={() => {
-                  requestAuto();
-                }}
+                backgroundColor={isLoading ? "gray" : "#3178B9"}
+                onClick={requestAuto}
+                disabled={isLoading}
               />
             </Layout5>
             <Layout5>
@@ -197,6 +216,9 @@ const PhotoObejFolder = () => {
   } else if (photoThumb != null)
     return (
       <>
+        <Layout9>
+          <BackButton />
+        </Layout9>
         <CategoryHeader />
         <Layout2>
           {photoThumb.map((item) => (
@@ -206,7 +228,7 @@ const PhotoObejFolder = () => {
                 <Link to={`/photo/auto/obejfolder/${item.tag_id}`}>
                   <Image src={item.thumbnail.url} />
                 </Link>
-                <h3>{item.tag}</h3>
+                <h4>{item.tag}</h4>
               </Layout3>
               {/* ))} */}
             </Layout>
@@ -215,12 +237,12 @@ const PhotoObejFolder = () => {
         <Layout4>
           <Layout5>
             <Button
-              text={"객체분류하기"}
+              text={isLoading ? "분류하는 중..." : "객체분류하기"}
               width={"150px"}
               fontColor={"white"}
-              onClick={() => {
-                requestAuto();
-              }}
+              backgroundColor={isLoading ? "gray" : "#3178B9"}
+              onClick={requestAuto}
+              disabled={isLoading}
             />
           </Layout5>
           <Layout5>
