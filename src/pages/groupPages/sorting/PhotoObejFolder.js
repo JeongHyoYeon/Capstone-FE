@@ -145,7 +145,7 @@ const PhotoObejFolder = () => {
     obejPhotoReady();
   }, []);
 
-  if (photoThumb.length == 1) {
+  if (photoThumb.length === 0) {
     return (
       <>
         <CategoryHeader />

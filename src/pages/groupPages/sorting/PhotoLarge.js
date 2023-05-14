@@ -33,7 +33,7 @@ const PhotoLarge = () => {
     await axios;
     instance
       .get(
-        `/download/${photoid}/`,
+        `photos/download/${photoid}/`,
 
         {
           headers: {
@@ -49,6 +49,7 @@ const PhotoLarge = () => {
       })
       .catch((error) => {
         console.log(error);
+        window.alert("사진을 로딩할 수 없습니다.");
       });
   };
 

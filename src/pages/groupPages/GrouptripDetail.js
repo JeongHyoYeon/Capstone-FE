@@ -65,7 +65,7 @@ const GrouptripDetail = () => {
     await axios;
     instance
       .get(
-        `/photo/${tripId}/`,
+        `photos/${tripId}/`,
 
         {
           headers: {

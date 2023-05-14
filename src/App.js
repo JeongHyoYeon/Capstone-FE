@@ -159,7 +159,7 @@ function App() {
               }
             />
             <Route
-              path="/photo/auto/char/:facetag"
+              path="/photo/auto/charfolder/:facetag"
               element={
                 <PrivateRoute
                   authenticated={JWTtoken}

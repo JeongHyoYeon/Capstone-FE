@@ -186,13 +186,7 @@ const Group = () => {
             onClick={navMakeGroup}
           />
         </Layout>
-        <Layout
-        // style={{
-        //   position: "fixed",
-        //   bottom: groupInfo.length <= 6 ? "100px" : "auto",
-        //   top: groupInfo.length <= 6 ? "auto" : "calc(100% + 200px)",
-        // }}
-        >
+        <Layout>
           <h3
             style={{
               //align-items: "flex-end",
@@ -200,7 +194,7 @@ const Group = () => {
               textDecoration: "underline",
               position: "fixed",
               bottom: groupInfo.length <= 6 ? "10px" : "auto",
-              top: groupInfo.length <= 6 ? "auto" : `calc(90% + 0px )`,
+              top: groupInfo.length <= 6 ? "auto" : "calc(90% + 0px)",
             }}
             onClick={logOut}
           >
@@ -257,24 +251,13 @@ const Group = () => {
           onClick={navMakeGroup}
         />
       </Layout>
-      <Layout
-      // style={{
-      //   position: "fixed",
-      //   bottom: groupInfo.length <= 6 ? "100px" : "auto",
-      //   top: groupInfo.length <= 6 ? "auto" : "calc(100% + 200px)",
-      // }}
-      >
+      <Layout>
         <h3
           style={{
-            // position: "fixed",
-            // bottom: "5%",
             textDecoration: "underline",
             position: "fixed",
             bottom: groupInfo.length <= 6 ? "10px" : "auto",
-            top:
-              groupInfo.length <= 6
-                ? "auto"
-                : `calc(100% + ${100 * (groupInfo.length - 6)}px)`,
+            top: groupInfo.length <= 6 ? "auto" : "calc(90% + 0px)",
           }}
           onClick={logOut}
         >

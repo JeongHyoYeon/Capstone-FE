@@ -17,7 +17,7 @@ const Layout = styled.div`
   flex-direction: column;
   padding-top: 20px;
   position: relative;
-  left: 5%;
+  left: 8%;
 `;
 
 const Layout1 = styled.div`

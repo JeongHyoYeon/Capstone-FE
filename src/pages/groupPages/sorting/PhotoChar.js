@@ -9,6 +9,7 @@ import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
 import UploadButton from "../../../components/common/UploadButton";
+import BackButton from "../../../components/common/BackButton";
 
 const Layout = styled.div`
   display: flex;
@@ -46,6 +47,12 @@ const Layout5 = styled.div`
   flex-direction: row;
   padding-top: 40px;
   justify-content: space-evenly;
+`;
+
+const Layout6 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 3px;
 `;
 
 const PhotoChar = () => {
@@ -121,6 +128,9 @@ const PhotoChar = () => {
 
   return (
     <>
+      <Layout6>
+        <BackButton />
+      </Layout6>
       <CategoryHeader />
       <Layout3>
         {photoChar.map((item) => (

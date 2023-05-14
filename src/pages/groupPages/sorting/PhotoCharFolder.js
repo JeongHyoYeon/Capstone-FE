@@ -10,6 +10,7 @@ import styled from "styled-components";
 import instance from "../../../components/Request";
 import { FiAlertCircle } from "react-icons/fi";
 import UploadButton from "../../../components/common/UploadButton";
+import BackButton from "../../../components/common/BackButton";
 
 const Layout = styled.div`
   display: flex;
@@ -69,6 +70,12 @@ const Layout8 = styled.div`
   padding-left: 30%;
 `;
 
+const Layout9 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 3px;
+`;
+
 const PhotoCharFolder = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
@@ -89,7 +96,7 @@ const PhotoCharFolder = () => {
     await axios;
     instance
       .post(
-        `/photo/face/${tripId}/`,
+        `photos/face/${tripId}/`,
         {},
         {
           headers: {
@@ -119,7 +126,7 @@ const PhotoCharFolder = () => {
     await axios;
     instance
       .get(
-        `/photo/face/${tripId}/`,
+        `photos/face/${tripId}/`,
 
         {
           headers: {
@@ -142,9 +149,12 @@ const PhotoCharFolder = () => {
     charPhotoThumb();
   }, []);
 
-  if (photoThumb.length == 1) {
+  if (photoThumb.length === 0) {
     return (
       <>
+        <Layout9>
+          <BackButton />
+        </Layout9>
         <CategoryHeader />
         <Layout7>
           <Layout6>
@@ -194,13 +204,16 @@ const PhotoCharFolder = () => {
   } else if (photoThumb != null)
     return (
       <>
+        <Layout9>
+          <BackButton />
+        </Layout9>
         <CategoryHeader />
         <Layout2>
           {photoThumb.map((item) => (
             <Layout key={item.tag_id}>
               {/* {item.thumbnail.map((items) => ( */}
               <Layout3 key={item.thumbnail.id}>
-                <Link to={`/photo/auto/char/${item.tag_id}`}>
+                <Link to={`/photo/auto/charfolder/${item.tag_id}`}>
                   <Image src={item.thumbnail.url} />
                 </Link>
                 <h3>{item.tag}</h3>
