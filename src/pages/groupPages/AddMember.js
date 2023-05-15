@@ -32,12 +32,10 @@ const Layout3 = styled.div`
 
 /* 초대한 회원 이름 박스가 나열될 공간 */
 const Layout4 = styled.div`
-  border-style: solid;
-  border-radius: 10px 10px 10px 10px;
   display: felx;
   justify-content: space-evenly;
   position: relative;
-  margin: 5px 150px 50px 5px;
+  padding: 5px 5px 10px 5px;
   height: auto;
   margin: 4px;
 `;
@@ -100,7 +98,8 @@ const AddMember = () => {
     console.log("add후 list 길이 = ", inviteList.length);
   };
 
-  /* 임시 저장 리스트에서 삭제 */
+  /*
+  //임시 저장 리스트에서 삭제
   const deleteUsers = (id) => {
     console.log(id);
     for (let i = 0; i < inviteList.length; i++) {
@@ -117,6 +116,7 @@ const AddMember = () => {
     }
     console.log("list 길이 = ", inviteList.length);
   };
+  */
 
   //다른 유저 초대 함수
   const inviteUser = async (e) => {
@@ -166,8 +166,8 @@ const AddMember = () => {
         <Layout2>
           <Button
             text={"+"}
-            width={"45px"}
-            height={"45px"}
+            width={"40px"}
+            height={"40px"}
             fontColor={"white"}
             onClick={() => {
               inviteUser();
@@ -175,7 +175,7 @@ const AddMember = () => {
           />
         </Layout2>
       </Layout>
-
+      
       <h3>초대한 회원</h3>
       <Layout4>
         {inviteList.map((item) => (
@@ -187,7 +187,7 @@ const AddMember = () => {
       </div>
 
       <Button
-        text={"초대완료"}
+        text={"초대 완료"}
         width={"85%"}
         fontColor={"white"}
         // position={"fixed"}

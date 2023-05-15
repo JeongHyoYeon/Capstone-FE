@@ -5,7 +5,8 @@ import Button from "../../components/common/Button";
 import axios from "axios";
 import instance from "../../components/Request";
 import { useSelector } from "react-redux";
-import AddMember from "./AddMember";
+import BackButton from "../../components/common/BackButton";
+import { useNavigate } from "react-router-dom";
 
 const Layout = styled.div`
   display: flex;
@@ -14,6 +15,12 @@ const Layout = styled.div`
   padding-top: 20px;
   position: relative;
   left: 6%;
+`;
+
+const Layout3 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 `;
 
 // const Layout1 = styled.div`
@@ -56,6 +63,12 @@ const MakeGroup = () => {
   // };
 
   //추가 버튼 누르면 input 초기화되게 만드는 거 나중에 만들기
+
+  //group페이지로 돌아가는 함수
+  const navigate = useNavigate();
+  const changePage = () => {
+    navigate(`/group`);
+  };
 
   //그룹 이름 만드는 함수
   const makegroupName = async (e) => {
@@ -121,9 +134,14 @@ const MakeGroup = () => {
 
   return (
     <>
+      <Layout3>
+        <BackButton />
+      </Layout3>
+
       <br />
       <br />
       <br />
+
       <Layout>
         <InputBox
           placeholder="그룹의 이름을 입력하세요."
@@ -134,7 +152,7 @@ const MakeGroup = () => {
         <br />
         <Button
           type={"submit"}
-          text={"그룹 만들기"}
+          text={"그룹 생성"}
           width={"85%"}
           fontColor={"white"}
           // position={"fixed"}
@@ -142,12 +160,14 @@ const MakeGroup = () => {
           onClick={() => {
             makegroupName();
             setvisible(!visible);
+            window.alert("그룹이 생성되었습니다.");
+            changePage();
             //inviteUser();
           }}
         />
         <br />
         <br />
-        {visible && <AddMember />}
+        {/*visible && <AddMember />*/}
         {/* <InputBox
           placeholder="추가할 친구의 ID를 입력하세요."
           height={"50px"}

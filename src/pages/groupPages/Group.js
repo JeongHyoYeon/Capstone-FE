@@ -244,7 +244,8 @@ const Group = () => {
           <Layout3>
             <Button
               text={"+"}
-              width={"50px"}
+              width={"40px"}
+              height={"40px"}
               fontColor={"white"}
               onClick={() => {
                 navAddMember(group_info.id);
