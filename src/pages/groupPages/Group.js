@@ -17,22 +17,12 @@ const Layout = styled.div`
   padding-top: 20px;
 `;
 
-/* 최근 알림 흰박스 */
+/* 최근 알림, 그룹목록 흰박스 */
 const Layout2 = styled.div`
   display: block;
   padding-left: 5%;
   margin-left: 1%;
-  padding-top: 20px;
-  position: relative;
-`;
-
-/* 그룹 목록 흰박스 */
-const Layout4 = styled.div`
-  margin-top: 15%;
-  display: block;
-  padding-left: 5%;
-  margin-left: 1%;
-  padding-top: 20px;
+  padding-top: 10px;
   position: relative;
 `;
 
@@ -154,7 +144,7 @@ const Group = () => {
   if (newInvite == null) {
     return (
       <>
-        <Layout4>
+        <Layout2>
           <Link to={"/invite"}>
             <TextBox
               text1={"최근알림"}
@@ -162,7 +152,7 @@ const Group = () => {
               height={"70px"}
             />
           </Link>
-        </Layout4>
+        </Layout2>
         <Layout2>
           <h2>{userName}님의 그룹</h2>
         </Layout2>
@@ -178,8 +168,8 @@ const Group = () => {
             <Layout3>
               <Button
                 text={"+"}
-                width={"45px"}
-                height={"45px"}
+                width={"40px"}
+                height={"40px"}
                 fontColor={"white"}
                 onClick={() => {
                   navAddMember(group_info.id);
