@@ -9,6 +9,8 @@ import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
 import { FiAlertCircle } from "react-icons/fi";
+import UploadButton from "../../../components/common/UploadButton";
+import BackButton from "../../../components/common/BackButton";
 
 const Layout = styled.div`
   display: flex;
@@ -19,11 +21,14 @@ const Layout = styled.div`
 `;
 
 const Layout2 = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+  //display: flex;
+  //flex-wrap: wrap;
+  //flex-direction: row;
   padding-top: 40px;
-  justify-content: space-evenly;
+  //justify-content: space-evenly;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 `;
 
 const Layout3 = styled.div`
@@ -40,7 +45,7 @@ const Layout4 = styled.div`
   //height: 50px;
   position: fixed;
   width: 100%;
-  bottom: 10%;
+  bottom: 5%;
 `;
 
 const Layout5 = styled.div`
@@ -68,8 +73,16 @@ const Layout8 = styled.div`
   padding-left: 30%;
 `;
 
+const Layout9 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 3px;
+`;
+
 const PhotoCharFolder = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -85,10 +98,11 @@ const PhotoCharFolder = () => {
 
   //자동 분류 요청하기
   const requestAuto = async (e) => {
+    setIsLoading(true);
     await axios;
     instance
       .post(
-        `/photo/face/${tripId}/`,
+        `photos/face/${tripId}/`,
         {},
         {
           headers: {
@@ -100,9 +114,14 @@ const PhotoCharFolder = () => {
       .then((res) => {
         console.log(res);
         window.alert(res.data);
+        setIsLoading(false);
+        charPhotoThumb();
       })
       .catch((error) => {
+        setIsLoading(false);
         console.log(error);
+        if (error.message === "Request failed with status code 400")
+          window.alert("인물 분류에 실패했습니다. 다시 시도해주세요.");
       });
   };
 
@@ -117,7 +136,7 @@ const PhotoCharFolder = () => {
     await axios;
     instance
       .get(
-        `/photo/face/${tripId}/`,
+        `photos/face/${tripId}/`,
 
         {
           headers: {
@@ -129,7 +148,6 @@ const PhotoCharFolder = () => {
       .then((response) => {
         console.log("success");
         console.log(response.data);
-
         setPhotoThumb(response.data.data);
       })
       .catch((error) => {
@@ -141,9 +159,12 @@ const PhotoCharFolder = () => {
     charPhotoThumb();
   }, []);
 
-  if (photoThumb.tag_id == null) {
+  if (photoThumb.length === 0) {
     return (
       <>
+        <Layout9>
+          <BackButton />
+        </Layout9>
         <CategoryHeader />
         <Layout7>
           <Layout6>
@@ -157,15 +178,16 @@ const PhotoCharFolder = () => {
           <Layout4>
             <Layout5>
               <Button
-                text={"인물분류하기"}
+                text={isLoading ? "분류하는 중..." : "인물분류하기"}
                 width={"150px"}
                 fontColor={"white"}
-                onClick={() => {
-                  requestAuto();
-                }}
+                backgroundColor={isLoading ? "gray" : "#3178B9"}
+                onClick={requestAuto}
+                disabled={isLoading}
               />
             </Layout5>
             <Layout5>
+              {/* <UploadButton text={"+"} width={"50px"} /> */}
               <Button
                 text={"+"}
                 width={"50px"}
@@ -192,33 +214,37 @@ const PhotoCharFolder = () => {
   } else if (photoThumb != null)
     return (
       <>
+        <Layout9>
+          <BackButton />
+        </Layout9>
         <CategoryHeader />
         <Layout2>
           {photoThumb.map((item) => (
-            <Layout key={item.tag}>
-              {item.thumbnail.map((items) => (
-                <Layout3 key={item.thumbnail.id}>
-                  <Link to={`/photo/face/${item.tag_id}`}>
-                    <Image src={item.thumbnail.url} />
-                  </Link>
-                  <h3>{item.tag}</h3>
-                </Layout3>
-              ))}
+            <Layout key={item.tag_id}>
+              {/* {item.thumbnail.map((items) => ( */}
+              <Layout3 key={item.thumbnail.id}>
+                <Link to={`/photo/auto/charfolder/${item.tag_id}`}>
+                  <Image src={item.thumbnail.url} />
+                </Link>
+                <h3>{item.tag}</h3>
+              </Layout3>
+              {/* ))} */}
             </Layout>
           ))}
         </Layout2>
         <Layout4>
           <Layout5>
             <Button
-              text={"인물분류하기"}
+              text={isLoading ? "분류하는 중..." : "인물분류하기"}
               width={"150px"}
               fontColor={"white"}
-              onClick={() => {
-                requestAuto();
-              }}
+              backgroundColor={isLoading ? "gray" : "#3178B9"}
+              onClick={requestAuto}
+              disabled={isLoading}
             />
           </Layout5>
           <Layout5>
+            {/* <UploadButton text={"+"} width={"50px"} /> */}
             <Button
               text={"+"}
               width={"50px"}

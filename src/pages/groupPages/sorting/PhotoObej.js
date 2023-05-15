@@ -8,6 +8,8 @@ import Button from "../../../components/common/Button";
 import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
+import BackButton from "../../../components/common/BackButton";
+//import UploadButton from "../../../components/common/UploadButton";
 
 const Layout = styled.div`
   display: flex;
@@ -16,7 +18,7 @@ const Layout = styled.div`
   //height: 50px;
   position: fixed;
   width: 100%;
-  bottom: 10%;
+  bottom: 5%;
 `;
 
 const Layout2 = styled.div`
@@ -25,16 +27,19 @@ const Layout2 = styled.div`
 `;
 
 const Layout3 = styled.div`
-  display: flex;
+  // display: flex;
   margin: 5px;
-  flex-direction: column;
+  // flex-direction: column;
   text-align: center;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 `;
 
 const Layout4 = styled.div`
   display: flex;
-  padding: 10px;
-  padding-top: 10px;
+  //padding: 10px;
+  padding-top: 0px;
   flex-direction: column;
   padding-left: 6%;
 `;
@@ -43,8 +48,14 @@ const Layout5 = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  padding-top: 40px;
+  padding-top: 20px;
   justify-content: space-evenly;
+`;
+
+const Layout6 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 3px;
 `;
 
 const PhotoObej = () => {
@@ -53,6 +64,8 @@ const PhotoObej = () => {
   const navigate = useNavigate();
 
   const tripId = localStorage.getItem("nowGroupTrip");
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const changePage = () => {
     navigate("/upload");
@@ -65,14 +78,17 @@ const PhotoObej = () => {
   //객체 태그 id
   const { obejtag } = useParams();
 
+  const [photoTag, setPhotoTag] = useState();
+
   const [photoObej, setPhotoObej] = useState([]);
 
   //자동 분류 요청하기
   const requestAuto = async (e) => {
+    setIsLoading(true);
     await axios;
     instance
       .post(
-        `/photo/yolo/${tripId}/`,
+        `photos/yolo/${tripId}/`,
         {},
         {
           headers: {
@@ -83,10 +99,12 @@ const PhotoObej = () => {
       )
       .then((response) => {
         console.log(response);
-        window.alert(response.data);
+        setIsLoading(false);
+        ObejPhoto();
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false);
       });
   };
 
@@ -95,7 +113,7 @@ const PhotoObej = () => {
     await axios;
     instance
       .get(
-        `/photo/face/${tripId}/${obejtag}/`,
+        `photos/yolo/${tripId}/${obejtag}/`,
 
         {
           headers: {
@@ -107,7 +125,8 @@ const PhotoObej = () => {
       .then((response) => {
         console.log("success");
         console.log(response.data);
-        setPhotoObej(response.data);
+        setPhotoTag(response.data.tag);
+        setPhotoObej(response.data.photos);
       })
       .catch((error) => {
         console.log(error);
@@ -120,7 +139,20 @@ const PhotoObej = () => {
 
   return (
     <>
+      <Layout6>
+        <BackButton />
+      </Layout6>
       <CategoryHeader />
+      <h2
+        style={{
+          paddingLeft: "8%",
+          paddingTop: "20px",
+          paddingBottom: "0",
+          marginBottom: "0",
+        }}
+      >
+        {photoTag}
+      </h2>
       <Layout3>
         {photoObej.map((item) => (
           <Layout4 key={item.id}>
@@ -135,15 +167,16 @@ const PhotoObej = () => {
       <Layout>
         <Layout2>
           <Button
-            text={"객체분류하기"}
+            text={isLoading ? "분류하는 중..." : "객체분류하기"}
             width={"150px"}
             fontColor={"white"}
-            onClick={() => {
-              requestAuto();
-            }}
+            backgroundColor={isLoading ? "gray" : "#3178B9"}
+            onClick={requestAuto}
+            disabled={isLoading}
           />
         </Layout2>
         <Layout2>
+          {/* <UploadButton text={"+"} width={"50px"} /> */}
           <Button
             text={"+"}
             width={"50px"}

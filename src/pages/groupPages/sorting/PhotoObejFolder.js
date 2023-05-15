@@ -9,6 +9,8 @@ import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
 import { FiAlertCircle } from "react-icons/fi";
+import BackButton from "../../../components/common/BackButton";
+//import UploadButton from "../../../components/common/UploadButton";
 
 const Layout = styled.div`
   display: flex;
@@ -19,11 +21,15 @@ const Layout = styled.div`
 `;
 
 const Layout2 = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  padding-top: 40px;
-  justify-content: space-evenly;
+  // display: flex;
+  // flex-wrap: wrap;
+  // flex-direction: row;
+  //padding-top: 40px;
+  // justify-content: space-evenly;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-top: 50px;
 `;
 
 const Layout3 = styled.div`
@@ -40,7 +46,7 @@ const Layout4 = styled.div`
   //height: 50px;
   position: fixed;
   width: 100%;
-  bottom: 10%;
+  bottom: 5%;
 `;
 
 const Layout5 = styled.div`
@@ -68,10 +74,18 @@ const Layout8 = styled.div`
   padding-left: 30%;
 `;
 
+const Layout9 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 3px;
+`;
+
 const PhotoObejFolder = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
   const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const tripId = localStorage.getItem("nowGroupTrip");
 
@@ -85,10 +99,11 @@ const PhotoObejFolder = () => {
 
   //자동 분류 요청하기
   const requestAuto = async (e) => {
+    setIsLoading(true);
     await axios;
     instance
       .post(
-        `/photo/yolo/${tripId}/`,
+        `photos/yolo/${tripId}/`,
         {},
         {
           headers: {
@@ -100,14 +115,17 @@ const PhotoObejFolder = () => {
       .then((res) => {
         console.log(res);
         window.alert(res.data);
+        setIsLoading(false);
+        obejPhotoReady();
       })
       .catch((error) => {
+        setIsLoading(false);
         console.log(error);
       });
   };
 
   //객체 분류 썸네일
-  const [photoThumb, setPhotoThumb] = useState("");
+  const [photoThumb, setPhotoThumb] = useState([]);
 
   //응답 타입
   //const [resType, setResType] = useState();
@@ -117,7 +135,7 @@ const PhotoObejFolder = () => {
     await axios;
     instance
       .get(
-        `/photo/yolo/${tripId}/`,
+        `photos/yolo/${tripId}/`,
 
         {
           headers: {
@@ -129,6 +147,7 @@ const PhotoObejFolder = () => {
       .then((response) => {
         console.log("success");
         console.log(response.data);
+        console.log(response.data.data);
         //console.log(typeof response.data);
         //setResType(typeof response.data);
         setPhotoThumb(response.data.data);
@@ -142,9 +161,12 @@ const PhotoObejFolder = () => {
     obejPhotoReady();
   }, []);
 
-  if (photoThumb.tag_id == null) {
+  if (photoThumb.length === 0) {
     return (
       <>
+        <Layout9>
+          <BackButton />
+        </Layout9>
         <CategoryHeader />
         <Layout7>
           <Layout6>
@@ -158,15 +180,16 @@ const PhotoObejFolder = () => {
           <Layout4>
             <Layout5>
               <Button
-                text={"객체분류하기"}
+                text={isLoading ? "분류하는 중..." : "객체분류하기"}
                 width={"150px"}
                 fontColor={"white"}
-                onClick={() => {
-                  requestAuto();
-                }}
+                backgroundColor={isLoading ? "gray" : "#3178B9"}
+                onClick={requestAuto}
+                disabled={isLoading}
               />
             </Layout5>
             <Layout5>
+              {/* <UploadButton text={"+"} width={"50px"} /> */}
               <Button
                 text={"+"}
                 width={"50px"}
@@ -193,28 +216,33 @@ const PhotoObejFolder = () => {
   } else if (photoThumb != null)
     return (
       <>
+        <Layout9>
+          <BackButton />
+        </Layout9>
         <CategoryHeader />
         <Layout2>
           {photoThumb.map((item) => (
-            <Layout key={item.tag}>
+            <Layout key={item.tag_id}>
+              {/* {item.thumbnail.map((items) => ( */}
               <Layout3 key={item.thumbnail.id}>
-                <Link to={`/photo/face/${item.tag_id}`}>
+                <Link to={`/photo/auto/obejfolder/${item.tag_id}`}>
                   <Image src={item.thumbnail.url} />
                 </Link>
-                <h3>{item.tag}</h3>
+                <h4>{item.tag}</h4>
               </Layout3>
+              {/* ))} */}
             </Layout>
           ))}
         </Layout2>
         <Layout4>
           <Layout5>
             <Button
-              text={"객체분류하기"}
+              text={isLoading ? "분류하는 중..." : "객체분류하기"}
               width={"150px"}
               fontColor={"white"}
-              onClick={() => {
-                requestAuto();
-              }}
+              backgroundColor={isLoading ? "gray" : "#3178B9"}
+              onClick={requestAuto}
+              disabled={isLoading}
             />
           </Layout5>
           <Layout5>

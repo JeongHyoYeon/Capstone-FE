@@ -6,6 +6,7 @@ import InputBox from "../../components/common/InputBox";
 import { setCookie } from "../../storage/Cookie";
 import Button from "../../components/common/Button";
 import instance from "../../components/Request";
+import BackButton from "../../components/common/BackButton";
 
 const Layout = styled.div`
   display: flex;
@@ -14,6 +15,11 @@ const Layout = styled.div`
   flex-direction: column;
   padding-top: 20px;
   position: relative;
+`;
+const Layout2 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 `;
 
 function SignupUser() {
@@ -40,7 +46,7 @@ function SignupUser() {
     console.log({ name, id, email, password });
     await axios;
     instance
-      .post("/register/", {
+      .post("accounts/register/", {
         name: name,
         id: id,
         password: password,
@@ -66,6 +72,9 @@ function SignupUser() {
 
   return (
     <>
+      <Layout2>
+        <BackButton />
+      </Layout2>
       <Layout>
         <h1 style={{ color: "#3178B9" }}>회원가입</h1>
         <br />

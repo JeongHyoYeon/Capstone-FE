@@ -3,12 +3,20 @@ import styled from "styled-components";
 import Button from "../components/common/Button";
 import { useNavigate } from "react-router-dom";
 import { ImFileEmpty } from "react-icons/im";
+import BackButton from "../components/common/BackButton";
+//import UploadButton from "../components/common/UploadButton";
 
 const Layout2 = styled.div`
   display: flex;
   justify-content: center;
   //padding-left: 4%;
   padding-top: 100px;
+`;
+
+const Layout3 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 `;
 
 const BlankPage = (props) => {
@@ -20,6 +28,9 @@ const BlankPage = (props) => {
 
   return (
     <>
+      <Layout3>
+        <BackButton />
+      </Layout3>
       <br />
       <br />
       <br />
@@ -36,6 +47,12 @@ const BlankPage = (props) => {
         <h2>{props.data} 없습니다.</h2>
       </Layout2>
       <Layout2>
+        {/* <UploadButton
+          text={"사진 올리기"}
+          width={"200px"}
+          //position={"fixed"}
+          //bottom={"13%"}
+        /> */}
         <Button
           text={"사진 올리기"}
           width={"200px"}

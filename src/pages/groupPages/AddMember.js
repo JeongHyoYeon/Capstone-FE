@@ -5,6 +5,7 @@ import Button from "../../components/common/Button";
 import axios from "axios";
 import instance from "../../components/Request";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 /* 이름입력 & +버튼이 들어갈 공간 */
 const Layout = styled.div`
@@ -38,8 +39,9 @@ const Layout4 = styled.div`
   position: relative;
   margin: 5px 150px 50px 5px;
   height: auto;
-  flex-wrap: wrap;
+  margin: 4px;
 `;
+
 
 /* 이름박스 옆에 엑스표
   근데 이렇게 만들면 안되고
@@ -67,15 +69,21 @@ const AddMember = () => {
     setinputId(e.target.value);
   };
 
+
+  const navigate = useNavigate();
+
+  const changePage = () => {
+    navigate(`/group`);
+  };
+
   /* 추가하는 그룹 멤버 임시 저장 */
   const addUsers = (e) => {
     // 동일한 이름을 다시 입력했을 경우 저장안되게.
     isAlreadyExist = false;
-    console.log(inputId);
     for (let i = 0; i < inviteList.length; i++) {
       if( inviteList[i].id === inputId) {
         isAlreadyExist = true;
-        //!!! 이미 초대할 목록에 추가된 아이디입니다.
+        //!!! 이미 초대를 보냈습니다.
       }
     }
     console.log("add전 list 길이 = ", inviteList.length);
@@ -118,7 +126,7 @@ const AddMember = () => {
     await axios;
     instance
       .post(
-        "/group/invite/",
+        "accounts/invite/",
         {
           group: groupId,
           user: inputId,
@@ -135,11 +143,13 @@ const AddMember = () => {
         console.log("invite success");
         window.alert("초대가 보내졌습니다.");
         console.log(response);
+        addUsers(inputId);
       })
       .catch((error) => {
         //handle error
         console.log("error:", error);
-        window.alert(error);
+        if (error == "AxiosError: Request failed with status code 400")
+          window.alert("존재하지 않는 회원입니다.");
       });
   };
 
@@ -160,42 +170,30 @@ const AddMember = () => {
             height={"45px"}
             fontColor={"white"}
             onClick={() => {
-              addUsers();
+              inviteUser();
             }}
           />
         </Layout2>
       </Layout>
 
-      <h3>초대할 회원</h3>
+      <h3>초대한 회원</h3>
       <Layout4>
         {inviteList.map((item) => (
           <Layout3 key={item.id}>
             {item.id + " "} 
-            <Layout5>
-              <Button
-              text={"x"}
-              width={"20px"}
-              height={"20px"}
-              backgroundColor={"white"}
-              fontColor={"black"}
-              onClick={() => {
-                deleteUsers(item.id);
-              }}
-              />
-            </Layout5>
           </Layout3>
         ))}
       </Layout4>
       </div>
-      
+
       <Button
-        text={"초대 요청 보내기"}
+        text={"초대완료"}
         width={"85%"}
         fontColor={"white"}
         // position={"fixed"}
         // bottom={"40%"}
         onClick={() => {
-          inviteUser();
+          changePage();
         }}
       />
     </>

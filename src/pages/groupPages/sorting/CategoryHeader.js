@@ -10,14 +10,18 @@ const CategoryAll = styled.div`
 const NavWrap = styled.nav`
   display: flex;
   overflow: visible;
+  margin-top: 0;
+  padding-top: 0;
 `;
 const Layout = styled.div`
+  margin-top: 0;
+  padding-top: 0;
   float: left;
   width: 25%;
   display: flex;
-  justify-content: center;
+  //justify-content: center;
   align-items: flex-start;
-  height: 50px;
+  height: 40px;
 `;
 
 const CategoryHeader = () => {

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
 const Header = () => {
+  if (window.location.pathname === "/") return null;
   return (
     <div className="header-all">
       <div className="brand-Name">

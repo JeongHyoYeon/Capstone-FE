@@ -49,7 +49,7 @@ function Login() {
     await axios;
     instance
       .post(
-        "/login/",
+        "accounts/login/",
         {
           id: id,
           password: password,
