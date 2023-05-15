@@ -35,9 +35,9 @@ const Layout4 = styled.div`
   display: felx;
   justify-content: space-evenly;
   position: relative;
-  padding: 5px 5px 10px 5px;
+  margin: 5px 150px 50px 5px;
   height: auto;
-  margin: 4px;
+  flex-wrap: wrap;
 `;
 
 
