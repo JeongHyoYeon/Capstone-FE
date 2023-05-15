@@ -18,7 +18,7 @@ const Layout = styled.div`
   //height: 50px;
   position: fixed;
   width: 100%;
-  bottom: 10%;
+  bottom: 5%;
 `;
 
 const Layout2 = styled.div`
@@ -28,7 +28,7 @@ const Layout2 = styled.div`
 
 const Layout3 = styled.div`
   //display: flex;
-  margin: 5px;
+  //margin: 5px;
   //flex-direction: column;
   text-align: center;
   display: grid;
@@ -39,7 +39,7 @@ const Layout3 = styled.div`
 const Layout4 = styled.div`
   display: flex;
   padding: 10px;
-  padding-top: 10px;
+  padding-top: 0px;
   flex-direction: column;
   padding-left: 6%;
 `;
@@ -48,7 +48,7 @@ const Layout5 = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  padding-top: 40px;
+  padding-top: 20px;
   justify-content: space-evenly;
 `;
 
@@ -79,6 +79,8 @@ const PhotoChar = () => {
   const { facetag } = useParams();
 
   const [photoChar, setPhotoChar] = useState([]);
+
+  const [photoTag, setPhotoTag] = useState();
 
   //자동 분류 요청하기
   const requestAuto = async (e) => {
@@ -123,7 +125,8 @@ const PhotoChar = () => {
       .then((response) => {
         console.log("success");
         console.log(response.data);
-        setPhotoChar(response.data);
+        setPhotoTag(response.data.tag);
+        setPhotoChar(response.data.photos);
       })
       .catch((error) => {
         console.log(error);
@@ -140,7 +143,16 @@ const PhotoChar = () => {
         <BackButton />
       </Layout6>
       <CategoryHeader />
-
+      <h2
+        style={{
+          paddingLeft: "8%",
+          paddingTop: "20px",
+          paddingBottom: "0",
+          marginBottom: "0",
+        }}
+      >
+        {photoTag}
+      </h2>
       <Layout3>
         {photoChar.map((item) => (
           <Layout4 key={item.id}>

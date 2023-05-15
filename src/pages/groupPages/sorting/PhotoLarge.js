@@ -39,7 +39,7 @@ const PhotoLarge = () => {
     await axios;
     instance
       .get(
-        `photos/download/${photoid}/`,
+        `photos/detail/${photoid}/`,
 
         {
           headers: {

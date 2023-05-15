@@ -18,9 +18,9 @@ const DownButton = () => {
   const downLoad = async (e) => {
     await axios;
     instance
-      .post(
-        `/download/${photoId}/`,
-        {},
+      .get(
+        `photos/detail/${photoId}/`,
+
         {
           headers: {
             Authorization: `Bearer ${JWTtoken}`,
@@ -49,24 +49,7 @@ const DownButton = () => {
 
             window.URL.revokeObjectURL(fileUrl);
           })
-          .catch((error) => console.error("Error downloading file:", error));
-        // console.log(response);
-        // const blob = new Blob([response.data.data.url], {
-        //   type: "image/*",
-        // });
-        // console.log(blob);
-        // let fileName = response.data.data.file_name;
-        // const imageUrl = window.URL.createObjectURL(blob);
-        // const link = document.createElement("a");
-        // link.href = response.data.data.url;
-        // link.style.display = "none";
-        // //link.download = `${response.data.data.file_name}`;
-        // link.download = fileName;
-        // link.setAttribute("download", fileName);
-        // document.body.appendChild(link);
-        // link.click();
-        // link.remove();
-        // window.URL.revokeObjectURL(link);
+          .catch((error) => console.error("Error:", error));
       })
       .catch((error) => {
         console.log("error:", error);
@@ -74,7 +57,11 @@ const DownButton = () => {
   };
 
   return (
-    <DownBtn onClick={downLoad}>
+    <DownBtn
+      onClick={() => {
+        downLoad();
+      }}
+    >
       <AiOutlineDownload size={"35px"} color="#3178B9" />
     </DownBtn>
   );

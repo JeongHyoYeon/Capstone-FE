@@ -27,7 +27,7 @@ const Layout3 = styled.div`
   //display: flex;
   //flex-direction: row;
   //flex-wrap: wrap;
-  padding-top: 50px;
+  padding-top: 20px;
   //justify-content: center;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
@@ -62,6 +62,8 @@ const PhotoUser = () => {
   //게시자별 여행 담는 배열
   const [photoUser, setPhotoUser] = useState([]);
 
+  const [photoTag, setPhotoTag] = useState();
+
   //그룹 여행 사진 함수
   const userPhoto = async (e) => {
     await axios;
@@ -79,7 +81,8 @@ const PhotoUser = () => {
       .then((response) => {
         console.log("success");
         console.log(response.data);
-        setPhotoUser(response.data);
+        setPhotoTag(response.data.tag);
+        setPhotoUser(response.data.photos);
       })
       .catch((error) => {
         console.log(error);
@@ -96,6 +99,16 @@ const PhotoUser = () => {
         <BackButton />
       </Layout5>
       <CategoryHeader />
+      <h2
+        style={{
+          paddingLeft: "8%",
+          paddingTop: "20px",
+          paddingBottom: "0",
+          marginBottom: "0",
+        }}
+      >
+        {photoTag}
+      </h2>
       <Layout3>
         {photoUser.map((item) => (
           <Layout key={item.id}>
@@ -119,7 +132,7 @@ const PhotoUser = () => {
           width={"200px"}
           fontColor={"white"}
           position={"fixed"}
-          bottom={"13%"}
+          bottom={"5%"}
           onClick={() => {
             changePage();
           }}

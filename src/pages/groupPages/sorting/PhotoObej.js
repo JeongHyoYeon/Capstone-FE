@@ -18,7 +18,7 @@ const Layout = styled.div`
   //height: 50px;
   position: fixed;
   width: 100%;
-  bottom: 10%;
+  bottom: 5%;
 `;
 
 const Layout2 = styled.div`
@@ -38,8 +38,8 @@ const Layout3 = styled.div`
 
 const Layout4 = styled.div`
   display: flex;
-  padding: 10px;
-  padding-top: 10px;
+  //padding: 10px;
+  padding-top: 0px;
   flex-direction: column;
   padding-left: 6%;
 `;
@@ -48,7 +48,7 @@ const Layout5 = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  padding-top: 40px;
+  padding-top: 20px;
   justify-content: space-evenly;
 `;
 
@@ -77,6 +77,8 @@ const PhotoObej = () => {
 
   //객체 태그 id
   const { obejtag } = useParams();
+
+  const [photoTag, setPhotoTag] = useState();
 
   const [photoObej, setPhotoObej] = useState([]);
 
@@ -123,7 +125,8 @@ const PhotoObej = () => {
       .then((response) => {
         console.log("success");
         console.log(response.data);
-        setPhotoObej(response.data);
+        setPhotoTag(response.data.tag);
+        setPhotoObej(response.data.photos);
       })
       .catch((error) => {
         console.log(error);
@@ -140,6 +143,16 @@ const PhotoObej = () => {
         <BackButton />
       </Layout6>
       <CategoryHeader />
+      <h2
+        style={{
+          paddingLeft: "8%",
+          paddingTop: "20px",
+          paddingBottom: "0",
+          marginBottom: "0",
+        }}
+      >
+        {photoTag}
+      </h2>
       <Layout3>
         {photoObej.map((item) => (
           <Layout4 key={item.id}>
