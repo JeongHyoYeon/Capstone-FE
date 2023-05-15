@@ -166,8 +166,8 @@ const AddMember = () => {
         <Layout2>
           <Button
             text={"+"}
-            width={"45px"}
-            height={"45px"}
+            width={"40px"}
+            height={"40px"}
             fontColor={"white"}
             onClick={() => {
               inviteUser();
@@ -187,7 +187,7 @@ const AddMember = () => {
       </div>
 
       <Button
-        text={"초대완료"}
+        text={"초대 완료"}
         width={"85%"}
         fontColor={"white"}
         // position={"fixed"}
