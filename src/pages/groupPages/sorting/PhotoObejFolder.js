@@ -10,6 +10,7 @@ import styled from "styled-components";
 import instance from "../../../components/Request";
 import { FiAlertCircle } from "react-icons/fi";
 import BackButton from "../../../components/common/BackButton";
+import Space from "../../../components/common/Space";
 //import UploadButton from "../../../components/common/UploadButton";
 
 const Layout = styled.div`
@@ -211,6 +212,7 @@ const PhotoObejFolder = () => {
             </Layout5>
           </Layout4>
         </Layout7>
+        <Space />
       </>
     );
   } else if (photoThumb != null)
@@ -266,6 +268,7 @@ const PhotoObejFolder = () => {
             />
           </Layout5>
         </Layout4>
+        <Space />
       </>
     );
 };

@@ -7,6 +7,7 @@ import instance from "../../components/Request";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { DELETE_TOKEN } from "../../components/modules/slices/tokenSlice";
+import Space from "../../components/common/Space";
 //import Modal from "react-modal";
 
 /* 페이지 전체 */
@@ -205,6 +206,7 @@ const Group = () => {
             로그아웃
           </h4>
         </Layout>
+        <Space />
       </>
     );
   }
@@ -268,6 +270,7 @@ const Group = () => {
           로그아웃
         </h5>
       </Layout>
+      <Space />
     </>
   );
 };
