@@ -8,6 +8,8 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import Image from "../../../components/common/Image";
 import Button from "../../../components/common/Button";
+import BackButton from "../../../components/common/BackButton";
+//import UploadButton from "../../../components/common/UploadButton";
 
 const Layout = styled.div`
   display: flex;
@@ -22,16 +24,24 @@ const Layout2 = styled.div`
 `;
 
 const Layout3 = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding-top: 40px;
-  justify-content: center;
+  //display: flex;
+  //flex-direction: row;
+  //flex-wrap: wrap;
+  padding-top: 20px;
+  //justify-content: center;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 `;
 
 const Layout4 = styled.div`
   display: flex;
   justify-content: center;
+`;
+const Layout5 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 3px;
 `;
 
 const PhotoUser = () => {
@@ -52,12 +62,14 @@ const PhotoUser = () => {
   //게시자별 여행 담는 배열
   const [photoUser, setPhotoUser] = useState([]);
 
+  const [photoTag, setPhotoTag] = useState();
+
   //그룹 여행 사진 함수
   const userPhoto = async (e) => {
     await axios;
     instance
       .get(
-        `/uploader/${tripId}/${usertag}/`,
+        `photos/uploader/${tripId}/${usertag}/`,
 
         {
           headers: {
@@ -69,7 +81,8 @@ const PhotoUser = () => {
       .then((response) => {
         console.log("success");
         console.log(response.data);
-        setPhotoUser(response.data);
+        setPhotoTag(response.data.tag);
+        setPhotoUser(response.data.photos);
       })
       .catch((error) => {
         console.log(error);
@@ -82,7 +95,20 @@ const PhotoUser = () => {
 
   return (
     <>
+      <Layout5>
+        <BackButton />
+      </Layout5>
       <CategoryHeader />
+      <h2
+        style={{
+          paddingLeft: "8%",
+          paddingTop: "20px",
+          paddingBottom: "0",
+          marginBottom: "0",
+        }}
+      >
+        {photoTag}
+      </h2>
       <Layout3>
         {photoUser.map((item) => (
           <Layout key={item.id}>
@@ -95,12 +121,18 @@ const PhotoUser = () => {
         ))}
       </Layout3>
       <Layout4>
+        {/* <UploadButton
+          text={"사진 올리기"}
+          width={"200px"}
+          position={"fixed"}
+          bottom={"13%"}
+        /> */}
         <Button
           text={"사진 올리기"}
           width={"200px"}
           fontColor={"white"}
           position={"fixed"}
-          bottom={"13%"}
+          bottom={"5%"}
           onClick={() => {
             changePage();
           }}

@@ -1,3 +1,4 @@
+// 다용도 버튼
 import React from "react";
 import styled from "styled-components";
 
@@ -13,7 +14,6 @@ const Container = styled.button`
   background: ${(props) => props.backgroundColor};
   border: ${(props) =>
     props["borderColor"].length > 0 ? props.borderColor : "none"};
-
   word-break: break-all;
   box-shadow: 2px 2px 2px #c3c3c366;
   user-select: none;

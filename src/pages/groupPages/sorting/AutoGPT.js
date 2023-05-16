@@ -1,5 +1,4 @@
 import React from "react";
-import CategoryHeader from "./CategoryHeader";
 import InputBox from "../../../components/common/InputBox";
 import styled from "styled-components";
 import instance from "../../../components/Request";
@@ -29,7 +28,9 @@ const AutoGPT = () => {
   let nowTrip = localStorage.getItem("nowGroupTrip");
 
   //사용자 질문
-  const [sentence, setSentence] = useState();
+  const [sentence, setSentence] = useState("");
+  //분류 결과가 나오지 않았을 때 창에 띄울 문장
+  const [notResult, setNotResult] = useState("");
   //사용자 입력
   const handleST = (e) => {
     setSentence(e.target.value);
@@ -40,13 +41,15 @@ const AutoGPT = () => {
       resultGPT();
     }
   };
+  //GPT 결과 사진
+  const [result, setResult] = useState([]);
 
   //gpt 결과 가져오는 함수
   const resultGPT = async () => {
     await axios;
     instance
       .post(
-        `/photo-search/${nowTrip}/`,
+        `photos/search/${nowTrip}/`,
         {
           user_input: sentence,
         },
@@ -58,8 +61,11 @@ const AutoGPT = () => {
         }
       )
       .then((response) => {
-        console.log(response.data.data);
-        console.log(sentence);
+        console.log("gpt success");
+        console.log(response);
+        if (typeof response.data[0] === "string") {
+          setNotResult(response.data[0]);
+        } else setResult(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -69,32 +75,59 @@ const AutoGPT = () => {
   // useEffect(() => {
   //   resultGPT();
   // }, [sentence]);
-
-  return (
-    <>
-      <Layout2>
-        <BackButton />
-      </Layout2>
-      {/* <CategoryHeader /> */}
-      <br />
-      <br />
-      <br />
-      <Layout>
-        <InputBox
-          height={"50px"}
-          width={"80%"}
-          value={sentence}
-          placeholder="찾고 싶은 사진을 입력하세요."
-          onChange={handleST}
-          onKeyDown={handleKeyPress}
-        />
-        {/* <FaSearch size="25px" color="black" /> */}
-
-        <h4 style={{ color: "grey", fontWeight: "normal" }}>
-          도움말 : OO이 찍은 바다 사진 보여줘
+  if (notResult != null) {
+    return (
+      <>
+        <Layout2>
+          <BackButton />
+        </Layout2>
+        <br />
+        <br />
+        <Layout>
+          <InputBox
+            height={"50px"}
+            width={"80%"}
+            value={sentence}
+            placeholder="찾고 싶은 사진을 입력하세요."
+            onChange={handleST}
+            onKeyDown={handleKeyPress}
+          />
+          <h4 style={{ color: "grey", fontWeight: "normal" }}>
+            도움말 : OO이 찍은 바다 사진 보여줘
+          </h4>
+        </Layout>
+        <h4
+          style={{
+            padding: "0 6% 0 6%",
+          }}
+        >
+          {notResult}
         </h4>
-      </Layout>
-    </>
-  );
+      </>
+    );
+  } else
+    return (
+      <>
+        <Layout2>
+          <BackButton />
+        </Layout2>
+        {/* <CategoryHeader /> */}
+        <br />
+        <br />
+        <Layout>
+          <InputBox
+            height={"50px"}
+            width={"80%"}
+            value={sentence}
+            placeholder="찾고 싶은 사진을 입력하세요."
+            onChange={handleST}
+            onKeyDown={handleKeyPress}
+          />
+          <h4 style={{ color: "grey", fontWeight: "normal" }}>
+            도움말 : OO이 찍은 바다 사진 보여줘
+          </h4>
+        </Layout>
+      </>
+    );
 };
 export default AutoGPT;

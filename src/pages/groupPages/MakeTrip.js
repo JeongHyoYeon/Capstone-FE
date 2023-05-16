@@ -9,6 +9,7 @@ import axios from "axios";
 import instance from "../../components/Request";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import BackButton from "../../components/common/BackButton";
 
 const Layout = styled.div`
   display: flex;
@@ -16,7 +17,7 @@ const Layout = styled.div`
   flex-direction: column;
   padding-top: 20px;
   position: relative;
-  left: 5%;
+  left: 8%;
 `;
 
 const Layout1 = styled.div`
@@ -34,6 +35,12 @@ const TDatepicker = styled(DatePicker)`
   border-radius: 4px;
   font-size: 12px;
   border: 1px solid lightGrey;
+`;
+
+const Layout2 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 `;
 
 const InputLabel = styled.label`
@@ -107,7 +114,7 @@ const MakeTrip = () => {
 
     await axios;
     instance
-      .post(`/trip/${nowGroup}/`, formData, {
+      .post(`trips/${nowGroup}/`, formData, {
         headers: {
           Authorization: `Bearer ${JWTtoken}`,
           "Content-Type": "multipart/form-data",
@@ -126,6 +133,9 @@ const MakeTrip = () => {
 
   return (
     <>
+      <Layout2>
+        <BackButton />
+      </Layout2>
       <Layout>
         <h3>여행지</h3>
         <InputBox height={"35px"} width={"85%"} onChange={handlePlace} />

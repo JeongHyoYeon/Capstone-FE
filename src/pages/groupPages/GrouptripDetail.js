@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
 import instance from "../../components/Request";
 import axios from "axios";
 import BlankPage from "../BlankPage";
@@ -34,7 +33,7 @@ const GrouptripDetail = () => {
     await axios;
     instance
       .get(
-        `/trip/detail/${tripId}/`,
+        `trips/detail/${tripId}/`,
 
         {
           headers: {
@@ -66,7 +65,7 @@ const GrouptripDetail = () => {
     await axios;
     instance
       .get(
-        `/photo/${tripId}/`,
+        `photos/${tripId}/`,
 
         {
           headers: {
@@ -86,8 +85,8 @@ const GrouptripDetail = () => {
   };
 
   useEffect(() => {
+    setTimeout(() => isPhoto(), 300);
     tripDetail();
-    isPhoto();
   }, []);
 
   if (photoDay.length === 0) return <BlankPage data="사진이" />;

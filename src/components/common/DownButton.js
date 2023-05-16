@@ -1,3 +1,4 @@
+//사진 다운로드 버튼
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
@@ -7,19 +8,20 @@ import { AiOutlineDownload } from "react-icons/ai";
 
 const DownBtn = styled.button`
   border: none;
+  background-color: #eaecee;
 `;
 
 const DownButton = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
   //사진 id
   let photoId = localStorage.getItem("nowPhotoId");
-  //서버에서 s3 url 가져오기
-  const downLoadUrl = async (e) => {
+
+  const downLoad = async (e) => {
     await axios;
     instance
-      .post(
-        `/download/${photoId}/`,
-        {},
+      .get(
+        `photos/detail/${photoId}/`,
+
         {
           headers: {
             Authorization: `Bearer ${JWTtoken}`,
@@ -28,41 +30,39 @@ const DownButton = () => {
         }
       )
       .then((response) => {
-        const s3Url = response.data.url;
-        const fileName = response.data.file_name;
-        photoUrl(s3Url, fileName);
-      })
-      .catch((error) => {
-        console.log("error:" + error);
-      });
-  };
+        axios
+          .get(response.data.url)
+          .then((response) => response.blob())
+          .then((blob) => {
+            console.log("Blob object:", blob);
+            console.log(Object.getOwnPropertyNames(blob));
+            // Create a new blob object
+            const fileBlob = new Blob([blob], { type: blob.type });
+            console.log("Blob object:", fileBlob);
+            console.log(Object.getOwnPropertyNames(fileBlob));
+            const fileUrl = window.URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = fileUrl;
+            link.style.display = "none";
+            link.download = response.data.file_name;
 
-  //url로 사진 다운로드 요청
-  const photoUrl = async (s3Url, fileName) => {
-    await axios
-      .get(s3Url)
-      .then((response) => {
-        return response.blob();
-      })
-      .then((blob) => {
-        const url = window.URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = fileName;
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-        window.URL.revokeObjectURL(link);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+
+            window.URL.revokeObjectURL(fileUrl);
+          })
+          .catch((error) => console.error("Error:", error));
       })
       .catch((error) => {
-        console.log("photoUrl Error:" + error);
+        console.log("error:", error);
       });
   };
 
   return (
     <DownBtn
       onClick={() => {
-        downLoadUrl();
+        downLoad();
       }}
     >
       <AiOutlineDownload size={"35px"} color="#3178B9" />

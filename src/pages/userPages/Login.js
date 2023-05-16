@@ -49,7 +49,7 @@ function Login() {
     await axios;
     instance
       .post(
-        "/login/",
+        "accounts/login/",
         {
           id: id,
           password: password,
@@ -72,7 +72,7 @@ function Login() {
         // axios.defaults.headers.common[]=`Bearer ${response.data.access_token}`
         dispatch(SET_TOKEN(accessToken));
 
-        redirect("/");
+        redirect("/group");
       })
       .catch((error) => {
         //handle error

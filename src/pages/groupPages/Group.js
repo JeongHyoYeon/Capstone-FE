@@ -7,7 +7,10 @@ import instance from "../../components/Request";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { DELETE_TOKEN } from "../../components/modules/slices/tokenSlice";
+import Space from "../../components/common/Space";
+//import Modal from "react-modal";
 
+/* 페이지 전체 */
 const Layout = styled.div`
   display: flex;
   justify-content: center;
@@ -15,16 +18,24 @@ const Layout = styled.div`
   padding-top: 20px;
 `;
 
+/* 최근 알림, 그룹목록 흰박스 */
 const Layout2 = styled.div`
   display: block;
   padding-left: 5%;
   margin-left: 1%;
-  padding-top: 20px;
+  padding-top: 10px;
+  position: relative;
+`;
+
+/* 친구추가 + 버튼 */
+const Layout3 = styled.div`
+  position: absolute;
+  top: 35%;
+  right: 10%;
 `;
 
 const Group = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
-  console.log(JWTtoken);
 
   var userName = localStorage.getItem("name");
 
@@ -32,6 +43,8 @@ const Group = () => {
 
   const [groupInfo, setGroupInfo] = useState([]);
   const [newInvite, setNewInvite] = useState("");
+  //모달창
+  //const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -47,11 +60,16 @@ const Group = () => {
     navigate("/makegroups");
   };
 
+  //그룹 생성 후 새로운 멤버 추가 페이지
+  const navAddMember = (item) => {
+    navigate(`/group/${item}`);
+  };
+
   const authCheck = async (e) => {
     await axios;
     instance
       .get(
-        `/group/`,
+        `accounts/groups/`,
 
         {
           headers: {
@@ -73,7 +91,7 @@ const Group = () => {
     await axios;
     instance
       .get(
-        `/group/`,
+        `accounts/groups/`,
 
         {
           headers: {
@@ -100,7 +118,7 @@ const Group = () => {
     await axios;
     instance
       .get(
-        `/group/invite/`,
+        `accounts/invite/`,
 
         {
           headers: {
@@ -148,9 +166,19 @@ const Group = () => {
                 height={"70px"}
               />
             </Link>
+            <Layout3>
+              <Button
+                text={"+"}
+                width={"40px"}
+                height={"40px"}
+                fontColor={"white"}
+                onClick={() => {
+                  navAddMember(group_info.id);
+                }}
+              />
+            </Layout3>
           </Layout2>
         ))}
-
         <Layout>
           <Button
             text={"새 그룹 만들기"}
@@ -158,20 +186,27 @@ const Group = () => {
             height={"50px"}
             fontColor={"white"}
             position={"fixed"}
-            bottom={"12%"}
+            bottom={"80px"}
             onClick={navMakeGroup}
           />
-          <h3
+        </Layout>
+        <Layout>
+          <h4
             style={{
               //align-items: "flex-end",
               // bottom: "20px",
+              color: "#626262",
               textDecoration: "underline",
+              position: "fixed",
+              bottom: groupInfo.length <= 6 ? "0px" : "auto",
+              top: groupInfo.length <= 6 ? "auto" : "calc(90% + 0px)",
             }}
             onClick={logOut}
           >
             로그아웃
-          </h3>
+          </h4>
         </Layout>
+        <Space />
       </>
     );
   }
@@ -199,6 +234,17 @@ const Group = () => {
               height={"70px"}
             />
           </Link>
+          <Layout3>
+            <Button
+              text={"+"}
+              width={"40px"}
+              height={"40px"}
+              fontColor={"white"}
+              onClick={() => {
+                navAddMember(group_info.id);
+              }}
+            />
+          </Layout3>
         </Layout2>
       ))}
       <Layout>
@@ -208,22 +254,23 @@ const Group = () => {
           height={"50px"}
           fontColor={"white"}
           position={"fixed"}
-          bottom={"12%"}
+          bottom={"80px"}
           onClick={navMakeGroup}
         />
-      </Layout>
-      <Layout>
-        <h3
+        <h5
           style={{
-            position: "fixed",
-            bottom: "5%",
+            color: "#626262",
             textDecoration: "underline",
+            position: "fixed",
+            bottom: groupInfo.length <= 6 ? "5px" : "auto",
+            top: groupInfo.length <= 6 ? "auto" : "calc(90% + 40px)",
           }}
           onClick={logOut}
         >
           로그아웃
-        </h3>
+        </h5>
       </Layout>
+      <Space />
     </>
   );
 };

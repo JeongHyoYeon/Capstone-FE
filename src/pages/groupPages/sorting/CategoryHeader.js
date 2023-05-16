@@ -10,14 +10,18 @@ const CategoryAll = styled.div`
 const NavWrap = styled.nav`
   display: flex;
   overflow: visible;
+  margin-top: 0;
+  padding-top: 0;
 `;
 const Layout = styled.div`
+  margin-top: 0;
+  padding-top: 0;
   float: left;
   width: 25%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  height: 50px;
+  height: 40px;
 `;
 
 const CategoryHeader = () => {
@@ -41,7 +45,7 @@ const CategoryHeader = () => {
         <Layout className="photo-obej" id="object">
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : {})}
-            to="/photo/auto/obej"
+            to="/photo/auto/obejfolder"
           >
             <h4>객체분류</h4>
           </NavLink>
@@ -49,7 +53,7 @@ const CategoryHeader = () => {
         <Layout className="photo-char" id="character">
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : {})}
-            to="/photo/auto/char"
+            to="/photo/auto/charfolder"
           >
             <h4>인물분류</h4>
           </NavLink>
