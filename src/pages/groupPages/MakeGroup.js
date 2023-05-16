@@ -11,7 +11,7 @@ const Layout = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding-top: 20px;
+  padding-top: 100px;
   position: relative;
   left: 6%;
 `;

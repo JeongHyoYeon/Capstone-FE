@@ -1,3 +1,4 @@
+//사진 삭제 버튼
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";

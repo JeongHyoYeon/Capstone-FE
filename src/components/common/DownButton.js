@@ -1,3 +1,4 @@
+//사진 다운로드 버튼
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
@@ -33,10 +34,12 @@ const DownButton = () => {
           .get(response.data.url)
           .then((response) => response.blob())
           .then((blob) => {
+            console.log("Blob object:", blob);
+            console.log(Object.getOwnPropertyNames(blob));
             // Create a new blob object
             const fileBlob = new Blob([blob], { type: blob.type });
             console.log("Blob object:", fileBlob);
-
+            console.log(Object.getOwnPropertyNames(fileBlob));
             const fileUrl = window.URL.createObjectURL(blob);
             const link = document.createElement("a");
             link.href = fileUrl;

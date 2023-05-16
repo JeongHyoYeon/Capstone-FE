@@ -14,23 +14,6 @@ const Header = () => {
           <h2>AfterTrip</h2>
         </Link>
       </div>
-      {/* <nav className="nav-wrap">
-        <div>
-          <Link to="/groups">
-            <MdPeopleOutline size="25px" color="#a4b1d9" />
-          </Link>
-        </div>
-        <div>
-          <Link to="/">
-            <MdPersonOutline size="25px" color="#a4b0d9" />
-          </Link>
-        </div>
-        <div>
-          <Link to="/settings">
-            <IoSettingsOutline size="25px" color="#a4b0d9" />
-          </Link>
-        </div>
-      </nav> */}
     </div>
   );
 };

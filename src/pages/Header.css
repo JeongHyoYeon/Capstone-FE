@@ -1,24 +1,15 @@
 .header-all {
   /* background-color: #d2e1f3; */
-  height: 100px;
-  align-items: center;
-
-  /*position: fixed;*/
-  width: 100%;
-  box-sizing: border-box;
-  top: 0;
   background-color: #eaecee;
 }
 .brand-Name {
   display: flex;
-  margin-top: 2%;
   justify-content: center;
   font-size: 15px;
   line-height: 1;
   color: #3178b9;
-  font-weight:lighter;
 }
-nav {
+/* nav {
   overflow: hidden;
 }
 nav > div {
@@ -28,4 +19,4 @@ nav > div {
   justify-content: center;
   height: 45px;
   line-height: 45px;
-}
+} */

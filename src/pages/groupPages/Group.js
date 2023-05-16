@@ -28,7 +28,7 @@ const Layout2 = styled.div`
 
 /* 그룹 목록 흰박스 */
 const Layout4 = styled.div`
-  margin-top: 15%;
+  // margin-top: 15%;
   display: block;
   padding-left: 5%;
   margin-left: 1%;
@@ -154,7 +154,7 @@ const Group = () => {
   if (newInvite == null) {
     return (
       <>
-        <Layout4>
+        {/* <Layout4>
           <Link to={"/invite"}>
             <TextBox
               text1={"최근알림"}
@@ -162,7 +162,7 @@ const Group = () => {
               height={"70px"}
             />
           </Link>
-        </Layout4>
+        </Layout4> */}
         <Layout2>
           <h2>{userName}님의 그룹</h2>
         </Layout2>
@@ -195,24 +195,25 @@ const Group = () => {
             height={"50px"}
             fontColor={"white"}
             position={"fixed"}
-            bottom={"5%"}
+            bottom={"80px"}
             onClick={navMakeGroup}
           />
         </Layout>
         <Layout>
-          <h3
+          <h4
             style={{
               //align-items: "flex-end",
               // bottom: "20px",
+              color: "#626262",
               textDecoration: "underline",
               position: "fixed",
-              bottom: groupInfo.length <= 6 ? "10px" : "auto",
-              top: groupInfo.length <= 6 ? "auto" : "calc(93% + 0px)",
+              bottom: groupInfo.length <= 6 ? "0px" : "auto",
+              top: groupInfo.length <= 6 ? "auto" : "calc(90% + 0px)",
             }}
             onClick={logOut}
           >
             로그아웃
-          </h3>
+          </h4>
         </Layout>
       </>
     );
@@ -260,16 +261,16 @@ const Group = () => {
           height={"50px"}
           fontColor={"white"}
           position={"fixed"}
-          bottom={"12%"}
+          bottom={"80px"}
           onClick={navMakeGroup}
         />
-     
         <h5
           style={{
+            color: "#626262",
             textDecoration: "underline",
             position: "fixed",
-            bottom: groupInfo.length <= 6 ? "10px" : "auto",
-            top: groupInfo.length <= 6 ? "auto" : "calc(100% + 30px)",
+            bottom: groupInfo.length <= 6 ? "5px" : "auto",
+            top: groupInfo.length <= 6 ? "auto" : "calc(90% + 40px)",
           }}
           onClick={logOut}
         >

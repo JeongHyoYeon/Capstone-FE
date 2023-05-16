@@ -10,6 +10,7 @@ import styled from "styled-components";
 import instance from "../../../components/Request";
 import UploadButton from "../../../components/common/UploadButton";
 import BackButton from "../../../components/common/BackButton";
+import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 
 const Layout = styled.div`
   display: flex;
@@ -56,6 +57,21 @@ const Layout6 = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 3px;
+`;
+const Layout7 = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+//이름 수정 버튼
+const ModifyBtn = styled.button`
+  border: none;
+  background-color: #eaecee;
+  display: flex;
+  padding: 0 7% 0 0;
+  margin: 30px 0 0 0;
+  //align-items: center;
 `;
 
 const PhotoChar = () => {
@@ -133,6 +149,33 @@ const PhotoChar = () => {
       });
   };
 
+  //새로운 이름
+  const [newName, setNewName] = useState();
+
+  //현재 분류 페이지 폴더명 바꾸기
+  const rename = async (e) => {
+    await axios;
+    instance
+      .patch(
+        `photos/face/${tripId}/${facetag}/`,
+        { custom_name: newName },
+        {
+          headers: {
+            Authorization: `Bearer ${JWTtoken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        window.alert("폴더명이 변경되었습니다.");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     charPhoto();
   }, []);
@@ -143,16 +186,21 @@ const PhotoChar = () => {
         <BackButton />
       </Layout6>
       <CategoryHeader />
-      <h2
-        style={{
-          paddingLeft: "8%",
-          paddingTop: "20px",
-          paddingBottom: "0",
-          marginBottom: "0",
-        }}
-      >
-        {photoTag}
-      </h2>
+      <Layout7>
+        <h2
+          style={{
+            paddingLeft: "8%",
+            paddingTop: "20px",
+            paddingBottom: "0",
+            marginBottom: "0",
+          }}
+        >
+          {photoTag}
+        </h2>
+        <ModifyBtn>
+          <MdOutlineDriveFileRenameOutline size={"30px"} color="#3178B9" />
+        </ModifyBtn>
+      </Layout7>
       <Layout3>
         {photoChar.map((item) => (
           <Layout4 key={item.id}>

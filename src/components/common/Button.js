@@ -1,3 +1,4 @@
+// 다용도 버튼
 import React from "react";
 import styled from "styled-components";
 

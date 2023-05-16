@@ -19,7 +19,7 @@ const Layout = styled.div`
   float: left;
   width: 25%;
   display: flex;
-  //justify-content: center;
+  justify-content: center;
   align-items: flex-start;
   height: 40px;
 `;
