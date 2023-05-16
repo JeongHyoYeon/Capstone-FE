@@ -199,7 +199,7 @@ const Group = () => {
               textDecoration: "underline",
               position: "fixed",
               bottom: groupInfo.length <= 6 ? "0px" : "auto",
-              top: groupInfo.length <= 6 ? "auto" : "calc(90% + 0px)",
+              top: groupInfo.length <= 6 ? "auto" : "calc(90% + 10px)",
             }}
             onClick={logOut}
           >
@@ -263,7 +263,7 @@ const Group = () => {
             textDecoration: "underline",
             position: "fixed",
             bottom: groupInfo.length <= 6 ? "5px" : "auto",
-            top: groupInfo.length <= 6 ? "auto" : "calc(90% + 40px)",
+            top: groupInfo.length <= 6 ? "auto" : "calc(90% + 10px)",
           }}
           onClick={logOut}
         >

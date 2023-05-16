@@ -1,13 +1,13 @@
 .header-all {
   /* background-color: #d2e1f3; */
-  background-color: #eaecee;
+  background-color: white;
 }
 .brand-Name {
   display: flex;
   justify-content: center;
   font-size: 15px;
   line-height: 1;
-  color: #3178b9;
+  color: #0b5cff;
 }
 /* nav {
   overflow: hidden;

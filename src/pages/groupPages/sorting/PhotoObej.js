@@ -170,7 +170,7 @@ const PhotoObej = () => {
             text={isLoading ? "분류하는 중..." : "객체분류하기"}
             width={"150px"}
             fontColor={"white"}
-            backgroundColor={isLoading ? "gray" : "#3178B9"}
+            backgroundColor={isLoading ? "gray" : "#0b5cff"}
             onClick={requestAuto}
             disabled={isLoading}
           />

@@ -218,7 +218,7 @@ const PhotoChar = () => {
             text={isLoading ? "분류하는 중..." : "인물분류하기"}
             width={"150px"}
             fontColor={"white"}
-            backgroundColor={isLoading ? "gray" : "#3178B9"}
+            backgroundColor={isLoading ? "gray" : "#0b5cff"}
             onClick={requestAuto}
             disabled={isLoading}
           />

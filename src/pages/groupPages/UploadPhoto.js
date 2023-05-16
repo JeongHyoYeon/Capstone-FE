@@ -57,7 +57,6 @@ const UploadPhoto = () => {
     let photoLists = [];
     //사진 url 저장할 배열
     const photoUrls = [];
-    console.log(e.target.files);
 
     for (let i = 0; i < e.target.files.length; i++) {
       let newImg = e.target.files[i];
@@ -83,10 +82,6 @@ const UploadPhoto = () => {
 
     for (let i = 0; i < photo.length; i++) {
       imgForm.append("photos", photo[i]);
-    }
-
-    for (let value of imgForm.values()) {
-      console.log(value + "\n");
     }
 
     await axios;

@@ -46,7 +46,7 @@ const Layout2 = styled.div`
 const InputLabel = styled.label`
   padding: 6px 25px;
   width: 160px;
-  background-color: #3178b9;
+  background-color: #0b5cff;
   border-radius: 4px;
   color: white;
   cursor: pointer;
