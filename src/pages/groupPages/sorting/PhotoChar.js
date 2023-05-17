@@ -8,10 +8,9 @@ import Button from "../../../components/common/Button";
 import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
-import UploadButton from "../../../components/common/UploadButton";
-import BackButton from "../../../components/common/BackButton";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import ModalView from "../../../components/common/ModalView";
+import UploadModal from "../../../components/common/UploadModal";
 
 const Layout = styled.div`
   display: flex;
@@ -84,19 +83,15 @@ const PhotoChar = () => {
   const tripId = localStorage.getItem("nowGroupTrip");
 
   //이름 바꾸는 모달창 노출 여부
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalName, setModalName] = useState(false);
 
   const changePage = () => {
     navigate("/upload");
   };
 
-  const changeGpt = () => {
-    navigate("/photo/auto/gpt");
-  };
-
-  //모달창 노출
+  //이름 모달창 노출
   const showModal = () => {
-    setModalOpen(true);
+    setModalName(true);
   };
 
   //얼굴 태그 id
@@ -106,6 +101,14 @@ const PhotoChar = () => {
   const [photoChar, setPhotoChar] = useState([]);
 
   const [photoTag, setPhotoTag] = useState();
+
+  //업로드 모달창 노출
+  const showModalOpen = () => {
+    setModalOpen(true);
+  };
+
+  //업로드 모달창 노출 여부
+  const [modalOpen, setModalOpen] = useState(false);
 
   //자동 분류 요청하기
   const requestAuto = async (e) => {
@@ -181,9 +184,9 @@ const PhotoChar = () => {
             showModal();
           }}
         >
-          <MdOutlineDriveFileRenameOutline size={"30px"} color="#0969da" />
+          <MdOutlineDriveFileRenameOutline size={"30px"} color="#4988ef" />
         </ModifyBtn>
-        {modalOpen && <ModalView setModalOpen={setModalOpen} />}
+        {modalName && <ModalView setModalOpen={setModalName} />}
       </Layout7>
       <Layout3>
         {photoChar.map((item) => (
@@ -202,33 +205,23 @@ const PhotoChar = () => {
             text={isLoading ? "분류하는 중..." : "인물분류하기"}
             width={"150px"}
             fontColor={"white"}
-            backgroundColor={isLoading ? "gray" : "#0b5cff"}
+            backgroundColor={isLoading ? "gray" : "#4988ef"}
             onClick={requestAuto}
             disabled={isLoading}
           />
         </Layout2>
         <Layout2>
-          {/* <UploadButton text={"+"} width={"50px"} /> */}
           <Button
-            text={"+"}
-            width={"50px"}
-            fontColor={"white"}
-            onClick={() => {
-              changePage();
-            }}
-          />
-        </Layout2>
-        <Layout2>
-          <Button
-            text={"GPT에게 물어보기"}
+            text={"사진 올리기"}
             width={"150px"}
             fontColor={"white"}
             onClick={() => {
-              changeGpt();
+              showModalOpen();
             }}
           />
         </Layout2>
       </Layout>
+      {modalOpen && <UploadModal setModalOpen={setModalOpen} />}
     </>
   );
 };

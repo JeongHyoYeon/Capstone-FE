@@ -28,7 +28,7 @@ const CategoryHeader = () => {
   const tripId = localStorage.getItem("nowGroupTrip");
 
   const activeStyle = {
-    color: "#0969da",
+    color: "#4988ef",
   };
 
   return (

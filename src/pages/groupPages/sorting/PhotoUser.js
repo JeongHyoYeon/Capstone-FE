@@ -8,8 +8,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import Image from "../../../components/common/Image";
 import Button from "../../../components/common/Button";
-import BackButton from "../../../components/common/BackButton";
-//import UploadButton from "../../../components/common/UploadButton";
+import UploadModal from "../../../components/common/UploadModal";
 
 const Layout = styled.div`
   display: flex;
@@ -32,6 +31,9 @@ const Layout3 = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  margin-left: 3%;
+  margin-right: 8%;
 `;
 
 const Layout4 = styled.div`
@@ -58,6 +60,14 @@ const PhotoUser = () => {
   const [photoUser, setPhotoUser] = useState([]);
 
   const [photoTag, setPhotoTag] = useState();
+
+  //이름 바꾸는 모달창 노출 여부
+  const [modalOpen, setModalOpen] = useState(false);
+
+  //모달창 노출
+  const showModal = () => {
+    setModalOpen(true);
+  };
 
   //그룹 여행 사진 함수
   const userPhoto = async (e) => {
@@ -120,9 +130,10 @@ const PhotoUser = () => {
           position={"fixed"}
           bottom={"5%"}
           onClick={() => {
-            changePage();
+            showModal();
           }}
         />
+        {modalOpen && <UploadModal setModalOpen={setModalOpen} />}
       </Layout4>
     </>
   );

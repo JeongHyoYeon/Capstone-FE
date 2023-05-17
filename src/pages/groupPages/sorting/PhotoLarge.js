@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import instance from "../../../components/Request";
 import Image from "../../../components/common/Image";
-import BackButton from "../../../components/common/BackButton";
 import styled from "styled-components";
 import DownButton from "../../../components/common/DownButton";
 import DeleteButton from "../../../components/common/DeleteButton";

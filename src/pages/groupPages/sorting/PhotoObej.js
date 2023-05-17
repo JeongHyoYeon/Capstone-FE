@@ -8,8 +8,7 @@ import Button from "../../../components/common/Button";
 import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
-import BackButton from "../../../components/common/BackButton";
-//import UploadButton from "../../../components/common/UploadButton";
+import UploadModal from "../../../components/common/UploadModal";
 
 const Layout = styled.div`
   display: flex;
@@ -61,20 +60,20 @@ const PhotoObej = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const changePage = () => {
-    navigate("/upload");
-  };
-
-  const changeGpt = () => {
-    navigate("/photo/auto/gpt");
-  };
-
   //객체 태그 id
   const { obejtag } = useParams();
 
   const [photoTag, setPhotoTag] = useState();
 
   const [photoObej, setPhotoObej] = useState([]);
+
+  //모달창 노출
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
+  //업로드 모달창 노출 여부
+  const [modalOpen, setModalOpen] = useState(false);
 
   //자동 분류 요청하기
   const requestAuto = async (e) => {
@@ -161,33 +160,23 @@ const PhotoObej = () => {
             text={isLoading ? "분류하는 중..." : "객체분류하기"}
             width={"150px"}
             fontColor={"white"}
-            backgroundColor={isLoading ? "gray" : "#0b5cff"}
+            backgroundColor={isLoading ? "gray" : "#4988ef"}
             onClick={requestAuto}
             disabled={isLoading}
           />
         </Layout2>
         <Layout2>
-          {/* <UploadButton text={"+"} width={"50px"} /> */}
           <Button
-            text={"+"}
-            width={"50px"}
-            fontColor={"white"}
-            onClick={() => {
-              changePage();
-            }}
-          />
-        </Layout2>
-        <Layout2>
-          <Button
-            text={"GPT에게 물어보기"}
+            text={"사진 올리기"}
             width={"150px"}
             fontColor={"white"}
             onClick={() => {
-              changeGpt();
+              showModal();
             }}
           />
         </Layout2>
       </Layout>
+      {modalOpen && <UploadModal setModalOpen={setModalOpen} />}
     </>
   );
 };

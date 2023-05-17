@@ -8,7 +8,6 @@ import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import BackButton from "../../components/common/BackButton";
 import Loading from "../Loading";
 
 const Layout = styled.div`

@@ -9,12 +9,6 @@ const Layout = styled.div`
   margin-left: 10%;
 `;
 
-const Layout2 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-`;
-
 const AfterAdd = () => {
   const { groupid } = useParams();
 

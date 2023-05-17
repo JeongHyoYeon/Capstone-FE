@@ -9,10 +9,9 @@ import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
 import { FiAlertCircle } from "react-icons/fi";
-import UploadButton from "../../../components/common/UploadButton";
-import BackButton from "../../../components/common/BackButton";
-import Space from "../../../components/common/Space";
+//import Space from "../../../components/common/Space";
 import Loading from "../../Loading";
+import UploadModal from "../../../components/common/UploadModal";
 
 const Layout = styled.div`
   display: flex;
@@ -85,13 +84,13 @@ const PhotoCharFolder = () => {
 
   const tripId = localStorage.getItem("nowGroupTrip");
 
-  const changePage = () => {
-    navigate("/upload");
+  //모달창 노출
+  const showModal = () => {
+    setModalOpen(true);
   };
 
-  const changeGpt = () => {
-    navigate("/photo/auto/gpt");
-  };
+  //업로드 모달창 노출 여부
+  const [modalOpen, setModalOpen] = useState(false);
 
   //자동 분류 요청하기
   const requestAuto = async (e) => {
@@ -169,9 +168,9 @@ const PhotoCharFolder = () => {
         <Layout7>
           <Layout6>
             <Layout8>
-              <FiAlertCircle size="100px" color="#3178B9" />
+              <FiAlertCircle size="100px" color="#4988ef" />
             </Layout8>
-            <h4 style={{ color: "#3178B9" }}>
+            <h4 style={{ color: "#4988ef" }}>
               아직 사진의 인물분류가 진행되지 않았습니다.
             </h4>
           </Layout6>
@@ -181,35 +180,24 @@ const PhotoCharFolder = () => {
                 text={isLoading ? "분류하는 중..." : "인물분류하기"}
                 width={"150px"}
                 fontColor={"white"}
-                backgroundColor={isLoading ? "gray" : "#0b5cff"}
+                backgroundColor={isLoading ? "gray" : "#4988ef"}
                 onClick={requestAuto}
                 disabled={isLoading}
               />
             </Layout5>
             <Layout5>
-              {/* <UploadButton text={"+"} width={"50px"} /> */}
               <Button
-                text={"+"}
-                width={"50px"}
-                fontColor={"white"}
-                onClick={() => {
-                  changePage();
-                }}
-              />
-            </Layout5>
-            <Layout5>
-              <Button
-                text={"GPT에게 물어보기"}
+                text={"사진 올리기"}
                 width={"150px"}
                 fontColor={"white"}
                 onClick={() => {
-                  changeGpt();
+                  showModal();
                 }}
               />
             </Layout5>
           </Layout4>
         </Layout7>
-        <Space />
+        {modalOpen && <UploadModal setModalOpen={setModalOpen} />}
       </>
     );
   } else if (photoThumb != null)
@@ -236,34 +224,23 @@ const PhotoCharFolder = () => {
               text={isLoading ? "분류하는 중..." : "인물분류하기"}
               width={"150px"}
               fontColor={"white"}
-              backgroundColor={isLoading ? "gray" : "#0b5cff"}
+              backgroundColor={isLoading ? "gray" : "#4988ef"}
               onClick={requestAuto}
               disabled={isLoading}
             />
           </Layout5>
           <Layout5>
-            {/* <UploadButton text={"+"} width={"50px"} /> */}
             <Button
-              text={"+"}
-              width={"50px"}
-              fontColor={"white"}
-              onClick={() => {
-                changePage();
-              }}
-            />
-          </Layout5>
-          <Layout5>
-            <Button
-              text={"GPT에게 물어보기"}
+              text={"사진 올리기"}
               width={"150px"}
               fontColor={"white"}
               onClick={() => {
-                changeGpt();
+                showModal();
               }}
             />
           </Layout5>
         </Layout4>
-        <Space />
+        {modalOpen && <UploadModal setModalOpen={setModalOpen} />}
       </>
     );
 };

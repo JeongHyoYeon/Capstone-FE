@@ -8,9 +8,8 @@ import { useState, useEffect } from "react";
 import Image from "../../../components/common/Image";
 import Button from "../../../components/common/Button";
 import { useNavigate, Link } from "react-router-dom";
-import BackButton from "../../../components/common/BackButton";
 import Loading from "../../Loading";
-//import UploadButton from "../../../components/common/UploadButton";
+import UploadModal from "../../../components/common/UploadModal";
 
 const Layout = styled.div`
   display: flex;
@@ -61,6 +60,14 @@ const PhotoUserFolder = () => {
   //로딩화면 여부
   const [loading, setLoading] = useState(true);
 
+  //이름 바꾸는 모달창 노출 여부
+  const [modalOpen, setModalOpen] = useState(false);
+
+  //모달창 노출
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
   //게시자별 뷰 썸네일 가져오기
   const userPhotoThumb = async (e) => {
     setLoading(true);
@@ -109,12 +116,6 @@ const PhotoUserFolder = () => {
           ))}
         </Layout2>
         <Layout4>
-          {/* <UploadButton
-          text={"사진 올리기"}
-          width={"200px"}
-          position={"fixed"}
-          bottom={"13%"}
-        /> */}
           <Button
             text={"사진 올리기"}
             width={"200px"}
@@ -122,9 +123,11 @@ const PhotoUserFolder = () => {
             position={"fixed"}
             bottom={"13%"}
             onClick={() => {
-              changePage();
+              showModal();
             }}
           />
+
+          {modalOpen && <UploadModal setModalOpen={setModalOpen} />}
         </Layout4>
       </>
     );

@@ -8,8 +8,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import Image from "../../../components/common/Image";
 import Button from "../../../components/common/Button";
-import BackButton from "../../../components/common/BackButton";
-//import UploadButton from "../../../components/common/UploadButton";
+import UploadModal from "../../../components/common/UploadModal";
 
 //전체 div
 const Layout6 = styled.div`
@@ -60,6 +59,14 @@ const PhotoDay = () => {
 
   //날짜별 여행 담는 배열
   const [photoDay, setPhotoDay] = useState([]);
+
+  //모달창 노출
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
+  //이름 바꾸는 모달창 노출 여부
+  const [modalOpen, setModalOpen] = useState(false);
 
   //그룹 여행 사진 함수
   const dayPhoto = async (e) => {
@@ -124,20 +131,17 @@ const PhotoDay = () => {
         ))}
       </Layout6>
       <Layout4>
-        {/* <UploadButton
-          text={"사진 올리기"}
-          width={"200px"}
-          position={"fixed"}
-          bottom={"13%"}
-        /> */}
         <Button
           text={"사진 올리기"}
           width={"200px"}
           fontColor={"white"}
           position={"fixed"}
           bottom={"13%"}
-          onClick={changePage}
+          onClick={() => {
+            showModal();
+          }}
         />
+        {modalOpen && <UploadModal setModalOpen={setModalOpen} />}
       </Layout4>
     </>
   );

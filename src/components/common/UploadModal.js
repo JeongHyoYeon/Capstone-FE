@@ -65,26 +65,20 @@ const Layout2 = styled.div`
   justify-content: center;
 `;
 
-const Layout3 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-`;
-
 const SelectBox = styled.div`
   background-color: #4988ef;
   text-align: center;
   color: white;
-  border-radius: 10px 10px 10px 10px;
-  width: 150px;
+  border-radius: 50px 50px 50px 50px;
+  width: 200px;
   height: 50px;
   text-align: center;
-  font-size: 20px;
-  padding: 7px 10px 7px 10px;
+  font-size: 15px;
+  padding: 15px 10px 7px 10px;
   margin: 5px 5px 5px 5px;
   position: absolute;
   top: 30%;
-  left: 27%;
+  left: 20%;
 `;
 
 const UploadModal = ({ setModalOpen }) => {
@@ -150,6 +144,7 @@ const UploadModal = ({ setModalOpen }) => {
       .then((response) => {
         console.log("사진 보내기 성공");
         console.log(response);
+        window.alert("사진을 업로드하였습니다.");
       })
       .catch((error) => {
         console.log(error);
@@ -161,6 +156,7 @@ const UploadModal = ({ setModalOpen }) => {
       <CloseBtn
         onClick={() => {
           closeModal();
+          changePage();
         }}
       >
         x
@@ -182,7 +178,6 @@ const UploadModal = ({ setModalOpen }) => {
           />
         </Label>
       </Layout>
-      <h4>{photo.length}개의 사진 선택됨</h4>
       <Layout>
         <Button
           text={"선택완료"}
@@ -192,8 +187,6 @@ const UploadModal = ({ setModalOpen }) => {
           bottom={"5%"}
           onClick={() => {
             sendPhoto();
-            changePage();
-            closeModal();
           }}
           type={"submit"}
         />

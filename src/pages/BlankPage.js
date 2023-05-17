@@ -2,20 +2,14 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../components/common/Button";
 import { useNavigate } from "react-router-dom";
-import BackButton from "../components/common/BackButton";
 import UploadModal from "../components/common/UploadModal";
+import { useEffect } from "react";
 
 const Layout2 = styled.div`
   display: flex;
   justify-content: center;
   //padding-left: 4%;
-  padding-top: 100px;
-`;
-
-const Layout3 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
+  padding-top: 150px;
 `;
 
 const BlankPage = (props) => {
@@ -35,12 +29,6 @@ const BlankPage = (props) => {
 
   return (
     <>
-      <Layout3>
-        <BackButton />
-      </Layout3>
-      <br />
-      <br />
-      <br />
       <Layout2>
         <h2 style={{ fontWeight: "300", color: "white" }}>
           {props.data} 없습니다.
