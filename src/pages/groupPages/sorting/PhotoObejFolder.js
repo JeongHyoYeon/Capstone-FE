@@ -48,7 +48,7 @@ const Layout4 = styled.div`
   //height: 50px;
   position: fixed;
   width: 100%;
-  bottom: 8%;
+  bottom: 4%;
 `;
 
 const Layout5 = styled.div`

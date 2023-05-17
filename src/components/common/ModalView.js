@@ -51,7 +51,7 @@ const Layout = styled.div`
 const Layout2 = styled.div`
   display: flex;
   justify-content: center;
-  padding-bottom: 70px;
+  padding-bottom: 40px;
 `;
 
 const ModalView = ({ setModalOpen }) => {

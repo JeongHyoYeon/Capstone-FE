@@ -190,7 +190,7 @@ const MakeTrip = () => {
       <Layout1>
         <Button
           text={"새 여행 만들기"}
-          width={"200px"}
+          width={"150px"}
           fontColor={"white"}
           position={"fixed"}
           bottom={"10%"}

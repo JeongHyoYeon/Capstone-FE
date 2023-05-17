@@ -20,9 +20,20 @@ const BackButton = () => {
   const photoBack = () => {
     navigate(`/grouptrip/${nowGroupTripId}`);
   };
+
+  const groupBack = () => {
+    navigate(`/group`);
+  };
+
   if (window.location.pathname.includes("/photo")) {
     return (
       <Backbtn onClick={photoBack}>
+        <MdOutlineArrowBackIosNew size={"30px"} color="#0b5cff" />
+      </Backbtn>
+    );
+  } else if (window.location.pathname.includes("/group")) {
+    return (
+      <Backbtn onClick={groupBack}>
         <MdOutlineArrowBackIosNew size={"30px"} color="#0b5cff" />
       </Backbtn>
     );
