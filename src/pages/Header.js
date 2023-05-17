@@ -9,7 +9,20 @@ const Header = () => {
   const location = useLocation();
 
   if (location.pathname === "/") return null;
-  else if (location.pathname === "/group/")
+  else if (location.pathname === "/login" || location.pathname === "/signup")
+    return (
+      <div className="header-all">
+        <div className="back-btn">
+          <BackButton />
+        </div>
+        <div className="brand-Name">
+          <Link to={"/group"}>
+            <h2 style={{ fontWeight: "800" }}>AfterTrip</h2>
+          </Link>
+        </div>
+      </div>
+    );
+  else if (location.pathname === "/group/" || location.pathname === "/group")
     return (
       <div className="header-all">
         <div className="brand-Name">

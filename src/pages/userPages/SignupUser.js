@@ -16,11 +16,6 @@ const Layout = styled.div`
   padding-top: 20px;
   position: relative;
 `;
-const Layout2 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-`;
 
 function SignupUser() {
   const [name, setName] = useState("");
@@ -85,9 +80,6 @@ function SignupUser() {
 
   return (
     <>
-      <Layout2>
-        <BackButton />
-      </Layout2>
       <Layout>
         <h1 style={{ color: "#3178B9" }}>회원가입</h1>
         <br />
