@@ -9,7 +9,7 @@ const Box = styled.div`
   justify-content: flex start;
   flex-direction: column;
   color: black;
-  background: #dedede;
+  background: white;
   outline: #edf1f5 1px solid;
   border-radius: 10px 10px 10px 10px;
   padding-top: 15px;
@@ -21,13 +21,14 @@ const TextL = styled.div`
   font-weight: bold;
   padding-bottom: 7px;
   margin-left: 20px;
-  font-weight: 800;
+  font-weight: 900;
 `;
 
 const TextS = styled.div`
   font-size: 10px;
   margin-left: 20px;
   font-weight: 800;
+  color: #9e9e9e;
 `;
 
 const TextBox = (props) => {

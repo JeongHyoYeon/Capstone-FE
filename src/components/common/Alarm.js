@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const AlarmBtn = styled.div`
   border: none;
-  background-color: white;
+  background-color: #eaedf2;
   display: flex;
   justify-content: flex-end;
   padding-right: 8%;
@@ -19,11 +19,11 @@ const AlarmBtn = styled.div`
 const AlarmNum = styled.div`
   margin: 0;
   padding: 0;
-  font-size: 15px;
+  font-size: 13px;
   color: white;
   background-color: red;
-  height: 20px;
-  width: 20px;
+  height: 18px;
+  width: 18px;
   padding-top: 10%;
   text-align: center;
   border-radius: 50px 50px 50px 50px;
@@ -76,7 +76,7 @@ const Alarm = () => {
           toInviteList();
         }}
       >
-        <BiBell size={"35px"} color="#0B5CFF" />
+        <BiBell size={"30px"} color="#0969da" />
         <AlarmNum>{numInvite}</AlarmNum>
       </AlarmBtn>
     </>

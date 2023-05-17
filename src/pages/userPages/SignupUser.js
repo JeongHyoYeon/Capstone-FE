@@ -64,9 +64,22 @@ function SignupUser() {
       })
       .catch((error) => {
         //handle error
-        console.log("error:", error.response);
-        window.alert(error.response.data);
-        console.log({ name, id, email, password });
+        console.log(error);
+        console.log(error.response.data);
+        if (error.response.data.email != null) {
+          if (error.response.data.email == "user의 email은/는 이미 존재합니다.")
+            window.alert("이미 가입된 이메일입니다.");
+          else window.alert("유효한 이메일을 입력해주세요.");
+        } else if (error.response.data.id != null) {
+          window.alert("이미 가입된 아이디입니다.");
+        } else if (
+          error.response.data ==
+          "8자 이상의 영문 대/소문자, 숫자, 특수문자 조합을 입력해주세요."
+        ) {
+          window.alert(
+            "8자 이상의 영문 대/소문자, 숫자, 특수문자 조합을 입력해주세요."
+          );
+        }
       });
   };
 

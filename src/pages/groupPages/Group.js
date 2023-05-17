@@ -10,6 +10,7 @@ import { DELETE_TOKEN } from "../../components/modules/slices/tokenSlice";
 import Space from "../../components/common/Space";
 import Alarm from "../../components/common/Alarm";
 import Loading from "../Loading";
+import { CiCirclePlus } from "react-icons/ci";
 
 /* 페이지 전체 */
 const Layout = styled.div`
@@ -139,14 +140,12 @@ const Group = () => {
               />
             </Link>
             <Layout3>
-              <Button
-                text={"+"}
-                width={"40px"}
-                height={"40px"}
-                fontColor={"white"}
+              <CiCirclePlus
                 onClick={() => {
                   navAddMember(group_info.id);
                 }}
+                size={"35px"}
+                color="#0969DA"
               />
             </Layout3>
           </Layout2>

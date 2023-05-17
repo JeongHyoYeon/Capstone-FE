@@ -6,7 +6,7 @@ import { MdOutlineArrowBackIosNew } from "react-icons/md";
 
 const Backbtn = styled.button`
   border: none;
-  background-color: white;
+  background-color: #eaedf2;
 `;
 
 const BackButton = () => {

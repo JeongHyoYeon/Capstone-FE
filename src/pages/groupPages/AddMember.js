@@ -38,6 +38,7 @@ const Layout4 = styled.div`
   margin: 5px 150px 50px 5px;
   height: auto;
   flex-wrap: wrap;
+  color: #f5f5f6;
 `;
 
 /* 이름박스 옆에 엑스표
@@ -46,12 +47,13 @@ const Layout4 = styled.div`
   거기에 usrid 값을 저장해둬야할듯.
 
   아니면 엑스 눌렀을때 그것의 부모가 가지고 있는 text의 값을 읽어오거나...
-*/
+
 const Layout5 = styled.div`
   position: relative;
   right: -50px;
   bottom: 30px;
 `;
+*/
 
 var isAlreadyExist = true;
 

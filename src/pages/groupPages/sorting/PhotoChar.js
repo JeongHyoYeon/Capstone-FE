@@ -186,7 +186,7 @@ const PhotoChar = () => {
             showModal();
           }}
         >
-          <MdOutlineDriveFileRenameOutline size={"30px"} color="#3178B9" />
+          <MdOutlineDriveFileRenameOutline size={"30px"} color="#0969da" />
         </ModifyBtn>
         {modalOpen && <ModalView setModalOpen={setModalOpen} />}
       </Layout7>

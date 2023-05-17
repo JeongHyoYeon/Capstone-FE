@@ -9,7 +9,7 @@ import instance from "../../components/Request";
 
 const Deletebtn = styled.button`
   border: none;
-  background-color: white;
+  background-color: #eaedf2;
 `;
 
 const DeleteButton = () => {
@@ -54,7 +54,7 @@ const DeleteButton = () => {
         back();
       }}
     >
-      <AiOutlineDelete size={"30px"} color="#3178B9" />
+      <AiOutlineDelete size={"30px"} color="#0969da" />
     </Deletebtn>
   );
 };

@@ -8,7 +8,7 @@ import { AiOutlineDownload } from "react-icons/ai";
 
 const DownBtn = styled.button`
   border: none;
-  background-color: white;
+  background-color: #eaedf2;
 `;
 
 const DownButton = () => {
@@ -16,7 +16,8 @@ const DownButton = () => {
   //사진 id
   let photoId = localStorage.getItem("nowPhotoId");
 
-  const downLoad = async (e) => {
+  //개별 사진 다운로드
+  const IndividualDownLoad = async (e) => {
     await axios;
     instance
       .get(
@@ -58,14 +59,15 @@ const DownButton = () => {
         console.log("error:", error);
       });
   };
+  //폴더별 다운로드
 
   return (
     <DownBtn
       onClick={() => {
-        downLoad();
+        IndividualDownLoad();
       }}
     >
-      <AiOutlineDownload size={"35px"} color="#3178B9" />
+      <AiOutlineDownload size={"35px"} color="#0969da" />
     </DownBtn>
   );
 };
