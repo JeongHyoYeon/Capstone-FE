@@ -8,8 +8,7 @@ import { useEffect } from "react";
 const Layout2 = styled.div`
   display: flex;
   justify-content: center;
-  //padding-left: 4%;
-  padding-top: 150px;
+  margin-top: 250px;
 `;
 
 const BlankPage = (props) => {
@@ -31,7 +30,7 @@ const BlankPage = (props) => {
     <>
       <Layout2>
         <h2 style={{ fontWeight: "300", color: "white" }}>
-          {props.data} 없습니다.
+          {props.data} 없습니다
         </h2>
       </Layout2>
       <Layout2>

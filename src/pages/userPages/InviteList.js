@@ -10,10 +10,9 @@ import { useEffect } from "react";
 import Loading from "../Loading";
 
 const Box = styled.div`
-  height: 100px;
+  height: 110px;
   width: 92%;
   display: flex;
-  flex-direction: row;
   justify-content: flex start;
   flex-direction: column;
   color: black;
@@ -25,17 +24,30 @@ const Box = styled.div`
 `;
 
 const Text = styled.div`
-  font-size: 13px;
-  font-weight: bold;
-  padding-bottom: 12px;
-  margin-left: 20px;
+  font-size: 15px;
+  font-weight: 600;
   color: black;
+  margin-left: 5px;
 `;
 
-const TextDate = styled.div`
-  font-size: 10px;
+const GroupNameText = styled.div`
+  font-size: 15px;
+  font-weight: 600;
+  color: #4988ef;
+`;
+
+const TextDiv = styled.div`
+  display: flex;
+  justify-content: flex start;
+  flex-direction: row;
+  margin: 10px 20px 10px 20px;
+`;
+
+const Date = styled.div`
+  font-size: 12px;
   margin-left: 20px;
-  padding-bottom: 5px;
+  color: #9e9e9e;
+  font-weight: 500;
 `;
 
 const Layout = styled.div`
@@ -50,12 +62,13 @@ const Layout2 = styled.div`
   flex-direction: row;
   justify-content: space-around;
 `;
+
 const Layout3 = styled.div`
   display: flex;
   justify-content: center;
-
   padding-top: 100px;
 `;
+
 
 const InviteList = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
@@ -154,7 +167,7 @@ const InviteList = () => {
         <br />
         <br />
         <Layout3>
-          <h2 style={{ fontWeight: "300", color: "white" }}>
+          <h2 style={{ fontWeight: "500", color: "white" }}>
             들어온 초대가 없습니다.
           </h2>
         </Layout3>
@@ -169,15 +182,21 @@ const InviteList = () => {
           .map((inviteList) => (
             <Layout key={inviteList.user_group.id}>
               <Box>
-                <TextDate>
+                <Date>
                   {inviteList.user_group.created_at.split("T", 1)}
-                </TextDate>
-                <Text>{inviteList.group_name + "에 초대되셨습니다."}</Text>
+                </Date>
+
+                <TextDiv>
+                  <GroupNameText>{inviteList.group_name}</GroupNameText>
+                  <Text>{"에 초대되셨습니다."}</Text>
+                </TextDiv>
+
                 <Layout2>
                   <Button
                     text={"함께하기"}
                     height={"30px"}
-                    fontsize={"13px"}
+                    width={"40%"}
+                    fontsize={"12px"}
                     onClick={() => {
                       inviteAccept(inviteList.user_group.id);
                       window.location.reload();
@@ -186,7 +205,8 @@ const InviteList = () => {
                   <Button
                     text={"거절하기"}
                     height={"30px"}
-                    fontsize={"13px"}
+                    width={"40%"}
+                    fontsize={"12px"}
                     onClick={() => {
                       inviteDelete(inviteList.user_group.id);
                       window.location.reload();
