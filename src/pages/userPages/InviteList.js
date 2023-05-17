@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { ImFileEmpty } from "react-icons/im";
 import BackButton from "../../components/common/BackButton";
+import Loading from "../Loading";
 
 const Box = styled.div`
   height: 100px;
@@ -69,10 +70,12 @@ const InviteList = () => {
   const [inviteList, setInviteList] = useState([]);
   let nowInviteList = [];
 
-  //버튼 클릭시
+  //로딩화면 여부
+  const [loading, setLoading] = useState(true);
 
   //초대 목록 가져오기
   const invite = async (e) => {
+    setLoading(true);
     await axios;
     instance
       .get(
@@ -95,6 +98,7 @@ const InviteList = () => {
           console.log(nowInviteList[i]);
         }
         setInviteList([...inviteList, ...nowInviteList]);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -149,7 +153,8 @@ const InviteList = () => {
     invite();
   }, []);
 
-  if (inviteList.length === 0)
+  if (loading) return <Loading />;
+  else if (inviteList.length === 0)
     return (
       <>
         <Layout4>

@@ -12,7 +12,7 @@ const AlarmBtn = styled.div`
   background-color: white;
   display: flex;
   justify-content: flex-end;
-  padding-right: 5%;
+  padding-right: 8%;
   position: relative;
 `;
 
@@ -27,7 +27,7 @@ const AlarmNum = styled.div`
   text-align: center;
   border-radius: 50px 50px 50px 50px;
   position: absolute;
-  right: 10px;
+  right: 5%;
   top: 0px;
 `;
 

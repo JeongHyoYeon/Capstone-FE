@@ -16,7 +16,7 @@ const Layout = styled.div`
   display: flex;
   justify-content: center;
   align-content: space-evenly;
-  padding-top: 20px;
+  padding-top: 0px;
 `;
 
 /* 최근 알림, 그룹목록 흰박스 */
