@@ -10,14 +10,27 @@ const Backbtn = styled.button`
 `;
 
 const BackButton = () => {
+  let nowGroupTripId = localStorage.getItem("nowGroupTrip");
+
   const navigate = useNavigate();
   const back = () => {
     navigate(-1);
   };
-  return (
-    <Backbtn onClick={back}>
-      <MdOutlineArrowBackIosNew size={"30px"} color="#0b5cff" />
-    </Backbtn>
-  );
+
+  const photoBack = () => {
+    navigate(`/grouptrip/${nowGroupTripId}`);
+  };
+  if (window.location.pathname.includes("/photo")) {
+    return (
+      <Backbtn onClick={photoBack}>
+        <MdOutlineArrowBackIosNew size={"30px"} color="#0b5cff" />
+      </Backbtn>
+    );
+  } else
+    return (
+      <Backbtn onClick={back}>
+        <MdOutlineArrowBackIosNew size={"30px"} color="#0b5cff" />
+      </Backbtn>
+    );
 };
 export default BackButton;

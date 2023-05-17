@@ -157,7 +157,7 @@ const PhotoObej = () => {
         {photoObej.map((item) => (
           <Layout4 key={item.id}>
             <Layout5>
-              <Link to={`/photo/large/${item.id}`}>
+              <Link to={`/large/${item.id}`}>
                 <Image src={item.url} />
               </Link>
             </Layout5>

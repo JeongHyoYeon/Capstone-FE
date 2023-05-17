@@ -186,7 +186,7 @@ const Group = () => {
             height={"50px"}
             fontColor={"white"}
             position={"fixed"}
-            bottom={"80px"}
+            bottom={"8%"}
             onClick={navMakeGroup}
           />
         </Layout>
@@ -254,7 +254,7 @@ const Group = () => {
           height={"50px"}
           fontColor={"white"}
           position={"fixed"}
-          bottom={"80px"}
+          bottom={"8%"}
           onClick={navMakeGroup}
         />
         <h5

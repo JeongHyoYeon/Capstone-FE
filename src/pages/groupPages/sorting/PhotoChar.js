@@ -11,6 +11,7 @@ import instance from "../../../components/Request";
 import UploadButton from "../../../components/common/UploadButton";
 import BackButton from "../../../components/common/BackButton";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
+import ModalView from "../../../components/common/ModalView";
 
 const Layout = styled.div`
   display: flex;
@@ -79,9 +80,13 @@ const PhotoChar = () => {
 
   const navigate = useNavigate();
 
+  //분류요청 여부
   const [isLoading, setIsLoading] = useState(false);
 
   const tripId = localStorage.getItem("nowGroupTrip");
+
+  //이름 바꾸는 모달창 노출 여부
+  const [modalOpen, setModalOpen] = useState(false);
 
   const changePage = () => {
     navigate("/upload");
@@ -91,8 +96,14 @@ const PhotoChar = () => {
     navigate("/photo/auto/gpt");
   };
 
+  //모달창 노출
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
   //얼굴 태그 id
   const { facetag } = useParams();
+  localStorage.setItem("facetag", facetag);
 
   const [photoChar, setPhotoChar] = useState([]);
 
@@ -149,33 +160,6 @@ const PhotoChar = () => {
       });
   };
 
-  //새로운 이름
-  const [newName, setNewName] = useState();
-
-  //현재 분류 페이지 폴더명 바꾸기
-  const rename = async (e) => {
-    await axios;
-    instance
-      .patch(
-        `photos/face/${tripId}/${facetag}/`,
-        { custom_name: newName },
-        {
-          headers: {
-            Authorization: `Bearer ${JWTtoken}`,
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((response) => {
-        console.log(response);
-        window.alert("폴더명이 변경되었습니다.");
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   useEffect(() => {
     charPhoto();
   }, []);
@@ -197,15 +181,20 @@ const PhotoChar = () => {
         >
           {photoTag}
         </h2>
-        <ModifyBtn>
+        <ModifyBtn
+          onClick={() => {
+            showModal();
+          }}
+        >
           <MdOutlineDriveFileRenameOutline size={"30px"} color="#3178B9" />
         </ModifyBtn>
+        {modalOpen && <ModalView setModalOpen={setModalOpen} />}
       </Layout7>
       <Layout3>
         {photoChar.map((item) => (
           <Layout4 key={item.id}>
             <Layout5>
-              <Link to={`/photo/large/${item.id}`}>
+              <Link to={`/large/${item.id}`}>
                 <Image src={item.url} />
               </Link>
             </Layout5>
