@@ -21,13 +21,13 @@ const TextL = styled.div`
   font-weight: bold;
   padding-bottom: 7px;
   margin-left: 20px;
-  font-weight: 600;
+  font-weight: 500;
 `;
 
 const TextS = styled.div`
   font-size: 12px;
   margin-left: 20px;
-  font-weight: 600;
+  font-weight: 500;
   color: #9e9e9e;
 `;
 

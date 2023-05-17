@@ -1,3 +1,4 @@
+import { blueGrey } from "@mui/material/colors";
 import React from "react";
 import styled from "styled-components";
 
@@ -10,7 +11,6 @@ const Box = styled.div`
   align-items: flex start;
   color: black;
   background: white;
-  // outline: white 1px solid;
   border-radius: 10px 10px 10px 10px;
   position: relative;
   overflow: hidden;
@@ -26,25 +26,25 @@ const Imageinput = styled.img`
 `;
 
 const Text1 = styled.div`
+  color: white;
   font-size: 25px;
   font-weight: 500;
-  padding-bottom: 4px;
-  margin-left: 20px;
+  text-align: center;
   position: absolute;
-  top: 30%;
-  left: 33%;
-  color: white;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
 `;
 
 const Text2 = styled.div`
-  font-size: 15px;
-  font-weight: bold;
-  margin-left: 20px;
-  margin-top: 14px;
-  position: absolute;
-  top: 45%;
-  left: 18%;
   color: white;
+  font-size: 15px;
+  font-weight: 400;
+  position: absolute;
+  top: 68%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 // const FilterBox = styled.div`
@@ -59,7 +59,6 @@ const ImageBox = (props) => {
     <>
       <Box height={props.height}>
         <Imageinput src={props.src} height={props.height} />
-
         <Text1>{props.text1}</Text1>
         <Text2>{props.text2}</Text2>
       </Box>

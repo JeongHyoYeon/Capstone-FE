@@ -12,7 +12,7 @@ import { CiCirclePlus } from "react-icons/ci";
 const Layout1 = styled.div`
   display: flex;
   align-content: space-evenly;
-  margin-top : 0%;
+  margin-bottom: 20px;
 `;
 
 /* 친구추가 + 버튼 */
@@ -54,8 +54,8 @@ const Layout5 = styled.div`
 
 /* 초대를 보낸 회원 + 목록 + 초대완료버튼 */
 const Layout6 = styled.div`
-  position: fixed;
-  bottom: 8%;
+  //position: fixed;
+  //bottom: 8%;
   width: 100%;
 `;
 
@@ -167,10 +167,8 @@ const AddMember = () => {
           </Layout2>
         </Layout1>
 
-        <Layout6>
-        <Layout5>
-          초대를 보낸 회원
-        </Layout5>
+
+        
 
         <Layout4>
           {inviteList.map((item) => (
@@ -182,11 +180,13 @@ const AddMember = () => {
           text={"초대 완료"}
           width={"85%"}
           fontColor={"white"}
+          position={"fixed"}
+          bottom={"8%"}
           onClick={() => {
             changePage();
           }}
         />
-        </Layout6>
+
       </div>
   );
 };

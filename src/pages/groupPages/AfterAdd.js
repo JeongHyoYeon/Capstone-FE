@@ -3,7 +3,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import AddMember from "./AddMember";
 import styled from "styled-components";
-import BackButton from "../../components/common/BackButton";
 
 const Layout = styled.div`
   padding-top: 10%;
@@ -22,10 +21,6 @@ const AfterAdd = () => {
   localStorage.setItem("groupId", groupid);
   return (
     <>
-      <Layout2>
-        <BackButton />
-      </Layout2>
-
       <Layout>
         <AddMember />
       </Layout>

@@ -28,17 +28,19 @@ const Layout2 = styled.div`
 const GroupName = styled.div`
   color: white;
   position: relative;
-  left: 8%;
-  font-size: 20px;
-  font-weight: 500;
+  left: 10%;
+  font-size: 25px;
+  font-weight:600;
+  margin-top: 20px;
+  margin-bottom: 10px;
 `;
 
 const GroupMember = styled.div`
-  display: flex;
-  flex-direction: row;
   color: white;
   position: relative;
-  left: 8%;
+  left: 10%;
+  display: flex;
+  flex-direction: row;
 `;
 
 const GroupTripList = () => {
@@ -108,7 +110,7 @@ const GroupTripList = () => {
         <GroupName>{groupName}의 여행</GroupName>
         <GroupMember>
           {groupMember.map((item) => (
-            <div key={item}>{item + "  "}</div>
+            <div key={item}>{item + ",  "}</div>
           ))}
         </GroupMember>
         {groupTripList.map((trip_list) => (
@@ -132,7 +134,7 @@ const GroupTripList = () => {
             width={"85%"}
             fontColor={"white"}
             position={"fixed"}
-            bottom={"8%"}
+            bottom={"10%"}
             onClick={navMakeTrip}
           />
         </Layout>
