@@ -1,3 +1,4 @@
+//사진 삭제 버튼
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
@@ -8,7 +9,7 @@ import instance from "../../components/Request";
 
 const Deletebtn = styled.button`
   border: none;
-  background-color: #eaecee;
+  background-color: white;
 `;
 
 const DeleteButton = () => {

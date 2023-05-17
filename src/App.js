@@ -186,7 +186,7 @@ function App() {
               }
             />
             <Route
-              path="/photo/large/:photoid"
+              path="/large/:photoid"
               element={
                 <PrivateRoute
                   authenticated={JWTtoken}

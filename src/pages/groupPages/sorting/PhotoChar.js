@@ -10,6 +10,8 @@ import styled from "styled-components";
 import instance from "../../../components/Request";
 import UploadButton from "../../../components/common/UploadButton";
 import BackButton from "../../../components/common/BackButton";
+import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
+import ModalView from "../../../components/common/ModalView";
 
 const Layout = styled.div`
   display: flex;
@@ -18,7 +20,7 @@ const Layout = styled.div`
   //height: 50px;
   position: fixed;
   width: 100%;
-  bottom: 5%;
+  bottom: 4%;
 `;
 
 const Layout2 = styled.div`
@@ -57,15 +59,34 @@ const Layout6 = styled.div`
   justify-content: space-between;
   padding: 3px;
 `;
+const Layout7 = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+//이름 수정 버튼
+const ModifyBtn = styled.button`
+  border: none;
+  background-color: #eaecee;
+  display: flex;
+  padding: 0 7% 0 0;
+  margin: 30px 0 0 0;
+  //align-items: center;
+`;
 
 const PhotoChar = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
   const navigate = useNavigate();
 
+  //분류요청 여부
   const [isLoading, setIsLoading] = useState(false);
 
   const tripId = localStorage.getItem("nowGroupTrip");
+
+  //이름 바꾸는 모달창 노출 여부
+  const [modalOpen, setModalOpen] = useState(false);
 
   const changePage = () => {
     navigate("/upload");
@@ -75,8 +96,14 @@ const PhotoChar = () => {
     navigate("/photo/auto/gpt");
   };
 
+  //모달창 노출
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
   //얼굴 태그 id
   const { facetag } = useParams();
+  localStorage.setItem("facetag", facetag);
 
   const [photoChar, setPhotoChar] = useState([]);
 
@@ -143,21 +170,31 @@ const PhotoChar = () => {
         <BackButton />
       </Layout6>
       <CategoryHeader />
-      <h2
-        style={{
-          paddingLeft: "8%",
-          paddingTop: "20px",
-          paddingBottom: "0",
-          marginBottom: "0",
-        }}
-      >
-        {photoTag}
-      </h2>
+      <Layout7>
+        <h2
+          style={{
+            paddingLeft: "8%",
+            paddingTop: "20px",
+            paddingBottom: "0",
+            marginBottom: "0",
+          }}
+        >
+          {photoTag}
+        </h2>
+        <ModifyBtn
+          onClick={() => {
+            showModal();
+          }}
+        >
+          <MdOutlineDriveFileRenameOutline size={"30px"} color="#3178B9" />
+        </ModifyBtn>
+        {modalOpen && <ModalView setModalOpen={setModalOpen} />}
+      </Layout7>
       <Layout3>
         {photoChar.map((item) => (
           <Layout4 key={item.id}>
             <Layout5>
-              <Link to={`/photo/large/${item.id}`}>
+              <Link to={`/large/${item.id}`}>
                 <Image src={item.url} />
               </Link>
             </Layout5>
@@ -170,7 +207,7 @@ const PhotoChar = () => {
             text={isLoading ? "분류하는 중..." : "인물분류하기"}
             width={"150px"}
             fontColor={"white"}
-            backgroundColor={isLoading ? "gray" : "#3178B9"}
+            backgroundColor={isLoading ? "gray" : "#0b5cff"}
             onClick={requestAuto}
             disabled={isLoading}
           />

@@ -10,6 +10,8 @@ import styled from "styled-components";
 import instance from "../../../components/Request";
 import { FiAlertCircle } from "react-icons/fi";
 import BackButton from "../../../components/common/BackButton";
+import Space from "../../../components/common/Space";
+import Loading from "../../Loading";
 //import UploadButton from "../../../components/common/UploadButton";
 
 const Layout = styled.div`
@@ -46,7 +48,7 @@ const Layout4 = styled.div`
   //height: 50px;
   position: fixed;
   width: 100%;
-  bottom: 5%;
+  bottom: 4%;
 `;
 
 const Layout5 = styled.div`
@@ -130,8 +132,12 @@ const PhotoObejFolder = () => {
   //응답 타입
   //const [resType, setResType] = useState();
 
+  //로딩화면 여부
+  const [loading, setLoading] = useState(true);
+
   //객체 분류 여부
   const obejPhotoReady = async (e) => {
+    setLoading(true);
     await axios;
     instance
       .get(
@@ -151,6 +157,7 @@ const PhotoObejFolder = () => {
         //console.log(typeof response.data);
         //setResType(typeof response.data);
         setPhotoThumb(response.data.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -161,7 +168,8 @@ const PhotoObejFolder = () => {
     obejPhotoReady();
   }, []);
 
-  if (photoThumb.length === 0) {
+  if (loading) return <Loading />;
+  else if (photoThumb.length === 0) {
     return (
       <>
         <Layout9>
@@ -183,7 +191,7 @@ const PhotoObejFolder = () => {
                 text={isLoading ? "분류하는 중..." : "객체분류하기"}
                 width={"150px"}
                 fontColor={"white"}
-                backgroundColor={isLoading ? "gray" : "#3178B9"}
+                backgroundColor={isLoading ? "gray" : "#0b5cff"}
                 onClick={requestAuto}
                 disabled={isLoading}
               />
@@ -211,6 +219,7 @@ const PhotoObejFolder = () => {
             </Layout5>
           </Layout4>
         </Layout7>
+        <Space />
       </>
     );
   } else if (photoThumb != null)
@@ -240,7 +249,7 @@ const PhotoObejFolder = () => {
               text={isLoading ? "분류하는 중..." : "객체분류하기"}
               width={"150px"}
               fontColor={"white"}
-              backgroundColor={isLoading ? "gray" : "#3178B9"}
+              backgroundColor={isLoading ? "gray" : "#0b5cff"}
               onClick={requestAuto}
               disabled={isLoading}
             />
@@ -266,6 +275,7 @@ const PhotoObejFolder = () => {
             />
           </Layout5>
         </Layout4>
+        <Space />
       </>
     );
 };

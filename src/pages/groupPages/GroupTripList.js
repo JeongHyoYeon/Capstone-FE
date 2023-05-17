@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import BackButton from "../../components/common/BackButton";
+import Loading from "../Loading";
 
 const Layout = styled.div`
   display: flex;
@@ -49,9 +50,13 @@ const GroupTripList = () => {
     navigate("/maketrips");
   };
 
+  //로딩화면 여부
+  const [loading, setLoading] = useState(true);
+
   // group의 여행 목록
   const groupdetail = async (e) => {
     //e.preventDefault();
+    setLoading(true);
     await axios;
     instance
       .get(
@@ -73,6 +78,7 @@ const GroupTripList = () => {
           nowGroupTripList.push(response.data.data.trip_list[i]);
         }
         setGroupTripList([...groupTripList, ...nowGroupTripList]);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -83,43 +89,47 @@ const GroupTripList = () => {
     setTimeout(() => groupdetail(), 500);
   }, []);
 
-  return (
-    <>
-      <Layout3>
-        <BackButton />
-      </Layout3>
-      <h2
-        style={{
-          position: "relative",
-          left: "8%",
-        }}
-      >
-        {groupName}의 여행
-      </h2>
-      {groupTripList.map((trip_list) => (
-        <Layout2 key={trip_list.id}>
-          <Link to={`/grouptripdetail/${trip_list.id}`}>
-            <ImageBox
-              src={trip_list.thumbnail}
-              height={"150px"}
-              text1={trip_list.place}
-              text2={trip_list.departing_date + " ~ " + trip_list.arriving_date}
-            />
-          </Link>
-        </Layout2>
-      ))}
+  if (loading) return <Loading />;
+  else
+    return (
+      <>
+        <Layout3>
+          <BackButton />
+        </Layout3>
+        <h2
+          style={{
+            position: "relative",
+            left: "8%",
+          }}
+        >
+          {groupName}의 여행
+        </h2>
+        {groupTripList.map((trip_list) => (
+          <Layout2 key={trip_list.id}>
+            <Link to={`/grouptripdetail/${trip_list.id}`}>
+              <ImageBox
+                src={trip_list.thumbnail}
+                height={"150px"}
+                text1={trip_list.place}
+                text2={
+                  trip_list.departing_date + " ~ " + trip_list.arriving_date
+                }
+              />
+            </Link>
+          </Layout2>
+        ))}
 
-      <Layout>
-        <Button
-          text={"새 여행 만들기"}
-          width={"200px"}
-          fontColor={"white"}
-          position={"fixed"}
-          bottom={"13%"}
-          onClick={navMakeTrip}
-        />
-      </Layout>
-    </>
-  );
+        <Layout>
+          <Button
+            text={"새 여행 만들기"}
+            width={"200px"}
+            fontColor={"white"}
+            position={"fixed"}
+            bottom={"13%"}
+            onClick={navMakeTrip}
+          />
+        </Layout>
+      </>
+    );
 };
 export default GroupTripList;

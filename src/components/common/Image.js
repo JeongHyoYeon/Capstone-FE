@@ -9,6 +9,7 @@ const Box = styled.div`
   border-radius: 5px 5px 5px 5px;
   position: relative;
   overflow: hidden;
+  background-size: cover;
   //box-shadow: 3px 3px 3px lightgrey;
 `;
 
@@ -17,6 +18,7 @@ const Imageinput = styled.img`
   width: 100%;
   border-radius: 0px 0px 0px 0px;
   resize: cover;
+  background-size: cover;
 `;
 
 const Image = (props) => {

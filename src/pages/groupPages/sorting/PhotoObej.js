@@ -18,7 +18,7 @@ const Layout = styled.div`
   //height: 50px;
   position: fixed;
   width: 100%;
-  bottom: 5%;
+  bottom: 4%;
 `;
 
 const Layout2 = styled.div`
@@ -157,7 +157,7 @@ const PhotoObej = () => {
         {photoObej.map((item) => (
           <Layout4 key={item.id}>
             <Layout5>
-              <Link to={`/photo/large/${item.id}`}>
+              <Link to={`/large/${item.id}`}>
                 <Image src={item.url} />
               </Link>
             </Layout5>
@@ -170,7 +170,7 @@ const PhotoObej = () => {
             text={isLoading ? "분류하는 중..." : "객체분류하기"}
             width={"150px"}
             fontColor={"white"}
-            backgroundColor={isLoading ? "gray" : "#3178B9"}
+            backgroundColor={isLoading ? "gray" : "#0b5cff"}
             onClick={requestAuto}
             disabled={isLoading}
           />

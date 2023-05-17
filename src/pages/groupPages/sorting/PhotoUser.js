@@ -113,7 +113,7 @@ const PhotoUser = () => {
         {photoUser.map((item) => (
           <Layout key={item.id}>
             <Layout2>
-              <Link to={`/photo/large/${item.id}`}>
+              <Link to={`/large/${item.id}`}>
                 <Image src={item.url} />
               </Link>
             </Layout2>

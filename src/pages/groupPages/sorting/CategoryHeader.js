@@ -19,7 +19,7 @@ const Layout = styled.div`
   float: left;
   width: 25%;
   display: flex;
-  //justify-content: center;
+  justify-content: center;
   align-items: flex-start;
   height: 40px;
 `;
@@ -28,7 +28,7 @@ const CategoryHeader = () => {
   const tripId = localStorage.getItem("nowGroupTrip");
 
   const activeStyle = {
-    color: "#3178B9",
+    color: "#0b5cff",
   };
 
   return (

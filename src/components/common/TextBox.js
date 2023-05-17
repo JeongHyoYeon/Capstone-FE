@@ -9,7 +9,7 @@ const Box = styled.div`
   justify-content: flex start;
   flex-direction: column;
   color: black;
-  background: white;
+  background: #dedede;
   outline: #edf1f5 1px solid;
   border-radius: 10px 10px 10px 10px;
   padding-top: 15px;

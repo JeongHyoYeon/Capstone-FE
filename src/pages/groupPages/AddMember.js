@@ -35,11 +35,10 @@ const Layout4 = styled.div`
   display: felx;
   justify-content: space-evenly;
   position: relative;
-  padding: 5px 5px 10px 5px;
+  margin: 5px 150px 50px 5px;
   height: auto;
-  margin: 4px;
+  flex-wrap: wrap;
 `;
-
 
 /* 이름박스 옆에 엑스표
   근데 이렇게 만들면 안되고
@@ -67,7 +66,6 @@ const AddMember = () => {
     setinputId(e.target.value);
   };
 
-
   const navigate = useNavigate();
 
   const changePage = () => {
@@ -79,7 +77,7 @@ const AddMember = () => {
     // 동일한 이름을 다시 입력했을 경우 저장안되게.
     isAlreadyExist = false;
     for (let i = 0; i < inviteList.length; i++) {
-      if( inviteList[i].id === inputId) {
+      if (inviteList[i].id === inputId) {
         isAlreadyExist = true;
         //!!! 이미 초대를 보냈습니다.
       }
@@ -156,34 +154,32 @@ const AddMember = () => {
   return (
     <>
       <div>
-      <Layout>
-        <InputBox
-          placeholder="추가할 친구의 ID를 입력하세요."
-          height={"50px"}
-          width={"75%"}
-          onChange={handleinviteId}
-        />
-        <Layout2>
-          <Button
-            text={"+"}
-            width={"40px"}
-            height={"40px"}
-            fontColor={"white"}
-            onClick={() => {
-              inviteUser();
-            }}
+        <Layout>
+          <InputBox
+            placeholder="추가할 친구의 ID를 입력하세요."
+            height={"50px"}
+            width={"75%"}
+            onChange={handleinviteId}
           />
-        </Layout2>
-      </Layout>
-      
-      <h3>초대한 회원</h3>
-      <Layout4>
-        {inviteList.map((item) => (
-          <Layout3 key={item.id}>
-            {item.id + " "} 
-          </Layout3>
-        ))}
-      </Layout4>
+          <Layout2>
+            <Button
+              text={"+"}
+              width={"40px"}
+              height={"40px"}
+              fontColor={"white"}
+              onClick={() => {
+                inviteUser();
+              }}
+            />
+          </Layout2>
+        </Layout>
+
+        <h3>초대한 회원</h3>
+        <Layout4>
+          {inviteList.map((item) => (
+            <Layout3 key={item.id}>{item.id + " "}</Layout3>
+          ))}
+        </Layout4>
       </div>
 
       <Button

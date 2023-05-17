@@ -41,7 +41,7 @@ const BlankPage = (props) => {
           src="/BlankIcon.png"
           style={{ width: "140px", height: "140px", opacity: "0.4" }}
         /> */}
-        <ImFileEmpty size="100px" color="#3178B9" />
+        <ImFileEmpty size="100px" color="#0b5cff" />
       </Layout2>
       <Layout2>
         <h2>{props.data} 없습니다.</h2>

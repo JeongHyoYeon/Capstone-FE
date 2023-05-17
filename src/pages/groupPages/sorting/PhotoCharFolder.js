@@ -11,6 +11,8 @@ import instance from "../../../components/Request";
 import { FiAlertCircle } from "react-icons/fi";
 import UploadButton from "../../../components/common/UploadButton";
 import BackButton from "../../../components/common/BackButton";
+import Space from "../../../components/common/Space";
+import Loading from "../../Loading";
 
 const Layout = styled.div`
   display: flex;
@@ -45,7 +47,7 @@ const Layout4 = styled.div`
   //height: 50px;
   position: fixed;
   width: 100%;
-  bottom: 5%;
+  bottom: 4%;
 `;
 
 const Layout5 = styled.div`
@@ -131,8 +133,12 @@ const PhotoCharFolder = () => {
   //응답 타입
   //const [resType, setResType] = useState();
 
+  //로딩화면 여부
+  const [loading, setLoading] = useState(true);
+
   //인물분류 뷰 썸네일 가져오기
   const charPhotoThumb = async (e) => {
+    setLoading(true);
     await axios;
     instance
       .get(
@@ -149,6 +155,7 @@ const PhotoCharFolder = () => {
         console.log("success");
         console.log(response.data);
         setPhotoThumb(response.data.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -159,7 +166,8 @@ const PhotoCharFolder = () => {
     charPhotoThumb();
   }, []);
 
-  if (photoThumb.length === 0) {
+  if (loading) return <Loading />;
+  else if (photoThumb.length === 0) {
     return (
       <>
         <Layout9>
@@ -181,7 +189,7 @@ const PhotoCharFolder = () => {
                 text={isLoading ? "분류하는 중..." : "인물분류하기"}
                 width={"150px"}
                 fontColor={"white"}
-                backgroundColor={isLoading ? "gray" : "#3178B9"}
+                backgroundColor={isLoading ? "gray" : "#0b5cff"}
                 onClick={requestAuto}
                 disabled={isLoading}
               />
@@ -209,6 +217,7 @@ const PhotoCharFolder = () => {
             </Layout5>
           </Layout4>
         </Layout7>
+        <Space />
       </>
     );
   } else if (photoThumb != null)
@@ -238,7 +247,7 @@ const PhotoCharFolder = () => {
               text={isLoading ? "분류하는 중..." : "인물분류하기"}
               width={"150px"}
               fontColor={"white"}
-              backgroundColor={isLoading ? "gray" : "#3178B9"}
+              backgroundColor={isLoading ? "gray" : "#0b5cff"}
               onClick={requestAuto}
               disabled={isLoading}
             />
@@ -265,6 +274,7 @@ const PhotoCharFolder = () => {
             />
           </Layout5>
         </Layout4>
+        <Space />
       </>
     );
 };

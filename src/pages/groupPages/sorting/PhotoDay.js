@@ -105,7 +105,7 @@ const PhotoDay = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => dayPhoto(), 300);
+    setTimeout(() => dayPhoto(), 500);
   }, []);
 
   return (
@@ -121,7 +121,7 @@ const PhotoDay = () => {
             <Layout2>
               {item.photo.map((items) => (
                 <Layout3 key={items.id}>
-                  <Link to={`/photo/large/${items.id}`}>
+                  <Link to={`/large/${items.id}`}>
                     <Image src={items.url} />
                   </Link>
                 </Layout3>

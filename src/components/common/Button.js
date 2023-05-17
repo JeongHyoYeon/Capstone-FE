@@ -1,3 +1,4 @@
+// 다용도 버튼
 import React from "react";
 import styled from "styled-components";
 
@@ -54,7 +55,7 @@ Button.defaultProps = {
   text: "버튼",
   borderColor: "black",
   outline: false,
-  backgroundColor: "#3178B9",
+  backgroundColor: "#0B5CFF",
   fontColor: "white",
   width: "100px",
   height: "50px",
