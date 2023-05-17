@@ -27,3 +27,10 @@
   top: 25%;
   padding-top: 10px;
 }
+.back-btn {
+  display: flex;
+  position: absolute;
+  left: 2%;
+  top: 25%;
+  padding-top: 10px;
+}

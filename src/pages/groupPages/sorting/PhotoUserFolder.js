@@ -43,12 +43,6 @@ const Layout4 = styled.div`
   justify-content: center;
 `;
 
-const Layout5 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 3px;
-`;
-
 const PhotoUserFolder = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
@@ -101,9 +95,6 @@ const PhotoUserFolder = () => {
   else
     return (
       <>
-        <Layout5>
-          <BackButton />
-        </Layout5>
         <CategoryHeader />
         <Layout2>
           {photoThumb.map((item) => (

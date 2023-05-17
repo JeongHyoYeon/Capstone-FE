@@ -46,12 +46,6 @@ const Layout4 = styled.div`
   justify-content: center;
 `;
 
-const Layout5 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  //padding: 3px;
-`;
-
 const PhotoDay = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
@@ -112,9 +106,6 @@ const PhotoDay = () => {
 
   return (
     <>
-      <Layout5>
-        <BackButton />
-      </Layout5>
       <CategoryHeader />
       <Layout6>
         {photoDay.map((item) => (

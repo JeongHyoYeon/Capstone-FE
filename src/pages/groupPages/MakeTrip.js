@@ -38,12 +38,6 @@ const TDatepicker = styled(DatePicker)`
   border: 1px solid lightGrey;
 `;
 
-const Layout2 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-`;
-
 const InputLabel = styled.label`
   padding: 6px 25px;
   width: 85%;
@@ -141,9 +135,6 @@ const MakeTrip = () => {
 
   return (
     <>
-      <Layout2>
-        <BackButton />
-      </Layout2>
       <Layout>
         <h3>여행지</h3>
         <InputBox height={"35px"} width={"85%"} onChange={handlePlace} />

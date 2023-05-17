@@ -38,11 +38,6 @@ const Layout4 = styled.div`
   display: flex;
   justify-content: center;
 `;
-const Layout5 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 3px;
-`;
 
 const PhotoUser = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
@@ -95,9 +90,6 @@ const PhotoUser = () => {
 
   return (
     <>
-      <Layout5>
-        <BackButton />
-      </Layout5>
       <CategoryHeader />
       <h2
         style={{
@@ -121,12 +113,6 @@ const PhotoUser = () => {
         ))}
       </Layout3>
       <Layout4>
-        {/* <UploadButton
-          text={"사진 올리기"}
-          width={"200px"}
-          position={"fixed"}
-          bottom={"13%"}
-        /> */}
         <Button
           text={"사진 올리기"}
           width={"200px"}

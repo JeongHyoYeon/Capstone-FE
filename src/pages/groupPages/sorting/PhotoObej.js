@@ -52,12 +52,6 @@ const Layout5 = styled.div`
   justify-content: space-evenly;
 `;
 
-const Layout6 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 3px;
-`;
-
 const PhotoObej = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
@@ -139,9 +133,6 @@ const PhotoObej = () => {
 
   return (
     <>
-      <Layout6>
-        <BackButton />
-      </Layout6>
       <CategoryHeader />
       <h2
         style={{

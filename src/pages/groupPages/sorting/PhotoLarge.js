@@ -14,15 +14,9 @@ const Layout = styled.div`
   padding-top: 20px;
 `;
 
-const Layout2 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-`;
-
 const Layout3 = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 `;
 
 const PhotoLarge = () => {
@@ -65,13 +59,11 @@ const PhotoLarge = () => {
 
   return (
     <>
-      <Layout2>
-        <BackButton />
-        <Layout3>
-          <DownButton />
-          <DeleteButton />
-        </Layout3>
-      </Layout2>
+      <Layout3>
+        <DownButton />
+        <DeleteButton />
+      </Layout3>
+
       <Layout>
         <Image src={photoLarge} width={"100%"} height={"100%"} />
       </Layout>

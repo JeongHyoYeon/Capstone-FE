@@ -55,11 +55,6 @@ const Layout5 = styled.div`
   justify-content: space-evenly;
 `;
 
-const Layout6 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 3px;
-`;
 const Layout7 = styled.div`
   display: flex;
   flex-direction: row;
@@ -169,9 +164,6 @@ const PhotoChar = () => {
 
   return (
     <>
-      <Layout6>
-        <BackButton />
-      </Layout6>
       <CategoryHeader />
       <Layout7>
         <h2

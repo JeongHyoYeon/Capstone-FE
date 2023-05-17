@@ -76,12 +76,6 @@ const Layout8 = styled.div`
   padding-left: 30%;
 `;
 
-const Layout9 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 3px;
-`;
-
 const PhotoCharFolder = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
@@ -171,9 +165,6 @@ const PhotoCharFolder = () => {
   else if (photoThumb.length === 0) {
     return (
       <>
-        <Layout9>
-          <BackButton />
-        </Layout9>
         <CategoryHeader />
         <Layout7>
           <Layout6>
@@ -224,9 +215,6 @@ const PhotoCharFolder = () => {
   } else if (photoThumb != null)
     return (
       <>
-        <Layout9>
-          <BackButton />
-        </Layout9>
         <CategoryHeader />
         <Layout2>
           {photoThumb.map((item) => (

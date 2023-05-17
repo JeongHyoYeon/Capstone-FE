@@ -25,12 +25,6 @@ const Layout2 = styled.div`
   padding-top: 15px;
 `;
 
-const Layout3 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-`;
-
 const GroupName = styled.div`
   color: white;
   position: relative;
@@ -42,6 +36,9 @@ const GroupName = styled.div`
 const GroupMember = styled.div`
   display: flex;
   flex-direction: row;
+  color: white;
+  position: relative;
+  left: 8%;
 `;
 
 const GroupTripList = () => {
@@ -108,10 +105,6 @@ const GroupTripList = () => {
   else
     return (
       <>
-        <Layout3>
-          <BackButton />
-        </Layout3>
-
         <GroupName>{groupName}의 여행</GroupName>
         <GroupMember>
           {groupMember.map((item) => (
