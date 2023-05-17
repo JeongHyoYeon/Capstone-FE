@@ -1,9 +1,7 @@
 import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
-// import { MdPeopleOutline, MdPersonOutline } from "react-icons/md";
-// import { IoSettingsOutline } from "react-icons/io5";
-// import { Link } from "react-router-dom";
+import Alarm from "../../src/components/common/Alarm";
 
 const Header = () => {
   if (window.location.pathname === "/") return null;
@@ -13,6 +11,9 @@ const Header = () => {
         <Link to={"/group"}>
           <h2>AfterTrip</h2>
         </Link>
+        <div className="alarm">
+          <Alarm />
+        </div>
       </div>
     </div>
   );

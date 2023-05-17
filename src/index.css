@@ -40,6 +40,6 @@ code {
   src: url("./assets/fonts/PretendardVariable.woff2") format("woff2");
 
   /* 사용할 폰트의 기본 스타일 */
-  font-weight: 700;
-  font-style: bold;
+  font-weight: 200;
+  font-style: regular;
 }

@@ -14,7 +14,7 @@ import BackButton from "../../../components/common/BackButton";
 //전체 div
 const Layout6 = styled.div`
   display: grid;
-  grid-template-rows: 200px 200px 200px;
+  grid-template-rows: 1fr 1fr 1fr;
   padding-top: 30px;
   padding: 20px;
 `;

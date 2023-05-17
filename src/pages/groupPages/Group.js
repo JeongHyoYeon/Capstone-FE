@@ -127,7 +127,6 @@ const Group = () => {
     return (
       <>
         <Layout2>
-          <Alarm />
           <h2>{userName}님의 그룹</h2>
         </Layout2>
         {groupInfo.map(({ group_info, user_in_group }) => (

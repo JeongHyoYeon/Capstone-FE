@@ -21,11 +21,13 @@ const TextL = styled.div`
   font-weight: bold;
   padding-bottom: 7px;
   margin-left: 20px;
+  font-weight: 800;
 `;
 
 const TextS = styled.div`
   font-size: 10px;
   margin-left: 20px;
+  font-weight: 800;
 `;
 
 const TextBox = (props) => {

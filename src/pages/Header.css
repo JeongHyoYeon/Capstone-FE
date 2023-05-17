@@ -1,6 +1,7 @@
 .header-all {
   /* background-color: #d2e1f3; */
   background-color: white;
+  position: relative;
 }
 .brand-Name {
   display: flex;
@@ -9,14 +10,9 @@
   line-height: 1;
   color: #0b5cff;
 }
-/* nav {
-  overflow: hidden;
-}
-nav > div {
-  float: left;
-  width: 33.3%;
+.alarm {
   display: flex;
-  justify-content: center;
-  height: 45px;
-  line-height: 45px;
-} */
+  position: absolute;
+  right: 8%;
+  top: 25%;
+}

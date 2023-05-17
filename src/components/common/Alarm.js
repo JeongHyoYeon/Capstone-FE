@@ -19,15 +19,16 @@ const AlarmBtn = styled.div`
 const AlarmNum = styled.div`
   margin: 0;
   padding: 0;
-  font-size: 18px;
+  font-size: 15px;
   color: white;
   background-color: red;
-  height: 23px;
-  width: 23px;
+  height: 20px;
+  width: 20px;
+  padding-top: 10%;
   text-align: center;
   border-radius: 50px 50px 50px 50px;
   position: absolute;
-  right: 5%;
+  right: 0;
   top: 0px;
 `;
 
