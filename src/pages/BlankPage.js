@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../components/common/Button";
 import { useNavigate } from "react-router-dom";
 import BackButton from "../components/common/BackButton";
-//import UploadButton from "../components/common/UploadButton";
+import UploadModal from "../components/common/UploadModal";
 
 const Layout2 = styled.div`
   display: flex;
@@ -21,9 +21,17 @@ const Layout3 = styled.div`
 const BlankPage = (props) => {
   const navigate = useNavigate();
 
-  const changePage = () => {
-    navigate("/upload");
+  // const changePage = () => {
+  //   navigate("/upload");
+  // };
+
+  //모달창 노출
+  const showModal = () => {
+    setModalOpen(true);
   };
+
+  //이름 바꾸는 모달창 노출 여부
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <>
@@ -39,20 +47,17 @@ const BlankPage = (props) => {
         </h2>
       </Layout2>
       <Layout2>
-        {/* <UploadButton
-          text={"사진 올리기"}
-          width={"200px"}
-          //position={"fixed"}
-          //bottom={"13%"}
-        /> */}
         <Button
           text={"사진 올리기"}
           width={"200px"}
           fontColor={"white"}
           //position={"fixed"}
           //bottom={"13%"}
-          onClick={changePage}
+          onClick={() => {
+            showModal();
+          }}
         />
+        {modalOpen && <UploadModal setModalOpen={setModalOpen} />}
       </Layout2>
     </>
   );

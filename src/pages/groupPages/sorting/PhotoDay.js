@@ -15,6 +15,7 @@ import BackButton from "../../../components/common/BackButton";
 const Layout6 = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
+  row-gap: 0;
   padding-top: 30px;
   padding: 20px;
 `;
@@ -26,6 +27,7 @@ const Layout = styled.div`
   // flex-direction: column;
   // padding-left: 6%;
   display: grid;
+  row-gap: 0;
 `;
 
 const Layout2 = styled.div`

@@ -18,6 +18,7 @@ const Layout = styled.div`
   padding-top: 20px;
   position: relative;
   left: 8%;
+  color: white;
 `;
 
 const Layout1 = styled.div`
@@ -46,10 +47,11 @@ const Layout2 = styled.div`
 const InputLabel = styled.label`
   padding: 6px 25px;
   width: 160px;
-  background-color: #0b5cff;
-  border-radius: 4px;
+  background-color: #4988ef;
+  border-radius: 50px;
   color: white;
   cursor: pointer;
+  text-align: center;
 `;
 
 const MakeTrip = () => {
@@ -110,6 +112,11 @@ const MakeTrip = () => {
 
     for (let key of formData.keys()) {
       console.log(key);
+    }
+
+    if (!formData.get("thumbnail")) {
+      window.alert("썸네일을 첨부해주세요.");
+      return;
     }
 
     await axios;
@@ -181,7 +188,8 @@ const MakeTrip = () => {
               style={{
                 margin: "auto",
                 height: "150px",
-                width: "70%",
+                width: "120%",
+                objectFit: "contain",
               }}
             />
           )}
@@ -190,7 +198,7 @@ const MakeTrip = () => {
       <Layout1>
         <Button
           text={"새 여행 만들기"}
-          width={"150px"}
+          width={"85%"}
           fontColor={"white"}
           position={"fixed"}
           bottom={"10%"}

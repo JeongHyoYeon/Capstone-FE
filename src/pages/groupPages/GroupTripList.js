@@ -38,6 +38,11 @@ const GroupName = styled.div`
   font-size: 20px;
 `;
 
+const GroupMember = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 const GroupTripList = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
   console.log(JWTtoken);
@@ -48,6 +53,8 @@ const GroupTripList = () => {
   localStorage.setItem("nowGroup", groupNum);
 
   const [groupName, setGroupName] = useState("");
+  const [groupMember, setGroupMember] = useState([]);
+
   //그룹별 여행 목록
   let nowGroupTripList = [];
   const [groupTripList, setGroupTripList] = useState([]);
@@ -80,7 +87,7 @@ const GroupTripList = () => {
         console.log("success");
         console.log(response.data);
         setGroupName(response.data.data.group_name);
-
+        setGroupMember(response.data.data.group_members);
         for (let i = 0; i < response.data.data.trip_list.length; i++) {
           nowGroupTripList.push(response.data.data.trip_list[i]);
         }
@@ -104,10 +111,12 @@ const GroupTripList = () => {
           <BackButton />
         </Layout3>
 
-        <GroupName>
-          {groupName}의 여행
-        </GroupName>
-
+        <GroupName>{groupName}의 여행</GroupName>
+        <GroupMember>
+          {groupMember.map((item) => (
+            <div key={item}>{item + "  "}</div>
+          ))}
+        </GroupMember>
         {groupTripList.map((trip_list) => (
           <Layout2 key={trip_list.id}>
             <Link to={`/grouptripdetail/${trip_list.id}`}>

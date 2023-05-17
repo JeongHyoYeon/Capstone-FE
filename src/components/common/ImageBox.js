@@ -23,7 +23,6 @@ const Imageinput = styled.img`
   //filter: opacity(60%);
   filter: contrast(40%);
   border-radius: 10px 10px 10px 10px;
-  resize: cover;
 `;
 
 const Text1 = styled.div`
