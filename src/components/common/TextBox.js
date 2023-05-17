@@ -17,17 +17,17 @@ const Box = styled.div`
 `;
 
 const TextL = styled.div`
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
   padding-bottom: 7px;
   margin-left: 20px;
-  font-weight: 900;
+  font-weight: 700;
 `;
 
 const TextS = styled.div`
-  font-size: 10px;
+  font-size: 12px;
   margin-left: 20px;
-  font-weight: 800;
+  font-weight: 700;
   color: #9e9e9e;
 `;
 

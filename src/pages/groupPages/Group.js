@@ -36,6 +36,12 @@ const Layout3 = styled.div`
   right: 10%;
 `;
 
+const Layout4 = styled.div`
+  display: block;
+  padding-left: 5%;
+  margin-left: 1%;
+`;
+
 const Group = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
@@ -127,9 +133,11 @@ const Group = () => {
   else
     return (
       <>
-        <Layout2>
-          <h2>{userName}님의 그룹</h2>
-        </Layout2>
+        <Layout4>
+          <p style={{ fontWeight: "700", fontSize: "23px" }}>
+            {userName}님의 그룹
+          </p>
+        </Layout4>
         {groupInfo.map(({ group_info, user_in_group }) => (
           <Layout2 key={group_info.id}>
             <Link to={`/grouptrip/${group_info.id}`}>

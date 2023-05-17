@@ -6,6 +6,7 @@ import axios from "axios";
 import instance from "../../components/Request";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { CiCirclePlus } from "react-icons/ci";
 
 /* 이름입력 & +버튼이 들어갈 공간 */
 const Layout = styled.div`
@@ -38,7 +39,8 @@ const Layout4 = styled.div`
   margin: 5px 150px 50px 5px;
   height: auto;
   flex-wrap: wrap;
-  color: #f5f5f6;
+  //color: #f5f5f6;
+  color: black;
 `;
 
 /* 이름박스 옆에 엑스표
@@ -66,6 +68,10 @@ const AddMember = () => {
   /* handle invite ID */
   const handleinviteId = (e) => {
     setinputId(e.target.value);
+  };
+
+  const onReset = (e) => {
+    setinputId("");
   };
 
   const navigate = useNavigate();
@@ -144,12 +150,20 @@ const AddMember = () => {
         window.alert("초대가 보내졌습니다.");
         console.log(response);
         addUsers(inputId);
+        onreset();
       })
       .catch((error) => {
         //handle error
         console.log("error:", error);
         if (error == "AxiosError: Request failed with status code 400")
           window.alert("존재하지 않는 회원입니다.");
+        else if (error.response.data[0] == "이미 보낸 초대입니다") {
+          window.alert("이미 보낸 초대입니다");
+        } else if (
+          error.response.data[0] == "본인에게 초대를 보낼 수 없습니다"
+        ) {
+          window.alert("본인에게 초대를 보낼 수 없습니다");
+        }
       });
   };
 
@@ -164,18 +178,15 @@ const AddMember = () => {
             onChange={handleinviteId}
           />
           <Layout2>
-            <Button
-              text={"+"}
-              width={"40px"}
-              height={"40px"}
-              fontColor={"white"}
+            <CiCirclePlus
               onClick={() => {
                 inviteUser();
               }}
+              size={"35px"}
+              color="#0969DA"
             />
           </Layout2>
         </Layout>
-
         <h3>초대한 회원</h3>
         <Layout4>
           {inviteList.map((item) => (
