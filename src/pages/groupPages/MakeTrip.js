@@ -46,10 +46,11 @@ const Layout2 = styled.div`
 
 const InputLabel = styled.label`
   padding: 6px 25px;
-  width: 160px;
-  background-color: #4988ef;
+  width: 85%;
+  height: 35px;
   border-radius: 50px;
-  color: white;
+  color: #4998ef;
+  background-color: white;
   cursor: pointer;
   text-align: center;
 `;
@@ -168,9 +169,9 @@ const MakeTrip = () => {
           startDate={startDate}
           endDate={endDate}
         />
-        <br />
-        <br />
-        <InputLabel htmlFor="input-file">썸네일 업로드</InputLabel>
+        <h3>썸네일 업로드</h3>
+        <InputLabel htmlFor="input-file"> 사진 선택 </InputLabel>
+
         <input
           type="file"
           id="input-file"
