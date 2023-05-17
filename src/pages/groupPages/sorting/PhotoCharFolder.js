@@ -12,6 +12,7 @@ import { FiAlertCircle } from "react-icons/fi";
 import UploadButton from "../../../components/common/UploadButton";
 import BackButton from "../../../components/common/BackButton";
 import Space from "../../../components/common/Space";
+import Loading from "../../Loading";
 
 const Layout = styled.div`
   display: flex;
@@ -132,8 +133,12 @@ const PhotoCharFolder = () => {
   //응답 타입
   //const [resType, setResType] = useState();
 
+  //로딩화면 여부
+  const [loading, setLoading] = useState(true);
+
   //인물분류 뷰 썸네일 가져오기
   const charPhotoThumb = async (e) => {
+    setLoading(true);
     await axios;
     instance
       .get(
@@ -150,6 +155,7 @@ const PhotoCharFolder = () => {
         console.log("success");
         console.log(response.data);
         setPhotoThumb(response.data.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -160,7 +166,8 @@ const PhotoCharFolder = () => {
     charPhotoThumb();
   }, []);
 
-  if (photoThumb.length === 0) {
+  if (loading) return <Loading />;
+  else if (photoThumb.length === 0) {
     return (
       <>
         <Layout9>

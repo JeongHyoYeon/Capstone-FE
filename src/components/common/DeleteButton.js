@@ -9,7 +9,7 @@ import instance from "../../components/Request";
 
 const Deletebtn = styled.button`
   border: none;
-  background-color: #eaecee;
+  background-color: white;
 `;
 
 const DeleteButton = () => {

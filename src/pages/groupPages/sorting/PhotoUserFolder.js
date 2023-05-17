@@ -9,6 +9,7 @@ import Image from "../../../components/common/Image";
 import Button from "../../../components/common/Button";
 import { useNavigate, Link } from "react-router-dom";
 import BackButton from "../../../components/common/BackButton";
+import Loading from "../../Loading";
 //import UploadButton from "../../../components/common/UploadButton";
 
 const Layout = styled.div`
@@ -63,8 +64,12 @@ const PhotoUserFolder = () => {
   //게시자별 썸네일 담는 배열
   const [photoThumb, setPhotoThumb] = useState([]);
 
+  //로딩화면 여부
+  const [loading, setLoading] = useState(true);
+
   //게시자별 뷰 썸네일 가져오기
   const userPhotoThumb = async (e) => {
+    setLoading(true);
     await axios;
     instance
       .get(
@@ -81,6 +86,7 @@ const PhotoUserFolder = () => {
         console.log("success");
         console.log(response.data.data);
         setPhotoThumb(response.data.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -91,43 +97,45 @@ const PhotoUserFolder = () => {
     userPhotoThumb();
   }, []);
 
-  return (
-    <>
-      <Layout5>
-        <BackButton />
-      </Layout5>
-      <CategoryHeader />
-      <Layout2>
-        {photoThumb.map((item) => (
-          <Layout key={item.tag}>
-            <Layout3 key={item.thumbnail.id}>
-              <Link to={`/photo/userfolder/${item.thumbnail.uploaded_by}`}>
-                <Image src={item.thumbnail.url} />
-              </Link>
-              <h3>{item.tag}</h3>
-            </Layout3>
-          </Layout>
-        ))}
-      </Layout2>
-      <Layout4>
-        {/* <UploadButton
+  if (loading) return <Loading />;
+  else
+    return (
+      <>
+        <Layout5>
+          <BackButton />
+        </Layout5>
+        <CategoryHeader />
+        <Layout2>
+          {photoThumb.map((item) => (
+            <Layout key={item.tag}>
+              <Layout3 key={item.thumbnail.id}>
+                <Link to={`/photo/userfolder/${item.thumbnail.uploaded_by}`}>
+                  <Image src={item.thumbnail.url} />
+                </Link>
+                <h3>{item.tag}</h3>
+              </Layout3>
+            </Layout>
+          ))}
+        </Layout2>
+        <Layout4>
+          {/* <UploadButton
           text={"사진 올리기"}
           width={"200px"}
           position={"fixed"}
           bottom={"13%"}
         /> */}
-        <Button
-          text={"사진 올리기"}
-          width={"200px"}
-          fontColor={"white"}
-          position={"fixed"}
-          bottom={"13%"}
-          onClick={() => {
-            changePage();
-          }}
-        />
-      </Layout4>
-    </>
-  );
+          <Button
+            text={"사진 올리기"}
+            width={"200px"}
+            fontColor={"white"}
+            position={"fixed"}
+            bottom={"13%"}
+            onClick={() => {
+              changePage();
+            }}
+          />
+        </Layout4>
+      </>
+    );
 };
 export default PhotoUserFolder;

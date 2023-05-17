@@ -8,7 +8,8 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { DELETE_TOKEN } from "../../components/modules/slices/tokenSlice";
 import Space from "../../components/common/Space";
-//import Modal from "react-modal";
+import Alarm from "../../components/common/Alarm";
+import Loading from "../Loading";
 
 /* 페이지 전체 */
 const Layout = styled.div`
@@ -23,7 +24,7 @@ const Layout2 = styled.div`
   display: block;
   padding-left: 5%;
   margin-left: 1%;
-  padding-top: 10px;
+  padding-top: 15px;
   position: relative;
 `;
 
@@ -42,9 +43,6 @@ const Group = () => {
   let newGroupInfo = [];
 
   const [groupInfo, setGroupInfo] = useState([]);
-  const [newInvite, setNewInvite] = useState("");
-  //모달창
-  //const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -55,6 +53,9 @@ const Group = () => {
     dispatch(DELETE_TOKEN(JWTtoken));
     navigate("/login");
   };
+
+  //로딩화면 여부
+  const [loading, setLoading] = useState(true);
 
   const navMakeGroup = () => {
     navigate("/makegroups");
@@ -88,6 +89,7 @@ const Group = () => {
   };
 
   const groupList = async (e) => {
+    setLoading(true);
     await axios;
     instance
       .get(
@@ -108,28 +110,7 @@ const Group = () => {
           newGroupInfo.push(response.data.data[i]);
         }
         setGroupInfo([...groupInfo, ...newGroupInfo]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  //초대목록
-  const checkInvite = async (e) => {
-    await axios;
-    instance
-      .get(
-        `accounts/invite/`,
-
-        {
-          headers: {
-            Authorization: `Bearer ${JWTtoken}`,
-            //Content-Type: application/json,
-          },
-        }
-      )
-      .then((response) => {
-        let length = response.data.length - 1;
-        setNewInvite(response.data[length]);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -139,22 +120,14 @@ const Group = () => {
   useEffect(() => {
     authCheck();
     groupList();
-    checkInvite();
   }, []);
 
-  if (newInvite == null) {
+  if (loading) return <Loading />;
+  else
     return (
       <>
         <Layout2>
-          <Link to={"/invite"}>
-            <TextBox
-              text1={"최근알림"}
-              text2={"들어온 초대가 없습니다."}
-              height={"70px"}
-            />
-          </Link>
-        </Layout2>
-        <Layout2>
+          <Alarm />
           <h2>{userName}님의 그룹</h2>
         </Layout2>
         {groupInfo.map(({ group_info, user_in_group }) => (
@@ -209,69 +182,6 @@ const Group = () => {
         <Space />
       </>
     );
-  }
-
-  return (
-    <>
-      <Layout2>
-        <Link to={"/invite"}>
-          <TextBox
-            text1={"최근알림"}
-            text2={newInvite.group_name + "에  초대되었습니다."}
-            height={"70px"}
-          />
-        </Link>
-      </Layout2>
-      <Layout2>
-        <h2>{userName}님의 그룹</h2>
-      </Layout2>
-      {groupInfo.map(({ group_info, user_in_group }) => (
-        <Layout2 key={group_info.id}>
-          <Link to={`/grouptrip/${group_info.id}`}>
-            <TextBox
-              text1={group_info.name}
-              text2={user_in_group + " "}
-              height={"70px"}
-            />
-          </Link>
-          <Layout3>
-            <Button
-              text={"+"}
-              width={"40px"}
-              height={"40px"}
-              fontColor={"white"}
-              onClick={() => {
-                navAddMember(group_info.id);
-              }}
-            />
-          </Layout3>
-        </Layout2>
-      ))}
-      <Layout>
-        <Button
-          text={"새 그룹 만들기"}
-          width={"200px"}
-          height={"50px"}
-          fontColor={"white"}
-          position={"fixed"}
-          bottom={"8%"}
-          onClick={navMakeGroup}
-        />
-        <h5
-          style={{
-            color: "#626262",
-            textDecoration: "underline",
-            position: "fixed",
-            bottom: groupInfo.length <= 6 ? "5px" : "auto",
-            top: groupInfo.length <= 6 ? "auto" : "calc(90% + 10px)",
-          }}
-          onClick={logOut}
-        >
-          로그아웃
-        </h5>
-      </Layout>
-      <Space />
-    </>
-  );
 };
+
 export default Group;

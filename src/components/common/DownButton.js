@@ -8,7 +8,7 @@ import { AiOutlineDownload } from "react-icons/ai";
 
 const DownBtn = styled.button`
   border: none;
-  background-color: #eaecee;
+  background-color: white;
 `;
 
 const DownButton = () => {

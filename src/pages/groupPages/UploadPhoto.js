@@ -132,7 +132,7 @@ const UploadPhoto = () => {
           width={"200px"}
           fontColor={"white"}
           position={"fixed"}
-          bottom={"13%"}
+          bottom={"8%"}
           onClick={() => {
             sendPhoto();
             changePage();

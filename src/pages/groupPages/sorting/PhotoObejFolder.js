@@ -11,6 +11,7 @@ import instance from "../../../components/Request";
 import { FiAlertCircle } from "react-icons/fi";
 import BackButton from "../../../components/common/BackButton";
 import Space from "../../../components/common/Space";
+import Loading from "../../Loading";
 //import UploadButton from "../../../components/common/UploadButton";
 
 const Layout = styled.div`
@@ -131,8 +132,12 @@ const PhotoObejFolder = () => {
   //응답 타입
   //const [resType, setResType] = useState();
 
+  //로딩화면 여부
+  const [loading, setLoading] = useState(true);
+
   //객체 분류 여부
   const obejPhotoReady = async (e) => {
+    setLoading(true);
     await axios;
     instance
       .get(
@@ -152,6 +157,7 @@ const PhotoObejFolder = () => {
         //console.log(typeof response.data);
         //setResType(typeof response.data);
         setPhotoThumb(response.data.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -162,7 +168,8 @@ const PhotoObejFolder = () => {
     obejPhotoReady();
   }, []);
 
-  if (photoThumb.length === 0) {
+  if (loading) return <Loading />;
+  else if (photoThumb.length === 0) {
     return (
       <>
         <Layout9>
