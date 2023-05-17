@@ -27,7 +27,6 @@ const Layout3 = styled.div`
   padding: 5px;
 `;
 
-
 const MakeGroup = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 

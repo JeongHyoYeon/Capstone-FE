@@ -10,7 +10,7 @@ const Layout = styled.div`
   margin-left: 10%;
 `;
 
-const Layout3 = styled.div`
+const Layout2 = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 5px;
@@ -22,10 +22,10 @@ const AfterAdd = () => {
   localStorage.setItem("groupId", groupid);
   return (
     <>
-      <Layout3>
+      <Layout2>
         <BackButton />
-      </Layout3>
-      
+      </Layout2>
+
       <Layout>
         <AddMember />
       </Layout>

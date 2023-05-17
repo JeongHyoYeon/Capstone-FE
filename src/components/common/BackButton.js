@@ -6,7 +6,6 @@ import { MdOutlineArrowBackIosNew } from "react-icons/md";
 
 const Backbtn = styled.button`
   border: none;
-  //background-color: #eaedf2;
   background: none;
 `;
 
@@ -29,19 +28,19 @@ const BackButton = () => {
   if (window.location.pathname.includes("/photo" || "/grouptripdetail")) {
     return (
       <Backbtn onClick={photoBack}>
-        <MdOutlineArrowBackIosNew size={"30px"} color="#0b5cff" />
+        <MdOutlineArrowBackIosNew size={"30px"} color="#4988ef" />
       </Backbtn>
     );
   } else if (window.location.pathname.includes("/grouptrip")) {
     return (
       <Backbtn onClick={groupBack}>
-        <MdOutlineArrowBackIosNew size={"30px"} color="#0b5cff" />
+        <MdOutlineArrowBackIosNew size={"30px"} color="#4988ef" />
       </Backbtn>
     );
   } else
     return (
       <Backbtn onClick={back}>
-        <MdOutlineArrowBackIosNew size={"30px"} color="#0b5cff" />
+        <MdOutlineArrowBackIosNew size={"30px"} color="#4988ef" />
       </Backbtn>
     );
 };

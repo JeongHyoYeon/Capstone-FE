@@ -36,6 +36,7 @@ const GroupName = styled.div`
   position: relative;
   left: 8%;
   font-size: 20px;
+  font-weight: 500;
 `;
 
 const GroupMember = styled.div`
