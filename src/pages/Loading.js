@@ -18,7 +18,7 @@ const Container = styled.div`
 const Loading = () => {
   return (
     <Container>
-      <PulseLoader color="#0B5CFF" cssOverride={override} size={15} />
+      <PulseLoader color="#4468A9" cssOverride={override} size={15} />
     </Container>
   );
 };

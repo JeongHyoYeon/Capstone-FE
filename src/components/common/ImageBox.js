@@ -14,7 +14,7 @@ const Box = styled.div`
   border-radius: 10px 10px 10px 10px;
   position: relative;
   overflow: hidden;
-  box-shadow: 3px 3px 3px lightgrey;
+  //box-shadow: 3px 3px 3px lightgrey;
 `;
 
 const Imageinput = styled.img`

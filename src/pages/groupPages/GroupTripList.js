@@ -125,7 +125,7 @@ const GroupTripList = () => {
             width={"200px"}
             fontColor={"white"}
             position={"fixed"}
-            bottom={"13%"}
+            bottom={"8%"}
             onClick={navMakeTrip}
           />
         </Layout>
