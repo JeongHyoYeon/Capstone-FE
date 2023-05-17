@@ -9,7 +9,6 @@ import axios from "axios";
 import instance from "../../components/Request";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import BackButton from "../../components/common/BackButton";
 
 const Layout = styled.div`
   display: flex;
@@ -47,6 +46,14 @@ const InputLabel = styled.label`
   background-color: white;
   cursor: pointer;
   text-align: center;
+`;
+
+const Text = styled.div`
+  color: white;
+  font-size: 15px;
+  font-weight:500;
+  margin-top: 20px;
+  margin-bottom: 15px;
 `;
 
 const MakeTrip = () => {
@@ -136,9 +143,10 @@ const MakeTrip = () => {
   return (
     <>
       <Layout>
-        <h3>여행지</h3>
+        <Text>여행지</Text>
         <InputBox height={"35px"} width={"85%"} onChange={handlePlace} />
-        <h3>출발 날짜</h3>
+
+        <Text>출발 날짜</Text>
         <TDatepicker
           type="data"
           locale={ko}
@@ -149,7 +157,8 @@ const MakeTrip = () => {
           startDate={startDate}
           endDate={endDate}
         />
-        <h3>도착 날짜</h3>
+
+        <Text>도착 날짜</Text>
         <TDatepicker
           type="date"
           locale={ko}
@@ -160,7 +169,8 @@ const MakeTrip = () => {
           startDate={startDate}
           endDate={endDate}
         />
-        <h3>썸네일 업로드</h3>
+
+        <Text>썸네일 업로드</Text>
         <InputLabel htmlFor="input-file"> 사진 선택 </InputLabel>
 
         <input

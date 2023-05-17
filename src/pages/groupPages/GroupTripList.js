@@ -25,21 +25,29 @@ const Layout2 = styled.div`
 `;
 
 const GroupName = styled.div`
-  color: white;
+  color: #4988ef;
   position: relative;
   left: 10%;
   font-size: 25px;
-  font-weight:600;
+  font-weight:550;
   margin-top: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 `;
 
-const GroupMember = styled.div`
+const GroupMemberDiv = styled.div`
   color: white;
   position: relative;
   left: 10%;
   display: flex;
   flex-direction: row;
+  margin-bottom: 10px;
+`;
+
+const GroupMemberName = styled.div`
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  margin-right: 10px;
 `;
 
 const GroupTripList = () => {
@@ -107,11 +115,13 @@ const GroupTripList = () => {
     return (
       <>
         <GroupName>{groupName}의 여행</GroupName>
-        <GroupMember>
+
+        
+        <GroupMemberDiv>
           {groupMember.map((item) => (
-            <div key={item}>{item + ",  "}</div>
+            <GroupMemberName key={item}> {item} </GroupMemberName>
           ))}
-        </GroupMember>
+        </GroupMemberDiv>
         {groupTripList.map((trip_list) => (
           <Layout2 key={trip_list.id}>
             <Link to={`/grouptripdetail/${trip_list.id}`}>

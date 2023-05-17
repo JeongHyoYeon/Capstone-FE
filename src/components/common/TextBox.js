@@ -21,7 +21,7 @@ const TextL = styled.div`
   font-weight: bold;
   padding-bottom: 7px;
   margin-left: 20px;
-  font-weight: 500;
+  font-weight: 550;
 `;
 
 const TextS = styled.div`

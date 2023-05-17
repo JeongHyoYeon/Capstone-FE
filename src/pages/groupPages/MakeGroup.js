@@ -5,7 +5,6 @@ import Button from "../../components/common/Button";
 import axios from "axios";
 import instance from "../../components/Request";
 import { useSelector } from "react-redux";
-import BackButton from "../../components/common/BackButton";
 import { useNavigate } from "react-router-dom";
 
 const Layout = styled.div`
@@ -74,10 +73,6 @@ const MakeGroup = () => {
 
   return (
     <>
-      <Layout3>
-        <BackButton />
-      </Layout3>
-
       <Layout>
         <Layout2>
         <InputBox
