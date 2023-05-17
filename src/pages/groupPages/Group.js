@@ -7,7 +7,6 @@ import instance from "../../components/Request";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { DELETE_TOKEN } from "../../components/modules/slices/tokenSlice";
-import Space from "../../components/common/Space";
 import Loading from "../Loading";
 import { CiCirclePlus } from "react-icons/ci";
 
@@ -186,7 +185,6 @@ const Group = () => {
             로그아웃
           </h4>
         </Layout>
-        <Space />
       </>
     );
 };

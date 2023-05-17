@@ -31,6 +31,13 @@ const Layout3 = styled.div`
   padding: 5px;
 `;
 
+const GroupName = styled.div`
+  color: white;
+  position: relative;
+  left: 8%;
+  font-size: 20px;
+`;
+
 const GroupTripList = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
   console.log(JWTtoken);
@@ -96,14 +103,11 @@ const GroupTripList = () => {
         <Layout3>
           <BackButton />
         </Layout3>
-        <h2
-          style={{
-            position: "relative",
-            left: "8%",
-          }}
-        >
+
+        <GroupName>
           {groupName}의 여행
-        </h2>
+        </GroupName>
+
         {groupTripList.map((trip_list) => (
           <Layout2 key={trip_list.id}>
             <Link to={`/grouptripdetail/${trip_list.id}`}>
@@ -122,7 +126,7 @@ const GroupTripList = () => {
         <Layout>
           <Button
             text={"새 여행 만들기"}
-            width={"200px"}
+            width={"85%"}
             fontColor={"white"}
             position={"fixed"}
             bottom={"8%"}

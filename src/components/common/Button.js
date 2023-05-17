@@ -10,12 +10,11 @@ const Container = styled.button`
   justify-content: center;
   align-items: center;
   color: ${(props) => props.fontColor};
-  outline: ${(props) => (props ? `#D9D9D9 1px solid` : false)};
+  //outline: ${(props) => (props ? `#D9D9D9 1px solid` : false)};
   background: ${(props) => props.backgroundColor};
   border: ${(props) =>
     props["borderColor"].length > 0 ? props.borderColor : "none"};
   word-break: break-all;
-  box-shadow: 2px 2px 2px #c3c3c366;
   user-select: none;
   border-radius: 50px 50px 50px 50px;
   cursor: pointer;
