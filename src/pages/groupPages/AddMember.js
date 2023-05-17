@@ -17,6 +17,7 @@ const Layout = styled.div`
 /* 친구추가 + 버튼 */
 const Layout2 = styled.div`
   margin-left: 5%;
+  padding-top: 2%;
 `;
 
 /* 초대한 회원 이름 박스 */
@@ -150,7 +151,7 @@ const AddMember = () => {
         window.alert("초대가 보내졌습니다.");
         console.log(response);
         addUsers(inputId);
-        onreset();
+        onReset();
       })
       .catch((error) => {
         //handle error
@@ -175,6 +176,7 @@ const AddMember = () => {
             placeholder="추가할 친구의 ID를 입력하세요."
             height={"50px"}
             width={"75%"}
+            value={inputId}
             onChange={handleinviteId}
           />
           <Layout2>

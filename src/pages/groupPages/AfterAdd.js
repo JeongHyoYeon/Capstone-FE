@@ -6,7 +6,7 @@ import styled from "styled-components";
 import BackButton from "../../components/common/BackButton";
 
 const Layout = styled.div`
-  padding-top: 200px;
+  padding-top: 100px;
   margin-left: 10%;
 `;
 
