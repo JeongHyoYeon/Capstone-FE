@@ -9,7 +9,7 @@ const Header = () => {
     <div className="header-all">
       <div className="brand-Name">
         <Link to={"/group"}>
-          <h2 style={{ fontWeight: "900" }}>AfterTrip</h2>
+          <h2 style={{ fontWeight: "800" }}>AfterTrip</h2>
         </Link>
         <div className="alarm">
           <Alarm />

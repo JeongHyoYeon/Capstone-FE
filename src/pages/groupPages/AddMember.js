@@ -24,6 +24,7 @@ const Layout2 = styled.div`
 const Layout3 = styled.div`
   background-color: white;
   border-color: #3178b9;
+  color: #0969da;
   border-radius: 10px 10px 10px 10px;
   width: auto;
   text-align: center;

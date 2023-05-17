@@ -20,36 +20,47 @@ const Box = styled.div`
 const Imageinput = styled.img`
   height: 100%;
   width: 100%;
-  filter: opacity(60%);
+  //filter: opacity(60%);
+  filter: contrast(40%);
   border-radius: 10px 10px 10px 10px;
   resize: cover;
 `;
 
 const Text1 = styled.div`
-  font-size: 18px;
-  font-weight: 900;
+  font-size: 25px;
+  font-weight: 500;
   padding-bottom: 4px;
   margin-left: 20px;
   position: absolute;
-  top: 10%;
-  left: 3%;
+  top: 30%;
+  left: 33%;
+  color: white;
 `;
 
 const Text2 = styled.div`
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
   margin-left: 20px;
-  margin-top: 7px;
+  margin-top: 14px;
   position: absolute;
-  top: 25%;
-  left: 3%;
+  top: 45%;
+  left: 18%;
+  color: white;
 `;
+
+// const FilterBox = styled.div`
+//   //background-color: rgba(0, 0, 0, 0.5);
+//   height: ${(props) => props.height};
+//   width: 92%;
+//   background-color: red;
+// `;
 
 const ImageBox = (props) => {
   return (
     <>
       <Box height={props.height}>
         <Imageinput src={props.src} height={props.height} />
+
         <Text1>{props.text1}</Text1>
         <Text2>{props.text2}</Text2>
       </Box>

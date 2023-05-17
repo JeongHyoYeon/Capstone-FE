@@ -13,7 +13,7 @@ const Box = styled.div`
   outline: #edf1f5 1px solid;
   border-radius: 10px 10px 10px 10px;
   padding-top: 15px;
-  box-shadow: 3px 3px 3px lightgrey;
+  box-shadow: 1px 1px 1px lightgrey;
 `;
 
 const TextL = styled.div`
@@ -21,13 +21,13 @@ const TextL = styled.div`
   font-weight: bold;
   padding-bottom: 7px;
   margin-left: 20px;
-  font-weight: 700;
+  font-weight: 600;
 `;
 
 const TextS = styled.div`
   font-size: 12px;
   margin-left: 20px;
-  font-weight: 700;
+  font-weight: 600;
   color: #9e9e9e;
 `;
 

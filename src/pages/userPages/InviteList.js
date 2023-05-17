@@ -6,7 +6,6 @@ import instance from "../../components/Request";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-import { ImFileEmpty } from "react-icons/im";
 import BackButton from "../../components/common/BackButton";
 import Loading from "../Loading";
 
@@ -164,10 +163,9 @@ const InviteList = () => {
         <br />
         <br />
         <Layout3>
-          <ImFileEmpty size="100px" color="#0B5CFF" />
-        </Layout3>
-        <Layout3>
-          <h2>들어온 초대가 없습니다.</h2>
+          <h2 style={{ fontWeight: "300", color: "white" }}>
+            들어온 초대가 없습니다.
+          </h2>
         </Layout3>
       </>
     );

@@ -8,7 +8,6 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { DELETE_TOKEN } from "../../components/modules/slices/tokenSlice";
 import Space from "../../components/common/Space";
-import Alarm from "../../components/common/Alarm";
 import Loading from "../Loading";
 import { CiCirclePlus } from "react-icons/ci";
 
@@ -17,7 +16,7 @@ const Layout = styled.div`
   display: flex;
   justify-content: center;
   align-content: space-evenly;
-  padding-top: 0px;
+  padding-top: 30px;
 `;
 
 /* 최근 알림, 그룹목록 흰박스 */
@@ -40,6 +39,8 @@ const Layout4 = styled.div`
   display: block;
   padding-left: 5%;
   margin-left: 1%;
+  color: white;
+  padding-top: 50px;
 `;
 
 const Group = () => {
@@ -134,9 +135,9 @@ const Group = () => {
     return (
       <>
         <Layout4>
-          <p style={{ fontWeight: "700", fontSize: "23px" }}>
+          {/* <p style={{ fontWeight: "600", fontSize: "23px" }}>
             {userName}님의 그룹
-          </p>
+          </p> */}
         </Layout4>
         {groupInfo.map(({ group_info, user_in_group }) => (
           <Layout2 key={group_info.id}>

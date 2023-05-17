@@ -68,11 +68,13 @@ const Layout7 = styled.div`
 //이름 수정 버튼
 const ModifyBtn = styled.button`
   border: none;
-  background-color: #eaecee;
+  //background-color: #eaecee;
+  background-color: none;
   display: flex;
   padding: 0 7% 0 0;
   margin: 30px 0 0 0;
   //align-items: center;
+  background: none;
 `;
 
 const PhotoChar = () => {

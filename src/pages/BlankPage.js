@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Button from "../components/common/Button";
 import { useNavigate } from "react-router-dom";
-import { ImFileEmpty } from "react-icons/im";
 import BackButton from "../components/common/BackButton";
 //import UploadButton from "../components/common/UploadButton";
 
@@ -35,16 +34,9 @@ const BlankPage = (props) => {
       <br />
       <br />
       <Layout2>
-        {/* <img
-          className="blank"
-          alt="blank"
-          src="/BlankIcon.png"
-          style={{ width: "140px", height: "140px", opacity: "0.4" }}
-        /> */}
-        <ImFileEmpty size="100px" color="#0b5cff" />
-      </Layout2>
-      <Layout2>
-        <h2>{props.data} 없습니다.</h2>
+        <h2 style={{ fontWeight: "300", color: "white" }}>
+          {props.data} 없습니다.
+        </h2>
       </Layout2>
       <Layout2>
         {/* <UploadButton

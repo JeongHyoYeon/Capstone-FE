@@ -25,7 +25,7 @@ const LandingPage = () => {
   return (
     <>
       <Layout2>
-        <h1 style={{ color: "#0B5CFF", fontWeight: "900" }}>AfterTrip</h1>
+        <h1 style={{ color: "#0969da", fontWeight: "900" }}>AfterTrip</h1>
       </Layout2>
       <Layout>
         <Button
