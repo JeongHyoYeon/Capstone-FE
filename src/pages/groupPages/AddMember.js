@@ -9,9 +9,10 @@ import { useNavigate } from "react-router-dom";
 import { CiCirclePlus } from "react-icons/ci";
 
 /* 이름입력 & +버튼이 들어갈 공간 */
-const Layout = styled.div`
+const Layout1 = styled.div`
   display: flex;
   align-content: space-evenly;
+  margin-top : 0%;
 `;
 
 /* 친구추가 + 버튼 */
@@ -24,7 +25,7 @@ const Layout2 = styled.div`
 const Layout3 = styled.div`
   background-color: white;
   border-color: #3178b9;
-  color: #0969da;
+  color: #4988ef;
   border-radius: 10px 10px 10px 10px;
   width: auto;
   text-align: center;
@@ -38,26 +39,25 @@ const Layout4 = styled.div`
   display: felx;
   justify-content: space-evenly;
   position: relative;
-  margin: 5px 150px 50px 5px;
+  margin-right: 100px;
+  margin-bottom: 200px;
   height: auto;
   flex-wrap: wrap;
-  //color: #f5f5f6;
-  color: black;
 `;
 
-/* 이름박스 옆에 엑스표
-  근데 이렇게 만들면 안되고
-  이름박스+엑스표를 하나의 컴포넌트로 만들고
-  거기에 usrid 값을 저장해둬야할듯.
-
-  아니면 엑스 눌렀을때 그것의 부모가 가지고 있는 text의 값을 읽어오거나...
-
+/* 초대를 보낸 회원 text */
 const Layout5 = styled.div`
-  position: relative;
-  right: -50px;
-  bottom: 30px;
+  color: white;
+  margin-bottom: 20px;
+  font-size: 18px;
 `;
-*/
+
+/* 초대를 보낸 회원 + 목록 + 초대완료버튼 */
+const Layout6 = styled.div`
+  position: fixed;
+  bottom: 8%;
+  width: 100%;
+`;
 
 var isAlreadyExist = true;
 
@@ -89,42 +89,18 @@ const AddMember = () => {
     for (let i = 0; i < inviteList.length; i++) {
       if (inviteList[i].id === inputId) {
         isAlreadyExist = true;
-        //!!! 이미 초대를 보냈습니다.
       }
     }
-    console.log("add전 list 길이 = ", inviteList.length);
 
     if (isAlreadyExist === false) {
-      console.log("추가");
-      setinviteList([...inviteList, { id: inputId }]); //이게 느림. 다른 버튼 클릭했을 때 실행됨.
+      setinviteList([...inviteList, { id: inputId }]); 
     }
 
     // console
     for (let i = 0; i < inviteList.length; i++) {
       console.log(inviteList[i]);
     }
-    console.log("add후 list 길이 = ", inviteList.length);
   };
-
-  /*
-  //임시 저장 리스트에서 삭제
-  const deleteUsers = (id) => {
-    console.log(id);
-    for (let i = 0; i < inviteList.length; i++) {
-      if( inviteList[i].id === id) {
-        inviteList.splice(i,1);
-        i--;
-      }
-    }
-    
-    //console
-    console.log("삭제한 id = ", id);
-    for (let i = 0; i < inviteList.length; i++) {
-      console.log(inviteList[i]);
-    }
-    console.log("list 길이 = ", inviteList.length);
-  };
-  */
 
   //다른 유저 초대 함수
   const inviteUser = async (e) => {
@@ -170,9 +146,9 @@ const AddMember = () => {
   };
 
   return (
-    <>
-      <div>
-        <Layout>
+    <div>
+  
+        <Layout1>
           <InputBox
             placeholder="추가할 친구의 ID를 입력하세요."
             height={"50px"}
@@ -186,29 +162,32 @@ const AddMember = () => {
                 inviteUser();
               }}
               size={"35px"}
-              color="#0969DA"
+              color="#4988ef"
             />
           </Layout2>
-        </Layout>
-        <h3>초대한 회원</h3>
+        </Layout1>
+
+        <Layout6>
+        <Layout5>
+          초대를 보낸 회원
+        </Layout5>
+
         <Layout4>
           {inviteList.map((item) => (
             <Layout3 key={item.id}>{item.id + " "}</Layout3>
           ))}
         </Layout4>
-      </div>
 
-      <Button
-        text={"초대 완료"}
-        width={"85%"}
-        fontColor={"white"}
-        // position={"fixed"}
-        // bottom={"40%"}
-        onClick={() => {
-          changePage();
-        }}
-      />
-    </>
+        <Button
+          text={"초대 완료"}
+          width={"85%"}
+          fontColor={"white"}
+          onClick={() => {
+            changePage();
+          }}
+        />
+        </Layout6>
+      </div>
   );
 };
 export default AddMember;

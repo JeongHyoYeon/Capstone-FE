@@ -6,7 +6,7 @@ import styled from "styled-components";
 import BackButton from "../../components/common/BackButton";
 
 const Layout = styled.div`
-  padding-top: 100px;
+  padding-top: 10%;
   margin-left: 10%;
 `;
 
@@ -25,6 +25,7 @@ const AfterAdd = () => {
       <Layout3>
         <BackButton />
       </Layout3>
+      
       <Layout>
         <AddMember />
       </Layout>
