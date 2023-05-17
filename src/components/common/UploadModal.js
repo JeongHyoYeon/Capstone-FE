@@ -94,7 +94,6 @@ const UploadModal = ({ setModalOpen }) => {
 
   const changePage = () => {
     setTimeout(() => navigate(`/grouptripdetail/${tripId}`), 300);
-    window.location.reload();
   };
 
   //보낼 사진
@@ -145,6 +144,7 @@ const UploadModal = ({ setModalOpen }) => {
         console.log("사진 보내기 성공");
         console.log(response);
         window.alert("사진을 업로드하였습니다.");
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
