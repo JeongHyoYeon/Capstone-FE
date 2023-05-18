@@ -197,7 +197,7 @@ const InviteList = () => {
                     onmouseout={"..."}
                     onClick={() => {
                       inviteAccept(inviteList.user_group.id);
-                      window.location.reload();
+                      setTimeout(() => window.location.reload(), 300);
                     }}
                   />
                   <Button
