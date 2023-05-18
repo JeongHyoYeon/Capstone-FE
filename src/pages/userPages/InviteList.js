@@ -187,7 +187,6 @@ const InviteList = () => {
                   <GroupNameText>{inviteList.group_name}</GroupNameText>
                   <Text>{"에 초대되셨습니다."}</Text>
                 </TextDiv>
-
                 <Layout2>
                   <Button
                     text={"함께하기"}

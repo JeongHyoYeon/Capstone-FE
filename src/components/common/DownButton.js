@@ -32,17 +32,21 @@ const DownButton = () => {
         }
       )
       .then((response) => {
-        axios
-          .get(response.data.url)
-          .then((response) => response.blob())
-          .then((blob) => {
-            console.log("Blob object:", blob);
-            console.log(Object.getOwnPropertyNames(blob));
+        axios({
+          method: "get",
+          url: `${response.data.url}`,
+          responseType: "blob",
+        })
+          // .then((response) => response.blob())
+          .then((res) => {
+            const file = new Blob([res.data], { type: res.data.type });
+            console.log("Blob object:", res.data);
+            console.log(Object.getOwnPropertyNames(res));
             // Create a new blob object
-            const fileBlob = new Blob([blob], { type: blob.type });
-            console.log("Blob object:", fileBlob);
-            console.log(Object.getOwnPropertyNames(fileBlob));
-            const fileUrl = window.URL.createObjectURL(blob);
+
+            console.log("Blob object:", file);
+            console.log(Object.getOwnPropertyNames(file));
+            const fileUrl = window.URL.createObjectURL(file);
             const link = document.createElement("a");
             link.href = fileUrl;
             link.style.display = "none";
