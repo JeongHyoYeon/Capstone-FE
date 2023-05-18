@@ -73,7 +73,7 @@ const SelectBox = styled.div`
   width: 200px;
   height: 50px;
   text-align: center;
-  font-size: 15px;
+  font-size: 14px;
   padding: 15px 10px 7px 10px;
   margin: 5px 5px 5px 5px;
   position: absolute;
@@ -94,6 +94,7 @@ const UploadModal = ({ setModalOpen }) => {
 
   const changePage = () => {
     setTimeout(() => navigate(`/grouptripdetail/${tripId}`), 300);
+    //setTimeout(() => navigate(-1), 300);
   };
 
   //보낼 사진
