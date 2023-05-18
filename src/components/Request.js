@@ -15,7 +15,7 @@ instance.interceptors.response.use(
   (error) => {
     if (
       error.response &&
-      error.message === "Request failed with status code 400"
+      error.message === "Request failed with status code 401"
     ) {
       window.alert("로그인해주세요");
       const redirection = useNavigate();

@@ -1,4 +1,4 @@
-//사진 다운로드 버튼
+//개별 사진 다운로드 버튼
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
@@ -37,15 +37,11 @@ const DownButton = () => {
           url: `${response.data.url}`,
           responseType: "blob",
         })
-          // .then((response) => response.blob())
           .then((res) => {
             const file = new Blob([res.data], { type: res.data.type });
             console.log("Blob object:", res.data);
             console.log(Object.getOwnPropertyNames(res));
-            // Create a new blob object
 
-            console.log("Blob object:", file);
-            console.log(Object.getOwnPropertyNames(file));
             const fileUrl = window.URL.createObjectURL(file);
             const link = document.createElement("a");
             link.href = fileUrl;
@@ -64,7 +60,6 @@ const DownButton = () => {
         console.log("error:", error);
       });
   };
-  //폴더별 다운로드
 
   return (
     <DownBtn
