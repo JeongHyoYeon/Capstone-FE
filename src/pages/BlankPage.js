@@ -36,10 +36,10 @@ const BlankPage = (props) => {
       <Layout2>
         <Button
           text={"사진 올리기"}
-          width={"200px"}
+          width={"50%"}
           fontColor={"white"}
-          //position={"fixed"}
-          //bottom={"13%"}
+          position={"fixed"}
+          bottom={"10%"}
           onClick={() => {
             showModal();
           }}

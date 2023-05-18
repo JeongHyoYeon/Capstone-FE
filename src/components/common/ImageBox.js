@@ -27,11 +27,11 @@ const Imageinput = styled.img`
 
 const Text1 = styled.div`
   color: white;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 500;
   text-align: center;
   position: absolute;
-  top: 38%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
 
@@ -39,10 +39,10 @@ const Text1 = styled.div`
 
 const Text2 = styled.div`
   color: white;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 400;
   position: absolute;
-  top: 68%;
+  top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;

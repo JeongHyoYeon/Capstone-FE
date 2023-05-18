@@ -15,6 +15,7 @@ const Layout = styled.div`
   justify-content: center;
   align-content: space-evenly;
   padding-top: 20px;
+  width: 100%;
 `;
 
 const Layout2 = styled.div`
@@ -140,7 +141,7 @@ const GroupTripList = () => {
         <Layout>
           <Button
             text={"새 여행 만들기"}
-            width={"85%"}
+            width={"50%"}
             fontColor={"white"}
             position={"fixed"}
             bottom={"10%"}

@@ -29,10 +29,12 @@ const Layout2 = styled.div`
   justify-content: center;
 `;
 
-const Layout3 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
+const Text = styled.div`
+  color: red;
+  font-size: 15px;
+  font-weight:500;
+  margin-top: 20px;
+  margin-bottom: 15px;
 `;
 
 const UploadPhoto = () => {
@@ -117,10 +119,10 @@ const UploadPhoto = () => {
         </Label>
       </Layout>
       <Layout2>
-        <h2>사진 올리기</h2>
+        <Text>사진 올리기</Text>
       </Layout2>
       <Layout>
-        <h4>{photo.length}개의 사진 선택됨</h4>
+        <Text>{photo.length}개의 사진 선택됨</Text>
       </Layout>
       <Layout>
         <Button
