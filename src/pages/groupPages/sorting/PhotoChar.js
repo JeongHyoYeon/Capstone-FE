@@ -60,6 +60,7 @@ const Layout7 = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  color: white;
 `;
 //이름 수정 버튼
 const ModifyBtn = styled.button`
@@ -173,13 +174,13 @@ const PhotoChar = () => {
         >
           {photoTag}
         </h2>
-        <DownFolder />
+
         <ModifyBtn
           onClick={() => {
             showModal();
           }}
         >
-          <MdOutlineDriveFileRenameOutline size={"30px"} color="#4988ef" />
+          <MdOutlineDriveFileRenameOutline size={"30px"} color="white" />
         </ModifyBtn>
         {modalName && <ModalView setModalOpen={setModalName} />}
       </Layout7>
@@ -197,6 +198,7 @@ const PhotoChar = () => {
       </Layout3>
       <Layout>
         <Layout2>
+          <DownFolder />
           <Button
             text={isLoading ? "분류하는 중..." : "인물분류하기"}
             width={"150px"}

@@ -57,7 +57,7 @@ const DeleteButton = () => {
         back();
       }}
     >
-      <AiOutlineDelete size={"30px"} color="#4988ef" />
+      <AiOutlineDelete size={"30px"} color="white" />
     </Deletebtn>
   );
 };

@@ -77,7 +77,7 @@ const Alarm = () => {
           toInviteList();
         }}
       >
-        <BiBell size={"30px"} color="#4988ef" />
+        <BiBell size={"30px"} color="white" />
         <AlarmNum>{numInvite}</AlarmNum>
       </AlarmBtn>
     </>

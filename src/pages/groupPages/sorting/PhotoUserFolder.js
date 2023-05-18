@@ -35,6 +35,7 @@ const Layout3 = styled.div`
   margin: 5px;
   flex-direction: column;
   text-align: center;
+  color: white;
 `;
 
 const Layout4 = styled.div`

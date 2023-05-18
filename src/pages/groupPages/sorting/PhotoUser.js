@@ -47,6 +47,7 @@ const Top = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  color: white;
 `;
 
 const Down = styled.div`

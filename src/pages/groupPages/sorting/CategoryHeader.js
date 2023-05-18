@@ -39,7 +39,7 @@ const CategoryHeader = () => {
             style={({ isActive }) => (isActive ? activeStyle : {})}
             to={`/grouptripdetail/${tripId}`}
           >
-            <h4>날짜</h4>
+            <h3>날짜</h3>
           </NavLink>
         </Layout>
         <Layout className="photo-obej" id="object">
@@ -47,7 +47,7 @@ const CategoryHeader = () => {
             style={({ isActive }) => (isActive ? activeStyle : {})}
             to="/photo/auto/obejfolder"
           >
-            <h4>객체분류</h4>
+            <h3>객체분류</h3>
           </NavLink>
         </Layout>
         <Layout className="photo-char" id="character">
@@ -55,7 +55,7 @@ const CategoryHeader = () => {
             style={({ isActive }) => (isActive ? activeStyle : {})}
             to="/photo/auto/charfolder"
           >
-            <h4>인물분류</h4>
+            <h3>인물분류</h3>
           </NavLink>
         </Layout>
         <Layout className="photo-user" id="user">
@@ -63,7 +63,7 @@ const CategoryHeader = () => {
             style={({ isActive }) => (isActive ? activeStyle : {})}
             to="/photo/userfolder"
           >
-            <h4>게시자</h4>
+            <h3>게시자</h3>
           </NavLink>
         </Layout>
       </NavWrap>

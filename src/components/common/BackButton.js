@@ -29,19 +29,19 @@ const BackButton = () => {
   if (location.pathname.includes("/photo/" || "/grouptripdetail/")) {
     return (
       <Backbtn onClick={photoBack}>
-        <MdOutlineArrowBackIosNew size={"30px"} color="#4988ef" />
+        <MdOutlineArrowBackIosNew size={"30px"} color="white" />
       </Backbtn>
     );
   } else if (location.pathname.includes("/grouptrip/")) {
     return (
       <Backbtn onClick={groupBack}>
-        <MdOutlineArrowBackIosNew size={"30px"} color="#4988ef" />
+        <MdOutlineArrowBackIosNew size={"30px"} color="white" />
       </Backbtn>
     );
   } else
     return (
       <Backbtn onClick={back}>
-        <MdOutlineArrowBackIosNew size={"30px"} color="#4988ef" />
+        <MdOutlineArrowBackIosNew size={"30px"} color="white" />
       </Backbtn>
     );
 };

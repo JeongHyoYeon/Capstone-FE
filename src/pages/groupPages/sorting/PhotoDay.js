@@ -27,6 +27,7 @@ const Layout = styled.div`
   // padding-left: 6%;
   display: grid;
   row-gap: 0;
+  color: white;
 `;
 
 const Layout2 = styled.div`

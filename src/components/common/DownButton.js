@@ -68,7 +68,7 @@ const DownButton = () => {
         IndividualDownLoad();
       }}
     >
-      <AiOutlineDownload size={"35px"} color="#4988ef" />
+      <AiOutlineDownload size={"35px"} color="white" />
     </DownBtn>
   );
 };
