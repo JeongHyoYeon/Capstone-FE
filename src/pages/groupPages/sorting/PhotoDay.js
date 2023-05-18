@@ -15,8 +15,8 @@ const Layout6 = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   row-gap: 0;
-  padding-top: 30px;
-  padding: 20px;
+  //padding-top: 30px;
+  padding: 30px 6.5% 20px 6.5%;
 `;
 
 const Layout = styled.div`

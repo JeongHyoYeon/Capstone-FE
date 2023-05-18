@@ -69,7 +69,6 @@ const Layout3 = styled.div`
   padding-top: 100px;
 `;
 
-
 const InviteList = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
@@ -182,9 +181,7 @@ const InviteList = () => {
           .map((inviteList) => (
             <Layout key={inviteList.user_group.id}>
               <Box>
-                <Date>
-                  {inviteList.user_group.created_at.split("T", 1)}
-                </Date>
+                <Date>{inviteList.user_group.created_at.split("T", 1)}</Date>
 
                 <TextDiv>
                   <GroupNameText>{inviteList.group_name}</GroupNameText>
@@ -197,6 +194,7 @@ const InviteList = () => {
                     height={"30px"}
                     width={"40%"}
                     fontsize={"12px"}
+                    onmouseout={"..."}
                     onClick={() => {
                       inviteAccept(inviteList.user_group.id);
                       window.location.reload();
@@ -207,9 +205,10 @@ const InviteList = () => {
                     height={"30px"}
                     width={"40%"}
                     fontsize={"12px"}
+                    onmouseout={"..."}
                     onClick={() => {
                       inviteDelete(inviteList.user_group.id);
-                      window.location.reload();
+                      setTimeout(() => window.location.reload(), 300);
                     }}
                   />
                 </Layout2>
