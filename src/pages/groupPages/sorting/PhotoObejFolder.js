@@ -213,6 +213,7 @@ const PhotoObejFolder = () => {
     return (
       <>
         <CategoryHeader />
+
         <Layout2>
           {photoThumb.map((item) => (
             <Layout key={item.tag_id}>

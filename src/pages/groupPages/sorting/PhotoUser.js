@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import Image from "../../../components/common/Image";
 import Button from "../../../components/common/Button";
 import UploadModal from "../../../components/common/UploadModal";
+import DownFolder from "../../../components/common/DownFolder";
 
 const Layout = styled.div`
   display: flex;
@@ -41,14 +42,23 @@ const Layout4 = styled.div`
   justify-content: center;
 `;
 
+const Top = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Down = styled.div`
+  display: flex;
+  padding: 0 7% 0 0;
+  margin: 30px 0 0 0;
+`;
+
 const PhotoUser = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
   const navigate = useNavigate();
-
-  const changePage = () => {
-    navigate("/upload");
-  };
 
   //게시자 id
   const { usertag } = useParams();
@@ -101,16 +111,21 @@ const PhotoUser = () => {
   return (
     <>
       <CategoryHeader />
-      <h2
-        style={{
-          paddingLeft: "8%",
-          paddingTop: "20px",
-          paddingBottom: "0",
-          marginBottom: "0",
-        }}
-      >
-        {photoTag}
-      </h2>
+      <Top>
+        <h2
+          style={{
+            paddingLeft: "8%",
+            paddingTop: "20px",
+            paddingBottom: "0",
+            marginBottom: "0",
+          }}
+        >
+          {photoTag}
+        </h2>
+        <Down>
+          <DownFolder />
+        </Down>
+      </Top>
       <Layout3>
         {photoUser.map((item) => (
           <Layout key={item.id}>

@@ -11,6 +11,7 @@ import instance from "../../../components/Request";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import ModalView from "../../../components/common/ModalView";
 import UploadModal from "../../../components/common/UploadModal";
+import DownFolder from "../../../components/common/DownFolder";
 
 const Layout = styled.div`
   display: flex;
@@ -63,12 +64,9 @@ const Layout7 = styled.div`
 //이름 수정 버튼
 const ModifyBtn = styled.button`
   border: none;
-  //background-color: #eaecee;
-  background-color: none;
   display: flex;
   padding: 0 7% 0 0;
   margin: 30px 0 0 0;
-  //align-items: center;
   background: none;
 `;
 
@@ -84,10 +82,6 @@ const PhotoChar = () => {
 
   //이름 바꾸는 모달창 노출 여부
   const [modalName, setModalName] = useState(false);
-
-  const changePage = () => {
-    navigate("/upload");
-  };
 
   //이름 모달창 노출
   const showModal = () => {
@@ -179,6 +173,7 @@ const PhotoChar = () => {
         >
           {photoTag}
         </h2>
+        <DownFolder />
         <ModifyBtn
           onClick={() => {
             showModal();
@@ -188,6 +183,7 @@ const PhotoChar = () => {
         </ModifyBtn>
         {modalName && <ModalView setModalOpen={setModalName} />}
       </Layout7>
+
       <Layout3>
         {photoChar.map((item) => (
           <Layout4 key={item.id}>
