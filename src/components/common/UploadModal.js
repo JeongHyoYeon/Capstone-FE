@@ -1,11 +1,46 @@
 import React, { useState } from "react";
-import axios from "axios";
-import instance from "../../components/Request";
 import styled from "styled-components";
+import Button from "./Button";
+import axios from "axios";
+import instance from "../Request";
 import { useSelector } from "react-redux";
-import Button from "../../components/common/Button";
-import { BsCloudUpload } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+
+//전체 모달창
+const Container = styled.div`
+  /* 모달창 크기 */
+  width: 90%;
+  height: 40%;
+
+  /* 최상단 위치 */
+  z-index: 999;
+
+  /* 중앙 배치 */
+  /* top, bottom, left, right 는 브라우저 기준으로 작동한다. */
+  /* translate는 본인의 크기 기준으로 작동한다. */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* 모달창 디자인 */
+  background-color: #fff;
+  border: 1px solid grey;
+  border-radius: 8px;
+`;
+
+const CloseBtn = styled.button`
+  position: absolute;
+  background-color: white;
+  right: 10px;
+  top: 10px;
+  float: right;
+  font-weight: bold;
+  color: #777;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+`;
 
 const Label = styled.label`
   padding: 6px 25px;
@@ -16,6 +51,7 @@ const Label = styled.label`
   padding-top: 100px;
   display: flex;
   justify-content: center;
+  position: relative;
 `;
 
 const Layout = styled.div`
@@ -29,28 +65,40 @@ const Layout2 = styled.div`
   justify-content: center;
 `;
 
-const Text = styled.div`
-  color: red;
-  font-size: 15px;
-  font-weight:500;
-  margin-top: 20px;
-  margin-bottom: 15px;
+const SelectBox = styled.div`
+  background-color: #4988ef;
+  text-align: center;
+  color: white;
+  border-radius: 50px 50px 50px 50px;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  font-size: 14px;
+  padding: 15px 10px 7px 10px;
+  margin: 5px 5px 5px 5px;
+  position: absolute;
+  top: 30%;
+  left: 20%;
 `;
 
-const UploadPhoto = () => {
+const UploadModal = ({ setModalOpen }) => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
+
+  const tripId = localStorage.getItem("nowGroupTrip");
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   const navigate = useNavigate();
 
   const changePage = () => {
-    navigate(`/grouptripdetail/${tripId}`);
+    setTimeout(() => navigate(`/grouptripdetail/${tripId}`), 300);
+    //setTimeout(() => navigate(-1), 300);
   };
 
   //보낼 사진
   const [photo, setPhoto] = useState([]);
-
-  //여행 id
-  var tripId = localStorage.getItem("nowGroupTrip");
 
   //사진 상대 경로 (미리보기)
   const photoView = (e) => {
@@ -94,8 +142,10 @@ const UploadPhoto = () => {
         },
       })
       .then((response) => {
-        console.log("success");
+        console.log("사진 보내기 성공");
         console.log(response);
+        window.alert("사진을 업로드하였습니다.");
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
@@ -103,10 +153,21 @@ const UploadPhoto = () => {
   };
 
   return (
-    <>
+    <Container>
+      <CloseBtn
+        onClick={() => {
+          closeModal();
+          changePage();
+        }}
+      >
+        x
+      </CloseBtn>
+      <Layout2>
+        <p>사진 올리기</p>
+      </Layout2>
       <Layout>
+        <SelectBox>사진 선택하기</SelectBox>
         <Label htmlFor="input-file">
-          <BsCloudUpload size="200px" color="#3178B9" />
           <input
             type="file"
             id="input-file"
@@ -118,12 +179,6 @@ const UploadPhoto = () => {
           />
         </Label>
       </Layout>
-      <Layout2>
-        <Text>사진 올리기</Text>
-      </Layout2>
-      <Layout>
-        <Text>{photo.length}개의 사진 선택됨</Text>
-      </Layout>
       <Layout>
         <Button
           text={"선택완료"}
@@ -133,12 +188,11 @@ const UploadPhoto = () => {
           bottom={"5%"}
           onClick={() => {
             sendPhoto();
-            changePage();
           }}
           type={"submit"}
         />
       </Layout>
-    </>
+    </Container>
   );
 };
-export default UploadPhoto;
+export default UploadModal;

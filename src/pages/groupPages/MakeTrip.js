@@ -9,7 +9,6 @@ import axios from "axios";
 import instance from "../../components/Request";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import BackButton from "../../components/common/BackButton";
 
 const Layout = styled.div`
   display: flex;
@@ -18,6 +17,7 @@ const Layout = styled.div`
   padding-top: 20px;
   position: relative;
   left: 8%;
+  color: white;
 `;
 
 const Layout1 = styled.div`
@@ -37,19 +37,23 @@ const TDatepicker = styled(DatePicker)`
   border: 1px solid lightGrey;
 `;
 
-const Layout2 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-`;
-
 const InputLabel = styled.label`
   padding: 6px 25px;
-  width: 160px;
-  background-color: #3178b9;
-  border-radius: 4px;
-  color: white;
+  width: 85%;
+  height: 35px;
+  border-radius: 50px;
+  color: #4998ef;
+  background-color: white;
   cursor: pointer;
+  text-align: center;
+`;
+
+const Text = styled.div`
+  color: white;
+  font-size: 15px;
+  font-weight:500;
+  margin-top: 20px;
+  margin-bottom: 15px;
 `;
 
 const MakeTrip = () => {
@@ -112,6 +116,11 @@ const MakeTrip = () => {
       console.log(key);
     }
 
+    if (!formData.get("thumbnail")) {
+      window.alert("썸네일을 첨부해주세요.");
+      return;
+    }
+
     await axios;
     instance
       .post(`trips/${nowGroup}/`, formData, {
@@ -133,13 +142,11 @@ const MakeTrip = () => {
 
   return (
     <>
-      <Layout2>
-        <BackButton />
-      </Layout2>
       <Layout>
-        <h3>여행지</h3>
+        <Text>여행지</Text>
         <InputBox height={"35px"} width={"85%"} onChange={handlePlace} />
-        <h3>출발 날짜</h3>
+
+        <Text>출발 날짜</Text>
         <TDatepicker
           type="data"
           locale={ko}
@@ -150,7 +157,8 @@ const MakeTrip = () => {
           startDate={startDate}
           endDate={endDate}
         />
-        <h3>도착 날짜</h3>
+
+        <Text>도착 날짜</Text>
         <TDatepicker
           type="date"
           locale={ko}
@@ -161,9 +169,10 @@ const MakeTrip = () => {
           startDate={startDate}
           endDate={endDate}
         />
-        <br />
-        <br />
-        <InputLabel htmlFor="input-file">썸네일 업로드</InputLabel>
+
+        <Text>썸네일 업로드</Text>
+        <InputLabel htmlFor="input-file"> 사진 선택 </InputLabel>
+
         <input
           type="file"
           id="input-file"
@@ -181,7 +190,8 @@ const MakeTrip = () => {
               style={{
                 margin: "auto",
                 height: "150px",
-                width: "70%",
+                width: "120%",
+                objectFit: "contain",
               }}
             />
           )}
@@ -190,7 +200,7 @@ const MakeTrip = () => {
       <Layout1>
         <Button
           text={"새 여행 만들기"}
-          width={"200px"}
+          width={"85%"}
           fontColor={"white"}
           position={"fixed"}
           bottom={"10%"}

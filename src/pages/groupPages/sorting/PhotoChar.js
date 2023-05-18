@@ -8,9 +8,10 @@ import Button from "../../../components/common/Button";
 import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
-import UploadButton from "../../../components/common/UploadButton";
-import BackButton from "../../../components/common/BackButton";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
+import ModalView from "../../../components/common/ModalView";
+import UploadModal from "../../../components/common/UploadModal";
+import DownFolder from "../../../components/common/DownFolder";
 
 const Layout = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ const Layout = styled.div`
   //height: 50px;
   position: fixed;
   width: 100%;
-  bottom: 5%;
+  bottom: 4%;
 `;
 
 const Layout2 = styled.div`
@@ -35,6 +36,7 @@ const Layout3 = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 0;
 `;
 
 const Layout4 = styled.div`
@@ -53,11 +55,6 @@ const Layout5 = styled.div`
   justify-content: space-evenly;
 `;
 
-const Layout6 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 3px;
-`;
 const Layout7 = styled.div`
   display: flex;
   flex-direction: row;
@@ -67,11 +64,10 @@ const Layout7 = styled.div`
 //이름 수정 버튼
 const ModifyBtn = styled.button`
   border: none;
-  background-color: #eaecee;
   display: flex;
   padding: 0 7% 0 0;
   margin: 30px 0 0 0;
-  //align-items: center;
+  background: none;
 `;
 
 const PhotoChar = () => {
@@ -79,24 +75,34 @@ const PhotoChar = () => {
 
   const navigate = useNavigate();
 
+  //분류요청 여부
   const [isLoading, setIsLoading] = useState(false);
 
   const tripId = localStorage.getItem("nowGroupTrip");
 
-  const changePage = () => {
-    navigate("/upload");
-  };
+  //이름 바꾸는 모달창 노출 여부
+  const [modalName, setModalName] = useState(false);
 
-  const changeGpt = () => {
-    navigate("/photo/auto/gpt");
+  //이름 모달창 노출
+  const showModal = () => {
+    setModalName(true);
   };
 
   //얼굴 태그 id
   const { facetag } = useParams();
+  localStorage.setItem("facetag", facetag);
 
   const [photoChar, setPhotoChar] = useState([]);
 
   const [photoTag, setPhotoTag] = useState();
+
+  //업로드 모달창 노출
+  const showModalOpen = () => {
+    setModalOpen(true);
+  };
+
+  //업로드 모달창 노출 여부
+  const [modalOpen, setModalOpen] = useState(false);
 
   //자동 분류 요청하기
   const requestAuto = async (e) => {
@@ -149,42 +155,12 @@ const PhotoChar = () => {
       });
   };
 
-  //새로운 이름
-  const [newName, setNewName] = useState();
-
-  //현재 분류 페이지 폴더명 바꾸기
-  const rename = async (e) => {
-    await axios;
-    instance
-      .patch(
-        `photos/face/${tripId}/${facetag}/`,
-        { custom_name: newName },
-        {
-          headers: {
-            Authorization: `Bearer ${JWTtoken}`,
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((response) => {
-        console.log(response);
-        window.alert("폴더명이 변경되었습니다.");
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   useEffect(() => {
     charPhoto();
   }, []);
 
   return (
     <>
-      <Layout6>
-        <BackButton />
-      </Layout6>
       <CategoryHeader />
       <Layout7>
         <h2
@@ -197,15 +173,22 @@ const PhotoChar = () => {
         >
           {photoTag}
         </h2>
-        <ModifyBtn>
-          <MdOutlineDriveFileRenameOutline size={"30px"} color="#3178B9" />
+        <DownFolder />
+        <ModifyBtn
+          onClick={() => {
+            showModal();
+          }}
+        >
+          <MdOutlineDriveFileRenameOutline size={"30px"} color="#4988ef" />
         </ModifyBtn>
+        {modalName && <ModalView setModalOpen={setModalName} />}
       </Layout7>
+
       <Layout3>
         {photoChar.map((item) => (
           <Layout4 key={item.id}>
             <Layout5>
-              <Link to={`/photo/large/${item.id}`}>
+              <Link to={`/large/${item.id}`}>
                 <Image src={item.url} />
               </Link>
             </Layout5>
@@ -218,33 +201,23 @@ const PhotoChar = () => {
             text={isLoading ? "분류하는 중..." : "인물분류하기"}
             width={"150px"}
             fontColor={"white"}
-            backgroundColor={isLoading ? "gray" : "#3178B9"}
+            backgroundColor={isLoading ? "gray" : "#4988ef"}
             onClick={requestAuto}
             disabled={isLoading}
           />
         </Layout2>
         <Layout2>
-          {/* <UploadButton text={"+"} width={"50px"} /> */}
           <Button
-            text={"+"}
-            width={"50px"}
-            fontColor={"white"}
-            onClick={() => {
-              changePage();
-            }}
-          />
-        </Layout2>
-        <Layout2>
-          <Button
-            text={"GPT에게 물어보기"}
+            text={"사진 올리기"}
             width={"150px"}
             fontColor={"white"}
             onClick={() => {
-              changeGpt();
+              showModalOpen();
             }}
           />
         </Layout2>
       </Layout>
+      {modalOpen && <UploadModal setModalOpen={setModalOpen} />}
     </>
   );
 };

@@ -1,3 +1,4 @@
+import { blueGrey } from "@mui/material/colors";
 import React from "react";
 import styled from "styled-components";
 
@@ -10,40 +11,48 @@ const Box = styled.div`
   align-items: flex start;
   color: black;
   background: white;
-  // outline: white 1px solid;
   border-radius: 10px 10px 10px 10px;
   position: relative;
   overflow: hidden;
-  box-shadow: 3px 3px 3px lightgrey;
+  //box-shadow: 3px 3px 3px lightgrey;
 `;
 
 const Imageinput = styled.img`
   height: 100%;
   width: 100%;
-  filter: opacity(60%);
+  //filter: opacity(60%);
+  filter: contrast(40%);
   border-radius: 10px 10px 10px 10px;
-  resize: cover;
 `;
 
 const Text1 = styled.div`
-  font-size: 18px;
-  font-weight: 900;
-  padding-bottom: 4px;
-  margin-left: 20px;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
   position: absolute;
-  top: 10%;
-  left: 3%;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
 `;
 
 const Text2 = styled.div`
-  font-size: 14px;
-  font-weight: bold;
-  margin-left: 20px;
-  margin-top: 7px;
+  color: white;
+  font-size: 12px;
+  font-weight: 400;
   position: absolute;
-  top: 25%;
-  left: 3%;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
+
+// const FilterBox = styled.div`
+//   //background-color: rgba(0, 0, 0, 0.5);
+//   height: ${(props) => props.height};
+//   width: 92%;
+//   background-color: red;
+// `;
 
 const ImageBox = (props) => {
   return (

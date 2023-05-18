@@ -8,8 +8,8 @@ import Button from "../../../components/common/Button";
 import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
-import BackButton from "../../../components/common/BackButton";
-//import UploadButton from "../../../components/common/UploadButton";
+import UploadModal from "../../../components/common/UploadModal";
+import DownFolder from "../../../components/common/DownFolder";
 
 const Layout = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const Layout = styled.div`
   //height: 50px;
   position: fixed;
   width: 100%;
-  bottom: 5%;
+  bottom: 4%;
 `;
 
 const Layout2 = styled.div`
@@ -52,10 +52,17 @@ const Layout5 = styled.div`
   justify-content: space-evenly;
 `;
 
-const Layout6 = styled.div`
+const Top = styled.div`
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
-  padding: 3px;
+`;
+
+const Down = styled.div`
+  display: flex;
+  padding: 0 7% 0 0;
+  margin: 30px 0 0 0;
 `;
 
 const PhotoObej = () => {
@@ -67,20 +74,20 @@ const PhotoObej = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const changePage = () => {
-    navigate("/upload");
-  };
-
-  const changeGpt = () => {
-    navigate("/photo/auto/gpt");
-  };
-
   //객체 태그 id
   const { obejtag } = useParams();
 
   const [photoTag, setPhotoTag] = useState();
 
   const [photoObej, setPhotoObej] = useState([]);
+
+  //모달창 노출
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
+  //업로드 모달창 노출 여부
+  const [modalOpen, setModalOpen] = useState(false);
 
   //자동 분류 요청하기
   const requestAuto = async (e) => {
@@ -139,25 +146,27 @@ const PhotoObej = () => {
 
   return (
     <>
-      <Layout6>
-        <BackButton />
-      </Layout6>
       <CategoryHeader />
-      <h2
-        style={{
-          paddingLeft: "8%",
-          paddingTop: "20px",
-          paddingBottom: "0",
-          marginBottom: "0",
-        }}
-      >
-        {photoTag}
-      </h2>
+      <Top>
+        <h2
+          style={{
+            paddingLeft: "8%",
+            paddingTop: "20px",
+            paddingBottom: "0",
+            marginBottom: "0",
+          }}
+        >
+          {photoTag}
+        </h2>
+        <Down>
+          <DownFolder />
+        </Down>
+      </Top>
       <Layout3>
         {photoObej.map((item) => (
           <Layout4 key={item.id}>
             <Layout5>
-              <Link to={`/photo/large/${item.id}`}>
+              <Link to={`/large/${item.id}`}>
                 <Image src={item.url} />
               </Link>
             </Layout5>
@@ -170,33 +179,23 @@ const PhotoObej = () => {
             text={isLoading ? "분류하는 중..." : "객체분류하기"}
             width={"150px"}
             fontColor={"white"}
-            backgroundColor={isLoading ? "gray" : "#3178B9"}
+            backgroundColor={isLoading ? "gray" : "#4988ef"}
             onClick={requestAuto}
             disabled={isLoading}
           />
         </Layout2>
         <Layout2>
-          {/* <UploadButton text={"+"} width={"50px"} /> */}
           <Button
-            text={"+"}
-            width={"50px"}
-            fontColor={"white"}
-            onClick={() => {
-              changePage();
-            }}
-          />
-        </Layout2>
-        <Layout2>
-          <Button
-            text={"GPT에게 물어보기"}
+            text={"사진 올리기"}
             width={"150px"}
             fontColor={"white"}
             onClick={() => {
-              changeGpt();
+              showModal();
             }}
           />
         </Layout2>
       </Layout>
+      {modalOpen && <UploadModal setModalOpen={setModalOpen} />}
     </>
   );
 };

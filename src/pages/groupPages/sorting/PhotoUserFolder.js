@@ -8,8 +8,8 @@ import { useState, useEffect } from "react";
 import Image from "../../../components/common/Image";
 import Button from "../../../components/common/Button";
 import { useNavigate, Link } from "react-router-dom";
-import BackButton from "../../../components/common/BackButton";
-//import UploadButton from "../../../components/common/UploadButton";
+import Loading from "../../Loading";
+import UploadModal from "../../../components/common/UploadModal";
 
 const Layout = styled.div`
   display: flex;
@@ -42,12 +42,6 @@ const Layout4 = styled.div`
   justify-content: center;
 `;
 
-const Layout5 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 3px;
-`;
-
 const PhotoUserFolder = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
@@ -63,8 +57,20 @@ const PhotoUserFolder = () => {
   //게시자별 썸네일 담는 배열
   const [photoThumb, setPhotoThumb] = useState([]);
 
+  //로딩화면 여부
+  const [loading, setLoading] = useState(true);
+
+  //이름 바꾸는 모달창 노출 여부
+  const [modalOpen, setModalOpen] = useState(false);
+
+  //모달창 노출
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
   //게시자별 뷰 썸네일 가져오기
   const userPhotoThumb = async (e) => {
+    setLoading(true);
     await axios;
     instance
       .get(
@@ -81,6 +87,7 @@ const PhotoUserFolder = () => {
         console.log("success");
         console.log(response.data.data);
         setPhotoThumb(response.data.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -91,43 +98,38 @@ const PhotoUserFolder = () => {
     userPhotoThumb();
   }, []);
 
-  return (
-    <>
-      <Layout5>
-        <BackButton />
-      </Layout5>
-      <CategoryHeader />
-      <Layout2>
-        {photoThumb.map((item) => (
-          <Layout key={item.tag}>
-            <Layout3 key={item.thumbnail.id}>
-              <Link to={`/photo/userfolder/${item.tag_id}`}>
-                <Image src={item.thumbnail.url} />
-              </Link>
-              <h3>{item.tag}</h3>
-            </Layout3>
-          </Layout>
-        ))}
-      </Layout2>
-      <Layout4>
-        {/* <UploadButton
-          text={"사진 올리기"}
-          width={"200px"}
-          position={"fixed"}
-          bottom={"13%"}
-        /> */}
-        <Button
-          text={"사진 올리기"}
-          width={"200px"}
-          fontColor={"white"}
-          position={"fixed"}
-          bottom={"13%"}
-          onClick={() => {
-            changePage();
-          }}
-        />
-      </Layout4>
-    </>
-  );
+  if (loading) return <Loading />;
+  else
+    return (
+      <>
+        <CategoryHeader />
+        <Layout2>
+          {photoThumb.map((item) => (
+            <Layout key={item.tag}>
+              <Layout3 key={item.thumbnail.id}>
+                <Link to={`/photo/userfolder/${item.thumbnail.uploaded_by}`}>
+                  <Image src={item.thumbnail.url} />
+                </Link>
+                <h3>{item.tag}</h3>
+              </Layout3>
+            </Layout>
+          ))}
+        </Layout2>
+        <Layout4>
+          <Button
+            text={"사진 올리기"}
+            width={"200px"}
+            fontColor={"white"}
+            position={"fixed"}
+            bottom={"13%"}
+            onClick={() => {
+              showModal();
+            }}
+          />
+
+          {modalOpen && <UploadModal setModalOpen={setModalOpen} />}
+        </Layout4>
+      </>
+    );
 };
 export default PhotoUserFolder;

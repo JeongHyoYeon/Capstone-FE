@@ -1,4 +1,4 @@
-//사진 다운로드 버튼
+//개별 사진 다운로드 버튼
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
@@ -8,7 +8,8 @@ import { AiOutlineDownload } from "react-icons/ai";
 
 const DownBtn = styled.button`
   border: none;
-  background-color: #eaecee;
+  // background-color: #eaedf2;
+  background: none;
 `;
 
 const DownButton = () => {
@@ -16,7 +17,8 @@ const DownButton = () => {
   //사진 id
   let photoId = localStorage.getItem("nowPhotoId");
 
-  const downLoad = async (e) => {
+  //개별 사진 다운로드
+  const IndividualDownLoad = async (e) => {
     await axios;
     instance
       .get(
@@ -30,17 +32,17 @@ const DownButton = () => {
         }
       )
       .then((response) => {
-        axios
-          .get(response.data.url)
-          .then((response) => response.blob())
-          .then((blob) => {
-            console.log("Blob object:", blob);
-            console.log(Object.getOwnPropertyNames(blob));
-            // Create a new blob object
-            const fileBlob = new Blob([blob], { type: blob.type });
-            console.log("Blob object:", fileBlob);
-            console.log(Object.getOwnPropertyNames(fileBlob));
-            const fileUrl = window.URL.createObjectURL(blob);
+        axios({
+          method: "get",
+          url: `${response.data.url}`,
+          responseType: "blob",
+        })
+          .then((res) => {
+            const file = new Blob([res.data], { type: res.data.type });
+            console.log("Blob object:", res.data);
+            console.log(Object.getOwnPropertyNames(res));
+
+            const fileUrl = window.URL.createObjectURL(file);
             const link = document.createElement("a");
             link.href = fileUrl;
             link.style.display = "none";
@@ -62,10 +64,10 @@ const DownButton = () => {
   return (
     <DownBtn
       onClick={() => {
-        downLoad();
+        IndividualDownLoad();
       }}
     >
-      <AiOutlineDownload size={"35px"} color="#3178B9" />
+      <AiOutlineDownload size={"35px"} color="#0969da" />
     </DownBtn>
   );
 };

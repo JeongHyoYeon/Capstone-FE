@@ -5,7 +5,7 @@ import styled from "styled-components";
 const CategoryAll = styled.div`
   margin-top: 0;
   padding-top: 0;
-  color: grey;
+  color: white;
 `;
 const NavWrap = styled.nav`
   display: flex;
@@ -28,7 +28,7 @@ const CategoryHeader = () => {
   const tripId = localStorage.getItem("nowGroupTrip");
 
   const activeStyle = {
-    color: "#3178B9",
+    color: "#4988ef",
   };
 
   return (

@@ -8,6 +8,7 @@ const InputText = styled.input`
   border: none;
   border-radius: 10px 10px 10px 10px;
   outline: #d9d9d9 1px solid;
+  outline-radius: 10px 10px 10px 10px;
   padding-left: 20px;
   &:focus {
     outline: none;

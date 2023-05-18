@@ -6,14 +6,13 @@ import instance from "../../components/Request";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-import { ImFileEmpty } from "react-icons/im";
-import BackButton from "../../components/common/BackButton";
+
+import Loading from "../Loading";
 
 const Box = styled.div`
-  height: 100px;
+  height: 110px;
   width: 92%;
   display: flex;
-  flex-direction: row;
   justify-content: flex start;
   flex-direction: column;
   color: black;
@@ -25,17 +24,30 @@ const Box = styled.div`
 `;
 
 const Text = styled.div`
-  font-size: 13px;
-  font-weight: bold;
-  padding-bottom: 12px;
-  margin-left: 20px;
+  font-size: 15px;
+  font-weight: 600;
   color: black;
+  margin-left: 5px;
 `;
 
-const TextDate = styled.div`
-  font-size: 10px;
+const GroupNameText = styled.div`
+  font-size: 15px;
+  font-weight: 600;
+  color: #4988ef;
+`;
+
+const TextDiv = styled.div`
+  display: flex;
+  justify-content: flex start;
+  flex-direction: row;
+  margin: 10px 20px 10px 20px;
+`;
+
+const Date = styled.div`
+  font-size: 12px;
   margin-left: 20px;
-  padding-bottom: 5px;
+  color: #9e9e9e;
+  font-weight: 500;
 `;
 
 const Layout = styled.div`
@@ -50,17 +62,11 @@ const Layout2 = styled.div`
   flex-direction: row;
   justify-content: space-around;
 `;
+
 const Layout3 = styled.div`
   display: flex;
   justify-content: center;
-
   padding-top: 100px;
-`;
-
-const Layout4 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
 `;
 
 const InviteList = () => {
@@ -69,10 +75,12 @@ const InviteList = () => {
   const [inviteList, setInviteList] = useState([]);
   let nowInviteList = [];
 
-  //버튼 클릭시
+  //로딩화면 여부
+  const [loading, setLoading] = useState(true);
 
   //초대 목록 가져오기
   const invite = async (e) => {
+    setLoading(true);
     await axios;
     instance
       .get(
@@ -95,6 +103,7 @@ const InviteList = () => {
           console.log(nowInviteList[i]);
         }
         setInviteList([...inviteList, ...nowInviteList]);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -149,56 +158,56 @@ const InviteList = () => {
     invite();
   }, []);
 
-  if (inviteList.length === 0)
+  if (loading) return <Loading />;
+  else if (inviteList.length === 0)
     return (
       <>
-        <Layout4>
-          <BackButton />
-        </Layout4>
         <br />
         <br />
         <br />
         <Layout3>
-          <ImFileEmpty size="100px" color="#3178B9" />
-        </Layout3>
-        <Layout3>
-          <h2>들어온 초대가 없습니다.</h2>
+          <h2 style={{ fontWeight: "500", color: "white" }}>
+            들어온 초대가 없습니다.
+          </h2>
         </Layout3>
       </>
     );
   else
     return (
       <>
-        <Layout4>
-          <BackButton />
-        </Layout4>
         {inviteList
           .slice(0)
           .reverse()
           .map((inviteList) => (
             <Layout key={inviteList.user_group.id}>
               <Box>
-                <TextDate>
-                  {inviteList.user_group.created_at.split("T", 1)}
-                </TextDate>
-                <Text>{inviteList.group_name + "에 초대되셨습니다."}</Text>
+                <Date>{inviteList.user_group.created_at.split("T", 1)}</Date>
+
+                <TextDiv>
+                  <GroupNameText>{inviteList.group_name}</GroupNameText>
+                  <Text>{"에 초대되셨습니다."}</Text>
+                </TextDiv>
                 <Layout2>
                   <Button
                     text={"함께하기"}
                     height={"30px"}
-                    fontsize={"13px"}
+                    width={"40%"}
+                    fontsize={"12px"}
+                    onmouseout={"..."}
                     onClick={() => {
                       inviteAccept(inviteList.user_group.id);
-                      window.location.reload();
+                      setTimeout(() => window.location.reload(), 300);
                     }}
                   />
                   <Button
                     text={"거절하기"}
                     height={"30px"}
-                    fontsize={"13px"}
+                    width={"40%"}
+                    fontsize={"12px"}
+                    onmouseout={"..."}
                     onClick={() => {
                       inviteDelete(inviteList.user_group.id);
-                      window.location.reload();
+                      setTimeout(() => window.location.reload(), 300);
                     }}
                   />
                 </Layout2>

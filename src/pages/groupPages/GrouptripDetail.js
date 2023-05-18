@@ -5,6 +5,7 @@ import axios from "axios";
 import BlankPage from "../BlankPage";
 import { useSelector } from "react-redux";
 import PhotoDay from "./sorting/PhotoDay";
+import Loading from "../Loading";
 
 const GrouptripDetail = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
@@ -26,6 +27,9 @@ const GrouptripDetail = () => {
 
   //날짜별 여행 담는 배열
   const [photoDay, setPhotoDay] = useState([]);
+
+  //로딩화면 여부
+  const [loading, setLoading] = useState(true);
 
   //여행 정보 가져오는 함수
   const tripDetail = async (e) => {
@@ -62,6 +66,7 @@ const GrouptripDetail = () => {
 
   //그룹 여행 사진이 있는지 확인하는 함수
   const isPhoto = async (e) => {
+    setLoading(true);
     await axios;
     instance
       .get(
@@ -78,6 +83,7 @@ const GrouptripDetail = () => {
         console.log("success");
         console.log(response.data.data[0].photo);
         setPhotoDay(response.data.data[0].photo);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -88,8 +94,8 @@ const GrouptripDetail = () => {
     setTimeout(() => isPhoto(), 300);
     tripDetail();
   }, []);
-
-  if (photoDay.length === 0) return <BlankPage data="사진이" />;
+  if (loading) return <Loading />;
+  else if (photoDay.length === 0) return <BlankPage data="사진이" />;
   else return <PhotoDay />;
 };
 export default GrouptripDetail;

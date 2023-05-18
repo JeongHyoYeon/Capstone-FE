@@ -1,66 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../components/common/Button";
 import { useNavigate } from "react-router-dom";
-import { ImFileEmpty } from "react-icons/im";
-import BackButton from "../components/common/BackButton";
-//import UploadButton from "../components/common/UploadButton";
+import UploadModal from "../components/common/UploadModal";
+import { useEffect } from "react";
 
 const Layout2 = styled.div`
   display: flex;
   justify-content: center;
-  //padding-left: 4%;
-  padding-top: 100px;
-`;
-
-const Layout3 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
+  margin-top: 250px;
 `;
 
 const BlankPage = (props) => {
   const navigate = useNavigate();
 
-  const changePage = () => {
-    navigate("/upload");
+  // const changePage = () => {
+  //   navigate("/upload");
+  // };
+
+  //모달창 노출
+  const showModal = () => {
+    setModalOpen(true);
   };
+
+  //이름 바꾸는 모달창 노출 여부
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <>
-      <Layout3>
-        <BackButton />
-      </Layout3>
-      <br />
-      <br />
-      <br />
       <Layout2>
-        {/* <img
-          className="blank"
-          alt="blank"
-          src="/BlankIcon.png"
-          style={{ width: "140px", height: "140px", opacity: "0.4" }}
-        /> */}
-        <ImFileEmpty size="100px" color="#3178B9" />
+        <h2 style={{ fontWeight: "300", color: "white" }}>
+          {props.data} 없습니다
+        </h2>
       </Layout2>
       <Layout2>
-        <h2>{props.data} 없습니다.</h2>
-      </Layout2>
-      <Layout2>
-        {/* <UploadButton
-          text={"사진 올리기"}
-          width={"200px"}
-          //position={"fixed"}
-          //bottom={"13%"}
-        /> */}
         <Button
           text={"사진 올리기"}
-          width={"200px"}
+          width={"50%"}
           fontColor={"white"}
-          //position={"fixed"}
-          //bottom={"13%"}
-          onClick={changePage}
+          position={"fixed"}
+          bottom={"10%"}
+          onClick={() => {
+            showModal();
+          }}
         />
+        {modalOpen && <UploadModal setModalOpen={setModalOpen} />}
       </Layout2>
     </>
   );

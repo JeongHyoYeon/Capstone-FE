@@ -9,11 +9,14 @@ import instance from "../../components/Request";
 
 const Deletebtn = styled.button`
   border: none;
-  background-color: #eaecee;
+  // background-color: #eaedf2;
+  background: none;
 `;
 
 const DeleteButton = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
+
+  const tripId = localStorage.getItem("nowGroupTrip");
 
   const navigate = useNavigate();
   const back = () => {
@@ -54,7 +57,7 @@ const DeleteButton = () => {
         back();
       }}
     >
-      <AiOutlineDelete size={"30px"} color="#3178B9" />
+      <AiOutlineDelete size={"30px"} color="#0969da" />
     </Deletebtn>
   );
 };

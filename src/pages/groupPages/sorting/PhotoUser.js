@@ -8,8 +8,8 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import Image from "../../../components/common/Image";
 import Button from "../../../components/common/Button";
-import BackButton from "../../../components/common/BackButton";
-//import UploadButton from "../../../components/common/UploadButton";
+import UploadModal from "../../../components/common/UploadModal";
+import DownFolder from "../../../components/common/DownFolder";
 
 const Layout = styled.div`
   display: flex;
@@ -32,26 +32,33 @@ const Layout3 = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  margin-left: 3%;
+  margin-right: 8%;
 `;
 
 const Layout4 = styled.div`
   display: flex;
   justify-content: center;
 `;
-const Layout5 = styled.div`
+
+const Top = styled.div`
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
-  padding: 3px;
+`;
+
+const Down = styled.div`
+  display: flex;
+  padding: 0 7% 0 0;
+  margin: 30px 0 0 0;
 `;
 
 const PhotoUser = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
   const navigate = useNavigate();
-
-  const changePage = () => {
-    navigate("/upload");
-  };
 
   //게시자 id
   const { usertag } = useParams();
@@ -63,6 +70,14 @@ const PhotoUser = () => {
   const [photoUser, setPhotoUser] = useState([]);
 
   const [photoTag, setPhotoTag] = useState();
+
+  //이름 바꾸는 모달창 노출 여부
+  const [modalOpen, setModalOpen] = useState(false);
+
+  //모달창 노출
+  const showModal = () => {
+    setModalOpen(true);
+  };
 
   //그룹 여행 사진 함수
   const userPhoto = async (e) => {
@@ -95,25 +110,27 @@ const PhotoUser = () => {
 
   return (
     <>
-      <Layout5>
-        <BackButton />
-      </Layout5>
       <CategoryHeader />
-      <h2
-        style={{
-          paddingLeft: "8%",
-          paddingTop: "20px",
-          paddingBottom: "0",
-          marginBottom: "0",
-        }}
-      >
-        {photoTag}
-      </h2>
+      <Top>
+        <h2
+          style={{
+            paddingLeft: "8%",
+            paddingTop: "20px",
+            paddingBottom: "0",
+            marginBottom: "0",
+          }}
+        >
+          {photoTag}
+        </h2>
+        <Down>
+          <DownFolder />
+        </Down>
+      </Top>
       <Layout3>
         {photoUser.map((item) => (
           <Layout key={item.id}>
             <Layout2>
-              <Link to={`/photo/large/${item.id}`}>
+              <Link to={`/large/${item.id}`}>
                 <Image src={item.url} />
               </Link>
             </Layout2>
@@ -121,12 +138,6 @@ const PhotoUser = () => {
         ))}
       </Layout3>
       <Layout4>
-        {/* <UploadButton
-          text={"사진 올리기"}
-          width={"200px"}
-          position={"fixed"}
-          bottom={"13%"}
-        /> */}
         <Button
           text={"사진 올리기"}
           width={"200px"}
@@ -134,9 +145,10 @@ const PhotoUser = () => {
           position={"fixed"}
           bottom={"5%"}
           onClick={() => {
-            changePage();
+            showModal();
           }}
         />
+        {modalOpen && <UploadModal setModalOpen={setModalOpen} />}
       </Layout4>
     </>
   );

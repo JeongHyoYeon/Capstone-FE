@@ -8,13 +8,14 @@ import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import BackButton from "../../components/common/BackButton";
+import Loading from "../Loading";
 
 const Layout = styled.div`
   display: flex;
   justify-content: center;
   align-content: space-evenly;
   padding-top: 20px;
+  width: 100%;
 `;
 
 const Layout2 = styled.div`
@@ -24,10 +25,30 @@ const Layout2 = styled.div`
   padding-top: 15px;
 `;
 
-const Layout3 = styled.div`
+const GroupName = styled.div`
+  color: #4988ef;
+  position: relative;
+  left: 10%;
+  font-size: 25px;
+  font-weight:550;
+  margin-top: 20px;
+  margin-bottom: 15px;
+`;
+
+const GroupMemberDiv = styled.div`
+  color: white;
+  position: relative;
+  left: 10%;
   display: flex;
-  justify-content: space-between;
-  padding: 5px;
+  flex-direction: row;
+  margin-bottom: 10px;
+`;
+
+const GroupMemberName = styled.div`
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  margin-right: 10px;
 `;
 
 const GroupTripList = () => {
@@ -40,6 +61,8 @@ const GroupTripList = () => {
   localStorage.setItem("nowGroup", groupNum);
 
   const [groupName, setGroupName] = useState("");
+  const [groupMember, setGroupMember] = useState([]);
+
   //그룹별 여행 목록
   let nowGroupTripList = [];
   const [groupTripList, setGroupTripList] = useState([]);
@@ -49,9 +72,13 @@ const GroupTripList = () => {
     navigate("/maketrips");
   };
 
+  //로딩화면 여부
+  const [loading, setLoading] = useState(true);
+
   // group의 여행 목록
   const groupdetail = async (e) => {
     //e.preventDefault();
+    setLoading(true);
     await axios;
     instance
       .get(
@@ -68,11 +95,12 @@ const GroupTripList = () => {
         console.log("success");
         console.log(response.data);
         setGroupName(response.data.data.group_name);
-
+        setGroupMember(response.data.data.group_members);
         for (let i = 0; i < response.data.data.trip_list.length; i++) {
           nowGroupTripList.push(response.data.data.trip_list[i]);
         }
         setGroupTripList([...groupTripList, ...nowGroupTripList]);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -83,43 +111,44 @@ const GroupTripList = () => {
     setTimeout(() => groupdetail(), 500);
   }, []);
 
-  return (
-    <>
-      <Layout3>
-        <BackButton />
-      </Layout3>
-      <h2
-        style={{
-          position: "relative",
-          left: "8%",
-        }}
-      >
-        {groupName}의 여행
-      </h2>
-      {groupTripList.map((trip_list) => (
-        <Layout2 key={trip_list.id}>
-          <Link to={`/grouptripdetail/${trip_list.id}`}>
-            <ImageBox
-              src={trip_list.thumbnail}
-              height={"150px"}
-              text1={trip_list.place}
-              text2={trip_list.departing_date + " ~ " + trip_list.arriving_date}
-            />
-          </Link>
-        </Layout2>
-      ))}
+  if (loading) return <Loading />;
+  else
+    return (
+      <>
+        <GroupName>{groupName}의 여행</GroupName>
 
-      <Layout>
-        <Button
-          text={"새 여행 만들기"}
-          width={"200px"}
-          fontColor={"white"}
-          position={"fixed"}
-          bottom={"13%"}
-          onClick={navMakeTrip}
-        />
-      </Layout>
-    </>
-  );
+        
+        <GroupMemberDiv>
+          {groupMember.map((item) => (
+            <GroupMemberName key={item}> {item} </GroupMemberName>
+          ))}
+        </GroupMemberDiv>
+        {groupTripList.map((trip_list) => (
+          <Layout2 key={trip_list.id}>
+            <Link to={`/grouptripdetail/${trip_list.id}`}>
+              <ImageBox
+                src={trip_list.thumbnail}
+                height={"150px"}
+                text1={trip_list.place}
+                text2={
+                  trip_list.departing_date + " ~ " + trip_list.arriving_date
+                }
+              />
+            </Link>
+          </Layout2>
+        ))}
+
+        <Layout>
+          <Button
+            text={"새 여행 만들기"}
+            width={"50%"}
+            fontColor={"white"}
+            position={"fixed"}
+            bottom={"10%"}
+            onClick={navMakeTrip}
+          />
+        </Layout>
+      </>
+    );
 };
 export default GroupTripList;

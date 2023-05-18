@@ -1,22 +1,36 @@
 .header-all {
   /* background-color: #d2e1f3; */
-  background-color: #eaecee;
+  /* background-color: #eaedf2; */
+  position: relative;
+  padding-bottom: 0px;
+  background-image: url("../../public/backgroundImg2.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
+
 .brand-Name {
   display: flex;
   justify-content: center;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1;
-  color: #3178b9;
+  /* color: #0969da; */
+  color: #4988ef;
+  padding-top: 10px;
 }
-/* nav {
-  overflow: hidden;
-}
-nav > div {
-  float: left;
-  width: 33.3%;
+
+.alarm {
   display: flex;
-  justify-content: center;
-  height: 45px;
-  line-height: 45px;
-} */
+  position: absolute;
+  right: 8%;
+  top: 25%;
+  padding-top: 10px;
+}
+.back-btn {
+  display: flex;
+  position: absolute;
+  left: 2%;
+  top: 25%;
+  padding-top: 10px;
+}
