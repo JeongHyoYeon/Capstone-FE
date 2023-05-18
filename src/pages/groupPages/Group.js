@@ -73,27 +73,27 @@ const Group = () => {
     navigate(`/group/${item}`);
   };
 
-  const authCheck = async (e) => {
-    await axios;
-    instance
-      .get(
-        `accounts/groups/`,
+  // const authCheck = async (e) => {
+  //   await axios;
+  //   instance
+  //     .get(
+  //       `accounts/groups/`,
 
-        {
-          headers: {
-            Authorization: `Bearer ${JWTtoken}`,
-            //Content-Type: application/json,
-          },
-        }
-      )
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-        logOut();
-      });
-  };
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${JWTtoken}`,
+  //           //Content-Type: application/json,
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       logOut();
+  //     });
+  // };
 
   const groupList = async (e) => {
     setLoading(true);
@@ -125,7 +125,7 @@ const Group = () => {
   };
 
   useEffect(() => {
-    authCheck();
+    // authCheck();
     groupList();
   }, []);
 

@@ -73,12 +73,21 @@ const SelectBox = styled.div`
   width: 200px;
   height: 50px;
   text-align: center;
-  font-size: 14px;
-  padding: 15px 10px 7px 10px;
+  font-size: 12px;
+  padding: 17px 10px 7px 10px;
   margin: 5px 5px 5px 5px;
   position: absolute;
-  top: 30%;
+  top: 35%;
   left: 20%;
+`;
+
+const Text = styled.div`
+  color: black;
+  font-size: 15px;
+  font-weight: 500;
+  position: absolute;
+  top: 28%;
+  left: 35%;
 `;
 
 const UploadModal = ({ setModalOpen }) => {
@@ -178,6 +187,7 @@ const UploadModal = ({ setModalOpen }) => {
             style={{ display: "none" }}
           />
         </Label>
+        <Text>{photo.length}개의 사진 선택됨</Text>
       </Layout>
       <Layout>
         <Button
@@ -185,7 +195,7 @@ const UploadModal = ({ setModalOpen }) => {
           width={"200px"}
           fontColor={"white"}
           position={"fixed"}
-          bottom={"5%"}
+          bottom={"10%"}
           onClick={() => {
             sendPhoto();
           }}

@@ -36,11 +36,12 @@ const DownButton = () => {
           method: "get",
           url: `${response.data.url}`,
           responseType: "blob",
+          headers: {
+            origin: "https://www.aftertrip.link",
+          },
         })
           .then((res) => {
             const file = new Blob([res.data], { type: res.data.type });
-            console.log("Blob object:", res.data);
-            console.log(Object.getOwnPropertyNames(res));
 
             const fileUrl = window.URL.createObjectURL(file);
             const link = document.createElement("a");

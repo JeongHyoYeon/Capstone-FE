@@ -108,14 +108,13 @@ const PhotoCharFolder = () => {
         }
       )
       .then((res) => {
-        console.log(res);
-        window.alert(res.data);
+        if (res.status === 204) window.alert("인물사진이 없습니다.");
         setIsLoading(false);
         charPhotoThumb();
       })
       .catch((error) => {
         setIsLoading(false);
-        console.log(error);
+
         if (error.message === "Request failed with status code 400")
           window.alert("인물 분류에 실패했습니다. 다시 시도해주세요.");
       });
@@ -147,7 +146,7 @@ const PhotoCharFolder = () => {
       )
       .then((response) => {
         console.log("success");
-        console.log(response.data);
+
         setPhotoThumb(response.data.data);
         setLoading(false);
       })

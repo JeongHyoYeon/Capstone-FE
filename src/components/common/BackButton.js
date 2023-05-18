@@ -10,7 +10,7 @@ const Backbtn = styled.button`
 `;
 
 const BackButton = () => {
-  let nowGroupTripId = localStorage.getItem("nowGroupTrip");
+  const nowGroupTripId = localStorage.getItem("nowGroupTrip");
   const location = useLocation();
 
   const navigate = useNavigate();
@@ -23,16 +23,16 @@ const BackButton = () => {
   };
 
   const groupBack = () => {
-    navigate(`/group/`);
+    navigate(`/group`);
   };
 
-  if (location.pathname.includes("/photo" || "/grouptripdetail")) {
+  if (location.pathname.includes("/photo/" || "/grouptripdetail/")) {
     return (
       <Backbtn onClick={photoBack}>
         <MdOutlineArrowBackIosNew size={"30px"} color="#4988ef" />
       </Backbtn>
     );
-  } else if (location.pathname.includes("/grouptrip")) {
+  } else if (location.pathname.includes("/grouptrip/")) {
     return (
       <Backbtn onClick={groupBack}>
         <MdOutlineArrowBackIosNew size={"30px"} color="#4988ef" />
