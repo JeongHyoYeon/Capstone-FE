@@ -200,7 +200,7 @@ const DownFolder = () => {
         faceDownLoad();
       }}
     >
-      <AiOutlineDownload size={"35px"} color="#0969da" />
+      <AiOutlineDownload size={"35px"} color="#4988ef" />
     </DownBtn>;
   } else if (location.pathname.includes("/obejfolder/")) {
     return (
@@ -209,7 +209,7 @@ const DownFolder = () => {
           obejDownLoad();
         }}
       >
-        <AiOutlineDownload size={"35px"} color="#0969da" />
+        <AiOutlineDownload size={"35px"} color="#4988ef" />
       </DownBtn>
     );
   } else
@@ -219,7 +219,7 @@ const DownFolder = () => {
           userDownLoad();
         }}
       >
-        <AiOutlineDownload size={"35px"} color="#0969da" />
+        <AiOutlineDownload size={"35px"} color="#4988ef" />
       </DownBtn>
     );
 };
