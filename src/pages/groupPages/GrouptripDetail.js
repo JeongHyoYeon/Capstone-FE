@@ -48,7 +48,7 @@ const GrouptripDetail = () => {
       )
       .then((response) => {
         console.log("success");
-        console.log(response.data);
+
         setTripInfo({
           ...tripInfo,
           id: response.data.id,
@@ -80,8 +80,6 @@ const GrouptripDetail = () => {
         }
       )
       .then((response) => {
-        console.log("success");
-        console.log(response.data.data[0].photo);
         setPhotoDay(response.data.data[0].photo);
         setLoading(false);
       })
