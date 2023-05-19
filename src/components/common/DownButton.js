@@ -1,5 +1,5 @@
 //개별 사진 다운로드 버튼
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 import instance from "../../components/Request";

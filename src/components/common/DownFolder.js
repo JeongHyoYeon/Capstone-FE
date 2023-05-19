@@ -1,5 +1,5 @@
 //폴더별 사진 다운로드
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 import instance from "../../components/Request";
@@ -195,13 +195,15 @@ const DownFolder = () => {
   };
 
   if (location.pathname.includes("/charfolder/")) {
-    <DownBtn
-      onClick={() => {
-        faceDownLoad();
-      }}
-    >
-      <AiOutlineDownload size={"35px"} color="white" />
-    </DownBtn>;
+    return (
+      <DownBtn
+        onClick={() => {
+          faceDownLoad();
+        }}
+      >
+        <AiOutlineDownload size={"35px"} color="white" />
+      </DownBtn>
+    );
   } else if (location.pathname.includes("/obejfolder/")) {
     return (
       <DownBtn

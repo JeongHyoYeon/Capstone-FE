@@ -16,8 +16,6 @@ const Deletebtn = styled.button`
 const DeleteButton = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
-  const tripId = localStorage.getItem("nowGroupTrip");
-
   const navigate = useNavigate();
   const back = () => {
     navigate(-1);

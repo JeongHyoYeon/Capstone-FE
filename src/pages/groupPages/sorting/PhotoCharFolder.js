@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import CategoryHeader from "./CategoryHeader";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Button from "../../../components/common/Button";
 import Image from "../../../components/common/Image";
@@ -80,8 +80,6 @@ const PhotoCharFolder = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
   const [isLoading, setIsLoading] = useState(false);
-
-  const navigate = useNavigate();
 
   const tripId = localStorage.getItem("nowGroupTrip");
 

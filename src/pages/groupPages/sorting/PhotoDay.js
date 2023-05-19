@@ -3,7 +3,7 @@ import CategoryHeader from "./CategoryHeader";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import instance from "../../../components/Request";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Image from "../../../components/common/Image";
@@ -43,12 +43,6 @@ const Layout4 = styled.div`
 
 const PhotoDay = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
-
-  const navigate = useNavigate();
-
-  const changePage = () => {
-    navigate("/upload");
-  };
 
   //현재 여행의 id
   const tripId = localStorage.getItem("nowGroupTrip");

@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import CategoryHeader from "./CategoryHeader";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Button from "../../../components/common/Button";
 import Image from "../../../components/common/Image";
@@ -79,15 +79,9 @@ const Layout8 = styled.div`
 const PhotoObejFolder = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
-  const navigate = useNavigate();
-
   const [isLoading, setIsLoading] = useState(false);
 
   const tripId = localStorage.getItem("nowGroupTrip");
-
-  const changeGpt = () => {
-    navigate("/photo/auto/gpt");
-  };
 
   //모달창 노출
   const showModal = () => {

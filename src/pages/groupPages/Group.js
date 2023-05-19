@@ -45,8 +45,6 @@ const Layout4 = styled.div`
 const Group = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
-  var userName = localStorage.getItem("name");
-
   let newGroupInfo = [];
 
   const [groupInfo, setGroupInfo] = useState([]);
@@ -115,7 +113,6 @@ const Group = () => {
         }
         setGroupInfo([...groupInfo, ...newGroupInfo]);
         setLoading(false);
-        localStorage.clear();
       })
       .catch((error) => {
         console.log(error);

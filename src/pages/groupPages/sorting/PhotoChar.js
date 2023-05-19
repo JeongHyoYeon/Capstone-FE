@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import CategoryHeader from "./CategoryHeader";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Button from "../../../components/common/Button";
 import Image from "../../../components/common/Image";
@@ -73,12 +73,16 @@ const ModifyBtn = styled.button`
 
 const Down = styled.div`
   display: flex;
+  padding: 0 10% 0 0;
+  margin: 30px 0 0 0;
+`;
+const Right = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const PhotoChar = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
-
-  const navigate = useNavigate();
 
   //분류요청 여부
   const [isLoading, setIsLoading] = useState(false);
@@ -178,18 +182,20 @@ const PhotoChar = () => {
         >
           {photoTag}
         </h2>
-        <DownFolder />
-        <ModifyBtn
-          onClick={() => {
-            showModal();
-          }}
-        >
-          <MdOutlineDriveFileRenameOutline size={"30px"} color="white" />
-        </ModifyBtn>
-
-        {modalName && <ModalView setModalOpen={setModalName} />}
+        <Right>
+          <ModifyBtn
+            onClick={() => {
+              showModal();
+            }}
+          >
+            <MdOutlineDriveFileRenameOutline size={"30px"} color="white" />
+          </ModifyBtn>
+          {modalName && <ModalView setModalOpen={setModalName} />}
+          <Down>
+            <DownFolder />
+          </Down>
+        </Right>
       </Layout7>
-
       <Layout3>
         {photoChar.map((item) => (
           <Layout4 key={item.id}>
