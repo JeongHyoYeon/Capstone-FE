@@ -30,7 +30,7 @@ const GroupName = styled.div`
   position: relative;
   left: 10%;
   font-size: 25px;
-  font-weight:550;
+  font-weight: 550;
   margin-top: 20px;
   margin-bottom: 15px;
 `;
@@ -104,6 +104,7 @@ const GroupTripList = () => {
       })
       .catch((error) => {
         console.log(error);
+        window.location.reload();
       });
   };
 
@@ -117,7 +118,6 @@ const GroupTripList = () => {
       <>
         <GroupName>{groupName}의 여행</GroupName>
 
-        
         <GroupMemberDiv>
           {groupMember.map((item) => (
             <GroupMemberName key={item}> {item} </GroupMemberName>

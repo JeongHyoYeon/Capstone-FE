@@ -110,14 +110,12 @@ const Group = () => {
         }
       )
       .then((response) => {
-        //let info = { data: [{ group_info: {}, user_in_group: {} }] };
-        console.log(response.data.data);
-
         for (let i = 0; i < response.data.data.length; i++) {
           newGroupInfo.push(response.data.data[i]);
         }
         setGroupInfo([...groupInfo, ...newGroupInfo]);
         setLoading(false);
+        localStorage.clear();
       })
       .catch((error) => {
         console.log(error);

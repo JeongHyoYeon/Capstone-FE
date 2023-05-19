@@ -71,6 +71,10 @@ const ModifyBtn = styled.button`
   background: none;
 `;
 
+const Down = styled.div`
+  display: flex;
+`;
+
 const PhotoChar = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
@@ -174,7 +178,7 @@ const PhotoChar = () => {
         >
           {photoTag}
         </h2>
-
+        <DownFolder />
         <ModifyBtn
           onClick={() => {
             showModal();
@@ -182,6 +186,7 @@ const PhotoChar = () => {
         >
           <MdOutlineDriveFileRenameOutline size={"30px"} color="white" />
         </ModifyBtn>
+
         {modalName && <ModalView setModalOpen={setModalName} />}
       </Layout7>
 
@@ -198,7 +203,6 @@ const PhotoChar = () => {
       </Layout3>
       <Layout>
         <Layout2>
-          <DownFolder />
           <Button
             text={isLoading ? "분류하는 중..." : "인물분류하기"}
             width={"150px"}

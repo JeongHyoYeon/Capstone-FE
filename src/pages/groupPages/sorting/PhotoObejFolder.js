@@ -83,11 +83,7 @@ const PhotoObejFolder = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const tripId = localStorage.getItem("nowGroupTrip");
-
-  const changePage = () => {
-    navigate("/upload");
-  };
+  const tripId = sessionStorage.getItem("nowGroupTrip");
 
   const changeGpt = () => {
     navigate("/photo/auto/gpt");

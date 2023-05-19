@@ -10,7 +10,7 @@ const Backbtn = styled.button`
 `;
 
 const BackButton = () => {
-  const nowGroupTripId = localStorage.getItem("nowGroupTrip");
+  //const nowGroupTripId = localStorage.getItem("nowGroupTrip");
   const location = useLocation();
 
   const navigate = useNavigate();
@@ -19,7 +19,13 @@ const BackButton = () => {
   };
 
   const photoBack = () => {
-    navigate(`/grouptrip/${nowGroupTripId}`);
+    //navigate(`/grouptrip/${nowGroupTripId}`);
+    const nowGroup = localStorage.getItem("nowGroup");
+    if (nowGroup) {
+      navigate(`/grouptrip/${nowGroup}`);
+    } else {
+      navigate("/group"); // 잘못된 경우 기본 경로로 이동하도록 설정
+    }
   };
 
   const groupBack = () => {

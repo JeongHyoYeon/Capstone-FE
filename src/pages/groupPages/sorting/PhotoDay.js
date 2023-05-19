@@ -20,18 +20,13 @@ const Layout6 = styled.div`
 `;
 
 const Layout = styled.div`
-  // display: flex;
-  // padding: 10px;
-  // padding-top: 10px;
-  // flex-direction: column;
-  // padding-left: 6%;
   display: grid;
   row-gap: 0;
   color: white;
 `;
 
 const Layout2 = styled.div`
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
 `;
 
