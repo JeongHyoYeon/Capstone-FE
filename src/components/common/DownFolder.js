@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { AiOutlineDownload } from "react-icons/ai";
 import { useLocation, useParams } from "react-router-dom";
 import { saveAs } from "file-saver";
+import JSZip from "jszip";
 
 const DownBtn = styled.button`
   border: none;
@@ -30,38 +31,50 @@ const DownFolder = () => {
 
   const location = useLocation();
 
-  const userDownLoad = async () => {
-    try {
-      const response = await instance.get(
-        `photos/uploader/${tripId}/${usertag}/`,
-        {
-          headers: {
-            Authorization: `Bearer ${JWTtoken}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+  const userDownLoad = () => {
+    instance
+      .get(`photos/uploader/${tripId}/${usertag}/`, {
+        headers: {
+          Authorization: `Bearer ${JWTtoken}`,
+          "Content-Type": "application/json",
+        },
+      })
+      .then(async (response) => {
+        const photos = response.data.photos;
 
-      const photos = response.data.photos;
+        const zip = new JSZip();
 
-      for (const [index, photo] of photos.entries()) {
-        const fileUrl = `${photo.url}?timestamp=${Date.now()}`; // 고유한 타임스탬프 쿼리 매개변수 추가
+        const downloadPromises = photos.map((photo) => {
+          const fileUrl = photo.url;
 
-        const fileResponse = await instance.get(fileUrl, {
-          responseType: "blob",
+          return axios
+            .get(fileUrl, { responseType: "blob" })
+            .then((fileResponse) => {
+              const file = new Blob([fileResponse.data], {
+                type: fileResponse.data.type,
+              });
+              zip.file(photo.file_name, file); // Add file to the ZIP archive
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
         });
 
-        const file = new Blob([fileResponse.data], {
-          type: fileResponse.data.type,
-        });
-
-        saveAs(file, photo.file_name);
-      }
-
-      console.log("User files downloaded successfully.");
-    } catch (error) {
-      console.error("Error while downloading files:", error);
-    }
+        Promise.all(downloadPromises)
+          .then(() => {
+            // Generate the ZIP file
+            zip.generateAsync({ type: "blob" }).then((content) => {
+              // Save the ZIP file using FileSaver.js
+              saveAs(content, "files.zip");
+            });
+          })
+          .catch((error) => {
+            console.error("Error while downloading files:", error);
+          });
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
   };
 
   //객체 분류 폴더 다운로드
