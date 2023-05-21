@@ -6,6 +6,7 @@ import instance from "../../components/Request";
 import { useSelector } from "react-redux";
 import { AiOutlineDownload } from "react-icons/ai";
 import { useLocation, useParams } from "react-router-dom";
+import { saveAs } from "file-saver";
 
 const DownBtn = styled.button`
   border: none;
@@ -29,59 +30,38 @@ const DownFolder = () => {
 
   const location = useLocation();
 
-  //게시자 사진 다운로드
-  const userDownLoad = (e) => {
-    instance
-      .get(`photos/uploader/${tripId}/${usertag}/`, {
-        headers: {
-          Authorization: `Bearer ${JWTtoken}`,
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        const photos = response.data.photos;
+  const userDownLoad = async () => {
+    try {
+      const response = await instance.get(
+        `photos/uploader/${tripId}/${usertag}/`,
+        {
+          headers: {
+            Authorization: `Bearer ${JWTtoken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-        // Promise 체인을 사용하여 각 항목의 다운로드를 순차적으로 처리
-        const downloadPromises = photos.map((photo) => {
-          const fileUrl = photo.url;
+      const photos = response.data.photos;
 
-          return axios
-            .get(fileUrl, {
-              responseType: "blob",
-            })
-            .then((fileResponse) => {
-              const file = new Blob([fileResponse.data], {
-                type: fileResponse.data.type,
-              });
-              const fileUrl = window.URL.createObjectURL(file);
-              const link = document.createElement("a");
-              link.href = fileUrl;
-              link.style.display = "none";
-              link.download = photo.file_name;
+      for (const [index, photo] of photos.entries()) {
+        const fileUrl = `${photo.url}?timestamp=${Date.now()}`; // 고유한 타임스탬프 쿼리 매개변수 추가
 
-              document.body.appendChild(link);
-              link.click();
-              link.remove();
-
-              window.URL.revokeObjectURL(fileUrl);
-            })
-            .catch((error) => {
-              console.error("Error:", error);
-            });
+        const fileResponse = await instance.get(fileUrl, {
+          responseType: "blob",
         });
 
-        // 모든 다운로드 프로미스를 병렬로 실행
-        Promise.all(downloadPromises)
-          .then(() => {
-            console.log("User files downloaded successfully.");
-          })
-          .catch((error) => {
-            console.error("Error while downloading files:", error);
-          });
-      })
-      .catch((error) => {
-        console.log("Error:", error);
-      });
+        const file = new Blob([fileResponse.data], {
+          type: fileResponse.data.type,
+        });
+
+        saveAs(file, photo.file_name);
+      }
+
+      console.log("User files downloaded successfully.");
+    } catch (error) {
+      console.error("Error while downloading files:", error);
+    }
   };
 
   //객체 분류 폴더 다운로드
