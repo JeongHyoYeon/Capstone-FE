@@ -3,13 +3,13 @@ import CategoryHeader from "./CategoryHeader";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import instance from "../../../components/Request";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Image from "../../../components/common/Image";
 import Button from "../../../components/common/Button";
 import UploadModal from "../../../components/common/UploadModal";
-import DownFolder from "../../../components/common/DownFolder";
+import DownButton from "../../../components/common/DownButton";
 
 const Layout = styled.div`
   display: flex;
@@ -58,8 +58,6 @@ const Down = styled.div`
 
 const PhotoUser = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
-
-  const navigate = useNavigate();
 
   //게시자 id
   const { usertag } = useParams();
@@ -124,7 +122,7 @@ const PhotoUser = () => {
           {photoTag}
         </h2>
         <Down>
-          <DownFolder />
+          <DownButton />
         </Down>
       </Top>
       <Layout3>

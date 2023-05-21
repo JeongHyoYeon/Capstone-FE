@@ -11,7 +11,7 @@ import instance from "../../../components/Request";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import ModalView from "../../../components/common/ModalView";
 import UploadModal from "../../../components/common/UploadModal";
-import DownFolder from "../../../components/common/DownFolder";
+import DownButton from "../../../components/common/DownButton";
 
 const Layout = styled.div`
   display: flex;
@@ -192,7 +192,7 @@ const PhotoChar = () => {
           </ModifyBtn>
           {modalName && <ModalView setModalOpen={setModalName} />}
           <Down>
-            <DownFolder />
+            <DownButton />
           </Down>
         </Right>
       </Layout7>

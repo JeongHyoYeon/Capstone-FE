@@ -2,14 +2,14 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import CategoryHeader from "./CategoryHeader";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Button from "../../../components/common/Button";
 import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
 import UploadModal from "../../../components/common/UploadModal";
-import DownFolder from "../../../components/common/DownFolder";
+import DownButton from "../../../components/common/DownButton";
 
 const Layout = styled.div`
   display: flex;
@@ -68,8 +68,6 @@ const Down = styled.div`
 
 const PhotoObej = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
-
-  const navigate = useNavigate();
 
   const tripId = localStorage.getItem("nowGroupTrip");
 
@@ -160,7 +158,7 @@ const PhotoObej = () => {
           {photoTag}
         </h2>
         <Down>
-          <DownFolder />
+          <DownButton />
         </Down>
       </Top>
       <Layout3>
