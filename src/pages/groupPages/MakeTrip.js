@@ -51,7 +51,7 @@ const InputLabel = styled.label`
 const Text = styled.div`
   color: white;
   font-size: 15px;
-  font-weight:500;
+  font-weight: 500;
   margin-top: 20px;
   margin-bottom: 15px;
 `;
@@ -108,14 +108,6 @@ const MakeTrip = () => {
     formData.append("departing_date", JSON.stringify(getDateOnly(startDate)));
     formData.append("arriving_date", JSON.stringify(getDateOnly(endDate)));
 
-    for (let value of formData.values()) {
-      console.log(value);
-    }
-
-    for (let key of formData.keys()) {
-      console.log(key);
-    }
-
     if (!formData.get("thumbnail")) {
       window.alert("썸네일을 첨부해주세요.");
       return;
@@ -130,8 +122,6 @@ const MakeTrip = () => {
         },
       })
       .then((response) => {
-        console.log("success");
-        console.log(response);
         localStorage.removeItem("nowGroup");
       })
       .catch((error) => {

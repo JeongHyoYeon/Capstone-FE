@@ -205,7 +205,7 @@ const DownButton = () => {
           url: `${response.data.url}`,
           responseType: "blob",
           headers: {
-            origin: "https://www.aftertrip.link",
+            Origin: "https://www.aftertrip.link",
           },
         })
           .then((res) => {

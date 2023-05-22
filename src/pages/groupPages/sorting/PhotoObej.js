@@ -104,7 +104,6 @@ const PhotoObej = () => {
         }
       )
       .then((response) => {
-        console.log(response);
         setIsLoading(false);
         ObejPhoto();
       })

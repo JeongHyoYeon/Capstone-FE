@@ -59,9 +59,6 @@ const MakeGroup = () => {
         }
       )
       .then((response) => {
-        //handle success
-        console.log("success");
-        console.log(response);
         console.log(response.data[0].group.id);
         localStorage.setItem("groupId", response.data[0].group.id);
       })
@@ -75,13 +72,13 @@ const MakeGroup = () => {
     <>
       <Layout>
         <Layout2>
-        <InputBox
-          placeholder="그룹의 이름을 입력하세요."
-          height={"50px"}
-          width={"85%"}
-          padding={"10px"}
-          onChange={handlegroupName}
-        />
+          <InputBox
+            placeholder="그룹의 이름을 입력하세요."
+            height={"50px"}
+            width={"85%"}
+            padding={"10px"}
+            onChange={handlegroupName}
+          />
         </Layout2>
 
         <Button
@@ -95,7 +92,6 @@ const MakeGroup = () => {
             changePage();
           }}
         />
- 
       </Layout>
     </>
   );

@@ -92,8 +92,6 @@ const GroupTripList = () => {
         }
       )
       .then((response) => {
-        console.log("success");
-        console.log(response.data);
         setGroupName(response.data.data.group_name);
         setGroupMember(response.data.data.group_members);
         for (let i = 0; i < response.data.data.trip_list.length; i++) {

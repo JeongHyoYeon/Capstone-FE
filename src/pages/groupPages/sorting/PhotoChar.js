@@ -82,7 +82,7 @@ const Right = styled.div`
 const PhotoChar = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
-  //분류요청 여부
+  //로딩창 여부
   const [isLoading, setIsLoading] = useState(false);
 
   const tripId = localStorage.getItem("nowGroupTrip");
@@ -92,9 +92,6 @@ const PhotoChar = () => {
 
   //이름 모달창 노출
   const showModal = () => {
-    // if (photoTag !== "기타" || photoTag !== "얼굴 없음") {
-    //   setModalName(false);
-    // } else
     setModalName(true);
   };
 
@@ -169,69 +166,127 @@ const PhotoChar = () => {
     charPhoto();
   }, []);
 
-  return (
-    <>
-      <CategoryHeader />
-      <Layout7>
-        <h2
-          style={{
-            paddingLeft: "8%",
-            paddingTop: "20px",
-            paddingBottom: "0",
-            marginBottom: "0",
-          }}
-        >
-          {photoTag}
-        </h2>
-        <Right>
-          <ModifyBtn
-            onClick={() => {
-              showModal();
+  if (photoTag === "기타" || photoTag === "얼굴 없음") {
+    return (
+      <>
+        <CategoryHeader />
+        <Layout7>
+          <h2
+            style={{
+              paddingLeft: "8%",
+              paddingTop: "20px",
+              paddingBottom: "0",
+              marginBottom: "0",
             }}
           >
-            <MdOutlineDriveFileRenameOutline size={"30px"} color="white" />
-          </ModifyBtn>
-          {modalName && <RenameModal setModalOpen={setModalName} />}
-          <Down>
-            <DownButton />
-          </Down>
-        </Right>
-      </Layout7>
-      <Layout3>
-        {photoChar.map((item) => (
-          <Layout4 key={item.id}>
-            <Layout5>
-              <Link to={`/large/${item.id}`}>
-                <Image src={item.url} />
-              </Link>
-            </Layout5>
-          </Layout4>
-        ))}
-      </Layout3>
-      <Layout>
-        <Layout2>
-          <Button
-            text={isLoading ? "분류하는 중..." : "인물분류하기"}
-            width={"150px"}
-            fontColor={"white"}
-            backgroundColor={isLoading ? "gray" : "#4988ef"}
-            onClick={requestAuto}
-            disabled={isLoading}
-          />
-        </Layout2>
-        <Layout2>
-          <Button
-            text={"사진 올리기"}
-            width={"150px"}
-            fontColor={"white"}
-            onClick={() => {
-              showModalOpen();
+            {photoTag}
+          </h2>
+          <Right>
+            <Down>
+              <DownButton />
+            </Down>
+          </Right>
+        </Layout7>
+        <Layout3>
+          {photoChar.map((item) => (
+            <Layout4 key={item.id}>
+              <Layout5>
+                <Link to={`/large/${item.id}`}>
+                  <Image src={item.url} />
+                </Link>
+              </Layout5>
+            </Layout4>
+          ))}
+        </Layout3>
+        <Layout>
+          <Layout2>
+            <Button
+              text={isLoading ? "분류하는 중..." : "인물분류하기"}
+              width={"150px"}
+              fontColor={"white"}
+              backgroundColor={isLoading ? "gray" : "#4988ef"}
+              onClick={requestAuto}
+              disabled={isLoading}
+            />
+          </Layout2>
+          <Layout2>
+            <Button
+              text={"사진 올리기"}
+              width={"150px"}
+              fontColor={"white"}
+              onClick={() => {
+                showModalOpen();
+              }}
+            />
+          </Layout2>
+        </Layout>
+        {modalOpen && <UploadModal setModalOpen={setModalOpen} />}
+      </>
+    );
+  } else
+    return (
+      <>
+        <CategoryHeader />
+        <Layout7>
+          <h2
+            style={{
+              paddingLeft: "8%",
+              paddingTop: "20px",
+              paddingBottom: "0",
+              marginBottom: "0",
             }}
-          />
-        </Layout2>
-      </Layout>
-      {modalOpen && <UploadModal setModalOpen={setModalOpen} />}
-    </>
-  );
+          >
+            {photoTag}
+          </h2>
+          <Right>
+            <ModifyBtn
+              onClick={() => {
+                showModal();
+              }}
+            >
+              <MdOutlineDriveFileRenameOutline size={"30px"} color="white" />
+            </ModifyBtn>
+            {modalName && <RenameModal setModalOpen={setModalName} />}
+            <Down>
+              <DownButton />
+            </Down>
+          </Right>
+        </Layout7>
+        <Layout3>
+          {photoChar.map((item) => (
+            <Layout4 key={item.id}>
+              <Layout5>
+                <Link to={`/large/${item.id}`}>
+                  <Image src={item.url} />
+                </Link>
+              </Layout5>
+            </Layout4>
+          ))}
+        </Layout3>
+        <Layout>
+          <Layout2>
+            <Button
+              text={isLoading ? "분류하는 중..." : "인물분류하기"}
+              width={"150px"}
+              fontColor={"white"}
+              backgroundColor={isLoading ? "gray" : "#4988ef"}
+              onClick={requestAuto}
+              disabled={isLoading}
+            />
+          </Layout2>
+          <Layout2>
+            <Button
+              text={"사진 올리기"}
+              width={"150px"}
+              fontColor={"white"}
+              onClick={() => {
+                showModalOpen();
+              }}
+            />
+          </Layout2>
+        </Layout>
+        {modalOpen && <UploadModal setModalOpen={setModalOpen} />}
+      </>
+    );
 };
 export default PhotoChar;

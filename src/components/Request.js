@@ -7,4 +7,19 @@ const instance = axios.create({
   baseURL: "https://server.aftertrip.link/",
 });
 
+instance.interceptors.response.use(
+  (response) => {
+    // 응답 성공 시 처리
+    return response;
+  },
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      window.alert("로그인 해주세요.");
+      window.location.href = "/login";
+    }
+
+    return Promise.reject(error);
+  }
+);
+
 export default instance;

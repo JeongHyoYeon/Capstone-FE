@@ -47,8 +47,6 @@ const GrouptripDetail = () => {
         }
       )
       .then((response) => {
-        console.log("success");
-
         setTripInfo({
           ...tripInfo,
           id: response.data.id,
