@@ -92,6 +92,9 @@ const PhotoChar = () => {
 
   //이름 모달창 노출
   const showModal = () => {
+    // if (photoTag !== "기타" || photoTag !== "얼굴 없음") {
+    //   setModalName(false);
+    // } else
     setModalName(true);
   };
 

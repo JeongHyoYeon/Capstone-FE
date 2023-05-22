@@ -123,7 +123,7 @@ const RenameModal = ({ setModalOpen }) => {
             width={"200px"}
             fontColor={"white"}
             //position={"fixed"}
-            bottom={"5%"}
+            //bottom={"50px"}
             onClick={() => {
               rename();
               closeModal();

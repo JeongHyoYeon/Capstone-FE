@@ -145,7 +145,7 @@ const PhotoCharFolder = () => {
       )
       .then((response) => {
         console.log("success");
-
+        console.log(response.data);
         setPhotoThumb(response.data.data);
         setLoading(false);
       })
