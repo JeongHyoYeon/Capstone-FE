@@ -59,6 +59,7 @@ const DownButton = () => {
             })
             .catch((error) => {
               console.error("Error:", error);
+              window.alert("사용자 분류 다운로드:", error.message);
             });
         });
 
@@ -72,10 +73,12 @@ const DownButton = () => {
           })
           .catch((error) => {
             console.error("Error while downloading files:", error);
+            window.alert("사용자 분류 다운로드:", error.message);
           });
       })
       .catch((error) => {
         console.log("Error:", error);
+        window.alert(error);
       });
   };
 
@@ -120,10 +123,12 @@ const DownButton = () => {
           })
           .catch((error) => {
             console.error("Error while downloading files:", error);
+            window.alert("객체분류 다운로드:", error.message);
           });
       })
       .catch((error) => {
         console.log("Error:", error);
+        window.alert(error);
       });
   };
 
@@ -168,10 +173,12 @@ const DownButton = () => {
           })
           .catch((error) => {
             console.error("Error while downloading files:", error);
+            window.alert("인물분류 다운로드:", error.message);
           });
       })
       .catch((error) => {
         console.log("Error:", error);
+        window.alert(error);
       });
   };
 
@@ -216,10 +223,14 @@ const DownButton = () => {
 
             window.URL.revokeObjectURL(fileUrl);
           })
-          .catch((error) => console.error("Error:", error));
+          .catch((error) => {
+            console.error("Error:", error);
+            window.alert(error.message);
+          });
       })
       .catch((error) => {
         console.log("error:", error);
+        window.alert(error.message);
       });
   };
 

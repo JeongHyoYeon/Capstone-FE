@@ -10,32 +10,32 @@ import Image from "../../../components/common/Image";
 import Button from "../../../components/common/Button";
 import UploadModal from "../../../components/common/UploadModal";
 
-//전체 div
+//전체 div(버튼 제외한 div)
 const Layout6 = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  row-gap: 0;
-  //padding-top: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 0px;
   padding: 30px 6.5% 20px 6.5%;
 `;
-
+//날짜까지 포함한 날짜별 div
 const Layout = styled.div`
   display: grid;
   row-gap: 0;
   color: white;
 `;
-
+//날짜 제외하고  날짜 한 묶음 감싸고 있는 div
 const Layout2 = styled.div`
-  display: inline-flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0px;
 `;
-
+//link랑 이미지 감싸고 있는 div
 const Layout3 = styled.div`
   display: flex;
   margin: 5px;
   flex-direction: row;
 `;
-
+//button 감싸고 있는 div
 const Layout4 = styled.div`
   display: flex;
   justify-content: center;

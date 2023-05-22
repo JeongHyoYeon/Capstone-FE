@@ -65,11 +65,8 @@ function Login() {
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", response.data.token.refresh);
 
-        //setCookie("is_login", `${accessToken}`);
-        console.log(response.data);
         window.alert(response.data.message);
-        //token이 필요한 API 요청 시 header Authorization에 token 담아서 보내기
-        // axios.defaults.headers.common[]=`Bearer ${response.data.access_token}`
+
         dispatch(SET_TOKEN(accessToken));
 
         redirect("/group");
@@ -77,6 +74,8 @@ function Login() {
       .catch((error) => {
         //handle error
         console.log("error:", error.response);
+        if (error.response.data == "아이디 또는 패스워드 오류입니다.")
+          window.alert("아이디 또는 패스워드 오류입니다.");
       });
   };
 

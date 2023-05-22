@@ -54,7 +54,7 @@ const Layout2 = styled.div`
   padding-bottom: 40px;
 `;
 
-const ModalView = ({ setModalOpen }) => {
+const RenameModal = ({ setModalOpen }) => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
 
   const tripId = localStorage.getItem("nowGroupTrip");
@@ -134,4 +134,4 @@ const ModalView = ({ setModalOpen }) => {
     </Container>
   );
 };
-export default ModalView;
+export default RenameModal;

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import InputBox from "../../components/common/InputBox";
-import { setCookie } from "../../storage/Cookie";
 import Button from "../../components/common/Button";
 import instance from "../../components/Request";
 
@@ -48,18 +47,12 @@ function SignupUser() {
       })
       .then((response) => {
         //handle success
-        console.log("success");
-        const accessToken = response.data.token;
-        setCookie("is_login", `${accessToken}`);
-        console.log(response.data);
         window.alert(response.data.message);
-        //localStorage.setItem("token", response.data.jwt);
         redirect("/login");
       })
       .catch((error) => {
         //handle error
         console.log(error);
-        console.log(error.response.data);
         if (error.response.data.email != null) {
           if (error.response.data.email == "user의 email은/는 이미 존재합니다.")
             window.alert("이미 가입된 이메일입니다.");

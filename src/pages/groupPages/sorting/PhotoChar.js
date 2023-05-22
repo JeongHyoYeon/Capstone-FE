@@ -9,9 +9,9 @@ import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
-import ModalView from "../../../components/common/ModalView";
 import UploadModal from "../../../components/common/UploadModal";
 import DownButton from "../../../components/common/DownButton";
+import RenameModal from "../../../components/common/RenameModal";
 
 const Layout = styled.div`
   display: flex;
@@ -29,14 +29,11 @@ const Layout2 = styled.div`
 `;
 
 const Layout3 = styled.div`
-  //display: flex;
-  //margin: 5px;
-  //flex-direction: column;
   text-align: center;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
-  row-gap: 0;
+  grid-gap: 0px;
 `;
 
 const Layout4 = styled.div`
@@ -45,6 +42,7 @@ const Layout4 = styled.div`
   padding-top: 0px;
   flex-direction: column;
   padding-left: 6%;
+  grid-gap: 0px;
 `;
 
 const Layout5 = styled.div`
@@ -190,7 +188,7 @@ const PhotoChar = () => {
           >
             <MdOutlineDriveFileRenameOutline size={"30px"} color="white" />
           </ModifyBtn>
-          {modalName && <ModalView setModalOpen={setModalName} />}
+          {modalName && <RenameModal setModalOpen={setModalName} />}
           <Down>
             <DownButton />
           </Down>

@@ -1,19 +1,15 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./pages/Header";
-//import MyTrip from "./pages/userPages/MyTrip";
 import Group from "./pages/groupPages/Group";
-//import Setting from "./pages/userPages/Setting";
 import MakeTrip from "./pages/groupPages/MakeTrip";
 import MakeGroup from "./pages/groupPages/MakeGroup";
 import SignupUser from "./pages/userPages/SignupUser";
 import Login from "./pages/userPages/Login";
 import GroupTripList from "./pages/groupPages/GroupTripList";
 import GrouptripDetail from "./pages/groupPages/GrouptripDetail";
-import UploadPhoto from "./pages/groupPages/UploadPhoto";
 import PhotoDay from "./pages/groupPages/sorting/PhotoDay";
 import PhotoUser from "./pages/groupPages/sorting/PhotoUser";
-import AutoGPT from "./pages/groupPages/sorting/AutoGPT";
 import InviteList from "./pages/userPages/InviteList";
 import PhotoChar from "./pages/groupPages/sorting/PhotoChar";
 import PhotoObej from "./pages/groupPages/sorting/PhotoObej";
@@ -41,12 +37,6 @@ function App() {
                 <PrivateRoute authenticated={JWTtoken} component={<Group />} />
               }
             />
-            {/* <Route
-              path="/groups"
-              element={
-                <PrivateRoute authenticated={JWTtoken} component={<Group />} />
-              }
-            /> */}
             <Route path="/" element={<LandingPage />} />
             <Route
               path="/maketrips"
@@ -92,15 +82,6 @@ function App() {
                 <PrivateRoute
                   authenticated={JWTtoken}
                   component={<GrouptripDetail />}
-                />
-              }
-            />
-            <Route
-              path="/upload"
-              element={
-                <PrivateRoute
-                  authenticated={JWTtoken}
-                  component={<UploadPhoto />}
                 />
               }
             />
@@ -164,15 +145,6 @@ function App() {
                 <PrivateRoute
                   authenticated={JWTtoken}
                   component={<PhotoChar />}
-                />
-              }
-            />
-            <Route
-              path="/photo/auto/gpt"
-              element={
-                <PrivateRoute
-                  authenticated={JWTtoken}
-                  component={<AutoGPT />}
                 />
               }
             />

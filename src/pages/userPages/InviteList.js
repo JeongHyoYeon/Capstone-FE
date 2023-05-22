@@ -147,7 +147,7 @@ const InviteList = () => {
       )
       .then((response) => {
         console.log("inviteList delete");
-        console.log(response.data);
+        //console.log(response.data);
       })
       .catch((error) => {
         console.log(error);

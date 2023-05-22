@@ -205,14 +205,12 @@ const PhotoCharFolder = () => {
         <Layout2>
           {photoThumb.map((item) => (
             <Layout key={item.tag_id}>
-              {/* {item.thumbnail.map((items) => ( */}
               <Layout3 key={item.thumbnail.id}>
                 <Link to={`/photo/auto/charfolder/${item.tag_id}`}>
                   <Image src={item.thumbnail.url} />
                 </Link>
                 <h3>{item.tag}</h3>
               </Layout3>
-              {/* ))} */}
             </Layout>
           ))}
         </Layout2>

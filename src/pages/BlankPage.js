@@ -14,10 +14,6 @@ const Layout2 = styled.div`
 const BlankPage = (props) => {
   const navigate = useNavigate();
 
-  // const changePage = () => {
-  //   navigate("/upload");
-  // };
-
   //모달창 노출
   const showModal = () => {
     setModalOpen(true);
