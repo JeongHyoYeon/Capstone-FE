@@ -128,11 +128,7 @@ const Group = () => {
   else
     return (
       <>
-        <Layout4>
-          {/* <p style={{ fontWeight: "600", fontSize: "23px" }}>
-            {userName}님의 그룹
-          </p> */}
-        </Layout4>
+        <Layout4></Layout4>
         {groupInfo.map(({ group_info, user_in_group }) => (
           <Layout2 key={group_info.id}>
             <Link to={`/grouptrip/${group_info.id}`}>
@@ -142,14 +138,12 @@ const Group = () => {
                 height={"70px"}
               />
             </Link>
-            <Layout3>
-              <CiCirclePlus
-                onClick={() => {
-                  navAddMember(group_info.id);
-                }}
-                size={"35px"}
-                color="#0969DA"
-              />
+            <Layout3
+              onClick={() => {
+                navAddMember(group_info.id);
+              }}
+            >
+              <CiCirclePlus size="35px" color="#0969DA" />
             </Layout3>
           </Layout2>
         ))}

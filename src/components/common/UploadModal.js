@@ -123,7 +123,7 @@ const UploadModal = ({ setModalOpen }) => {
 
     setPhoto([...photo, ...photoLists]);
 
-    let photoListsLength = photoLists.length > 100 ? 100 : photoLists.length; //최대 100개
+    let photoListsLength = photoLists.length > 50 ? 50 : photoLists.length; //최대 50개
 
     for (let i = 0; i < photoListsLength; i++) {
       const currentphotoUrl = URL.createObjectURL(photoLists[i]);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import InputBox from "../../components/common/InputBox";
 import styled from "styled-components";
 import Button from "../../components/common/Button";
@@ -93,7 +93,7 @@ const AddMember = () => {
     }
 
     if (isAlreadyExist === false) {
-      setinviteList([...inviteList, { id: inputId }]); 
+      setinviteList([...inviteList, { id: inputId }]);
     }
 
     // console
@@ -135,10 +135,10 @@ const AddMember = () => {
         console.log("error:", error);
         if (error == "AxiosError: Request failed with status code 400")
           window.alert("존재하지 않는 회원입니다.");
-        else if (error.response.data[0] == "이미 보낸 초대입니다") {
+        else if (error.response.data[0] == "이미 보낸 초대입니다.") {
           window.alert("이미 보낸 초대입니다");
         } else if (
-          error.response.data[0] == "본인에게 초대를 보낼 수 없습니다"
+          error.response.data[0] == "본인에게 초대를 보낼 수 없습니다."
         ) {
           window.alert("본인에게 초대를 보낼 수 없습니다");
         }
@@ -147,47 +147,39 @@ const AddMember = () => {
 
   return (
     <div>
-  
-        <Layout1>
-          <InputBox
-            placeholder="추가할 친구의 ID를 입력하세요."
-            height={"50px"}
-            width={"75%"}
-            value={inputId}
-            onChange={handleinviteId}
-          />
-          <Layout2>
-            <CiCirclePlus
-              onClick={() => {
-                inviteUser();
-              }}
-              size={"35px"}
-              color="#4988ef"
-            />
-          </Layout2>
-        </Layout1>
-
-
-        
-
-        <Layout4>
-          {inviteList.map((item) => (
-            <Layout3 key={item.id}>{item.id + " "}</Layout3>
-          ))}
-        </Layout4>
-
-        <Button
-          text={"초대 완료"}
-          width={"85%"}
-          fontColor={"white"}
-          position={"fixed"}
-          bottom={"8%"}
-          onClick={() => {
-            changePage();
-          }}
+      <Layout1>
+        <InputBox
+          placeholder="추가할 친구의 ID를 입력하세요."
+          height={"50px"}
+          width={"75%"}
+          value={inputId}
+          onChange={handleinviteId}
         />
+        <Layout2
+          onClick={() => {
+            inviteUser();
+          }}
+        >
+          <CiCirclePlus size="35px" color="#4988ef" />
+        </Layout2>
+      </Layout1>
+      <Layout4>
+        {inviteList.map((item) => (
+          <Layout3 key={item.id}>{item.id + " "}</Layout3>
+        ))}
+      </Layout4>
 
-      </div>
+      <Button
+        text={"초대 완료"}
+        width={"85%"}
+        fontColor={"white"}
+        position={"fixed"}
+        bottom={"8%"}
+        onClick={() => {
+          changePage();
+        }}
+      />
+    </div>
   );
 };
 export default AddMember;

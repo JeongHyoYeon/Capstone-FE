@@ -39,7 +39,6 @@ function Login() {
   };
 
   const loginUser = async (e) => {
-    console.log({ id, password });
     localStorage.clear();
     if (id === "" || password === "") {
       window.alert("아이디와 비밀번호를 입력해주세요.");

@@ -58,8 +58,6 @@ const Alarm = () => {
         }
       )
       .then((response) => {
-        console.log("inviteNumber success");
-        console.log(response.data);
         setNumInvite(response.data.length);
       })
       .catch((error) => {

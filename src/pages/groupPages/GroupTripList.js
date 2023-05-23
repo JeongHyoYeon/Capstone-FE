@@ -53,11 +53,10 @@ const GroupMemberName = styled.div`
 
 const GroupTripList = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
-  console.log(JWTtoken);
 
   //그룹 아이디
   const { groupNum } = useParams();
-  console.log(groupNum);
+
   localStorage.setItem("nowGroup", groupNum);
 
   const [groupName, setGroupName] = useState("");
