@@ -59,7 +59,6 @@ const DownButton = () => {
             })
             .catch((error) => {
               console.error("Error:", error);
-              window.alert("사용자 분류 다운로드:", error.message);
             });
         });
 
@@ -73,12 +72,10 @@ const DownButton = () => {
           })
           .catch((error) => {
             console.error("Error while downloading files:", error);
-            window.alert("사용자 분류 다운로드:", error.message);
           });
       })
       .catch((error) => {
         console.log("Error:", error);
-        window.alert(error);
       });
   };
 

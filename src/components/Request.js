@@ -15,12 +15,17 @@ instance.interceptors.response.use(
   (error) => {
     if (error.response && error.response.status === 401) {
       if (
-        window.location.pathname == "/login" ||
-        window.location.pathname == "/signup"
+        window.location.pathname === "/login" ||
+        window.location.pathname === "/signup"
       ) {
         return Promise.reject(error);
       }
-      window.alert("로그인 해주세요.");
+      if (
+        window.location.pathname !== "/login" &&
+        window.location.pathname !== "/signup"
+      ) {
+        window.alert("로그인 해주세요!");
+      }
       window.location.href = "/login";
     }
 
