@@ -9,7 +9,10 @@ const Header = () => {
   const location = useLocation();
 
   if (location.pathname === "/") return null;
-  else if (location.pathname === "/login" || location.pathname === "/signup")
+  else if (
+    location.pathname.includes("/login") ||
+    location.pathname.includes("/signup")
+  )
     return (
       <div className="header-all">
         <div className="back-btn">

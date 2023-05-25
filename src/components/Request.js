@@ -15,10 +15,8 @@ instance.interceptors.response.use(
   (error) => {
     if (error.response && error.response.status === 401) {
       if (
-        window.location.pathname == "/login/" ||
-        window.location.pathname == "/signup/" ||
-        window.location.pathname == "/login" ||
-        window.location.pathname == "/signup"
+        window.location.pathname.includes("/login") ||
+        window.location.pathname.includes("/signup")
       ) {
         return Promise.reject(error);
       } else {
