@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 const Container = styled.div`
   /* 모달창 크기 */
   width: 90%;
-  height: 40%;
+  height: 300px;
 
   /* 최상단 위치 */
   z-index: 999;
@@ -124,7 +124,8 @@ const RenameModal = ({ setModalOpen }) => {
             fontColor={"white"}
             //position={"fixed"}
             //bottom={"50px"}
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               rename();
               closeModal();
             }}
