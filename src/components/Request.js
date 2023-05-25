@@ -23,8 +23,8 @@ instance.interceptors.response.use(
         return Promise.reject(error);
       } else {
         window.alert("로그인 해주세요!");
+        window.location.replace("/login");
       }
-      window.location.href = "/login";
     }
 
     return Promise.reject(error);
