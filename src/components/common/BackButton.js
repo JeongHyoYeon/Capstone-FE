@@ -18,27 +18,40 @@ const BackButton = () => {
     navigate(-1);
   };
 
+  //폴더별 뷰일때
   const photoBack = () => {
-    //navigate(`/grouptrip/${nowGroupTripId}`);
     const nowGroup = localStorage.getItem("nowGroup");
     if (nowGroup) {
       navigate(`/grouptrip/${nowGroup}`);
     } else {
-      navigate("/group"); // 잘못된 경우 기본 경로로 이동하도록 설정
+      navigate("/group");
     }
   };
+
+  const currentPath = location.pathname;
 
   const groupBack = () => {
     navigate(`/group`);
   };
 
-  if (location.pathname.includes("/photo/" || "/grouptripdetail/")) {
-    return (
-      <Backbtn onClick={photoBack}>
-        <MdOutlineArrowBackIosNew size={"30px"} color="white" />
-      </Backbtn>
-    );
-  } else if (location.pathname.includes("/grouptrip/")) {
+  if (currentPath.includes("/photo/" || "/grouptripdetail/")) {
+    if (
+      currentPath === "/photo/auto/charfolder" ||
+      currentPath === "/photo/auto/obejfolder" ||
+      currentPath === "/photo/userfolder"
+    )
+      return (
+        <Backbtn onClick={photoBack}>
+          <MdOutlineArrowBackIosNew size={"30px"} color="white" />
+        </Backbtn>
+      );
+    else
+      return (
+        <Backbtn onClick={back}>
+          <MdOutlineArrowBackIosNew size={"30px"} color="white" />
+        </Backbtn>
+      );
+  } else if (currentPath.includes("/grouptrip/")) {
     return (
       <Backbtn onClick={groupBack}>
         <MdOutlineArrowBackIosNew size={"30px"} color="white" />
