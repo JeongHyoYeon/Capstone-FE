@@ -1,3 +1,4 @@
+//AfterTrip의 최상단 페이지
 import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";

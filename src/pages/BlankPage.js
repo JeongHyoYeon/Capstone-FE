@@ -1,9 +1,10 @@
+//그룹이 올린 사진이 없을 경우, 사진이 없음을 알려주는 컴포넌트
 import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../components/common/Button";
 import { useNavigate } from "react-router-dom";
 import UploadModal from "../components/common/UploadModal";
-import { useEffect } from "react";
+
 
 const Layout2 = styled.div`
   display: flex;

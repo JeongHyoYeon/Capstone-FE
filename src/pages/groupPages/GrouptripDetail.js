@@ -1,3 +1,4 @@
+//여행별 사진 페이지
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import instance from "../../components/Request";
@@ -12,7 +13,6 @@ const GrouptripDetail = () => {
 
   //해당 그룹의 아이디
   const { tripId } = useParams();
-  console.log(tripId);
   localStorage.setItem("nowGroupTrip", tripId);
 
   //여행 정보
@@ -33,7 +33,7 @@ const GrouptripDetail = () => {
 
   //여행 정보 가져오는 함수
   const tripDetail = async (e) => {
-    //e.preventDefault();
+    
     await axios;
     instance
       .get(
@@ -42,7 +42,7 @@ const GrouptripDetail = () => {
         {
           headers: {
             Authorization: `Bearer ${JWTtoken}`,
-            // "Content-Type": "application/json",
+            "Content-Type": "application/json",
           },
         }
       )

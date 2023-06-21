@@ -1,4 +1,4 @@
-//텍스트 없이 이미지만 있는
+//텍스트 없이 이미지만 있는 박
 import React from "react";
 import styled from "styled-components";
 

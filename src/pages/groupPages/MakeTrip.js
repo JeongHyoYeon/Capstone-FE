@@ -1,3 +1,4 @@
+//여행 만드는 페이지
 import React, { useState } from "react";
 import InputBox from "../../components/common/InputBox";
 import styled from "styled-components";
@@ -125,7 +126,6 @@ const MakeTrip = () => {
         localStorage.removeItem("nowGroup");
       })
       .catch((error) => {
-        console.log(getDateOnly(startDate), getDateOnly(endDate));
         console.log(error);
       });
   };

@@ -1,3 +1,4 @@
+//게시자별 폴더 상세 페이지
 import React from "react";
 import CategoryHeader from "./CategoryHeader";
 import styled from "styled-components";
@@ -24,11 +25,7 @@ const Layout2 = styled.div`
 `;
 
 const Layout3 = styled.div`
-  //display: flex;
-  //flex-direction: row;
-  //flex-wrap: wrap;
   padding-top: 20px;
-  //justify-content: center;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
@@ -93,8 +90,6 @@ const PhotoUser = () => {
         }
       )
       .then((response) => {
-        console.log("success");
-        console.log(response.data);
         setPhotoTag(response.data.tag);
         setPhotoUser(response.data.photos);
       })

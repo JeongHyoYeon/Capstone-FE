@@ -1,3 +1,4 @@
+//사진 업로드 모달
 import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "./Button";

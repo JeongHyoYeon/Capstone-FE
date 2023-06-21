@@ -1,4 +1,4 @@
-import { blueGrey } from "@mui/material/colors";
+//이미지와 텍스트가 있는 박스
 import React from "react";
 import styled from "styled-components";
 
@@ -47,12 +47,6 @@ const Text2 = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-// const FilterBox = styled.div`
-//   //background-color: rgba(0, 0, 0, 0.5);
-//   height: ${(props) => props.height};
-//   width: 92%;
-//   background-color: red;
-// `;
 
 const ImageBox = (props) => {
   return (

@@ -1,3 +1,4 @@
+//게시자별 폴더 페이지
 import React from "react";
 import CategoryHeader from "./CategoryHeader";
 import { useSelector } from "react-redux";
@@ -20,11 +21,7 @@ const Layout = styled.div`
 `;
 
 const Layout2 = styled.div`
-  //display: flex;
-  //flex-wrap: wrap;
-  //flex-direction: row;
   padding-top: 40px;
-  //justify-content: space-evenly;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
@@ -85,8 +82,6 @@ const PhotoUserFolder = () => {
         }
       )
       .then((response) => {
-        console.log("success");
-        console.log(response.data.data);
         setPhotoThumb(response.data.data);
         setLoading(false);
       })

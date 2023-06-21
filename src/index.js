@@ -10,18 +10,10 @@ import reportWebVitals from "./reportWebVitals";
 
 import store from "./components/modules/store";
 
-// import { applyMiddleware, createStore } from "redux";
-// import promiseMiddleware from "redux-promise";
-// import ReduxThunk from "redux-thunk";
-
 const persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-// const createStoreWithMiddleware = applyMiddleware(
-//   promiseMiddleware,
-//   ReduxThunk
-// )(createStore);
 
 root.render(
   //<React.StrictMode>

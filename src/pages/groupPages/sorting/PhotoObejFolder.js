@@ -1,3 +1,4 @@
+//객체별 폴더 페이지
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -9,7 +10,6 @@ import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
 import { FiAlertCircle } from "react-icons/fi";
-//import Space from "../../../components/common/Space";
 import Loading from "../../Loading";
 import UploadModal from "../../../components/common/UploadModal";
 
@@ -22,11 +22,6 @@ const Layout = styled.div`
 `;
 
 const Layout2 = styled.div`
-  // display: flex;
-  // flex-wrap: wrap;
-  // flex-direction: row;
-  //padding-top: 40px;
-  // justify-content: space-evenly;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
@@ -44,8 +39,6 @@ const Layout3 = styled.div`
 const Layout4 = styled.div`
   display: flex;
   justify-content: center;
-  //flex-direction: row;
-  //height: 50px;
   position: fixed;
   width: 100%;
   bottom: 4%;
@@ -107,7 +100,6 @@ const PhotoObejFolder = () => {
         }
       )
       .then((res) => {
-        console.log(res);
         window.alert(res.data);
         setIsLoading(false);
         obejPhotoReady();
@@ -121,8 +113,6 @@ const PhotoObejFolder = () => {
   //객체 분류 썸네일
   const [photoThumb, setPhotoThumb] = useState([]);
 
-  //응답 타입
-  //const [resType, setResType] = useState();
 
   //로딩화면 여부
   const [loading, setLoading] = useState(true);
@@ -143,11 +133,6 @@ const PhotoObejFolder = () => {
         }
       )
       .then((response) => {
-        console.log("success");
-        console.log(response.data);
-        console.log(response.data.data);
-        //console.log(typeof response.data);
-        //setResType(typeof response.data);
         setPhotoThumb(response.data.data);
         setLoading(false);
       })
@@ -208,14 +193,12 @@ const PhotoObejFolder = () => {
         <Layout2>
           {photoThumb.map((item) => (
             <Layout key={item.tag_id}>
-              {/* {item.thumbnail.map((items) => ( */}
               <Layout3 key={item.thumbnail.id}>
                 <Link to={`/photo/auto/obejfolder/${item.tag_id}`}>
                   <Image src={item.thumbnail.url} />
                 </Link>
                 <h4>{item.tag}</h4>
               </Layout3>
-              {/* ))} */}
             </Layout>
           ))}
         </Layout2>

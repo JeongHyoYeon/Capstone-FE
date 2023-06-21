@@ -14,17 +14,6 @@ const persistConfig = {
   whitelist: ["authToken"],
 };
 
-// export default configureStore({
-//   reducer: {
-//     authToken: tokenReducer,
-//   },
-// });
-
-// const reducers = configureStore({
-//   reducer: {
-//     authToken: tokenReducer,
-//   },
-// });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 

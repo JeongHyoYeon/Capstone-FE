@@ -1,3 +1,4 @@
+//AfterTrip 랜딩 페이지
 import React from "react";
 import Button from "../components/common/Button";
 import { useNavigate } from "react-router-dom";

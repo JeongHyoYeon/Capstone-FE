@@ -1,3 +1,4 @@
+//객체별 폴더 상세 페이지
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -14,8 +15,6 @@ import DownButton from "../../../components/common/DownButton";
 const Layout = styled.div`
   display: flex;
   justify-content: center;
-  //flex-direction: row;
-  //height: 50px;
   position: fixed;
   width: 100%;
   bottom: 4%;
@@ -27,9 +26,7 @@ const Layout2 = styled.div`
 `;
 
 const Layout3 = styled.div`
-  // display: flex;
   margin: 5px;
-  // flex-direction: column;
   text-align: center;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
@@ -38,7 +35,6 @@ const Layout3 = styled.div`
 
 const Layout4 = styled.div`
   display: flex;
-  //padding: 10px;
   padding-top: 0px;
   flex-direction: column;
   padding-left: 6%;
@@ -128,8 +124,6 @@ const PhotoObej = () => {
         }
       )
       .then((response) => {
-        console.log("success");
-        console.log(response.data);
         setPhotoTag(response.data.tag);
         setPhotoObej(response.data.photos);
       })

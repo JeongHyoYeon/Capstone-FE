@@ -1,3 +1,4 @@
+//그룹에 멤버 추가하기
 import React, { useState } from "react";
 import InputBox from "../../components/common/InputBox";
 import styled from "styled-components";
@@ -54,12 +55,10 @@ const Layout5 = styled.div`
 
 /* 초대를 보낸 회원 + 목록 + 초대완료버튼 */
 const Layout6 = styled.div`
-  //position: fixed;
-  //bottom: 8%;
   width: 100%;
 `;
 
-var isAlreadyExist = true;
+
 
 const AddMember = () => {
   const JWTtoken = useSelector((state) => state.authToken.accessToken);
@@ -82,29 +81,10 @@ const AddMember = () => {
     navigate(`/group`);
   };
 
-  /* 추가하는 그룹 멤버 임시 저장 */
-  const addUsers = (e) => {
-    // 동일한 이름을 다시 입력했을 경우 저장안되게.
-    isAlreadyExist = false;
-    for (let i = 0; i < inviteList.length; i++) {
-      if (inviteList[i].id === inputId) {
-        isAlreadyExist = true;
-      }
-    }
-
-    if (isAlreadyExist === false) {
-      setinviteList([...inviteList, { id: inputId }]);
-    }
-
-    // console
-    for (let i = 0; i < inviteList.length; i++) {
-      console.log(inviteList[i]);
-    }
-  };
 
   //다른 유저 초대 함수
   const inviteUser = async (e) => {
-    //console.log({ inputId });
+   
     var groupId = localStorage.getItem("groupId");
     console.log(groupId);
     await axios;
@@ -123,10 +103,7 @@ const AddMember = () => {
         }
       )
       .then((response) => {
-        //handle success
-        console.log("invite success");
         window.alert("초대가 보내졌습니다.");
-        console.log(response);
         addUsers(inputId);
         onReset();
       })

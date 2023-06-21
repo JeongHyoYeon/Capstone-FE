@@ -1,3 +1,4 @@
+//그룹 만드는 페이지
 import React, { useState } from "react";
 import InputBox from "../../components/common/InputBox";
 import styled from "styled-components";
@@ -54,12 +55,11 @@ const MakeGroup = () => {
         {
           headers: {
             Authorization: `Bearer ${JWTtoken}`,
-            // "Content-Type": "application/json",
+            "Content-Type": "application/json",
           },
         }
       )
       .then((response) => {
-        console.log(response.data[0].group.id);
         localStorage.setItem("groupId", response.data[0].group.id);
       })
       .catch((error) => {

@@ -1,3 +1,4 @@
+// 서버에서 응답을 받기 전까지 나타나는 로딩 컴포넌트
 import React from "react";
 import { PulseLoader } from "react-spinners";
 import styled from "styled-components";

@@ -1,3 +1,4 @@
+//사진 개별 상세 페이지
 import axios from "axios";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -42,8 +43,6 @@ const PhotoLarge = () => {
         }
       )
       .then((response) => {
-        console.log("success");
-        console.log(response.data);
         setPhotoLarge(response.data.url);
       })
       .catch((error) => {

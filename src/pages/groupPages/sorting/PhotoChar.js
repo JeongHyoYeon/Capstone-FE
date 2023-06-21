@@ -1,3 +1,4 @@
+//인물별 분류 상세 페이지
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -16,8 +17,6 @@ import RenameModal from "../../../components/common/RenameModal";
 const Layout = styled.div`
   display: flex;
   justify-content: center;
-  //flex-direction: row;
-  //height: 50px;
   position: fixed;
   width: 100%;
   bottom: 4%;
@@ -127,7 +126,6 @@ const PhotoChar = () => {
         }
       )
       .then((response) => {
-        console.log(response);
         charPhoto();
         setIsLoading(false);
       })
@@ -152,8 +150,6 @@ const PhotoChar = () => {
         }
       )
       .then((response) => {
-        console.log("success");
-        console.log(response.data);
         setPhotoTag(response.data.tag);
         setPhotoChar(response.data.photos);
       })

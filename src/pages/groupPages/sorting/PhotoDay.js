@@ -1,3 +1,4 @@
+//날짜별 분류 페이지
 import React from "react";
 import CategoryHeader from "./CategoryHeader";
 import styled from "styled-components";
@@ -73,8 +74,6 @@ const PhotoDay = () => {
         }
       )
       .then((response) => {
-        console.log("success");
-        console.log(response.data.data);
         setPhotoDay(response.data.data);
       })
       .catch((error) => {

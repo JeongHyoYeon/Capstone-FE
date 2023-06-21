@@ -1,3 +1,4 @@
+//초대 목록 페이지
 import React from "react";
 import styled from "styled-components";
 import Button from "../../components/common/Button";
@@ -64,6 +65,7 @@ const Layout2 = styled.div`
 `;
 
 const Layout3 = styled.div`
+  padding-top:50px
   display: flex;
   justify-content: center;
   padding-top: 100px;
@@ -93,14 +95,8 @@ const InviteList = () => {
         }
       )
       .then((response) => {
-        console.log("inviteList success");
-        console.log(response.data);
         for (let i = 0; i < response.data.length; i++) {
           nowInviteList.push(response.data[i]);
-        }
-
-        for (let i = 0; i < nowInviteList.length; i++) {
-          console.log(nowInviteList[i]);
         }
         setInviteList([...inviteList, ...nowInviteList]);
         setLoading(false);
@@ -125,7 +121,6 @@ const InviteList = () => {
       )
       .then((response) => {
         console.log("inviteList accept");
-        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -147,7 +142,6 @@ const InviteList = () => {
       )
       .then((response) => {
         console.log("inviteList delete");
-        //console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -162,9 +156,6 @@ const InviteList = () => {
   else if (inviteList.length === 0)
     return (
       <>
-        <br />
-        <br />
-        <br />
         <Layout3>
           <h2 style={{ fontWeight: "500", color: "white" }}>
             들어온 초대가 없습니다.

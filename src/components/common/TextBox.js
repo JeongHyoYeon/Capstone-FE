@@ -1,3 +1,4 @@
+//텍스트만 있는 박스
 import React from "react";
 import styled from "styled-components";
 

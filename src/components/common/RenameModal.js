@@ -1,3 +1,4 @@
+//폴더명 변경하는 모달
 import React, { useState } from "react";
 import styled from "styled-components";
 import InputBox from "./InputBox";

@@ -1,3 +1,4 @@
+//그룹 여행 목록 페이지
 import React from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import ImageBox from "../../components/common/ImageBox";
@@ -86,7 +87,7 @@ const GroupTripList = () => {
         {
           headers: {
             Authorization: `Bearer ${JWTtoken}`,
-            // "Content-Type": "application/json",
+            "Content-Type": "application/json",
           },
         }
       )

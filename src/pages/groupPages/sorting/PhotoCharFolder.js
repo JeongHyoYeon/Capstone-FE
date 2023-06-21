@@ -1,3 +1,4 @@
+//인물별 폴더 페이지
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -9,7 +10,6 @@ import Image from "../../../components/common/Image";
 import styled from "styled-components";
 import instance from "../../../components/Request";
 import { FiAlertCircle } from "react-icons/fi";
-//import Space from "../../../components/common/Space";
 import Loading from "../../Loading";
 import UploadModal from "../../../components/common/UploadModal";
 
@@ -22,11 +22,7 @@ const Layout = styled.div`
 `;
 
 const Layout2 = styled.div`
-  //display: flex;
-  //flex-wrap: wrap;
-  //flex-direction: row;
   padding-top: 40px;
-  //justify-content: space-evenly;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
@@ -44,8 +40,6 @@ const Layout3 = styled.div`
 const Layout4 = styled.div`
   display: flex;
   justify-content: center;
-  //flex-direction: row;
-  //height: 50px;
   position: fixed;
   width: 100%;
   bottom: 4%;
@@ -122,8 +116,6 @@ const PhotoCharFolder = () => {
   //인물 분류 썸네일 담는 배열
   const [photoThumb, setPhotoThumb] = useState([]);
 
-  //응답 타입
-  //const [resType, setResType] = useState();
 
   //로딩화면 여부
   const [loading, setLoading] = useState(true);
@@ -144,8 +136,6 @@ const PhotoCharFolder = () => {
         }
       )
       .then((response) => {
-        console.log("success");
-        console.log(response.data);
         setPhotoThumb(response.data.data);
         setLoading(false);
       })

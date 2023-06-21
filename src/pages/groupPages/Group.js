@@ -71,28 +71,7 @@ const Group = () => {
     navigate(`/group/${item}`);
   };
 
-  // const authCheck = async (e) => {
-  //   await axios;
-  //   instance
-  //     .get(
-  //       `accounts/groups/`,
-
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${JWTtoken}`,
-  //           //Content-Type: application/json,
-  //         },
-  //       }
-  //     )
-  //     .then((response) => {
-  //       console.log(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       logOut();
-  //     });
-  // };
-
+  
   const groupList = async (e) => {
     setLoading(true);
     await axios;
@@ -103,7 +82,7 @@ const Group = () => {
         {
           headers: {
             Authorization: `Bearer ${JWTtoken}`,
-            // "Content-Type": "application/json",
+            "Content-Type": "application/json",
           },
         }
       )
@@ -120,7 +99,6 @@ const Group = () => {
   };
 
   useEffect(() => {
-    // authCheck();
     groupList();
   }, []);
 
@@ -161,8 +139,6 @@ const Group = () => {
         <Layout>
           <h4
             style={{
-              //align-items: "flex-end",
-              // bottom: "20px",
               color: "#626262",
               textDecoration: "underline",
               position: "fixed",

@@ -1,3 +1,4 @@
+//분류페이지 헤더
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";

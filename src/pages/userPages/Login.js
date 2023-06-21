@@ -1,9 +1,9 @@
+//로그인 페이지
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import InputBox from "../../components/common/InputBox";
 import axios from "axios";
-//import { setCookie } from "../storage/Cookie";
 import { useDispatch } from "react-redux";
 import { SET_TOKEN } from "../../components/modules/slices/tokenSlice";
 import Button from "../../components/common/Button";
@@ -44,7 +44,7 @@ function Login() {
       window.alert("아이디와 비밀번호를 입력해주세요.");
       return;
     }
-    //e.preventDefault();
+    
     await axios;
     instance
       .post(
@@ -56,9 +56,6 @@ function Login() {
         { withCredentials: true }
       )
       .then((response) => {
-        //handle success
-        console.log("success");
-
         const accessToken = response.data.token.access;
         localStorage.setItem("name", response.data.user.name);
         localStorage.setItem("accessToken", accessToken);

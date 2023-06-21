@@ -1,4 +1,4 @@
-// 사진 다운로드
+// 사진 다운로드 버튼
 import React from "react";
 import styled from "styled-components";
 import axios from "axios";
